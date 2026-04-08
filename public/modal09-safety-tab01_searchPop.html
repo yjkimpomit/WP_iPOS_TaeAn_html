@@ -1,0 +1,217 @@
+<!-- 검색결과 리스트 -->
+                <div class="search-box" aria-label="오더번호-검색">
+                    <form id="form_pop_search_work_order" method="post" autocomplete="off">
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <label class="form-label" for="searchWorkOrderNo">오더번호</label>
+                                <input class="form-control" id="searchWorkOrderNo" name="searchWorkOrderNo">
+                            </div>
+                            <div class="col-md mb-3">
+                                <label class="form-label" for="searchWorkOrderDescription">오더명</label>
+                                <input class="form-control" id="searchWorkOrderDescription" name="searchWorkOrderDescription">
+                            </div>
+
+                            <div class="col-md-auto mb-3">
+                                <button type="button" class="btn btn-primary" onclick="fnPopSearchWorkOrder()">
+										<span class="material-symbols-rounded">
+											search
+										</span> 검색
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="table-responsive" id="_POP_SEARCH_WORK_ORDER_LIST">
+
+
+
+
+
+
+<script>
+    function fnPopSearchWorkOrderSelect(code, desc) {
+        $('#orderNoOption').val(code);
+        $('#orderNoInput').val(desc);
+        $('#searchWorkOrderPopup .close').trigger('click');
+
+        // 오더코드 넘기기
+        fnPopCallBackWorkOrder(code);
+    }
+</script>
+
+
+<table class="table table-sm sticky" aria-label="오더번호-결과">
+    <thead>
+    <tr>
+        <th scope="col" data-field="CODE">오더번호</th>
+        <th scope="col" data-field="DESC">오더명</th>
+    </tr>
+    </thead>
+    <tbody>
+    
+    
+    
+        <tr onclick="fnPopSearchWorkOrderSelect('1702593','2복합 파이 시스템 운전데이터 점검')">
+            <th data-field="CODE" scope="row">1702593</th>
+            <td data-field="DESC" class="text-start">2복합 파이 시스템 운전데이터 점검</td>
+        </tr>
+    
+        <tr onclick="fnPopSearchWorkOrderSelect('1707883','PF/ACF #B 입구 유량계 교체')">
+            <th data-field="CODE" scope="row">1707883</th>
+            <td data-field="DESC" class="text-start">PF/ACF #B 입구 유량계 교체</td>
+        </tr>
+    
+        <tr onclick="fnPopSearchWorkOrderSelect('1698463','수처리설비 Clarifier Inlet 유량계 점검')">
+            <th data-field="CODE" scope="row">1698463</th>
+            <td data-field="DESC" class="text-start">수처리설비 Clarifier Inlet 유량계 점검</td>
+        </tr>
+    
+        <tr onclick="fnPopSearchWorkOrderSelect('1933513','Aux BLR Unit HTR Regulator Vv(PRV-HV101) 후단측 Pr Gauge 교체')">
+            <th data-field="CODE" scope="row">1933513</th>
+            <td data-field="DESC" class="text-start">Aux BLR Unit HTR Regulator Vv(PRV-HV101) 후단측 Pr Gauge 교체</td>
+        </tr>
+    
+        <tr onclick="fnPopSearchWorkOrderSelect('1933524','Aux Boiler Combustion Air flow Deviation High에 따른 계측기 교정 및 시운전')">
+            <th data-field="CODE" scope="row">1933524</th>
+            <td data-field="DESC" class="text-start">Aux Boiler Combustion Air flow Deviation High에 따른 계측기 교정 및 시운전</td>
+        </tr>
+    
+        <tr onclick="fnPopSearchWorkOrderSelect('1933518','GT Air Compressor temp meter 교체')">
+            <th data-field="CODE" scope="row">1933518</th>
+            <td data-field="DESC" class="text-start">GT Air Compressor temp meter 교체</td>
+        </tr>
+    
+        <tr onclick="fnPopSearchWorkOrderSelect('1723206','2복합 Ammonia Tank Level PI 점검 ')">
+            <th data-field="CODE" scope="row">1723206</th>
+            <td data-field="DESC" class="text-start">2복합 Ammonia Tank Level PI 점검 </td>
+        </tr>
+    
+        <tr onclick="fnPopSearchWorkOrderSelect('1812074','보조보일러 정상 운전 중 MFT발생 관련 점검')">
+            <th data-field="CODE" scope="row">1812074</th>
+            <td data-field="DESC" class="text-start">보조보일러 정상 운전 중 MFT발생 관련 점검</td>
+        </tr>
+    
+        <tr onclick="fnPopSearchWorkOrderSelect('1725181','2복합 수처리설비 MDI #B-2 Outlet Flowmeter 교체')">
+            <th data-field="CODE" scope="row">1725181</th>
+            <td data-field="DESC" class="text-start">2복합 수처리설비 MDI #B-2 Outlet Flowmeter 교체</td>
+        </tr>
+    
+        <tr onclick="fnPopSearchWorkOrderSelect('1740449','2복합 수처리설비 Clarifier 탁도계 수조 교체')">
+            <th data-field="CODE" scope="row">1740449</th>
+            <td data-field="DESC" class="text-start">2복합 수처리설비 Clarifier 탁도계 수조 교체</td>
+        </tr>
+    
+        <tr onclick="fnPopSearchWorkOrderSelect('1855921','#1GT Main Lube Oil Pump #A Disch. Pressure Gauge 하단 연결부 Oil Leak 관련 점검')">
+            <th data-field="CODE" scope="row">1855921</th>
+            <td data-field="DESC" class="text-start">#1GT Main Lube Oil Pump #A Disch. Pressure Gauge 하단 연결부 Oil Leak 관련 점검</td>
+        </tr>
+    
+        <tr onclick="fnPopSearchWorkOrderSelect('1825807','보조보일러 Deaerator LCV(LCV-AS101) 점검')">
+            <th data-field="CODE" scope="row">1825807</th>
+            <td data-field="DESC" class="text-start">보조보일러 Deaerator LCV(LCV-AS101) 점검</td>
+        </tr>
+    
+        <tr onclick="fnPopSearchWorkOrderSelect('2199385','2복합 Aux BLR Drum Heating TCV Dev High 발생 관련 카드 점검')">
+            <th data-field="CODE" scope="row">2199385</th>
+            <td data-field="DESC" class="text-start">2복합 Aux BLR Drum Heating TCV Dev High 발생 관련 카드 점검</td>
+        </tr>
+    
+        <tr onclick="fnPopSearchWorkOrderSelect('2195781','2복합 보조보일러 Pilot Flame Detector 교체')">
+            <th data-field="CODE" scope="row">2195781</th>
+            <td data-field="DESC" class="text-start">2복합 보조보일러 Pilot Flame Detector 교체</td>
+        </tr>
+    
+        <tr onclick="fnPopSearchWorkOrderSelect('2198658','기동용보일러 Burner LNG Main 1st,2nd VV(FV-AS-144,145) 미작동 관련 로직 점검')">
+            <th data-field="CODE" scope="row">2198658</th>
+            <td data-field="DESC" class="text-start">기동용보일러 Burner LNG Main 1st,2nd VV(FV-AS-144,145) 미작동 관련 로직 점검</td>
+        </tr>
+    
+        <tr onclick="fnPopSearchWorkOrderSelect('2107943','PAC Air Dryer Dew Point Meter 편차 발생관련 점검')">
+            <th data-field="CODE" scope="row">2107943</th>
+            <td data-field="DESC" class="text-start">PAC Air Dryer Dew Point Meter 편차 발생관련 점검</td>
+        </tr>
+    
+        <tr onclick="fnPopSearchWorkOrderSelect('2139910','Aux BLR Drum Level Switch 점검')">
+            <th data-field="CODE" scope="row">2139910</th>
+            <td data-field="DESC" class="text-start">Aux BLR Drum Level Switch 점검</td>
+        </tr>
+    
+        <tr onclick="fnPopSearchWorkOrderSelect('2159020','IAC #B 2nd Discharge Air Temp 전송기 점검')">
+            <th data-field="CODE" scope="row">2159020</th>
+            <td data-field="DESC" class="text-start">IAC #B 2nd Discharge Air Temp 전송기 점검</td>
+        </tr>
+    
+        <tr onclick="fnPopSearchWorkOrderSelect('2063126','AUX BLR Drum LVL (LT-AS124A,B,C) 전송기 교정')">
+            <th data-field="CODE" scope="row">2063126</th>
+            <td data-field="DESC" class="text-start">AUX BLR Drum LVL (LT-AS124A,B,C) 전송기 교정</td>
+        </tr>
+    
+        <tr onclick="fnPopSearchWorkOrderSelect('2201278','Aux BLR Drum Level LL Alarm 관련 그래픽 개선')">
+            <th data-field="CODE" scope="row">2201278</th>
+            <td data-field="DESC" class="text-start">Aux BLR Drum Level LL Alarm 관련 그래픽 개선</td>
+        </tr>
+    
+        <tr onclick="fnPopSearchWorkOrderSelect('2014539','#1 GT Flash Pipe 온도전송기 조립')">
+            <th data-field="CODE" scope="row">2014539</th>
+            <td data-field="DESC" class="text-start">#1 GT Flash Pipe 온도전송기 조립</td>
+        </tr>
+    
+        <tr onclick="fnPopSearchWorkOrderSelect('2122994','Aux BLR LNG Vent FV-AS-146 Air Regulator 교체')">
+            <th data-field="CODE" scope="row">2122994</th>
+            <td data-field="DESC" class="text-start">Aux BLR LNG Vent FV-AS-146 Air Regulator 교체</td>
+        </tr>
+    
+        <tr onclick="fnPopSearchWorkOrderSelect('2106014','2복합 AUX BLR NG FCV (FCV-AS145) Demand-Feedback Deviation 관련 로직 tag 수정')">
+            <th data-field="CODE" scope="row">2106014</th>
+            <td data-field="DESC" class="text-start">2복합 AUX BLR NG FCV (FCV-AS145) Demand-Feedback Deviation 관련 로직 tag 수정</td>
+        </tr>
+    
+        <tr onclick="fnPopSearchWorkOrderSelect('2201279','PAC #C Inter Cooler Level Switch 상태점검')">
+            <th data-field="CODE" scope="row">2201279</th>
+            <td data-field="DESC" class="text-start">PAC #C Inter Cooler Level Switch 상태점검</td>
+        </tr>
+    
+        <tr onclick="fnPopSearchWorkOrderSelect('2180804','PAC #C Inlet Cooler Level Switch  상태점검')">
+            <th data-field="CODE" scope="row">2180804</th>
+            <td data-field="DESC" class="text-start">PAC #C Inlet Cooler Level Switch  상태점검</td>
+        </tr>
+    
+        <tr onclick="fnPopSearchWorkOrderSelect('2182632','Aux Boiler Combustion Air flow 전송기 교정')">
+            <th data-field="CODE" scope="row">2182632</th>
+            <td data-field="DESC" class="text-start">Aux Boiler Combustion Air flow 전송기 교정</td>
+        </tr>
+    
+        <tr onclick="fnPopSearchWorkOrderSelect('2022649','2복합 가스 누설감지기 검교정')">
+            <th data-field="CODE" scope="row">2022649</th>
+            <td data-field="DESC" class="text-start">2복합 가스 누설감지기 검교정</td>
+        </tr>
+    
+        <tr onclick="fnPopSearchWorkOrderSelect('2132507','PAC #A Separator Flow Indicator 교체')">
+            <th data-field="CODE" scope="row">2132507</th>
+            <td data-field="DESC" class="text-start">PAC #A Separator Flow Indicator 교체</td>
+        </tr>
+    
+        <tr onclick="fnPopSearchWorkOrderSelect('2114467','AUX BLR Outlet Air Damper측 구동용 Air Regulator 교체')">
+            <th data-field="CODE" scope="row">2114467</th>
+            <td data-field="DESC" class="text-start">AUX BLR Outlet Air Damper측 구동용 Air Regulator 교체</td>
+        </tr>
+    
+        <tr onclick="fnPopSearchWorkOrderSelect('2063116','GT IAC #B MTR BRG 온도 콘트롤러 교체')">
+            <th data-field="CODE" scope="row">2063116</th>
+            <td data-field="DESC" class="text-start">GT IAC #B MTR BRG 온도 콘트롤러 교체</td>
+        </tr>
+    
+        <tr onclick="fnPopSearchWorkOrderSelect('2139682','Aux BLR BFP Disch Flow 전송기 점검')">
+            <th data-field="CODE" scope="row">2139682</th>
+            <td data-field="DESC" class="text-start">Aux BLR BFP Disch Flow 전송기 점검</td>
+        </tr>
+    
+        <tr onclick="fnPopSearchWorkOrderSelect('2137938','Aux BLR Combution Air Flow 전송기 교정')">
+            <th data-field="CODE" scope="row">2137938</th>
+            <td data-field="DESC" class="text-start">Aux BLR Combution Air Flow 전송기 교정</td>
+        </tr>
+    
+    </tbody>
+</table>
+</div>

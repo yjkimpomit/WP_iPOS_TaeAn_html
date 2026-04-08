@@ -1,0 +1,167 @@
+<h3 class="title02">정비비용 고장경향 분석</h3>
+<!-- 검색영역 -->
+<div class="search-box" aria-label="정비비용-고장경향-분석">
+	<div class="row">
+		<!-- 상위 폼 요소 (연관된 인풋 두 개 세트) -->
+		<div class="col-md-6 col-lg-4 col-xxl-2 mb-3">
+			<span class="form-label" id="dateRangePicker01">요청기간</span>
+			<div class="row g-2 period-box" aria-labelledby="dateRangePicker01">
+				<div class="col">
+					<label class="visually-hidden" for="startDate0102">시작일</label>
+					<input type="date" class="form-control" id="startDate0102">
+				</div>
+				<div class="col-auto">
+					<span class="form-control-plaintext text-center">~</span>
+				</div>
+				<div class="col">
+					<label class="visually-hidden" for="endDate0102">종료일</label>
+					<input type="date" class="form-control" id="endDate0102">
+				</div>
+			</div>
+		</div>
+		<div class="col-md-auto col-lg-auto mb-3">
+			<button type="button" class="btn btn-primary">
+				<span class="material-symbols-rounded">
+					search
+				</span> 검색
+			</button>
+		</div>
+	</div>
+</div>
+
+<!-- data-grid -->
+<div class="table-responsive" style="height: auto;">
+	<table class="table table-sm" aria-label="작업요청확정">
+		<thead>
+			<tr>
+				<th scope="col" data-field="첨부">첨부</th>
+				<th scope="col" data-field="요청유형">요청유형</th>
+				<th scope="col" data-field="승인일자">승인일자</th>
+				<th scope="col" data-field="진행상태">진행상태</th>
+				<th scope="col" data-field="요청번호">요청번호</th>
+				<th scope="col" data-field="요청명">요청명</th>
+				<th scope="col" data-field="요청자">요청자</th>
+				<th scope="col" data-field="요청부서">요청부서</th>
+				<th scope="col" data-field="감독부서">감독부서</th>
+				<th scope="col" data-field="작업중요도">작업중요도</th>
+				<th scope="col" data-field="우선순위">우선순위</th>
+				<th scope="col" data-field="Red-TAG-필요">Red TAG 필요</th>
+				<th scope="col" data-field="증상">증상</th>
+				<th scope="col" data-field="최근1년간-동일증상">최근1년간 동일증상</th>
+				<th scope="col" data-field="설비번호">설비번호</th>
+				<th scope="col" data-field="설비명">설비명</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr onclick="showDetail($(this));">
+				<th scope="row" data-field="첨부">
+					<span class="material-symbols-rounded">
+						attachment
+					</span>
+				</th>
+				<th scope="col" data-field="요청유형">TM</th>
+				<th scope="col" data-field="승인일자">2024-07-20</th>
+				<th scope="col" data-field="진행상태">확정완료</th>
+				<th scope="col" data-field="요청번호">123456</th>
+				<th scope="col" data-field="요청명">CTCS#A, B 볼 회수율 불량</th>
+				<td data-field="요청자">홍길동</td>
+				<td data-field="요청부서">복합발전운영본부</td>
+				<td data-field="감독부서">복기ST과</td>
+				<td data-field="작업중요도">B등급(일반)</td>
+				<td data-field="우선순위">일상</td>
+				<td data-field="Red-TAG-필요">0</td>
+				<td data-field="증상">누설(Leakage)</td>
+				<td data-field="최근1년간-동일증상">0</td>
+				<td data-field="설비번호">12345678</td>
+				<td data-field="설비명">CTCS Line</td>
+			</tr>
+			<tr onclick="showDetail($(this));">
+				<th scope="row" data-field="첨부">
+					<span class="material-symbols-rounded">
+						attachment
+					</span>
+				</th>
+				<th scope="col" data-field="요청유형">TM</th>
+				<th scope="col" data-field="승인일자">2024-11-20</th>
+				<th scope="col" data-field="진행상태">확정완료</th>
+				<th scope="col" data-field="요청번호">458752</th>
+				<th scope="col" data-field="요청명">2복합 SLP Screen Wash WTR PP #B Gland 누수 2복합 SLP Screen Wash WTR PP #B Gland 누수</th>
+				<td data-field="요청자">홍길동</td>
+				<td data-field="요청부서">복합발전운영본부</td>
+				<td data-field="감독부서">복기ST과</td>
+				<td data-field="작업중요도">A등급(중요)</td>
+				<td data-field="우선순위">일상</td>
+				<td data-field="Red-TAG-필요">0</td>
+				<td data-field="증상">누설(Leakage)</td>
+				<td data-field="최근1년간-동일증상">0</td>
+				<td data-field="설비번호">12345678</td>
+				<td data-field="설비명">CTCS Line</td>
+			</tr>
+			<tr onclick="showDetail($(this));">
+				<th scope="row" data-field="첨부">
+					<span class="material-symbols-rounded">
+						attachment
+					</span>
+				</th>
+				<th scope="col" data-field="요청유형">TM</th>
+				<th scope="col" data-field="승인일자">2024-12-01</th>
+				<th scope="col" data-field="진행상태">확정완료</th>
+				<th scope="col" data-field="요청번호">015752</th>
+				<th scope="col" data-field="요청명">SLP Screen Wash Gland 누수</th>
+				<td data-field="요청자">홍길동</td>
+				<td data-field="요청부서">복합발전운영본부</td>
+				<td data-field="감독부서">복기ST과</td>
+				<td data-field="작업중요도">A등급(중요)</td>
+				<td data-field="우선순위">일상</td>
+				<td data-field="Red-TAG-필요">0</td>
+				<td data-field="증상">누설(Leakage)</td>
+				<td data-field="최근1년간-동일증상">0</td>
+				<td data-field="설비번호">12345678</td>
+				<td data-field="설비명">CTCS Line</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<!-- data title -->
+<div class="title-box">
+	<h4 class="title03">조회결과<small>* 그래프의 포인트에 마우스를 올리면 Raw Data가 나타납니다.</small></h4>
+</div>
+<script>
+	$(document).ready(function () {
+		const targetRow = document.querySelector('.table[aria-label="작업요청확정"] tbody tr');
+		duplicateByElement(targetRow, 20);
+		//duplicateRow('.table[aria-label="작업요청확정"]', 47);
+	});
+</script>
+
+<script>
+	//클릭된 행 클래스 설정
+	var setActiveRow = null;
+
+	function showDetail(row) {
+		setActiveRow = row;
+
+		//클릭된 행 클래스 추가 및 다른 행의 클래스 제거
+		var $table = $(row).closest('table');
+
+		if(setActiveRow) {
+			$table.find('tr.active').not(this).removeClass("active");
+			$(setActiveRow).addClass('active');
+		}
+			
+		$("#showTmDetail").bPopup({
+			modalClose : false,
+			position: [0, 0],
+			opacity: .4,
+			speed : 450,
+			closeClass: "close",
+			onOpen: function () {
+				$(this).addClass('show detail-box');
+			},
+			onClose: function () {
+				$(this).removeClass('show');
+			}
+		});
+	}
+</script>

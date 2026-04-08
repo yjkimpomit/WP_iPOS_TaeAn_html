@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="theme-color" content="#FFFFFF">
+	<title>태안 퍼블리싱본 - iPOS RWD</title>
+
+	<meta name="description" content="서부발전 태안 i-POS 서비스 제공">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- favicon -->
+	<link rel="icon" href="/favicon.ico" sizes="any">
+	<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+
+	<!-- slick & jstree -->
+	<link rel="stylesheet" href="/resources/js/slick-1.8.1/slick/slick.css">
+	<link rel="stylesheet" href="/resources/js/slick-1.8.1/slick/slick-theme.css">
+	<link rel="stylesheet" href="/resources/js/jsTree/css/style.min.css">
+
+	<!-- slick & jsTree & highchart -->
+	<script src="/resources/js/jquery/jquery-3.6.1.js"></script>
+	<script src="/resources/js/slick-1.8.1/slick/slick.min.js"></script>
+
+	<!-- toastchart -->
+	<script src="/resources/js/toastchart/toastui-chart.js"></script>
+
+	<!-- chartjs -->
+	<script src="/resources/js/chart/chart.umd.js"></script>
+	<script src="/resources/js/chart/chartjs-adapter-date-fns.bundle.min.js"></script>
+
+	<!-- jstree -->
+	<!-- <script src="/resources/js/jsTree/js/jstree.min.js"></script>
+	<script src="/resources/js/jsTree/js/jstreeFacility.js"></script> -->
+
+	<!-- ztree -->
+	<link rel="stylesheet" href="/resources/js/ztree/css/metroStyle/metroStyle.css" type="text/css">
+	<script src="/resources/js/ztree/js/jquery.ztree.all.min.js"></script>
+	
+    <!-- daterangepicker -->
+    <link rel="stylesheet" type="text/css" media="all" href="/resources/js/daterangepicker/daterangepicker.css"/>
+    <script type="text/javascript" src="/resources/js/daterangepicker/moment/moment-with-locales.min.js"></script>
+    <script type="text/javascript" src="/resources/js/daterangepicker/daterangepicker.js"></script>
+
+	<!-- 부트스트랩 JS -->
+	<script src="/resources/css/bootstrap/dist/js/popper.min.js"></script>
+	<script src="/resources/css/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+	<!-- bPopup -->
+	<script src="/resources/js/jquery/jquery.bpopup.min.js"></script>
+
+	<!-- winbox js -->
+	<link rel="stylesheet" href="/resources/js/winbox/winbox.min.css">
+	<script src="/resources/js/winbox/winbox.min.js"></script>
+
+	<!-- WP stylesheet -->
+	<link rel="stylesheet" href="/resources/css/common.css">
+	<script src="/resources/js/common.js" defer></script>
+	<script src="/resources/js/device-info.js" defer></script>
+
+	<!-- <%-- 변수 선언 --%> -->
+	<script>
+		/* <%-- 999/0 : mobile --%> */
+		//var checkMobile = "${sessionScope.loginInfo.iui_isadmin}";
+		var checkMobile = 0;
+	</script>
+	<!-- 
+	<link rel="stylesheet" href="/unity3DViewer/TemplateData/style.css">
+	<link rel="manifest" href="/unity3DViewer/manifest.webmanifest"> -->
+</head>
+<body class="sub">
+<!-- 로딩박스 -->
+<div class="loading-box" id="loadingBar" style="display: none;">
+    <div class="loader"></div>
+</div>
+<div class="container-ew">
+	
+	<div class="panel-box ew">
+		<div class="side-panel left">
+
+			<ul class="nav nav-pills nav-justified" id="plant-tab" role="tablist">
+				<li class="nav-item" role="presentation">
+					<button class="nav-link active" id="plant9-tab" data-bs-toggle="pill" data-bs-target="#plant9-tab-pane" type="button" role="tab" aria-selected="true">9호기</button>
+				</li>
+				<li class="nav-item" role="presentation">
+					<button class="nav-link" id="plant10-tab" data-bs-toggle="pill" data-bs-target="#plant10-tab-pane" type="button" role="tab" aria-selected="false">10호기</button>
+				</li>
+				<li class="nav-item" role="presentation">
+					<button class="nav-link" id="plantAll-tab" data-bs-toggle="pill" data-bs-target="#plantAll-tab-pane" type="button" role="tab" aria-selected="false">9, 10호기</button>
+				</li>
+			</ul>
+
+			<div class="tab-content" id="plant-tabContent">
+				
+				<div class="tab-pane fade show active" id="plant9-tab-pane" role="tabpanel" aria-labelledby="plant9-tab" tabindex="0">
+				</div>
+				<!-- plant9 end -->
+
+				<div class="tab-pane fade" id="plant10-tab-pane" role="tabpanel" aria-labelledby="plant10-tab" tabindex="0"></div>
+				<!-- plant10 end -->
+
+				<div class="tab-pane fade" id="plantAll-tab-pane" role="tabpanel" aria-labelledby="plantAll-tab" tabindex="0"></div>
+				<!-- plant9, 10 end -->
+			</div>
+		</div>
+		
+		<div class="contents-panel">
+			<!-- 검색영역 -->
+			<div class="search-box">
+				<form>
+					<div class="row">
+						<!-- 상위 폼 요소 (연관된 인풋 두 개 세트) -->
+						<div class="col-md-6 col-lg-5 col-xxl-4 mb-3">
+							<span id="dateRangePicker0202" class="form-label form-control-plaintext">기간</span>
+							<div class="row g-2 period-box" aria-labelledby="dateRangePicker0202">
+								<div class="col-sm">
+									<label class="visually-hidden" for="startDate">시작일</label>
+									<input type="text" class="form-control icon-calendar has-dateRangePicker" id="startDate">
+								</div>
+								<div class="col-auto">
+									<span class="form-control-plaintext text-center">~</span>
+								</div>
+								<div class="col-sm">
+									<label class="visually-hidden" for="endDate">종료일</label>
+									<input type="text" class="form-control icon-calendar" id="endDate" readonly>
+								</div>
+							</div>
+							<script>
+								if ('ontouchstart' in window) {
+									$('#startDate.has-dateRangePicker')
+									.attr('readonly', true)
+									.on('focus click', function () {
+										$(this).blur();
+										$(this).data('daterangepicker')?.show();
+									});
+								}
+							</script>
+						</div>
+					
+						<div class="col-md-auto mb-3">
+							<button type="button" class="btn btn-primary">
+								<span class="material-symbols-rounded">
+									search
+								</span> 검색
+							</button>
+						</div>
+					
+						<div class="col-md-auto mb-3">
+							<button type="button" class="btn btn-outline-primary">TODAY</button>
+						</div>
+
+					</div>
+				</form>
+			</div>
+
+			<div class="early-warning" id="_ALARM_LIST">
+				
+			</div>
+
+		</div>
+	</div>
+
+</div>
+
+<!-- 달력 -->
+<script>
+	$.ajax({
+		method: 'GET',
+		url: '/modal11-earlywarning-list.html',
+		async: false,
+		dataType: 'html'
+	}).done(function(html) {
+		$('#_ALARM_LIST').append(html);
+	});
+	
+    function fnSearchList() {
+		$.ajax({
+			type: "GET"
+			//, url: "/earlywarning/list.do"
+			//, data: $("#searchForm").serialize()
+			, url: "./modal11-earlywarning-list.html"
+			, dataType: "html"
+			, beforeSend: function () {
+				$("#loadingBar").css("display", "");
+			}
+			, success: function (data) {
+				$("#_ALARM_LIST").html(data);
+			}
+			, error: function () {
+				alert("에러가 발생했습니다.\n잠시 후 다시 시도해 주시기 바랍니다.");
+			}
+			, complete: function () {
+				$("#loadingBar").css("display", "none");
+			}
+		});
+    }
+	/* 검색 일수 정보 */
+	function SelectedDaysCount(start, end) {
+		var cur = start.clone().startOf('day');
+		var last = end.clone().startOf('day');
+
+		$("#searchForm #daysCount").val(last.diff(cur, 'days') + 1); // 선택 포함 일수
+	}
+
+	$(function () {
+		function setToday() {
+			var picker = $('#startDate').data('daterangepicker');
+			var start = moment().startOf('day');
+			var end = moment().endOf('day');
+
+			picker.setStartDate(start);
+			picker.setEndDate(end);
+
+			// set date range picker value
+			$('#startDate').val(start.format('YYYY-MM-DD HH:mm'));
+			$('#endDate').val(end.format('YYYY-MM-DD HH:mm'));
+		}
+
+		$('#startDate').daterangepicker({
+			timePicker: true,
+			timePicker24Hour: true,
+			ranges: {
+				'Today': [moment(), moment()],
+				'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+				'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+				'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+				'This Month': [moment().startOf('month'), moment().endOf('month')],
+				'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+			},
+			alwaysShowCalendars: true,
+			linkedCalendars: false,
+			autoUpdateInput: false,
+			showCustomRangeLabel: false,
+			startDate: moment(),
+			endDate: moment(),
+			locale: {
+				format: 'YYYY-MM-DD',
+				separator: ' ~ ',
+				applyLabel: '적용',
+				cancelLabel: '닫기',
+				fromLabel: '시작',
+				toLabel: '종료',
+				customRangeLabel: 'Custom',
+				weekLabel: '주',
+				daysOfWeek: ['일', '월', '화', '수', '목', '금', '토'],
+				monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+				firstDay: 0
+			}
+		}, function (start, end, label) {
+			SelectedDaysCount(start, end);
+
+			$("#startDate").val(start.format('YYYY-MM-DD HH:mm'));
+			$("#endDate").val(end.format('YYYY-MM-DD HH:mm'));
+
+			fnSearchList();
+		});
+
+		/* load list page */
+		setToday();
+		//fnSearchList();
+
+		$("#searchToday").click(function () {
+			//fnSetParamValues('', '', '');
+			setToday();
+			//fnSearchList();
+		});
+	});
+</script>
+
+<!-- 임시트리메뉴로드 -->
+<script>
+	$(document).ready(function() {
+		$.ajax({
+			method: 'GET',
+			url: 'modal11-tree.html',
+			async: false,
+			dataType: 'html'
+		}).done(function(html) {
+			$('#plant9-tab-pane').append(html);
+		});
+	});
+	$(document).ready(function() {
+		$.ajax({
+			method: 'GET',
+			url: 'modal11-tree.html',
+			async: false,
+			dataType: 'html'
+		}).done(function(html) {
+			$('#plant10-tab-pane').append(html);
+		});
+	});
+	$(document).ready(function() {
+		$.ajax({
+			method: 'GET',
+			url: 'modal11-tree.html',
+			async: false,
+			dataType: 'html'
+		}).done(function(html) {
+			$('#plantAll-tab-pane').append(html);
+		});
+	});
+</script>
+
+<script src="/resources/js/earlywarning/earlywarning.js"></script>
+</body>
+</html>

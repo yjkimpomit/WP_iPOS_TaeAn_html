@@ -1,0 +1,225 @@
+<!-- 운전정보-GT -->
+		<div class="op-box-header">
+			<h3>GT 운전정보</h3>
+			<div class="btn-box">
+				<button type="button" class="btn maximize" title="확장" onclick="maxi_opDataBox('#_OPERATION_GT_');" style="display: none;"></button>
+				<button type="button" class="btn minimize" title="축소" onclick="mini_opDataBox('#_OPERATION_GT_');"></button>
+			</div>
+		</div>
+		<div class="op-box-body">
+
+			<div class="table-responsive">
+				<table class="table table-sm" aria-label="운전정보-GT">
+					<thead>
+					<tr>
+						<th scope="col" data-field="구분">구분</th>
+						<th scope="col" data-field="1호기">1호기</th>
+						<th scope="col" data-field="2호기">2호기</th>
+					</tr>
+					</thead>
+					<!-- GT -->
+					<tbody>
+					<tr>
+						<th scope="colgroup" colspan="3" data-bs-toggle="collapse" aria-expanded="true" data-bs-target="#opGTacc1">
+							GT
+						</th>
+					</tr>
+					</tbody>
+					<tbody class="collapse show" id="opGTacc1" data-bs-parent="#opGTacc1">
+					<tr>
+						<th scope="row" data-field="구분">출력</th>
+						<td data-field="1호기" id="_GT_DATA_1">8.23</td>
+						<td data-field="2호기" id="_GT_DATA_2">11.75</td>
+					</tr>
+					<tr>
+						<th scope="row" data-field="구분">속도</th>
+						<td data-field="1호기" id="_GT_DATA_3">76.80</td>
+						<td data-field="2호기" id="_GT_DATA_4">39.34</td>
+					</tr>
+					</tbody>
+					<!-- 압축기 -->
+					<tbody>
+					<tr>
+						<th scope="colgroup" colspan="3" data-bs-toggle="collapse" aria-expanded="true" data-bs-target="#opGTacc2">
+							압축기
+						</th>
+					</tr>
+					</tbody>
+					<tbody class="collapse show" id="opGTacc2" data-bs-parent="#opGTacc2">
+					<tr>
+						<th scope="row" data-field="구분">필터차압</th>
+						<td data-field="1호기" id="_GT_DATA_5">59.53</td>
+						<td data-field="2호기" id="_GT_DATA_6">98.94</td>
+					</tr>
+					<tr>
+						<th scope="row" data-field="구분">입구온도</th>
+						<td data-field="1호기" id="_GT_DATA_7">11.18</td>
+						<td data-field="2호기" id="_GT_DATA_8">49.46</td>
+					</tr>
+					<tr>
+						<th scope="row" data-field="구분">출구온도</th>
+						<td data-field="1호기" id="_GT_DATA_9">61.61</td>
+						<td data-field="2호기" id="_GT_DATA_10">37.07</td>
+					</tr>
+					<tr>
+						<th scope="row" data-field="구분">출구압력</th>
+						<td data-field="1호기" id="_GT_DATA_11">98.16</td>
+						<td data-field="2호기" id="_GT_DATA_12">52.22</td>
+					</tr>
+					</tbody>
+					<!-- 연소기 점화 시간 -->
+					<tbody>
+					<tr>
+						<th scope="colgroup" colspan="3" data-bs-toggle="collapse" aria-expanded="true" data-bs-target="#opGTacc3">
+							연소기 점화 시간
+						</th>
+					</tr>
+					</tbody>
+					<tbody class="collapse show" id="opGTacc3" data-bs-parent="#opGTacc3">
+					<tr>
+						<th scope="row" data-field="구분">#1(A)</th>
+						<td data-field="1호기" id="_GT_DATA_13">58.30</td>
+						<td data-field="2호기" id="_GT_DATA_14">60.45</td>
+					</tr>
+					<tr>
+						<th scope="row" data-field="구분">#1(B)</th>
+						<td data-field="1호기" id="_GT_DATA_15">64.20</td>
+						<td data-field="2호기" id="_GT_DATA_16">96.69</td>
+					</tr>
+					<tr>
+						<th scope="row" data-field="구분">#16(A)</th>
+						<td data-field="1호기" id="_GT_DATA_17">91.35</td>
+						<td data-field="2호기" id="_GT_DATA_18">65.24</td>
+					</tr>
+					<tr>
+						<th scope="row" data-field="구분">#16(B)</th>
+						<td data-field="1호기" id="_GT_DATA_19">51.93</td>
+						<td data-field="2호기" id="_GT_DATA_20">25.79</td>
+					</tr>
+					</tbody>
+					<!-- BPT -->
+					<tbody>
+					<tr>
+						<th scope="colgroup" colspan="3" data-bs-toggle="collapse" aria-expanded="true" data-bs-target="#opGTacc4">
+							BPT
+						</th>
+					</tr>
+					</tbody>
+					<tbody class="collapse show" id="opGTacc4" data-bs-parent="#opGTacc4">
+					<tr>
+						<th scope="row" data-field="구분">평균</th>
+						<td data-field="1호기" id="_GT_DATA_21">94.75</td>
+						<td data-field="2호기" id="_GT_DATA_22">48.22</td>
+					</tr>
+					<tr>
+						<th scope="row" data-field="구분">최대</th>
+						<td data-field="1호기" id="_GT_DATA_23">15.16</td>
+						<td data-field="2호기" id="_GT_DATA_24">18.06</td>
+					</tr>
+					<tr>
+						<th scope="row" data-field="구분">최소</th>
+						<td data-field="1호기" id="_GT_DATA_25">39.17</td>
+						<td data-field="2호기" id="_GT_DATA_26">23.77</td>
+					</tr>
+					<tr>
+						<th scope="row" data-field="구분">최대편차</th>
+						<td data-field="1호기" id="_GT_DATA_27">30.98</td>
+						<td data-field="2호기" id="_GT_DATA_28">70.61</td>
+					</tr>
+					</tbody>
+					<!-- EXH -->
+					<tbody>
+					<tr>
+						<th scope="colgroup" colspan="3" data-bs-toggle="collapse" aria-expanded="true" data-bs-target="#opGTacc5">
+							EXH
+						</th>
+					</tr>
+					</tbody>
+					<tbody class="collapse show" id="opGTacc5" data-bs-parent="#opGTacc5">
+					<tr>
+						<th scope="row" data-field="구분">압력</th>
+						<td data-field="1호기" id="_GT_DATA_29">50.00</td>
+						<td data-field="2호기" id="_GT_DATA_30">48.04</td>
+					</tr>
+					<tr>
+						<th scope="row" data-field="구분">온도</th>
+						<td data-field="1호기" id="_GT_DATA_31">1.66</td>
+						<td data-field="2호기" id="_GT_DATA_32">74.82</td>
+					</tr>
+					</tbody>
+					<!-- Lube Oil Section -->
+					<tbody>
+					<tr>
+						<th scope="colgroup" colspan="3" data-bs-toggle="collapse" aria-expanded="true" data-bs-target="#opGTacc6">
+							Lube Oil Section
+						</th>
+					</tr>
+					</tbody>
+					<tbody class="collapse show" id="opGTacc6" data-bs-parent="#opGTacc6">
+					<tr>
+						<th scope="row" data-field="구분">압력</th>
+						<td data-field="1호기" id="_GT_DATA_33">14.93</td>
+						<td data-field="2호기" id="_GT_DATA_34">94.14</td>
+					</tr>
+					<tr>
+						<th scope="row" data-field="구분">온도</th>
+						<td data-field="1호기" id="_GT_DATA_35">26.84</td>
+						<td data-field="2호기" id="_GT_DATA_36">63.09</td>
+					</tr>
+					<tr>
+						<th scope="row" data-field="구분">진공도</th>
+						<td data-field="1호기" id="_GT_DATA_37">32.21</td>
+						<td data-field="2호기" id="_GT_DATA_38">58.75</td>
+					</tr>
+					</tbody>
+					<!-- Control Oil Section -->
+					<tbody>
+					<tr>
+						<th scope="colgroup" colspan="3" data-bs-toggle="collapse" aria-expanded="true" data-bs-target="#opGTacc7">
+							Control Oil Section
+						</th>
+					</tr>
+					</tbody>
+					<tbody class="collapse show" id="opGTacc7" data-bs-parent="#opGTacc7">
+					<tr>
+						<th scope="row" data-field="구분">압력</th>
+						<td data-field="1호기" id="_GT_DATA_39">8.42</td>
+						<td data-field="2호기" id="_GT_DATA_40">39.07</td>
+					</tr>
+					<tr>
+						<th scope="row" data-field="구분">온도</th>
+						<td data-field="1호기" id="_GT_DATA_41">23.78</td>
+						<td data-field="2호기" id="_GT_DATA_42">76.84</td>
+					</tr>
+					</tbody>
+					<!-- Seal Oil Section -->
+					<tbody>
+					<tr>
+						<th scope="colgroup" colspan="3" data-bs-toggle="collapse" aria-expanded="true" data-bs-target="#opGTacc8">
+							Seal Oil Section
+						</th>
+					</tr>
+					</tbody>
+					<tbody class="collapse show" id="opGTacc8" data-bs-parent="#opGTacc8">
+					<tr>
+						<th scope="row" data-field="구분">차압</th>
+						<td data-field="1호기" id="_GT_DATA_43">55.40</td>
+						<td data-field="2호기" id="_GT_DATA_44">22.72</td>
+					</tr>
+					<tr>
+						<th scope="row" data-field="구분">수소압력</th>
+						<td data-field="1호기" id="_GT_DATA_45">62.33</td>
+						<td data-field="2호기" id="_GT_DATA_46">11.75</td>
+					</tr>
+					<tr>
+						<th scope="row" data-field="구분">수소순도</th>
+						<td data-field="1호기" id="_GT_DATA_47">53.72</td>
+						<td data-field="2호기" id="_GT_DATA_48">75.28</td>
+					</tr>
+					</tbody>
+				</table>
+			</div>
+
+		</div>
+
+	<!-- 운전정보-GT end -->

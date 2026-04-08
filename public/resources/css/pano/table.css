@@ -1,0 +1,91 @@
+@charset "utf-8";
+
+/* 
+ * 포미트 - 서부 iPOS 공통 스타일시트
+ * 작성자 : 김윤지
+ * 작성일 : 2024.12.18
+ * 내용 : 테이블 단위 개별 스타일 설정 - 높이, 텍스트 정렬 등
+ * 
+ */
+
+/* table */
+.table tr > * {
+	text-align: center;
+	vertical-align: middle;
+	border-bottom: solid 1px var(--bs-border-color);
+}
+.table th {
+	font-weight: 500;
+}
+
+.table tr:first-child > * {
+	border-top: solid 2px var(--bs-border-color);
+}
+
+.main .table thead tr:first-child > *,
+.main .table tbody tr:first-child > * {
+	border-top: none;
+}
+ 
+.table thead + tbody tr:first-child > * {
+	border-top: solid 1px var(--bs-border-color);
+}
+
+.table thead th,
+.table thead th.bg-light {
+	background-color: var(--bs-tertiary-bg);
+}
+
+.table tbody .bg-light {
+	background-color: #fcfcfd !important;
+}
+
+/* view-table */
+.table.view-table tbody tr th,
+.table.table-write tbody tr th {
+	background-color: var(--bs-gray-100);
+	text-align: right;
+}
+
+.table.view-table tbody tr th:not(:first-child),
+.table.table-write tbody tr th:not(:first-child) {
+	border-left: solid 1px var(--bs-border-color);
+}
+
+.table.view-table tbody tr th,
+.table.table-write tbody tr th {
+	border-right: solid 1px var(--bs-border-color);
+}
+
+.table.view-table tbody tr td,
+.table.table-write tbody tr td {
+	min-width: 160px;
+}
+
+/* 폼테이블에만 적용 */
+.table.table-write th,
+.table.table-write td {
+	vertical-align: middle;
+}
+
+.table.table-write td {
+	text-align: left;
+}
+
+.table.table-write .form-label,
+.table.table-write .form-check {
+	margin-bottom: 0;
+}
+
+.table.table-write .btn.btn-icon {
+	padding-left: .375rem;
+	padding-right: .375rem;
+}
+
+.table td .alert {
+	margin-bottom: 0;
+}
+
+
+
+

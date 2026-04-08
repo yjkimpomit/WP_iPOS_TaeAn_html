@@ -1,0 +1,134 @@
+@charset "utf-8";
+
+/* 
+ * 포미트 - 서부 iPOS 공통 스타일시트
+ * 작성자 : 김윤지
+ * 작성일 : 2024.11.26
+ * 임포트 파일 : 리셋, 부트스트랩, 폰트
+ * 
+ */
+
+@import url(/resources/css/bootstrap/dist/css/bootstrap.min.css);
+@import url(/resources/css/reset.css);
+
+/*#################### 폰트 ####################*/
+@import url(/resources/fonts/NotoSansKR/NotoSansKR.css);
+@import url(/resources/fonts/Roboto/Roboto.css);
+
+@import url(/resources/css/variables.css);
+
+html, body {
+	height: inherit;
+}
+a {
+	color: var(--text-neutral-default);
+	text-decoration: none;
+}
+a:hover {
+	color: var(--text-brand-tertiary);
+}
+
+/* logo */
+body > .logo {
+	/*display: block;*/
+	width: 80px;
+	height: 48px;
+
+	background-image: url('/resources/images/logo.svg');
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: auto 32px;
+	
+	font-size: 0;
+	
+	display: none;
+}
+
+/* error */
+.error-box {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: center;
+
+	margin: 4rem auto 0;
+	font-family: "Roboto", "Noto Sans KR", sans-serif;
+	max-width: 400px;
+	padding: 0 1rem;
+}
+.error-box::before {
+	content: '';
+
+	display: block;
+	background: url('/resources/images/icons/icon-webpage.svg') no-repeat left top;
+	background-size: 80px;
+	width: 100%;
+	height: 160px;
+}
+.error-message {
+	margin-top: -2.75rem;
+}
+h1 {
+	font-weight: 700;
+	font-size: 80px;
+	display: flex;
+	align-items: center;
+	
+	margin-bottom: 2rem;
+}
+h1 small {
+	font-size: 17px;
+	font-weight: 700 !important;
+	position: relative;
+	opacity: .6;
+}
+h1 small::after {
+	content: '';
+	position: absolute;
+	left: 0;
+	bottom: -.5rem;
+
+	display: inline-block;
+	width: 100%;
+	border-bottom: solid 4px var(--border-neutral-secondary);
+}
+.title {
+	font-size: 21px;
+	font-weight: 700;
+}
+.text {
+	font-size: 15px;
+	font-weight: 500;
+	color: #666;
+}
+@media (min-width: 768px) {
+	.error-box::before {
+		background-position: left top;
+		background-size: 128px;
+		height: 200px;
+	}
+	
+}
+@media (min-width: 1024px) {
+	.error-box {
+		flex-direction: row;
+		align-items: center;
+
+		margin: 16rem auto 0;
+		max-width: 960px;
+	}
+
+	.error-box::before {
+		background-position: left top;
+		background-size: 256px;
+		width: 320px;
+		height: 256px;
+	}
+	h1 {
+		font-size: 120px;
+	}
+	h1 small {
+		font-size: 19px;
+	}
+}
+

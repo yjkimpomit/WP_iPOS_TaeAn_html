@@ -1,0 +1,39 @@
+<h3 class="title02">개선사항</h3>
+<!-- 검색영역 -->
+<div class="search-box" aria-label="개선사항-검색">
+	<div class="row">
+		<div class="col-md-auto mb-3">
+			<label class="form-label" for="category">구분</label>
+			<select class="form-select" aria-label="구분 선택" id="category" name="category">
+				<option value="">전체</option>
+				<option value="IM">개선사항</option>
+				<option value="ID">아이디어</option>
+			</select>
+		</div>
+		<div class="col-md-auto mb-3">
+			<label class="form-label" for="category">상태</label>
+			<select class="form-select" aria-label="상태 선택" id="state" name="state">
+				<option value="">전체</option>
+				<option value="S">접수대기</option>
+				<option value="R">검토중</option>
+				<option value="P">처리중</option>
+				<option value="C">처리완료</option>
+				<option value="F">처리불가</option>
+			</select>
+		</div>
+		<div class="col-md col-lg-4 col-xxl-3 mb-3">
+			<label class="form-label" for="keyword">검색</label>
+			<input class="form-control" type="text" id="keyword" name="searchKeyword" placeholder="제목, 작성자, 부서명 검색" autocomplete="off"/>
+		</div>
+		<div class="col col-md-auto mb-3">
+			<button type="button" class="btn btn-primary">
+					<span class="material-symbols-rounded">
+						search
+					</span> 검색
+			</button>
+		</div>
+		<div class="col col-md-auto mb-3">
+			<button type="button" class="btn btn-primary edit-note">등록하기</button>
+		</div>
+	</div>
+</div>

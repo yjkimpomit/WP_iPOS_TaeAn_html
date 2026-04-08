@@ -1,0 +1,40 @@
+@charset "utf-8";
+
+.chart-box figure {
+	max-width: 100%;
+	margin: 0 auto;
+}
+
+@media (min-width: 1400px) {
+	.chart-box figure {
+		min-width: 360px;
+	}
+}
+
+.chart-box figure > [id*='chart-'] {
+	position: relative;
+	width: 100%;
+	max-width: 480px;
+	padding-top: 52%;
+	
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.chart-box figure > [id*='chart-'] > div {
+	position: absolute;
+	top:0;
+	left: 0;
+	right:0;
+	bottom: 0;
+	width: 100%;
+	height: 100%;
+	
+	display: flex;
+	align-items: center;
+}
+
+.chart-box figure > [id*='chart-'] canvas {
+	width: 100% !important;
+	height: auto !important;
+}

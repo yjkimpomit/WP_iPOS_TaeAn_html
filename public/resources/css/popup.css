@@ -1,0 +1,28 @@
+@charset "utf-8";
+
+/*
+ * 포미트 - 서부 iPOS 추가스타일
+ * 작성자 : 김윤지
+ * 작성일 : 2026.03.30
+ * WINBOX 로 표현하는 팝업화면 스타일
+ */
+
+/* winBox popup */
+.wb-popup {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	padding: 1rem;
+	height: 100dvh;
+}
+
+.wb-popup > .popup-body {
+	flex: 1;
+	overflow-y: auto;
+}
+.wb-popup > .popup-footer {
+	width: 100%;
+	display: flex;
+	justify-content: flex-end;
+	gap: .5rem;
+}

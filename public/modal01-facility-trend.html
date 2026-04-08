@@ -1,0 +1,67 @@
+
+<div class="modal-header">
+	<h5 class="title04" id="trendModalLabel">
+		<!-- 개발: 클릭한 행의 태그값을 제목으로 넣어주세요. -->
+		21MBX01AA401
+	</h5>
+	<button type="button" class="btn close">
+		<span class="material-symbols-rounded">
+		close
+		</span>
+	</button>
+</div>
+
+<div class="modal-body" id="trendView">
+	<div class="search-box">
+		<div class="row">
+			<div class="col-md col-lg col-xxl-auto mb-3">
+				<label id="dateRangePicker" class="col-form-label">조회 기간</label>
+				<div class="row g-2 period-box" aria-labelledby="dateRangePicker">
+					<div class="col">
+						<label class="visually-hidden" for="startDate01">시작일</label>
+						<input type="date" class="form-control" id="startDate01">
+					</div>
+					<div class="col">
+						<label class="visually-hidden" for="startTime01">시작시각</label>
+						<input type="time" class="form-control" id="startTime01">
+					</div>
+					<div class="col-auto">
+						<span class="form-control-plaintext text-center">~</span>
+					</div>
+					<div class="col">
+						<label class="visually-hidden" for="endDate01">종료일</label>
+						<input type="date" class="form-control" id="endDate01">
+					</div>
+					<div class="col">
+						<label class="visually-hidden" for="endTime01">종료시각</label>
+						<input type="time" class="form-control" id="endTime01">
+					</div>
+				</div>
+			</div>
+			<div class="col-md-auto mb-3">
+				<button type="button" class="btn btn-primary">
+					<span class="material-symbols-rounded">
+						search
+					</span> 검색
+				</button>
+			</div>
+		</div>
+	</div>
+
+	<div class="chart-box">
+		<div class="chart-item">
+			<!-- <div class="chart trend" id="chartTrend"> -->
+				<!-- 개발: chart.js로 변경 예정 -->
+				<canvas class="chart trend" id="chartTrend" style="width: 100%; max-height: 360px">
+				차트영역
+				</canvas>
+			<!-- </div> -->
+		</div>
+	</div>
+
+</div>
+
+<script src="/resources/js/facility/facility-trend.js"></script>
+<script>	
+	initializeTrendChart('chartTrend');
+</script>

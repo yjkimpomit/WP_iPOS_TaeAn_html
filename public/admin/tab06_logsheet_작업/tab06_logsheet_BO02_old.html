@@ -1,0 +1,621 @@
+<!--BO_Logsheet2 start-->
+  <div class="table-responsive logsheet">
+    <table class="table table-sm" aria-label="BO_Logsheet2">
+      <thead>
+        <tr>
+          <th scope="colgroup" colspan="5" data-field="칼럼1">점검항목</th>
+          <th scope="col" data-field="칼럼6">RATE</th>
+          <th scope="col" data-field="칼럼7">단위</th>
+          <th scope="col" data-field="칼럼8">TAG No.</th>
+          <th scope="col" data-field="칼럼9">관리</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Oil -->
+        <tr>
+          <th scope="rowgroup" rowspan="5" data-field="칼럼1">Oil</th>
+          <th scope="rowgroup" rowspan="10" data-field="칼럼2">5F</th>
+          <th scope="rowgroup" rowspan="5" data-field="칼럼3">Oil Station</th>
+          <td colspan="2" data-field="칼럼4">현장누유상태</td>
+          <td data-field="칼럼6"></td>
+          <td data-field="칼럼7">CHK</td>
+          <td data-field="칼럼8" id="DO_D45">
+            <label for="DO_D45_input" id="DO_D45_label" class="visually-hidden">DO_D45</label>
+            <input type="text" class="form-control auto-size" value readonly id="DO_D45_input">
+          </td>
+          <td data-field="칼럼9"><button class="btn btn-search" type="button" title="검색" aria-label="검색">
+            <span class="icon-search dark-gray"></span></button>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" data-field="칼럼4">Ignition Oil Press</td>
+          <td data-field="칼럼6"></td>
+          <td data-field="칼럼7">bar</td>
+          <td data-field="칼럼8" id="DO_D46">
+            <label for="DO_D46_input" id="DO_D46_label" class="visually-hidden">DO_D46</label>
+            <input type="text" class="form-control auto-size" value readonly id="DO_D46_input">
+          </td>
+          <td data-field="칼럼9"><button class="btn btn-search" type="button" title="검색" aria-label="검색">
+            <span class="icon-search dark-gray"></span></button>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" data-field="칼럼4">W/U Oil Press</td>
+          <td data-field="칼럼6"></td>
+          <td data-field="칼럼7">bar</td>
+          <td data-field="칼럼8" id="DO_D47">
+            <label for="DO_D47_input" id="DO_D47_label" class="visually-hidden">DO_D47</label>
+            <input type="text" class="form-control auto-size" value readonly id="DO_D47_input">
+          </td>
+          <td data-field="칼럼9"><button class="btn btn-search" type="button" title="검색" aria-label="검색">
+            <span class="icon-search dark-gray"></span></button>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" data-field="칼럼4">Supply Oil 측 DP</td>
+          <td data-field="칼럼6"></td>
+          <td data-field="칼럼7">bar</td>
+          <td data-field="칼럼8" id="DO_D48">
+            <label for="DO_D48_input" id="DO_D48_label" class="visually-hidden">DO_D48</label>
+            <input type="text" class="form-control auto-size" value readonly id="DO_D48_input">
+          </td>
+          <td data-field="칼럼9"><button class="btn btn-search" type="button" title="검색" aria-label="검색">
+            <span class="icon-search dark-gray"></span></button>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" data-field="칼럼4">Return Oil 측 DP</td>
+          <td data-field="칼럼6"></td>
+          <td data-field="칼럼7">bar</td>
+          <td data-field="칼럼8" id="DO_D49">
+            <label for="DO_D49_input" id="DO_D49_label" class="visually-hidden">DO_D49</label>
+            <input type="text" class="form-control auto-size" value readonly id="DO_D49_input">
+          </td>
+          <td data-field="칼럼9"><button class="btn btn-search" type="button" title="검색" aria-label="검색">
+            <span class="icon-search dark-gray"></span></button>
+          </td>
+        </tr>
+
+        <!-- HPU -->
+        <tr>
+          <th scope="rowgroup" rowspan="3" data-field="칼럼1">HPU</th>
+          <th scope="rowgroup" rowspan="3" data-field="칼럼3">361</th>
+          <td colspan="2" data-field="칼럼4">TEMP</td>
+          <td data-field="칼럼6">30-50</td>
+          <td data-field="칼럼7">℃</td>
+          <td data-field="칼럼8" id="DO_D50">
+            <label for="DO_D50_input" id="DO_D50_label" class="visually-hidden">DO_D50</label>
+            <input type="text" class="form-control auto-size" value readonly id="DO_D50_input">
+          </td>
+          <td data-field="칼럼9"><button class="btn btn-search" type="button" title="검색" aria-label="검색">
+            <span class="icon-search dark-gray"></span></button>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" data-field="칼럼4">OIL TANK LEVEL</td>
+          <td data-field="칼럼6"></td>
+          <td data-field="칼럼7">CHK</td>
+          <td data-field="칼럼8" id="DO_D51">
+            <label for="DO_D51_input" id="DO_D51_label" class="visually-hidden">DO_D51</label>
+            <input type="text" class="form-control auto-size" value readonly id="DO_D51_input">
+          </td>
+          <td data-field="칼럼9"><button class="btn btn-search" type="button" title="검색" aria-label="검색">
+            <span class="icon-search dark-gray"></span></button>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" data-field="칼럼4">Fan, MTR 동작상태</td>
+          <td data-field="칼럼6"></td>
+          <td data-field="칼럼7">CHK</td>
+          <td data-field="칼럼8" id="DO_D52">
+            <label for="DO_D52_input" id="DO_D52_label" class="visually-hidden">DO_D52</label>
+            <input type="text" class="form-control auto-size" value readonly id="DO_D52_input">
+          </td>
+          <td data-field="칼럼9"><button class="btn btn-search" type="button" title="검색" aria-label="검색">
+            <span class="icon-search dark-gray"></span></button>
+          </td>
+        </tr>
+
+        <!-- GAH -->
+        <tr>
+          <th scope="rowgroup" rowspan="6" data-field="칼럼1">GAH</th>
+          <th scope="rowgroup" rowspan="2" data-field="칼럼3">LOP</th>
+          <td colspan="2" data-field="칼럼4">현장누유상태</td>
+          <td data-field="칼럼6"></td>
+          <td data-field="칼럼7">CHK</td>
+          <td data-field="칼럼8" id="DO_D53">
+            <label for="DO_D53_input" id="DO_D53_label" class="visually-hidden">DO_D53</label>
+            <input type="text" class="form-control auto-size" value readonly id="DO_D53_input">
+          </td>
+          <td data-field="칼럼9"><button class="btn btn-search" type="button" title="검색" aria-label="검색">
+            <span class="icon-search dark-gray"></span></button>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" data-field="칼럼4">CCW Flow</td>
+          <td data-field="칼럼6"></td>
+          <td data-field="칼럼7">CHK</td>
+          <td data-field="칼럼8" id="DO_D54">
+            <label for="DO_D54_input" id="DO_D54_label" class="visually-hidden">DO_D54</label>
+            <input type="text" class="form-control auto-size" value readonly id="DO_D54_input">
+          </td>
+          <td data-field="칼럼9"><button class="btn btn-search" type="button" title="검색" aria-label="검색">
+            <span class="icon-search dark-gray"></span></button>
+          </td>
+        </tr>
+        <tr>
+          <th scope="rowgroup" rowspan="2" data-field="칼럼2">3F</th>
+          <th scope="rowgroup" rowspan="4" data-field="칼럼3">RDU</th>
+          <td rowspan="2" data-field="칼럼4">Support BRG Oil Level</td>
+          <td data-field="칼럼5">A</td>
+          <td data-field="칼럼6"></td>
+          <td data-field="칼럼7">CHK</td>
+          <td data-field="칼럼8" id="DO_D55">
+            <label for="DO_D55_input" id="DO_D55_label" class="visually-hidden">DO_D55</label>
+            <input type="text" class="form-control auto-size" value readonly id="DO_D55_input">
+          </td>
+          <td data-field="칼럼9"><button class="btn btn-search" type="button" title="검색" aria-label="검색">
+            <span class="icon-search dark-gray"></span></button>
+          </td>
+        </tr>
+        <tr>
+          <td data-field="칼럼5">B</td>
+          <td data-field="칼럼6"></td>
+          <td data-field="칼럼7">CHK</td>
+          <td data-field="칼럼8" id="DO_D56">
+            <label for="DO_D56_input" id="DO_D56_label" class="visually-hidden">DO_D56</label>
+            <input type="text" class="form-control auto-size" value readonly id="DO_D56_input">
+          </td>
+          <td data-field="칼럼9"><button class="btn btn-search" type="button" title="검색" aria-label="검색">
+            <span class="icon-search dark-gray"></span></button>
+          </td>
+        </tr>
+        <tr>
+          <th scope="rowgroup" rowspan="2" data-field="칼럼2">3.5F</th>
+          <td rowspan="2" data-field="칼럼4">Oil Flow</td>
+          <td data-field="칼럼5">A</td>
+          <td data-field="칼럼6"></td>
+          <td data-field="칼럼7">CHK</td>
+          <td data-field="칼럼8" id="DO_D57">
+            <label for="DO_D57_input" id="DO_D57_label" class="visually-hidden">DO_D57</label>
+            <input type="text" class="form-control auto-size" value readonly id="DO_D57_input">
+          </td>
+          <td data-field="칼럼9"><button class="btn btn-search" type="button" title="검색" aria-label="검색">
+            <span class="icon-search dark-gray"></span></button>
+          </td>
+        </tr>
+        <tr>
+          <td data-field="칼럼5">B</td>
+          <td data-field="칼럼6"></td>
+          <td data-field="칼럼7">CHK</td>
+          <td data-field="칼럼8" id="DO_D58">
+            <label for="DO_D58_input" id="DO_D58_label" class="visually-hidden">DO_D58</label>
+            <input type="text" class="form-control auto-size" value readonly id="DO_D58_input">
+          </td>
+          <td data-field="칼럼9"><button class="btn btn-search" type="button" title="검색" aria-label="검색">
+            <span class="icon-search dark-gray"></span></button>
+          </td>
+        </tr>
+
+        <!-- HPU -->
+        <tr>
+          <th scope="rowgroup" rowspan="3" data-field="칼럼1">HPU</th>
+          <th scope="rowgroup" rowspan="3" data-field="칼럼2">3F</th>
+          <th scope="rowgroup" rowspan="3" data-field="칼럼3">360</th>
+          <td colspan="2" data-field="칼럼4">TEMP</td>
+          <td data-field="칼럼6">30-50</td>
+          <td data-field="칼럼7">℃</td>
+          <td data-field="칼럼8" id="DO_D59">
+            <label for="DO_D59_input" id="DO_D59_label" class="visually-hidden">DO_D59</label>
+            <input type="text" class="form-control auto-size" value readonly id="DO_D59_input">
+          </td>
+          <td data-field="칼럼9"><button class="btn btn-search" type="button" title="검색" aria-label="검색">
+            <span class="icon-search dark-gray"></span></button>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" data-field="칼럼4">OIL TANK LEVEL</td>
+          <td data-field="칼럼6"></td>
+          <td data-field="칼럼7">CHK</td>
+          <td data-field="칼럼8" id="DO_D60">
+            <label for="DO_D60_input" id="DO_D60_label" class="visually-hidden">DO_D60</label>
+            <input type="text" class="form-control auto-size" value readonly id="DO_D60_input">
+          </td>
+          <td data-field="칼럼9"><button class="btn btn-search" type="button" title="검색" aria-label="검색">
+            <span class="icon-search dark-gray"></span></button>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" data-field="칼럼4">Fan, MTR 동작상태</td>
+          <td data-field="칼럼6"></td>
+          <td data-field="칼럼7">CHK</td>
+          <td data-field="칼럼8" id="DO_D61">
+            <label for="DO_D61_input" id="DO_D61_label" class="visually-hidden">DO_D61</label>
+            <input type="text" class="form-control auto-size" value readonly id="DO_D61_input">
+          </td>
+          <td data-field="칼럼9"><button class="btn btn-search" type="button" title="검색" aria-label="검색">
+            <span class="icon-search dark-gray"></span></button>
+          </td>
+        </tr>
+
+        <!-- Pulv -->
+        <tr>
+          <th scope="rowgroup" rowspan="12" data-field="칼럼1">Pulv</th>
+          <th scope="rowgroup" rowspan="6" data-field="칼럼2">3F</th>
+          <td colspan="2" rowspan="6" data-field="칼럼3">Classifier Oil Level</td>
+          <td data-field="칼럼5">A</td>
+          <td data-field="칼럼6"></td>
+          <td data-field="칼럼7"></td>
+          <td data-field="칼럼8" id="DO_D62">
+            <label for="DO_D62_input" id="DO_D62_label" class="visually-hidden">DO_D62</label>
+            <input type="text" class="form-control auto-size" value readonly id="DO_D62_input">
+          </td>
+          <td data-field="칼럼9"><button class="btn btn-search" type="button" title="검색" aria-label="검색">
+            <span class="icon-search dark-gray"></span></button>
+          </td>
+        </tr>
+        <tr>
+          <td data-field="칼럼5">B</td>
+          <td data-field="칼럼6"></td>
+          <td data-field="칼럼7"></td>
+          <td data-field="칼럼8" id="DO_D63">
+            <label for="DO_D63_input" id="DO_D63_label" class="visually-hidden">DO_D63</label>
+            <input type="text" class="form-control auto-size" value readonly id="DO_D63_input">
+          </td>
+          <td data-field="칼럼9"><button class="btn btn-search" type="button" title="검색" aria-label="검색">
+            <span class="icon-search dark-gray"></span></button>
+          </td>
+        </tr>
+        <tr>
+          <td data-field="칼럼5">C</td>
+          <td data-field="칼럼6"></td>
+          <td data-field="칼럼7"></td>
+          <td data-field="칼럼8" id="DO_D64">
+            <label for="DO_D64_input" id="DO_D64_label" class="visually-hidden">DO_D64</label>
+            <input type="text" class="form-control auto-size" value readonly id="DO_D64_input">
+          </td>
+          <td data-field="칼럼9"><button class="btn btn-search" type="button" title="검색" aria-label="검색">
+            <span class="icon-search dark-gray"></span></button>
+          </td>
+        </tr>
+        <tr>
+          <td data-field="칼럼5">D</td>
+          <td data-field="칼럼6"></td>
+          <td data-field="칼럼7"></td>
+          <td data-field="칼럼8" id="DO_D65">
+            <label for="DO_D65_input" id="DO_D65_label" class="visually-hidden">DO_D65</label>
+            <input type="text" class="form-control auto-size" value readonly id="DO_D65_input">
+          </td>
+          <td data-field="칼럼9"><button class="btn btn-search" type="button" title="검색" aria-label="검색">
+            <span class="icon-search dark-gray"></span></button>
+          </td>
+        </tr>
+        <tr>
+          <td data-field="칼럼5">E</td>
+          <td data-field="칼럼6"></td>
+          <td data-field="칼럼7"></td>
+          <td data-field="칼럼8" id="DO_D66">
+            <label for="DO_D66_input" id="DO_D66_label" class="visually-hidden">DO_D66</label>
+            <input type="text" class="form-control auto-size" value readonly id="DO_D66_input">
+          </td>
+          <td data-field="칼럼9"><button class="btn btn-search" type="button" title="검색" aria-label="검색">
+            <span class="icon-search dark-gray"></span></button>
+          </td>
+        </tr>
+        <tr>
+          <td data-field="칼럼5">F</td>
+          <td data-field="칼럼6"></td>
+          <td data-field="칼럼7"></td>
+          <td data-field="칼럼8" id="DO_D67">
+            <label for="DO_D67_input" id="DO_D67_label" class="visually-hidden">DO_D67</label>
+            <input type="text" class="form-control auto-size" value readonly id="DO_D67_input">
+          </td>
+          <td data-field="칼럼9"><button class="btn btn-search" type="button" title="검색" aria-label="검색">
+            <span class="icon-search dark-gray"></span></button>
+          </td>
+        </tr>
+        <tr>
+          <th scope="rowgroup" rowspan="6" data-field="칼럼2">2F</th>
+          <td colspan="2" rowspan="6" data-field="칼럼3">Pulverizer 내부 Press</td>
+          <td data-field="칼럼5">A</td>
+          <td data-field="칼럼6"></td>
+          <td data-field="칼럼7"></td>
+          <td data-field="칼럼8" id="DO_D68">
+            <label for="DO_D68_input" id="DO_D68_label" class="visually-hidden">DO_D68</label>
+            <input type="text" class="form-control auto-size" value readonly id="DO_D68_input">
+          </td>
+          <td data-field="칼럼9"><button class="btn btn-search" type="button" title="검색" aria-label="검색">
+            <span class="icon-search dark-gray"></span></button>
+          </td>
+        </tr>
+        <tr>
+          <td data-field="칼럼5">B</td>
+          <td data-field="칼럼6"></td>
+          <td data-field="칼럼7"></td>
+          <td data-field="칼럼8" id="DO_D69">
+            <label for="DO_D69_input" id="DO_D69_label" class="visually-hidden">DO_D69</label>
+            <input type="text" class="form-control auto-size" value readonly id="DO_D69_input">
+          </td>
+          <td data-field="칼럼9"><button class="btn btn-search" type="button" title="검색" aria-label="검색">
+            <span class="icon-search dark-gray"></span></button>
+          </td>
+        </tr>
+        <tr>
+          <td data-field="칼럼5">C</td>
+          <td data-field="칼럼6"></td>
+          <td data-field="칼럼7"></td>
+          <td data-field="칼럼8" id="DO_D70">
+            <label for="DO_D70_input" id="DO_D70_label" class="visually-hidden">DO_D70</label>
+            <input type="text" class="form-control auto-size" value readonly id="DO_D70_input">
+          </td>
+          <td data-field="칼럼9"><button class="btn btn-search" type="button" title="검색" aria-label="검색">
+            <span class="icon-search dark-gray"></span></button>
+          </td>
+        </tr>
+        <tr>
+          <td data-field="칼럼5">D</td>
+          <td data-field="칼럼6"></td>
+          <td data-field="칼럼7"></td>
+          <td data-field="칼럼8" id="DO_D71">
+            <label for="DO_D71_input" id="DO_D71_label" class="visually-hidden">DO_D71</label>
+            <input type="text" class="form-control auto-size" value readonly id="DO_D71_input">
+          </td>
+          <td data-field="칼럼9"><button class="btn btn-search" type="button" title="검색" aria-label="검색">
+            <span class="icon-search dark-gray"></span></button>
+          </td>
+        </tr>
+        <tr>
+          <td data-field="칼럼5">E</td>
+          <td data-field="칼럼6"></td>
+          <td data-field="칼럼7"></td>
+          <td data-field="칼럼8" id="DO_D72">
+            <label for="DO_D72_input" id="DO_D72_label" class="visually-hidden">DO_D72</label>
+            <input type="text" class="form-control auto-size" value readonly id="DO_D72_input">
+          </td>
+          <td data-field="칼럼9"><button class="btn btn-search" type="button" title="검색" aria-label="검색">
+            <span class="icon-search dark-gray"></span></button>
+          </td>
+        </tr>
+        <tr>
+          <td data-field="칼럼5">F</td>
+          <td data-field="칼럼6"></td>
+          <td data-field="칼럼7"></td>
+          <td data-field="칼럼8" id="DO_D73">
+            <label for="DO_D73_input" id="DO_D73_label" class="visually-hidden">DO_D73</label>
+            <input type="text" class="form-control auto-size" value readonly id="DO_D73_input">
+          </td>
+          <td data-field="칼럼9"><button class="btn btn-search" type="button" title="검색" aria-label="검색">
+            <span class="icon-search dark-gray"></span></button>
+          </td>
+        </tr>
+
+        <!-- Pulv #A -->
+        <tr>
+          <th scope="rowgroup" rowspan="9" data-field="칼럼1">Pulv #A</th>
+          <th scope="rowgroup" rowspan="18" data-field="칼럼2">1F</th>
+          <th scope="rowgroup" rowspan="4" data-field="칼럼3">HPU</th>
+          <td colspan="2" data-field="칼럼4">HPU Tank Level</td>
+          <td data-field="칼럼6"></td>
+          <td data-field="칼럼7">CHK</td>
+          <td data-field="칼럼8" id="DO_D74">
+            <label for="DO_D74_input" id="DO_D74_label" class="visually-hidden">DO_D74</label>
+            <input type="text" class="form-control auto-size" value readonly id="DO_D74_input">
+          </td>
+          <td data-field="칼럼9"><button class="btn btn-search" type="button" title="검색" aria-label="검색">
+            <span class="icon-search dark-gray"></span></button>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" data-field="칼럼4">HPU Tank Temp</td>
+          <td data-field="칼럼6">30-50</td>
+          <td data-field="칼럼7">℃</td>
+          <td data-field="칼럼8" id="DO_D75">
+            <label for="DO_D75_input" id="DO_D75_label" class="visually-hidden">DO_D75</label>
+            <input type="text" class="form-control auto-size" value readonly id="DO_D75_input">
+          </td>
+          <td data-field="칼럼9"><button class="btn btn-search" type="button" title="검색" aria-label="검색">
+            <span class="icon-search dark-gray"></span></button>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" data-field="칼럼4">HPU Filter DP</td>
+          <td data-field="칼럼6">4</td>
+          <td data-field="칼럼7">bar</td>
+          <td data-field="칼럼8" id="DO_D76">
+            <label for="DO_D76_input" id="DO_D76_label" class="visually-hidden">DO_D76</label>
+            <input type="text" class="form-control auto-size" value readonly id="DO_D76_input">
+          </td>
+          <td data-field="칼럼9"><button class="btn btn-search" type="button" title="검색" aria-label="검색">
+            <span class="icon-search dark-gray"></span></button>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" data-field="칼럼4">Grinding, Counter Filter DP</td>
+          <td data-field="칼럼6"></td>
+          <td data-field="칼럼7">CHK</td>
+          <td data-field="칼럼8" id="DO_D77">
+            <label for="DO_D77_input" id="DO_D77_label" class="visually-hidden">DO_D77</label>
+            <input type="text" class="form-control auto-size" value readonly id="DO_D77_input">
+          </td>
+          <td data-field="칼럼9"><button class="btn btn-search" type="button" title="검색" aria-label="검색">
+            <span class="icon-search dark-gray"></span></button>
+          </td>
+        </tr>
+        <tr>
+          <th scope="rowgroup" rowspan="5" data-field="칼럼3">LO</th>
+          <td colspan="2" data-field="칼럼4">LO Tank Temp</td>
+          <td data-field="칼럼6">35~50</td>
+          <td data-field="칼럼7">℃</td>
+          <td data-field="칼럼8" id="DO_D78">
+            <label for="DO_D78_input" id="DO_D78_label" class="visually-hidden">DO_D78</label>
+            <input type="text" class="form-control auto-size" value readonly id="DO_D78_input">
+          </td>
+          <td data-field="칼럼9"><button class="btn btn-search" type="button" title="검색" aria-label="검색">
+            <span class="icon-search dark-gray"></span></button>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" data-field="칼럼4">LO Tank Level</td>
+          <td data-field="칼럼6"></td>
+          <td data-field="칼럼7">CHK</td>
+          <td data-field="칼럼8" id="DO_D79">
+            <label for="DO_D79_input" id="DO_D79_label" class="visually-hidden">DO_D79</label>
+            <input type="text" class="form-control auto-size" value readonly id="DO_D79_input">
+          </td>
+          <td data-field="칼럼9"><button class="btn btn-search" type="button" title="검색" aria-label="검색">
+            <span class="icon-search dark-gray"></span></button>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" data-field="칼럼4">LO Filter DP</td>
+          <td data-field="칼럼6">1</td>
+          <td data-field="칼럼7">bar</td>
+          <td data-field="칼럼8" id="DO_D80">
+            <label for="DO_D80_input" id="DO_D80_label" class="visually-hidden">DO_D80</label>
+            <input type="text" class="form-control auto-size" value readonly id="DO_D80_input">
+          </td>
+          <td data-field="칼럼9"><button class="btn btn-search" type="button" title="검색" aria-label="검색">
+            <span class="icon-search dark-gray"></span></button>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" data-field="칼럼4">LO CCW Flow</td>
+          <td data-field="칼럼6"></td>
+          <td data-field="칼럼7">CHK</td>
+          <td data-field="칼럼8" id="DO_D81">
+            <label for="DO_D81_input" id="DO_D81_label" class="visually-hidden">DO_D81</label>
+            <input type="text" class="form-control auto-size" value readonly id="DO_D81_input">
+          </td>
+          <td data-field="칼럼9"><button class="btn btn-search" type="button" title="검색" aria-label="검색">
+            <span class="icon-search dark-gray"></span></button>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" data-field="칼럼4">Oil PP 운전상태</td>
+          <td data-field="칼럼6"></td>
+          <td data-field="칼럼7">CHK</td>
+          <td data-field="칼럼8" id="DO_D82">
+            <label for="DO_D82_input" id="DO_D82_label" class="visually-hidden">DO_D82</label>
+            <input type="text" class="form-control auto-size" value readonly id="DO_D82_input">
+          </td>
+          <td data-field="칼럼9"><button class="btn btn-search" type="button" title="검색" aria-label="검색">
+            <span class="icon-search dark-gray"></span></button>
+          </td>
+        </tr>
+
+        <!-- Pulv #B -->
+        <tr>
+          <th scope="rowgroup" rowspan="9" data-field="칼럼1">Pulv #B</th>
+          <th scope="rowgroup" rowspan="4" data-field="칼럼3">HPU</th>
+          <td colspan="2" data-field="칼럼4">HPU Tank Level</td>
+          <td data-field="칼럼6"></td>
+          <td data-field="칼럼7">CHK</td>
+          <td data-field="칼럼8" id="DO_D83">
+            <label for="DO_D83_input" id="DO_D83_label" class="visually-hidden">DO_D83</label>
+            <input type="text" class="form-control auto-size" value readonly id="DO_D83_input">
+          </td>
+          <td data-field="칼럼9"><button class="btn btn-search" type="button" title="검색" aria-label="검색">
+            <span class="icon-search dark-gray"></span></button>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" data-field="칼럼4">HPU Tank Temp</td>
+          <td data-field="칼럼6">30-50</td>
+          <td data-field="칼럼7">℃</td>
+          <td data-field="칼럼8" id="DO_D84">
+            <label for="DO_D84_input" id="DO_D84_label" class="visually-hidden">DO_D84</label>
+            <input type="text" class="form-control auto-size" value readonly id="DO_D84_input">
+          </td>
+          <td data-field="칼럼9"><button class="btn btn-search" type="button" title="검색" aria-label="검색">
+            <span class="icon-search dark-gray"></span></button>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" data-field="칼럼4">HPU Filter DP</td>
+          <td data-field="칼럼6">4</td>
+          <td data-field="칼럼7">bar</td>
+          <td data-field="칼럼8" id="DO_D85">
+            <label for="DO_D85_input" id="DO_D85_label" class="visually-hidden">DO_D85</label>
+            <input type="text" class="form-control auto-size" value readonly id="DO_D85_input">
+          </td>
+          <td data-field="칼럼9"><button class="btn btn-search" type="button" title="검색" aria-label="검색">
+            <span class="icon-search dark-gray"></span></button>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" data-field="칼럼4">Grinding, Counter Filter DP</td>
+          <td data-field="칼럼6"></td>
+          <td data-field="칼럼7">CHK</td>
+          <td data-field="칼럼8" id="DO_D86">
+            <label for="DO_D86_input" id="DO_D86_label" class="visually-hidden">DO_D86</label>
+            <input type="text" class="form-control auto-size" value readonly id="DO_D86_input">
+          </td>
+          <td data-field="칼럼9"><button class="btn btn-search" type="button" title="검색" aria-label="검색">
+            <span class="icon-search dark-gray"></span></button>
+          </td>
+        </tr>
+        <tr>
+          <th scope="rowgroup" rowspan="5" data-field="칼럼3">LO</th>
+          <td colspan="2" data-field="칼럼4">LO Tank Temp</td>
+          <td data-field="칼럼6">35~50</td>
+          <td data-field="칼럼7">℃</td>
+          <td data-field="칼럼8" id="DO_D87">
+            <label for="DO_D87_input" id="DO_D87_label" class="visually-hidden">DO_D87</label>
+            <input type="text" class="form-control auto-size" value readonly id="DO_D87_input">
+          </td>
+          <td data-field="칼럼9"><button class="btn btn-search" type="button" title="검색" aria-label="검색">
+            <span class="icon-search dark-gray"></span></button>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" data-field="칼럼4">LO Tank Level</td>
+          <td data-field="칼럼6"></td>
+          <td data-field="칼럼7">CHK</td>
+          <td data-field="칼럼8" id="DO_D88">
+            <label for="DO_D88_input" id="DO_D88_label" class="visually-hidden">DO_D88</label>
+            <input type="text" class="form-control auto-size" value readonly id="DO_D88_input">
+          </td>
+          <td data-field="칼럼9"><button class="btn btn-search" type="button" title="검색" aria-label="검색">
+            <span class="icon-search dark-gray"></span></button>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" data-field="칼럼4">LO Filter DP</td>
+          <td data-field="칼럼6">1</td>
+          <td data-field="칼럼7">bar</td>
+          <td data-field="칼럼8" id="DO_D89">
+            <label for="DO_D89_input" id="DO_D89_label" class="visually-hidden">DO_D89</label>
+            <input type="text" class="form-control auto-size" value readonly id="DO_D89_input">
+          </td>
+          <td data-field="칼럼9"><button class="btn btn-search" type="button" title="검색" aria-label="검색">
+            <span class="icon-search dark-gray"></span></button>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" data-field="칼럼4">LO CCW Flow</td>
+          <td data-field="칼럼6"></td>
+          <td data-field="칼럼7">CHK</td>
+          <td data-field="칼럼8" id="DO_D90">
+            <label for="DO_D90_input" id="DO_D90_label" class="visually-hidden">DO_D90</label>
+            <input type="text" class="form-control auto-size" value readonly id="DO_D90_input">
+          </td>
+          <td data-field="칼럼9"><button class="btn btn-search" type="button" title="검색" aria-label="검색">
+            <span class="icon-search dark-gray"></span></button>
+          </td>
+        </tr>
+        <tr>
+          <td colspan="2" data-field="칼럼4">Oil PP 운전상태</td>
+          <td data-field="칼럼6"></td>
+          <td data-field="칼럼7">CHK</td>
+          <td data-field="칼럼8" id="DO_D91">
+            <label for="DO_D91_input" id="DO_D91_label" class="visually-hidden">DO_D91</label>
+            <input type="text" class="form-control auto-size" value readonly id="DO_D91_input">
+          </td>
+          <td data-field="칼럼9"><button class="btn btn-search" type="button" title="검색" aria-label="검색">
+            <span class="icon-search dark-gray"></span></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <!--BO_Logsheet2 end-->

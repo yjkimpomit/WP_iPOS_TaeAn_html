@@ -1,0 +1,50 @@
+@charset "utf-8";
+
+/*
+* 포미트 - 서부 iPOS 관리자용 스타일시트
+* 작성자 : 김윤지
+* 작성일 : 2026.03.12
+* 관리자헤더 스타일 정의
+*/
+
+/* 관리자화면용 헤더 */
+.admin-header {
+	display: flex;
+	align-items: center;
+	min-height: 32px;
+	gap: .25rem;
+	background-color: var(--bg-brand-dark);
+	padding: 0 1rem;
+}
+.admin-header * {
+	line-height: 1;
+}
+.admin-header img {
+	width: auto;
+	height: 18px;
+	margin-top: -3px;
+}
+.admin-header .branch-name,
+.admin-header .title {
+	color: var(--text-default-onneutral);
+	font-size: 12px;
+	font-weight: 700;
+}
+
+.admin-header .title {
+	padding-left: .5rem;
+	margin-left: .5rem;
+	font-weight: 500;
+	position: relative;
+}
+.admin-header .title::before {
+	content: '';
+	width: 1px;
+	height: 12px;
+	display: block;
+	position: absolute;
+	left: 0;
+	top: 50%;
+	transform: translateY(-50%);
+	background-color: var(--bg-default-default);
+}

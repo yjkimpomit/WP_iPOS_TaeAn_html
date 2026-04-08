@@ -1,0 +1,501 @@
+@charset "UTF-8";
+
+.box_top {
+	border: 1px solid red;
+	width: 100%;
+	height: 20px;
+	position: absolute;
+	top:0px;
+	left:0px;
+	z-index: 1000;
+}
+
+.box_left {
+	border: 1px solid red;
+	width: 20px;
+	height: auto;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	position: absolute;
+	margin: 22px 0px 22px 0px;
+	z-index: 1000;
+}
+
+.box_center {
+	border: 1px solid red;
+	width: calc(100% - 46px);
+	height: auto;
+	top: 0px;
+	left: 22px;
+	right: 0px;
+	bottom: 0px;
+	position: absolute;
+	margin: 22px 0px 22px 0px;
+	z-index: 1000;
+}
+
+.box_right {
+	border: 1px solid red;
+	width: 20px;
+	height: auto;
+	position: absolute;
+	left: auto;
+	top: 0px;
+	bottom: 0px;
+	right: 0px;
+	margin: 22px 0px 22px 0px;
+	z-index: 1000;
+}
+
+.box_bottom {
+	border: 1px solid red;
+	width: 100%;
+	height: 20px;
+	position: absolute;
+	bottom: 0px;
+	left: 0px;
+	z-index: 1000;
+}
+/*
+#panorama1 {
+	clear: both;
+	width: 32%;
+	height: 200px;
+	float: left;
+}
+
+#panorama2 {
+	width: 32%;
+	height: 200px;
+	float: left;
+}
+
+#panorama3 {
+	width: 32%;
+	height: 200px;
+	float: left;
+}
+
+#panorama4 {
+	clear: both;
+	width: 32%;
+	height: 200px;
+	float: left;
+}
+
+#panorama5 {
+	width: 100%;
+	
+	height: 915px;
+	float: left;
+}
+
+#panorama6 {
+	width: 32%;
+	height: 200px;
+	float: left;
+}
+
+#panorama7 {
+	clear: both;
+	width: 32%;
+	height: 200px;
+	float: left;
+}
+
+#panorama8 {
+	width: 32%;
+	height: 200px;
+	float: left;
+}
+
+#panorama9 {
+	width: 32%;
+	height: 200px;
+	float: left;
+}
+*/
+
+.top_menu {
+	float: left;
+	width: 30px;
+	height: 30px;
+	border: 1px solid black;
+	background-color: orange;
+	z-index: 10000;
+}
+
+.c_both {
+	clear: both;
+}
+
+.f_left {
+	float: left;
+}
+
+/*
+label, input {
+	display: block;
+}
+
+input.text {
+	margin-bottom: 12px;
+	width: 95%;
+	padding: .4em;
+}
+
+fieldset {
+	padding: 0;
+	border: 0;
+	margin-top: 25px;
+}
+*/
+
+/* 20260114 yjkim - 사용안하므로 주석처리
+
+div#users-contain {
+	width: 350px;
+	margin: 20px 0;
+}
+
+div#users-contain table {
+	margin: 1em 0;
+	border-collapse: collapse;
+	width: 100%;
+}
+
+div#users-contain table td, div#users-contain table th {
+	border: 1px solid #eee;
+	padding: .6em 10px;
+	text-align: left;
+}
+*/
+
+.ui-dialog .ui-state-error {
+	padding: .3em;
+}
+
+.validateTips {
+	border: 1px solid transparent;
+	padding: 0.3em;
+}
+/* 20260114 yjkim - .ui-dialog 로 대체
+.upload-box {
+	width:560px;
+	
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	
+	transform: translate(-50%, -50%);
+	
+	border-radius: .25rem;
+	background-color: white;
+	padding: 1rem;
+	
+	display: flex;
+	flex-direction: column;
+	gap: .5rem;
+}*/
+
+/*가져오기 로딩바 txt 알림*/
+.progressContainer {
+	position: relative;
+	width: 100%;
+	height: 24px;
+	margin-bottom: 1rem;
+}
+
+.progress {
+	position: absolute;
+	width: 100%;
+	height: 24px;
+	border-radius: .5rem;
+}
+
+.progressTotal {
+	background: var(--bs-blue);
+}
+
+.progressNow {
+	background: #31343A1A;
+}
+
+.progressPer {
+	background: transparent;
+	text-align: center;
+	color: var(--bs-gray-900);
+}
+
+#canvasBackground rect {
+	fill: rgba(255, 255, 255, 0);
+	stroke: rgba(255, 255, 255, 0);
+}
+
+/* #upload_div>div { */
+/* 	width: 100%; */
+/* 	padding: 25px; */
+/* } */
+
+
+/* input#file-upload-button { */
+/* 	padding: 10px 15px */
+/* } */
+
+/* #uploadBtn { */
+/* 	display: inline-block; */
+/* 	background: #262626; */
+/* 	padding: 11px 20px; */
+/* 	border-radius: 5px; */
+/* 	font-weight: 600; */
+/* 	display: inline-block; */
+/* 	/*width: 33%;*/
+/* 	color:#fff; */
+/* } */
+/* #upload_div .filebox label { */
+/* 	display: inline-block; */
+/* 	/*width:65%;*/
+/* 	text-align:center; */
+/* 	color: #222; */
+/* 	font-size: inherit; */
+/* 	line-height: normal; */
+/* 	vertical-align: middle; */
+/*     padding: 10px 20px; */
+/* 	cursor: pointer; */
+/* 	border: 1px solid #ebebeb; */
+/* 	border-bottom-color: #e2e2e2; */
+/*     border-radius: 5px; */
+/* 	margin-top: 0; */
+/* 	background: #e7e7e7; */
+/* } */
+
+/* named upload */
+
+/* .filebox .upload-name, .filebox1 .upload-name1 { */
+/* 	display: block; */
+/* 	width:100%; */
+/* 	margin-bottom:16px; */
+/* 	padding: .5em .75em; */
+/* 	font-size: inherit; */
+/* 	font-family: inherit; */
+/* 	line-height: normal; */
+/* 	vertical-align: middle; */
+/* 	color: #fff; */
+/* 	background-color: #525252; */
+/* 	border: 1px solid #ebebeb; */
+/* 	border-bottom-color: #e2e2e2; */
+/* 	border-radius: .25em; */
+/* 	-webkit-appearance: none; 네이티브 외형 감추기 */
+/* 	-moz-appearance: none; */
+/* 	appearance: none; */
+/* } */
+
+/* imaged preview 
+.filebox .upload-display {
+	margin-bottom: 14px;
+}
+
+
+.filebox .upload-thumb-wrap {
+	display: inline-block;
+	width: 376px;
+	padding: 2px;
+	vertical-align: middle;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	background-color: #fff;
+}
+
+.filebox .upload-display img {
+	display: block;
+	max-width: 100%;
+	width: 100% \9;
+    text-align: center;
+    margin: 0 auto;
+}
+*/
+
+/*------------------------------------------------2022-07-08 테이블,라벨, 버튼 재수정 및  추가------------------------------------------------*/
+
+.filebox.bs3-primary label {
+	color: #fff;
+	background-color: #337ab7;
+	border-color: #2e6da4;
+}
+table.listTable02_1 thead th {border-top:none;background: #404040;border-bottom:none}
+table.listTable02_1 tbody th {background: #404040;color:#fff;border-bottom:none}
+table.listTable02_1 td {background: #404040;color:#fff;padding: 8px;border-bottom:none}
+ /* #div_btn > ul {display: block;background: #404040;}
+  #div_btn > ul > li {display: inline-block;}
+* {color:#000;}*/	
+
+/*
+#dialog-form input {
+	border: 1px solid #d8d8d8;
+	font-size: 14px;
+	padding: 0 5px;
+	color: #333;
+	border-radius: 5px;
+	resize: none;
+	width: 100%;
+}
+*/
+
+.ui-widget-header {border: none;background: #fff;}
+
+/*
+#dialog-form label {padding:8px 0}
+
+.ui-widget-content {border:none;}
+.ui-dialog .ui-dialog-buttonpane button {
+	padding:10px 25px;
+	background-color: #2a2a2a;
+	color: #fff;
+	height: 40px;
+	line-height: 24px;
+	text-align: center;
+	font-size: 13px;
+	border-radius: 5px;
+}
+
+*/
+
+/* 
+// 2025.01.14 yjkim - [/css/pano/pnlm-custom.css] 로 이동하여 스타일 일원화
+.pnlm-zoom-in {background-image: url(/images/pano/common/pnlm01-1.png);background-repeat: no-repeat;background-position: center center;}
+.pnlm-zoom-out {background-image: url(/images/pano/common/pnlm01-2.png);background-repeat: no-repeat;background-position: center center;}
+.pnlm-controls {background-color: none;border-color: none;}
+*/
+
+/* 2025.01.13 yjkim - 해당기능 없음 
+.pnlm-fullscreen-toggle-button {background-image: url(/images/pano/common/pnlm02.png);background-repeat: no-repeat;background-position: center center;}
+*/
+
+.pnlm-fullscreen-toggle-button {
+	display: none !important;
+} 
+ 
+.h_btn {display: flex;justify-content: flex-start;}
+.teriaryBtn {
+	display: inline-block;
+	text-align: center;
+	
+	font-size: .875rem;
+	font-weight: 700;
+	
+	border-radius: .25rem;
+	padding: 0 1.5rem;
+	
+	color: #fff;
+	background-color: var(--primary-600);
+	cursor: pointer;
+}
+/*------------------------------------------------2022-07-08 테이블,라벨, 버튼 재수정 및  추가 끝------------------------------------------------*/
+
+/* 20260114 yjkim - 뷰어/편집 화면별 스타일 분리작업 */
+/* 편집화면 미니맵추가 */
+.mini-map {
+	display: flex !important;
+	flex-direction: column;
+	gap: .5rem;
+	flex: 1;
+	width: 316px;
+	background-color: #31343AB8;
+	padding: .5rem;
+	border-radius: .5rem;
+	
+	position: fixed;
+	bottom: .5rem;
+	right: .5rem;
+}
+
+/* 접었을 때 */
+.mini-map.folded {
+	height: auto;
+}
+.mini-map.folded > .sec-cnt {
+	display: none;
+}
+
+.mini-map .sec-header {
+	display: flex;
+	align-items: center;
+	gap: .5rem;
+}
+
+.mini-map .sec-header .title-h6 {
+	flex: 1;
+	color: white;
+	font-weight: 500;
+	word-break: keep-all;
+}
+.btn-toggle-fold {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	
+	width: 24px;
+	height: 24px;
+	background: url(/resources/images/pano/common/icon-unfold_less-white.svg) no-repeat center;
+}
+[class*='-fold'].folded {
+	background-image: url(/resources/images/pano/common/icon-unfold_more-white.svg);
+}
+
+/* mini-svg */
+.mini-map .svg-box {
+	overflow: hidden;
+	border-radius: .25rem;
+}
+
+.mini-map .svg-box .mini-svg {
+	width: 100%;
+	height: 0;
+	padding-top: 56.25%;
+	
+	position: relative;
+	overflow: hidden;
+}
+
+.mini-map .svg-box .mini-svg svg {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 100%;
+	height: 100%;
+}
+
+.mini-map .svg-box .mini-svg svg .layer image {
+	overflow: hidden;
+}
+
+/* 트리메뉴 첫번째 루트 요소 아이콘 제거 및 좌측 여백 조정 */
+.ui-layout-west .tree-box .jstree.jstree-1.jstree-default > ul > li > i {
+	display: none;
+}
+.ui-layout-west .tree-box .jstree.jstree-1.jstree-default > ul > li > ul > li.jstree-node {
+	margin-left: 0;
+}
+
+.ui-layout-west .tree-box .jstree-default > ul > li > .jstree-anchor > .jstree-icon {
+	width: 32px;
+}
+
+.ui-layout-west .tree-box .jstree-default .jstree-icon,
+.ui-layout-west .tree-box .jstree-default .jstree-icon:empty {
+	width: 32px;
+}
+
+.ui-layout-west .tree-box .jstree-anchor:has([onclick*="tagnofocus"]) .jstree-icon {
+	width: 20px;
+}
+
+.ui-layout-west .tree-box .jstree-default .jstree-search > .jstree-icon.jstree-themeicon.jstree-themeicon-custom {
+	background-image: url('/resources/images/pano/common/icon_left_pin_on.svg') !important;
+}
+.ui-layout-west .tree-box .jstree-default .jstree-search {
+	color: #0060A9;
+}

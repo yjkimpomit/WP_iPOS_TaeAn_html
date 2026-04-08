@@ -1,0 +1,212 @@
+<h3 class="title02">Red Tag 관리대장</h3>
+<!-- 검색영역 -->
+<div class="search-box" aria-label="검색입력란">
+	<div class="row">
+		<div class="col-12 mb-3">
+			<span class="form-label" id="category0101">구분</span>
+			<div class="form-control-plaintext" aria-labelledby="category0101">
+				<div class="form-check form-check-inline">
+					<input class="form-check-input" type="radio" name="category01" id="category01" checked>
+					<label class="form-check-label" for="category01">
+						W/O
+					</label>
+				</div>
+				<div class="form-check form-check-inline">
+					<input class="form-check-input" type="radio" name="category02" id="category02">
+					<label class="form-check-label" for="category02">
+						기타
+					</label>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-4 col-lg-4 col-xxl-3 mb-3">
+			<span class="form-label" id="issuer">발행자</span>
+			<div class="row g-2" aria-labelledby="issuer">
+				<div class="col">
+					<label class="visually-hidden" for="issuerSelect">발행자 검색</label>
+					<input class="form-control search-icon" id="issuerSelect" onclick="searchItemPopup($(this));">
+				</div>
+				<div class="col">
+					<label class="visually-hidden" for="issuerInput">발행자</label>
+					<input class="form-control" type="text" value="" id="issuerInput" disabled="" readonly="">
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4 col-lg-4 col-xxl-3 mb-3">
+			<span class="form-label" id="retriever">회수자</span>
+			<div class="row g-2" aria-labelledby="retriever">
+				<div class="col">
+					<label class="visually-hidden" for="retrieverSelect">회수자 검색</label>
+					<input class="form-control search-icon" id="retrieverSelect" onclick="searchItemPopup($(this));">
+				</div>
+				<div class="col">
+					<input class="form-control" type="text" value="" id="retrieverInput" disabled="" readonly="">
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4 col-lg-4 col-xxl-3 mb-3">
+			<span class="form-label" id="operationDept">운전부서</span>
+			<div class="row g-2" aria-labelledby="operationDept">
+				<div class="col">
+					<label class="visually-hidden" for="operationDeptSelect">운전부서 검색</label>
+					<input class="form-control search-icon" id="operationDeptSelect" onclick="searchTreePopup($(this));">
+				</div>
+				<div class="col">
+					<label class="visually-hidden" for="operationDeptInput">운전부서</label>
+					<input class="form-control" type="text" value="" id="operationDeptInput" disabled="" readonly="">
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-8 col-lg col-xxl-3 mb-3">
+			<span class="form-label" id="dateRangePicker">Tag 작성일</span>
+			<div class="row g-2 period-box" aria-labelledby="dateRangePicker">
+				<div class="col">
+					<label class="visually-hidden" for="startDate03">시작일</label>
+					<input type="date" class="form-control" id="startDate03">
+				</div>
+				<div class="col-auto">
+					<span class="form-control-plaintext text-center">~</span>
+				</div>
+				<div class="col">
+					<label class="visually-hidden" for="endDate03">종료일</label>
+					<input type="date" class="form-control" id="endDate03">
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-4 col-lg-4 col-xxl-3 mb-3">
+			<span class="form-label" id="supervisor">감독자</span>
+			<div class="row g-2" aria-labelledby="supervisor">
+				<div class="col">
+					<label class="visually-hidden" for="supervisorSelect">감독자 검색</label>
+					<input class="form-control search-icon" id="supervisorSelect" onclick="searchItemPopup($(this));">
+				</div>
+				<div class="col">
+					<label class="visually-hidden" for="supervisorInput">감독자</label>
+					<input class="form-control" type="text" value="" id="supervisorInput" disabled="" readonly="">
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4 col-lg-4 col-xxl-3 mb-3">
+			<span class="form-label" id="supervisingDept">감독부서</span>
+			<div class="row g-2" aria-labelledby="supervisingDept">
+				<div class="col">
+					<label class="visually-hidden" for="supervisingDeptSelect">감독부서 검색</label>
+					<input class="form-control search-icon" id="supervisingDeptSelect" onclick="searchItemPopup($(this));">
+				</div>
+				<div class="col">
+					<label class="visually-hidden" for="supervisingDeptInput">감독부서</label>
+					<input class="form-control" type="text" value="" id="supervisingDeptInput" disabled="" readonly="">
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4 col-lg-4 col-xxl-3 mb-3">
+			<span class="form-label" id="maintenanceDept">정비부서</span>
+			<div class="row g-2" aria-labelledby="maintenanceDept">
+				<div class="col">
+					<label class="visually-hidden" for="maintenanceDeptSelect">정비부서 검색</label>
+					<input class="form-control search-icon" id="maintenanceDeptSelect" onclick="searchItemPopup($(this));">
+				</div>
+				<div class="col">
+					<label class="visually-hidden" for="maintenanceDeptInput">정비부서</label>
+					<input class="form-control" type="text" value="" id="maintenanceDeptInput" disabled="" readonly="">
+				</div>
+			</div>
+		</div>
+<!-- 
+		<div class="col-md-4 col-lg-4 col-xxl-2 mb-3">
+			<label class="form-label" for="orderType01">오더유형</label>
+			<select class="form-select" aria-label="오더유형 선택" id="orderType01">
+				<option selected>오더유형 선택</option>
+				<option value="1">경상오더</option>
+			</select>
+		</div>
+ -->
+		<div class="col-md col-lg col-xxl mb-3">
+			<label class="form-label" for="tagNumber">Tag 번호</label>
+			<input class="form-control" type="text" id="tagNumber" placeholder="Tag 번호 입력">
+		</div>
+
+		<div class="col col-md-auto mb-3">
+			<button type="button" class="btn btn-primary">
+				<span class="material-symbols-rounded">
+					search
+				</span> 검색
+			</button>
+		</div>
+	</div>
+</div>
+
+<!-- data title -->
+<div class="title-box">
+	<h4 class="title03">조회결과<small>(전체 1,280건)</small></h4>
+	
+	<div>
+		<div class="page-move">
+			<label for="selectPage03" class="visually-hidden">이동할 페이지</label>
+			<input type="number" id="selectPage03" class="form-control page" placeholder="1">
+			<span class="px-2">/</span>
+			<span class="total">168</span>
+			<button type="button" class="btn btn-secondary">이동</button>
+		</div>
+			
+		<div class="btn-box">
+			<button type="button" class="btn btn-outline-primary">이전</button>
+			<button type="button" class="btn btn-outline-primary">다음</button>
+		</div>
+	</div>
+</div>
+
+<!-- data-grid -->
+<div class="table-responsive">
+	<table class="table table-sm" aria-label="작업현황">
+		<thead>
+			<tr>
+				<th scope="col" data-field="Tag상태">Tag상태</th>
+				<th scope="col" data-field="Tag번호">Tag번호</th>
+				<th scope="col" data-field="발행일시">발행일시</th>
+				<th scope="col" data-field="발행시간">발행시간</th>
+				<th scope="col" data-field="대상기기-번호">대상기기 번호</th>
+				<th scope="col" data-field="대상기기명">대상기기명</th>
+				<th scope="col" data-field="조작요청-내용">조작요청 내용</th>
+				<th scope="col" data-field="감독자">감독자</th>
+				<th scope="col" data-field="감독부서">감독부서</th>
+				<th scope="col" data-field="운전부서">운전부서</th>
+				<th scope="col" data-field="정비부서">정비부서</th>
+				<th scope="col" data-field="발행자">발행자</th>
+				<th scope="col" data-field="회수자">회수자</th>
+				<th scope="col" data-field="회수일시">회수일시</th>
+				<th scope="col" data-field="회수시간">회수시간</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<th data-field="Tag상태" scope="row">회수</th>
+				<td data-field="Tag번호">852468</td>
+				<td data-field="발행일시">2024-01-01</td>
+				<td data-field="발행시간">15:24</td>
+				<td data-field="대상기기-번호">3WS152-00J</td>
+				<td data-field="대상기기명">3WS152-00J CONDENSATE PUMP #2</td>
+				<td data-field="조작요청-내용">OPEN</td>
+				<td data-field="감독자">홍길동</td>
+				<td data-field="감독부서">복전ST과</td>
+				<td data-field="운전부서">복합발전운영본부</td>
+				<td data-field="정비부서">KPS계전부(2복합)</td>
+				<td data-field="발행자">홍길동</td>
+				<td data-field="회수자">홍길동</td>
+				<td data-field="회수일시">2024-02-02</td>
+				<td data-field="회수시간">16:40</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<script>
+	$(document).ready(function () {
+				const targetRow = document.querySelector('.table[aria-label="Red-Tag-출력-리스트"] tbody tr');
+				duplicateByElement(targetRow, 20);
+		//duplicateRow('.table[aria-label="작업현황"]', 9);
+	});
+</script>

@@ -1,0 +1,198 @@
+@charset "UTF-8";
+
+/* 
+ * 포미트 - 서부 iPOS 공통 스타일시트
+ * 작성자 : 김윤지
+ * 작성일 : 2025.03.17
+ * 운전정보 박스 추가
+ */
+
+/* 운전정보 박스 */
+.op-box {
+	position: absolute;
+	z-index: 4;
+	left: 3rem;
+	right: 4px;
+	bottom: 48px;
+	
+	height: 400px;
+	
+	border-radius: .25rem;
+	background: var(--bg-neutral-tertiary);
+	border: solid 1px var(--bg-neutral-secondaryhover);
+    
+    backdrop-filter: blur(4px);
+    box-shadow: none;
+    
+    cursor: default;
+    display: none;
+}
+
+@media (min-width: 768px) {
+	.op-box {
+		left: 52px;
+		width: 320px;
+		height: 560px;
+	}
+}
+
+@media (min-width: 1536px) {
+	.op-box {
+		width: 360px;
+		height: 640px;
+	}
+}
+
+.op-box.active {
+    display: block;
+}
+
+.op-box-header {
+	height: 40px;
+	padding-left: 1rem;
+	padding-right: 1rem;
+	
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.op-box-body {
+	padding: 0 .5rem .5rem;
+	height: calc(100% - 40px);
+	overflow: hidden;
+}
+
+/*  */
+.op-box-header h3 {
+    font-size: 17px;
+    color: var(--text-neutral-default);
+    font-weight: 700;
+	margin-bottom: 0;
+}
+
+.op-box-header .btn-box {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	margin: 0;
+}
+
+.op-box-header .btn {
+	display: block;
+	
+    width: 48px;
+    height: 48px;
+    
+    margin: 0;
+    padding: 0;
+    
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 24px;
+    
+    border-radius: 50%;
+}
+	
+.op-box-header .btn.minimize {
+
+    background-image: url(/resources/images/icons/icon-close-gray.svg);
+}
+
+@media (min-width: 768px) {
+	.op-box-header .btn,
+	.op-box-header .btn:hover {
+	   	width: 24px;
+	   	height: 24px;
+		background-size: 20px;
+	}
+
+	.op-box-header .btn:hover {
+	    opacity: .8;
+	}
+}
+
+.op-box .table-responsive {
+	height: 100%;
+	overflow-y: scroll;
+	
+	margin-bottom: 0;
+	background: transparent;
+	
+	/* accordion related */
+    border: none;
+    border-radius: 0;
+}
+
+.op-box .table {
+	--bs-body-bg: var(--bg-neutral-secondary);
+}
+
+.op-box .table thead th {
+	background-color: var(--text-neutral-secondary);
+	font-weight: 700;
+	color: var(--text-default-onneutral);
+	border-color: var(--border-neutral-inversehover);
+}
+
+.op-box .table tbody [data-field="그룹"],
+.op-box .table tbody [data-field="구분"] {
+	font-weight: 700;
+	text-align: left;
+}
+.op-box .table tbody [data-field="호기"] {
+	min-width: 5rem;
+}
+.op-box .table th,
+.op-box .table td {
+	white-space: normal;
+}
+@media (min-width: 768px) {
+	.op-box .table th,
+	.op-box .table td {
+		font-size: .875rem;
+		line-height: 1.2;
+		padding: .375rem .5rem;
+		border-bottom: solid 1px var(--border-neutral-secondary);
+	}
+}
+
+.op-box .table tr > th:only-child,
+.op-box .table tr > td:only-child,
+.op-box .table tr > td:last-child {
+	border-right: none;
+}
+
+.op-box .table tr > *[data-bs-toggle="collapse"] {
+	background-color: var(--bg-neutral-default);
+	color: var(--text-default-onneutral);
+	font-weight: 700;
+	border-top: solid 1px var(--bg-neutral-defaulthover);
+	
+	cursor: pointer;
+}
+
+/* accordion */
+.op-box .table tr > *[data-bs-toggle="collapse"] {
+	background-image: url('/resources/images/icons/icon-chevron-up-white.svg');
+	background-repeat: no-repeat;
+	background-position: left center;
+	background-size: 20px;
+	   
+	padding-left: 1.5rem;
+	text-align: left;
+}
+
+.op-box .table tr > *[data-bs-toggle="collapse"].collapsed {
+	background-image: url('/resources/images/icons/icon-chevron-down-white.svg');
+}
+
+.op-box:has([aria-label="안전작업허가서-주요-위험작업"]):not(.folded) {
+	display: block;
+    width: 240px;
+}
+.op-box:has([aria-label="안전작업허가서-주요-위험작업"]):not(.folded),
+.op-box:not(.folded) .op-box-body:has([aria-label="안전작업허가서-주요-위험작업"]),
+.op-box:not(.folded) .table-responsive:has([aria-label="안전작업허가서-주요-위험작업"]) {
+	height: auto;
+}

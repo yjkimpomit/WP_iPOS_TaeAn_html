@@ -1,0 +1,182 @@
+
+
+<h3 class="title03">Gas Turbine<small>(전체 9건 - 3D 모델: 1건, 파노라마: 0건 / 정렬기준: 설비번호)</small></h3>
+<p class="info-message" id="infoMessage">조회할 항목을 선택해 주세요.</p>
+			
+<!-- fac list -->
+<div class="table-responsive">
+	<table class="table table-sm" aria-label="설비정보">
+		<thead>
+			<tr>
+				<th scope="col" data-field="설비번호">설비번호</th>
+				<th scope="col" data-field="설비명">설비명</th>
+				<th scope="col" data-field="기능위치번호">기능위치번호</th>
+				<th scope="col" data-field="계통코드">계통코드</th>
+				<th scope="col" data-field="종류코드">종류코드</th>
+				<th scope="col" data-field="상태">상태</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td data-field="설비번호">52921-00300</td>
+				<td data-field="설비명">Gas Turbine</td>
+				<td data-field="기능위치번호">52921-00300</td>
+				<td data-field="계통코드"></td>
+				<td data-field="종류코드">METZ</td>
+				<td data-field="상태">운전</td>
+			</tr>
+			<tr>
+				<td data-field="설비번호">52921-00340</td>
+				<td data-field="설비명">Bearing 
+					<button class="btn btn-sm move-to-3D" title="3D모델 이동">
+						<span class="material-symbols-rounded">view_in_ar</span>
+						<span>이동</span>
+					</button>
+					<button class="btn btn-sm move-to-pano" title="파노라마 이동">
+						<span class="material-symbols-rounded">vrpano</span>
+						<span>이동</span>
+					</button>
+				</td>
+				<td data-field="기능위치번호">52921-00340</td>
+				<td data-field="계통코드"></td>
+				<td data-field="종류코드">METZ</td>
+				<td data-field="상태">운전</td>
+			</tr>
+			<tr>
+				<td data-field="설비번호">52921-00400</td>
+				<td data-field="설비명">Gas Turbine Line & VV</td>
+				<td data-field="기능위치번호">52921-00400</td>
+				<td data-field="계통코드"></td>
+				<td data-field="종류코드">METZ</td>
+				<td data-field="상태">운전</td>
+			</tr>
+			<tr>
+				<td data-field="설비번호">52921-00410</td>
+				<td data-field="설비명">Gas Turbine 현장계측기</td>
+				<td data-field="기능위치번호">52921-00410</td>
+				<td data-field="계통코드"></td>
+				<td data-field="종류코드">METZ</td>
+				<td data-field="상태">운전</td>
+			</tr>
+			<tr>
+				<td data-field="설비번호">52921-00380</td>
+				<td data-field="설비명">Over Speed Device ASSY</td>
+				<td data-field="기능위치번호">52921-00380</td>
+				<td data-field="계통코드"></td>
+				<td data-field="종류코드">METZ</td>
+				<td data-field="상태">운전</td>
+			</tr>
+			<tr>
+				<td data-field="설비번호">52921-00310</td>
+				<td data-field="설비명">Seal Housing ASSY</td>
+				<td data-field="기능위치번호">52921-00310</td>
+				<td data-field="계통코드"></td>
+				<td data-field="종류코드"></td>
+				<td data-field="상태">운전</td>
+			</tr>
+			<tr>
+				<td data-field="설비번호">52921-00320</td>
+				<td data-field="설비명">TBN Blade</td>
+				<td data-field="기능위치번호">52921-00320</td>
+				<td data-field="계통코드"></td>
+				<td data-field="종류코드">METZ</td>
+				<td data-field="상태">운전</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<div class="row">
+	<div class="col-lg">
+		<div class="title-box">
+			<div>
+				<h4 class="title04 my-0">설비상세 정보</h4>
+			</div>
+			<div class="btn-box">
+				<button type="button" class="btn btn-xs btn-primary move-to-pano disabled" id="moveToPanorama" onclick="showPano(this);">
+					<span class="material-symbols-rounded">
+						vrpano
+					</span>
+					<span>파노라마</span>
+				</button>
+			</div>
+		</div>
+		<!-- 
+		<div class="alert alert-primary message">
+			<p class="mb-0 text-center text-primary">조회할 항목을 선택해 주세요.</p>
+		</div> -->
+
+		<!-- detail info -->
+		<div class="table-responsive">
+			<table class="table table-sm view-table" data-tab-id="modelTab01-pane" aria-label="설비상세">
+				<colgroup>
+					<col style="width: 128px;">
+					<col style="width: 200px;">
+					<col style="width: 128px;">
+					<col>
+					<col style="width: 128px;">
+					<col style="width: 128px;">
+				</colgroup>
+				<tbody>
+					<tr>
+						<th scope="row">설비번호</th>
+						<td data-field="설비번호">52921-00300</td>
+						<th scope="row">설비명</th>
+						<td data-field="설비명">Gas Turbine</td>
+						<th scope="row">상태</th>
+						<td data-field="상태">운전</td>
+					</tr>
+					<tr>
+						<th scope="row">기능위치번호</th>
+						<td data-field="기능위치번호">52921-00300</td>
+						<th scope="row">기능위치명</th>
+						<td data-field="기능위치명" colspan="3">없음</td>
+					</tr>
+					<tr>
+						<th scope="row">계통코드</th>
+						<td data-field="계통코드">	없음</td>
+						<th scope="row">계통코드명</th>
+						<td data-field="계통코드명" colspan="3">없음</td>
+					</tr>
+					<tr>
+						<th scope="row">종류코드</th>
+						<td data-field="종류코드">METZ</td>
+						<th scope="row">종류코드명</th>
+						<td data-field="종류코드명" colspan="3">기계 기타설비</td>
+					</tr>
+					<tr>
+						<th scope="row">자산번호</th>
+						<td data-field="자산번호">없음</td>
+						<th scope="row">자산명</th>
+						<td data-field="자산명" colspan="3">없음</td>
+					</tr>
+					<tr>
+						<th scope="row">계층구조</th>
+						<td data-field="계층구조" colspan="5">
+							평택복합2단계 > #1 가스터빈설비 > 가스터빈본체 > Gas Turbine > TBN Casing > #1 GT Support
+						</td>
+					</tr>
+				</tbody>
+				<tfoot>
+				<tr class="main-equipment">
+					<th scope="row">대표설비</th>
+					<td data-field="대표설비" colspan="5">
+						<div class="main-info-box">
+							<div class="fac-root"><span class="badge text-bg-primary">호기</span> 9호기</div>
+							<div class="fac-code"><span class="badge text-bg-info">설비번호</span> 12345-00001</div>
+							<div class="fac-name"><span class="badge text-bg-info">설비명</span> Gas Turbine</div>
+						</div>
+					</td>
+				</tr>
+				</tfoot>
+			</table>
+		</div>
+	</div>
+
+	<div class="col-lg-4" style="max-width: 480px;">
+		<h4 class="title04">설비 사진</h4>
+		<div class="facility-photo">
+			<img src="/images/sample/GT_Model.jpg" alt="GT" class="img-fluid">
+		</div>
+	</div>
+</div>

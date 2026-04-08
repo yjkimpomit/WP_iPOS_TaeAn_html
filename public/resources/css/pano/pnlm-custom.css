@@ -1,0 +1,178 @@
+@charset "utf-8";
+
+/* 
+ * 포미트 : 서부발전 파노라마용 아이콘 스타일 정리
+ * panoedit.css, pannellum.css, pannellum_view.css 로 같은 내용이 중복으로 들어가 있어 일원화
+ * 작성자 : 김윤지
+ * 작성일 : 2025-01-14
+ */
+
+.pnlm-controls-container {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    z-index: 1;
+}
+
+.pnlm-controls {
+    cursor: pointer;
+    z-index: 2;
+}
+
+.pnlm-zoom-controls {
+	width: 32px;
+	height: 65px;
+    overflow: hidden;
+}
+
+.pnlm-controls [class*='pnlm-zoom'] {
+    width: 32px;
+    height: 32px;
+    position: absolute;
+	background-color: #31343AB8;
+    background-size: 20px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.pnlm-controls .pnlm-zoom-in {
+    top: 0;
+    background-image: url(/resources/images/pano/common/icon-add-white.svg) !important;
+    margin-bottom: 1px;
+    border-radius: 32px 32px 0 0;
+}
+
+.pnlm-controls .pnlm-zoom-out {
+    bottom: 0;
+    background-image: url(/resources/images/pano/common/icon-remove-white.svg) !important;
+    border-radius: 0 0 32px 32px;
+}
+
+/* compass icon */
+.pnlm-compass {
+    width: 32px;
+    height: 32px;
+   	position: absolute;
+    top: 78px;
+    left: 8px;
+    border-radius: 32px;
+    
+	background-color: #31343AB8;
+	background-image: url(/resources/images/pano/common/icon-compass.svg);
+	background-size: 32px;
+    background-repeat:no-repeat;
+    background-position:center;
+    cursor: default;
+}
+
+/* tag marker */
+.pnlm-hotspot-base {
+    position: absolute;
+    visibility: hidden;
+    cursor: default;
+    vertical-align: middle;
+    top: 0;
+    z-index: 1;
+}
+
+/* 2025.02.28 yjkim replace */
+/*
+.pnlm-hotspot {
+    height: 26px;
+    width: 26px;
+    border-radius: 13px;
+}
+*/
+.pnlm-hotspot.pnlm-info {
+    height: 24px;
+    width: 24px;
+}
+/* end */
+
+/* 
+.pnlm-hotspot:hover {
+    background-color: rgba(255,255,255,0.2);
+}
+ */
+.pnlm-hotspot.pnlm-info {
+	cursor: pointer;
+	background-image: url('/resources/images/pano/common/icon-tooltip-pin.svg');
+	background-size: 24px;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+/* 사용 안하는 것 같음 */
+.pnlm-hotspot.pnlm-scene {
+    background-position: 0 -130px;
+}
+
+div.pnlm-tooltip span {
+    visibility: hidden;
+    border-radius: .25rem;
+	background-color: #FF2B4E;
+    color: #fff;
+    text-align: center;
+    padding: 5px 10px;
+    cursor: default;
+    
+    /* 2025.02.28 yjkim replace: - 3D 모델 이동 버튼추가에 따른 위치조정 */
+    /* margin-left: -220px;
+    
+     */
+    margin: 0 !important;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -40px);
+    
+	white-space: nowrap;
+}
+
+/*
+div.pnlm-tooltip span{
+    visibility: visible;
+    position: absolute;
+    top: 75%;
+    left: 5%;
+	white-space: nowrap;
+}
+*/
+
+div.pnlm-tooltip span:after {
+    content: '';
+    position: absolute;
+    
+    width: 0;
+    height: 0;
+    border-width: 12px;
+    border-style: solid;
+    border-color: #FF2B4E transparent transparent transparent;
+    bottom: -20px;
+    
+    /* 2025.02.28 yjkim replace: - 3D 모델 이동 버튼추가에 따른 위치조정 */
+    /*
+    left: -10px;
+    margin: 0 50%;
+    */
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* <span class="icon-3d"></span> */
+div.pnlm-tooltip .icon-3d {
+    right: 0;
+    left: inherit;
+    top: 75%;
+    width: 1rem;
+    height: 1.375rem;
+    margin-left: 0;
+    margin-top: -63px;
+    padding: 5px 10px;
+    background-color: blue;
+    
+    background-image: url(/resources/images/pano/common/icon-view_in_ar-blue.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 24px;
+}

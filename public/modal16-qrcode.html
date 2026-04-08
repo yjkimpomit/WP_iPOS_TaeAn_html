@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="theme-color" content="#FFFFFF">
+	<title>태안 퍼블리싱본 - iPOS RWD</title>
+
+	<meta name="description" content="서부발전 태안 i-POS 서비스 제공">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- favicon -->
+	<link rel="icon" href="/favicon.ico" sizes="any">
+	<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+
+	<!-- slick & jstree -->
+	<link rel="stylesheet" href="/resources/js/slick-1.8.1/slick/slick.css">
+	<link rel="stylesheet" href="/resources/js/slick-1.8.1/slick/slick-theme.css">
+	<link rel="stylesheet" href="/resources/js/jsTree/css/style.min.css">
+
+	<!-- slick & jsTree & highchart -->
+	<script src="/resources/js/jquery/jquery-3.6.1.js"></script>
+	<script src="/resources/js/slick-1.8.1/slick/slick.min.js"></script>
+
+	<!-- toastchart -->
+	<script src="/resources/js/toastchart/toastui-chart.js"></script>
+
+	<!-- chartjs -->
+	<script src="/resources/js/chart/chart.umd.js"></script>
+	<script src="/resources/js/chart/chartjs-adapter-date-fns.bundle.min.js"></script>
+
+	<!-- jstree -->
+	<!-- <script src="/resources/js/jsTree/js/jstree.min.js"></script>
+	<script src="/resources/js/jsTree/js/jstreeFacility.js"></script> -->
+
+	<!-- ztree -->
+	<link rel="stylesheet" href="/resources/js/ztree/css/metroStyle/metroStyle.css" type="text/css">
+	<script src="/resources/js/ztree/js/jquery.ztree.all.min.js"></script>
+
+	<!-- 부트스트랩 JS -->
+	<script src="/resources/css/bootstrap/dist/js/popper.min.js"></script>
+	<script src="/resources/css/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+	<!-- bPopup -->
+	<script src="/resources/js/jquery/jquery.bpopup.min.js"></script>
+
+	<!-- winbox js -->
+	<link rel="stylesheet" href="/resources/js/winbox/winbox.min.css">
+	<script src="/resources/js/winbox/winbox.min.js"></script>
+
+	<!-- WP stylesheet -->
+	<link rel="stylesheet" href="/resources/css/common.css">
+	<script src="/resources/js/common.js" defer></script>
+	<script src="/resources/js/device-info.js" defer></script>
+
+	<!-- <%-- 변수 선언 --%> -->
+	<script>
+		/* <%-- 999/0 : mobile --%> */
+		//var checkMobile = "${sessionScope.loginInfo.iui_isadmin}";
+		var checkMobile = 0;
+	</script>
+	<!-- 
+	<link rel="stylesheet" href="/unity3DViewer/TemplateData/style.css">
+	<link rel="manifest" href="/unity3DViewer/manifest.webmanifest"> -->
+    <!-- 
+        * js에 사용할 변수 선언
+        * 모바일 체크
+        * 사업소, 호기 정보
+        * IDMS 페이지 <=> 3D MODEL
+	-->
+	<script>
+		// check device
+		var checkDevice = "${device}";
+		var eqOrgNo = "${sessionScope.eqOrgNo}";
+		var hoki = "${sessionScope.hoki}";
+		var _isIdmsPage = false;
+	</script>
+</head>
+<body class="sub">
+	<div class="container-qrcode">
+		
+		<h3 class="title02">로그시트</h3>
+		<!-- 검색영역 -->
+		<div class="search-box">
+			<div class="row">
+				<!-- 일자 -->
+				<div class="col-md-6 col-lg-4 col-xxl-2 col-xxxl-2 mb-3">
+					<label class="form-label" for="requestDateStart">일자</label>
+					<input type="date" class="form-control" id="requestDate" name="requestDate">
+				</div>
+				
+				<!-- 설계부서 유형 -->
+				<div class="col-md-6 col-lg-4 col-xxl-2 col-xxxl-2 mb-3">
+					<label class="form-label" for="branch">사업소</label>
+					<input class="form-control" id="branch" value="태안">
+				</div>
+				
+				<div class="col-md-6 col-lg-4 col-xxl-2 col-xxxl-2 mb-3">
+					<label class="form-label" for="authorDeptId">작성부서</label>
+					<select class="form-select" id="authorDeptId" name="authorDeptId">
+						<option value="" selected>----------------------------------</option>
+						<option value="발전부">발전부</option>
+						<option value=""></option>
+					</select>
+				</div>
+				
+				<div class="col-md-6 col-lg-4 col-xxl-2 col-xxxl-2 mb-3">
+					<label class="form-label" for="handoverDate">인수인계일지</label>
+					<select class="form-select" id="handoverDate" name="handoverDate">
+						<option value="" selected>----------------------------------</option>
+						<option value="태안 #9,10 인계인수일지">태안 #9,10 인계인수일지</option>
+						<option value=""></option>
+					</select>
+				</div>
+				
+				<div class="col-md-6 col-lg-4 col-xxl-2 col-xxxl-2 mb-3">
+					<label class="form-label" for="positionId">보직</label>
+					<select class="form-select" id="positionId" name="positionId">
+						<option value="" selected>----------------------------------</option>
+						<option value="">#10 TO</option>
+						<option value=""></option>
+					</select>
+				</div>
+				
+				<div class="col-md-6 col-lg-4 col-xxl-2 col-xxxl-2 mb-3">
+					<label class="form-label" for="inspectionFacilityId">점검설비</label>
+					<select class="form-select" id="inspectionFacilityId" name="inspectionFacilityId">
+						<option value="" selected>----------------------------------</option>
+						<option value="">전체</option>
+						<option value=""></option>
+					</select>
+				</div>
+				
+				<!-- 근무자 -->
+				<div class="col-md-6 col-xl-4 col-xxl col-xxxl mb-3">
+					<span class="form-label" id="operator">근무자</span>
+					<div class="row g-4" aria-labelledby="operator">
+						<label class="col-sm-3 col-md-1 col-form-label" for="operatorNS">NS</label>
+						<div class="col-sm-9 col-md">
+							<input class="form-control" type="text" value="" id="operatorNS" name="operatedByNS">
+						</div>
+						<label class="col-sm-3 col-md-1 col-form-label" for="operatorDS">DS</label>
+						<div class="col-sm-9 col-md">
+							<input class="form-control" type="text" value="" id="operatorDS" name="operatedByDS">
+						</div>
+						<label class="col-sm-3 col-md-1 col-form-label" for="operatorAS">AS</label>
+						<div class="col-sm-9 col-md">
+							<input class="form-control" type="text" value="" id="operatorAS" name="operatedByAS">
+						</div>
+					</div>
+				</div>
+				
+				<!-- 검토자 -->
+				<div class="col-md-6 col-xl-4 col-xxl col-xxxl mb-3">
+					<span class="form-label" id="reviewer">검토자</span>
+					<div class="row g-4" aria-labelledby="review">
+						<label class="col-sm-3 col-md-1 col-form-label" for="reviewNS">NS</label>
+						<div class="col-sm-9 col-md">
+							<input class="form-control" type="text" value="" id="reviewNS" name="reviewedByNS">
+						</div>
+						<label class="col-sm-3 col-md-1 col-form-label" for="reviewDS">DS</label>
+						<div class="col-sm-9 col-md">
+							<input class="form-control" type="text" value="" id="reviewDS" name="reviewedByDS">
+						</div>
+						<label class="col-sm-3 col-md-1 col-form-label" for="reviewAS">AS</label>
+						<div class="col-sm-9 col-md">
+							<input class="form-control" type="text" value="" id="reviewAS" name="reviewedByAS">
+						</div>
+					</div>
+				</div>
+				
+				<!-- 최종확인 -->
+				<div class="col-md mb-3">
+					<span class="form-label" id="approver">최종확인</span>
+					<div class="row g-4" aria-labelledby="approve">
+						<label class="col-sm-3 col-md-1 col-form-label" for="approveNS">NS</label>
+						<div class="col-sm-9 col-md">
+							<input class="form-control" id="approveNS" value="" name="approvedByNS">
+						</div>
+						<label class="col-sm-3 col-md-1 col-form-label" for="approveDS">DS</label>
+						<div class="col-sm-9 col-md">
+							<input class="form-control" type="text" value="" id="approveDS" name="approvedByDS">
+						</div>
+						<label class="col-sm-3 col-md-1 col-form-label" for="approveAS">AS</label>
+						<div class="col-sm-9 col-md">
+							<input class="form-control" type="text" value="" id="approveAS" name="approvedByAS">
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-md-auto mb-3">
+					<button type="button" class="btn btn-primary" onclick="fnSearchForm();">
+						<span class="icon icon-search"></span>
+						<span>검색</span>
+					</button>
+				</div>
+			</div>
+		</div>
+		
+		<div class="title-box" id="divSearchResult">
+			<h4 class="title03">조회결과 <small id="searchResultCnt"></small></h4>
+			<div class="btn-box">
+				<!-- 근무자변경 -->
+				<div>
+					<label for="changeOperator" class="visually-hidden">근무자 변경</label>
+					<select class="form-select" id="changeOperator" name="changeOperator">
+						<option value="" selected>----------------------------------</option>
+						<option value="">선택</option>
+						<option value=""></option>
+					</select>
+				</div>
+				<button type="button" class="btn btn-secondary">
+					<span>근무자변경</span>
+				</button>
+
+				<!-- 엑셀 다운로드 -->
+				<button type="button" class="btn btn-primary" onclick="fnVisitExcelDownload()">
+					<span>엑셀 다운로드</span>
+				</button>
+			</div>
+		</div>
+
+		<div class="table-responsive">
+			<table class="table table-sm" aria-label="logsheet-result">
+				<thead>
+				<tr>
+					<th scope="col" name="excelCol" data-field="점검항목">점검항목</th>
+					<th scope="col" name="excelCol" data-field="기준치">기준치</th>
+					<th scope="col" name="excelCol" data-field="단위">단위</th>
+					<th scope="col" name="excelCol" data-field="0시">00:00</th>
+					<th scope="col" name="excelCol" data-field="3시">03:00</th>
+					<th scope="col" name="excelCol" data-field="6시">06:00</th>
+					<th scope="col" name="excelCol" data-field="8시">08:00</th>
+					<th scope="col" name="excelCol" data-field="11시">11:00</th>
+					<th scope="col" name="excelCol" data-field="14시">14:00</th>
+					<th scope="col" name="excelCol" data-field="17시">17:00</th>
+					<th scope="col" name="excelCol" data-field="20시">20:00</th>
+					<th scope="col" name="excelCol" data-field="평균">평균</th>
+					<th scope="col" name="excelCol" data-field="최소">최소</th>
+					<th scope="col" name="excelCol" data-field="최대">최대</th>
+				</tr>
+				</thead>
+				<!-- <tbody>
+					<tr>
+						<td colspan="14">
+							<div class="no-data">
+								데이터가 없습니다.
+							</div>
+						</td>
+					</tr>
+				</tbody> -->
+				<tbody>
+					<tr>
+						<th data-field="점검항목"><span>출력</span></th>
+						<th data-field="기준치"><span>0~1050</span></th>
+						<th data-field="단위"><span>MW</span></th>
+						<td data-field="0시"><span></span></td>
+						<td data-field="3시"><span></span></td>
+						<td data-field="6시"><span></span></td>
+						<td data-field="8시"><span></span></td>
+						<td data-field="11시"><span></span></td>
+						<td data-field="14시"><span></span></td>
+						<td data-field="17시"><span></span></td>
+						<td data-field="20시"><span></span></td>
+						<td data-field="평균"><span></span></td>
+						<td data-field="최소"><span></span></td>
+						<td data-field="최대"><span></span></td>
+					</tr>
+
+					<tr>
+						<th data-field="점검항목"><span>HPU(FWFCV04) Oil Level</span></th>
+						<th data-field="기준치"><span>30~195</span></th>
+						<th data-field="단위"><span>mm</span></th>
+						<!-- 기준치 이상 -->
+						<td data-field="0시">
+							<span class="is-over">200</span>
+						</td>
+						<td data-field="3시">
+							<span class="is-over">200</span>
+						</td>
+						<td data-field="6시">
+							<span class="is-over">200</span>
+						</td>
+						<td data-field="8시">
+							<span class="is-over">200</span>
+						</td>
+						<td data-field="11시">
+							<span class="is-over">200</span>
+						</td>
+						<td data-field="14시">
+							<span class="is-over">200</span>
+						</td>
+						<td data-field="17시">
+							<span class="is-over">200</span>
+						</td>
+						<td data-field="20시">
+							<span class="is-over">200</span>
+						</td>
+						<td data-field="평균"><span>200</span></td>
+						<td data-field="최소"><span>200</span></td>
+						<td data-field="최대"><span>200</span></td>
+					</tr>
+
+					<tr>
+						<th data-field="점검항목"><span>HPU(FWFCV04) Oil Press</span></th>
+						<th data-field="기준치"><span>30~195</span></th>
+						<th data-field="단위"><span>mm</span></th>
+						<!-- 기준치 이하 -->
+						<td data-field="0시">
+							<span class="is-under">17</span>
+						</td>
+						<td data-field="3시">
+							<span class="is-under">17</span>
+						</td>
+						<td data-field="6시">
+							<span class="is-under">17</span>
+						</td>
+						<td data-field="8시">
+							<span class="is-under">17</span>
+						</td>
+						<td data-field="11시">
+							<span class="is-under">17</span>
+						</td>
+						<td data-field="14시">
+							<span class="is-under">17</span>
+						</td>
+						<td data-field="17시">
+							<span class="is-under">17</span>
+						</td>
+						<td data-field="20시">
+							<span class="is-under">17</span>
+						</td>
+						<td data-field="평균"><span>17</span></td>
+						<td data-field="최소"><span>17</span></td>
+						<td data-field="최대"><span>17</span></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	
+		
+        <h4 class="title04">특기사항</h4>
+		<div class="grid-3x3">
+			<div class="cell">
+				<h5 class="title05">NS</h5>
+			</div>
+			<div class="cell">
+				<h5 class="title05">DS</h5>
+			</div>
+			<div class="cell">
+				<h5 class="title05">AS</h5>
+			</div>
+		</div>
+
+	</div>
+</body>
+</html>

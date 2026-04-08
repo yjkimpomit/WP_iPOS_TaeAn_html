@@ -1,0 +1,71 @@
+@charset "utf-8";
+
+/* 
+ * POMIT animation.css
+ * 2024-10-21
+ * 애니매이션용 트랜지션 모음
+ */
+
+.flashing {
+	animation: flash 1.5s infinite;
+}
+
+@keyframes flash {
+
+	0%,
+	100% {
+		opacity: 1;
+	}
+
+	50% {
+		opacity: 0;
+	}
+}
+
+.rotate:hover {
+	animation: rotate 0.5s ease-in-out; /* 0.5초 동안 회전 */
+}
+
+/* 회전 애니메이션 정의 */
+@keyframes rotate {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+
+@keyframes blink {
+	0%,
+	100% {
+		opacity: 1;
+		/* 보임 */
+	}
+
+	50% {
+		opacity: 0;
+		/* 안 보임 */
+	}
+}
+
+.blink {
+	animation: blink 2s step-end 3;
+	/* animation-delay: 3s;
+	animation-fill-mode: both; */
+}
+
+nav .menu-item:has(.d1[data-class*="alarm"]) .counter {
+	animation: blink 2s infinite;
+}
+
+@keyframes pulse {
+	0%   { opacity: 1; }   /* ✅ 처음 로드시 보임 */
+	5%   { opacity: 1; }
+	6%   { opacity: 0; }   /* ✅ 바로 꺼짐 */
+	100% { opacity: 0; }  /* ✅ 10초 동안 대기 */
+}
+.pulse {
+	animation: pulse 10s infinite;
+}

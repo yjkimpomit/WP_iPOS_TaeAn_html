@@ -1,0 +1,346 @@
+.pacomas-main {
+	margin: 0 auto 0;
+}
+
+/* main */
+
+/*
+.main {
+	display: flex;
+	width:1800px;
+	margin: 2rem auto 0;
+}
+
+.pacomas-main .left_map {
+	width: calc(60% - 2rem);
+	margin-right: 2rem;
+}
+.pacomas-main .right_list {
+	width: 40%;
+}
+
+.pacomas-main .main_map {
+	width:100%; 
+	height:800px; 
+	position: relative;
+}
+.pacomas-main .main_map > img {
+	object-fit: cover;
+	width: 100%;
+	height: 100%;
+}
+*/
+
+.pacomas-main .top_list {
+	display: flex;
+	justify-content: space-between;
+	
+	margin: 0;
+	padding: 2rem .5rem;
+}
+
+.top_list .table-box:first-child {
+	max-width: 60%;
+}
+.top_list .table-box:last-child {
+	max-width: 40%;
+}
+
+.top_list .table-box {
+    flex: 1 0 auto;
+	padding: 0 .5rem;
+    margin: 0 auto;
+    overflow: hidden;
+    
+    min-height: 280px;
+}
+
+/* title-box */
+.pacomas-main .title-box {
+	position: relative;
+	display: flex;
+	align-items: center;
+	
+	padding: 0;
+	margin-bottom: 1rem;
+	background: transparent;
+}
+.pacomas-main .title {
+	display: inline-flex;
+	font-size: 1.25rem;
+	margin-bottom: 0;
+	color: var(--primary-700);
+}
+
+.pacomas-main .title a {
+	position: relative; 
+	left: auto;
+	color: var(--primary-700);
+}
+
+.top_list .table-box .table {
+	margin-bottom: 0;
+}
+
+.pacomas-main table th {
+	padding: 0.5rem 1rem;
+	background: var(--primary-700);
+	color: white;
+	text-align: center;
+	border: none;
+}
+
+.pacomas-main table th:first-child {
+	border-top-left-radius: .25rem;
+	border-bottom-left-radius: .25rem;
+}
+.pacomas-main table th:last-child {
+	border-top-right-radius: .25rem;
+	border-bottom-right-radius: .25rem;
+}
+
+.pacomas-main table td {
+	padding: .5rem .75rem;
+	border-bottom: 1px solid var(--bs-gray-300);
+	text-align: center;
+}
+
+.pacomas-main table td > div {	
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    
+    min-height: 32px;
+    line-height: 32px;
+}
+
+/*버튼 
+#admin_wr {position: relative;}
+#sup_wr {position: relative;}
+
+
+.btnArea .btnArea {display: inline-block;float:right;padding-left: 100px;}
+.card_search {position: relative;display: inline-block;}
+.card_search .teriaryBtn {position: absolute;right:-3px;background: none;}
+
+table.listTable02 td > input[type="text"] {border:1px solid var(--bs-gray-100);}
+
+.list_btn {display: flex;justify-content: flex-end;}
+*/
+
+/* main_local
+
+#mainloc_wr .main {
+	flex-direction: column;
+	flex-wrap: wrap;
+	min-height: 861px;
+	height: calc(100% - 50px);
+	margin-top: 0;
+}
+
+#mainloc_wr .main .top_list {
+	display: flex;
+	justify-content: space-between;
+	margin-left: -1rem;
+	margin-right: -1rem;
+	padding: 3rem 0 0;
+}
+#mainloc_wr .main .top_list > div {
+	width: 33.333%;
+	padding: 0 1rem;
+}
+
+#mainloc_wr .main .top_list > div:nth-child(2) .title {
+	color: var(--info);
+}
+
+#mainloc_wr .main .top_list > div:nth-child(2) table th,
+#mainloc_wr .main .top_list > div:nth-child(2) .icon-box {
+	background: var(--info);
+}
+
+*/
+#mainloc_wr .bottom_list {
+	background-color: var(--bs-gray-100);
+	padding: 2rem;
+}
+
+#mainloc_wr .bottom_list > .nodrag {
+	margin-bottom: 2rem;
+}
+
+.pacomas-main .list-box {
+	display: flex;
+	justify-content: flex-start;
+	
+    margin: 0 -.5rem;
+}
+.pacomas-main .list-box > li {
+	width: calc(20%);
+	position: relative;
+	height: 100%;
+	overflow: hidden;
+	
+    padding: 0 .5rem;
+}
+	
+.pacomas-main .list-box > li .photo-box {
+	width: 100%;
+    height: 0;
+    
+    padding-top: 62.5%;
+    border-radius: .25rem;
+    background-color: var(--bs-gray-300);
+    background-position: center;
+    background-size: 5rem;
+    background-repeat: no-repeat;
+    position: relative;
+    overflow: hidden;
+}
+
+.pacomas-main .list-box > li:last-child {
+	margin-right: 0
+}
+
+.pacomas-main .list-box > li .photo-box img {
+/* 	width: 100%; */
+/* 	height: 100%; */
+/* 	object-fit: cover; */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.pacomas-main .list-box > li .b_box {
+	display: none;
+}
+
+.pacomas-main .list-box > li:hover .b_box {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	height: 56%;
+	background:rgba(51, 53, 56, 0.88);
+	padding: 1rem;
+}
+
+.pacomas-main .list-box .b_box .txt {
+	color: white;
+	font-size: .875rem;
+}
+
+.pacomas-main .list-box .b_box .btn {
+	border-radius: .25rem;
+	
+	width: 2rem;
+	height: 2rem;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+
+	background: var(--bs-gray-300);
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.48);
+}
+
+.pacomas-main .list-box .b_box .bi {
+    color: var(--primary-700);
+}
+
+/* no-image */
+.pacomas-main .list-box li.no-image {
+	display: flex;
+	width: calc(100% - 1rem);	
+	justify-content: center;
+	align-items: center;
+	margin: 0 auto !important;
+	
+	border-radius: .25rem;
+	background-color: white;
+}
+
+.pacomas-main .list-box li.no-image .error-comment {
+	background: url('/resources/images/icons/icon-webpage.svg') no-repeat left center;
+	background-size: auto 4rem;
+	padding-left: 6rem;
+	
+	font-size: 1rem;
+	color: var(--bs-body-color);
+	font-weight: 300;
+	
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 10rem;
+}
+
+/* my-info */
+.my-info  {
+	width: 480px;
+	margin: 4rem auto 0;
+	border-top: solid .25rem var(--bs-border-color);
+}
+
+.my-info .form-group {
+	margin-top: 2rem;
+}
+.my-info .form-label {
+	font-size: 1.25rem;
+}
+
+.use_edit .head {margin:40px 0}
+.use_edit .popbtn2  {display: flex;justify-content:space-between;}
+.use_edit .primaryBtn2.active {background-color:#000;}
+
+@media all and (max-width:800px) {
+    .use_edit {width: 100%;}
+}
+.main_map > ul {position: absolute;width: 100%;height: 100%;}
+.main_map > ul > li {width:95px;position: relative;display: inline-block;text-align: center;}
+.pinbox {position: absolute;width: 100%;top:-60px;display: none;transition: all 0.5s;}
+.pinbox > img {width:100%;}
+.pinbox > ul > li {color:#000;text-align: center;}
+.pinbox .txt {margin-bottom: 3px;padding: 5px 10px;background: #555;color: #fff;}
+.pinbox .txt > a {display: block;padding:3px 5px;background:#333;color: #fff;margin: 5px 0 3px;}
+
+
+.pin:hover .pinbox {display: block;}
+.p01 {left:87px;top:489px;}
+.p02 {left:848px;top: 256px;}
+
+/* 메인 리스트 text_width 고정값 ...처리 
+.mtxt01,
+.mtxt02,
+.mtxt03 {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+*/
+
+/* icon-box */
+.icon-box {
+	margin: 0 auto;
+	width: 1.5rem;
+	height: 1.5rem;
+	border-radius: 10rem;
+	
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	
+	background-color: var(--bs-primary);
+	color: white;
+	font-size: .875rem;
+	font-weight: 700;	
+}

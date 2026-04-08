@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="theme-color" content="#FFFFFF">
+	<title>서부발전 태안</title>
+
+	<meta name="description" content="서부발전 태안 i-POS 서비스 제공">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- favicon -->
+	<link rel="icon" href="/favicon.ico" sizes="any">
+	<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+
+	<!-- slick & jstree -->
+	<link rel="stylesheet" href="/resources/js/slick-1.8.1/slick/slick.css">
+	<link rel="stylesheet" href="/resources/js/slick-1.8.1/slick/slick-theme.css">
+
+	<!-- WP stylesheet -->
+	<link rel="stylesheet" href="/resources/css/login.css">
+</head>
+
+<body>
+	<div class="login">
+		<div class="login-wrap">
+			<div class="visual-box">
+				<div class="slider-box">
+					<!-- 슬라이더 1 -->
+					 <div class="slider-container">
+						<div id="loginSlider">
+							<div class="slide01">
+								<div class="text-box">
+									<h2>태안 9, 10호기 <span>i-POS</span></h2>
+									<p>지능형 발전 운영시스템</p>
+								</div>
+							</div>
+							<div class="slide02">
+								<div class="text-box">
+									<h2>태안 9, 10호기 <span>i-POS</span></h2>
+									<p>지능형 발전 운영시스템</p>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- 재생/정지, 1번/2번 슬라이드 이돈 버튼 -->
+					<div class="controls">
+						<button id="playPause" class="pause">정지</button>
+						<button id="slide1" class="slide-btn">1번 슬라이드</button>
+						<button id="slide2" class="slide-btn">2번 슬라이드</button>
+					</div>
+				</div>
+			</div>
+			<div class="login-panel">
+				<div class="login-box">
+
+					<div class="logo">
+						<div class="bi">
+							<span class="visually-hidden-focusable">서부발전</span>
+							<strong class="branch">평택2복합 <span class="system">i-POS</span> </strong>
+							<span class="desc">지능형 발전 운영시스템</span>
+						</div>
+					</div>
+
+					<h2 class="title">로그인</h2>
+
+					<form id="frmLogin">
+						<div>
+							<span class="icon-account"></span>
+							<label class="visually-hidden-focusable" for="txtUserId">아이디</label>
+							<input class="form-control" type="text" id="txtUserId" name="iui_user_id" autocomplete="off" placeholder="아이디를 입력하여 주십시요.">
+						</div>
+						<div>
+							<span class="icon-lock"></span>
+							<label class="visually-hidden-focusable" for="txtUserPwd">비밀번호</label>
+							<input class="form-control" type="text" id="txtUserPwd" name="iui_user_pwd" autocomplete="off" placeholder="비밀번호를 입력하여 주십시요.">
+						</div>
+						
+						<div id="errTxt" class="err-box"><span>아이디를 입력하여 주십시요.</span><span>비밀번호를 입력하여 주십시요.</span></div>
+
+						<div class="form-check mb-3">
+							<input class="form-check-input" type="checkbox" id="idKeep" value="1" />
+							<label class="form-check-label" for="idKeep">아이디 저장</label>
+						</div>
+						<button class="btn btn-primary" type="button" onclick="location.href=('index.html');" title="로그인">로그인</button>
+					</form>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+<!-- slick js -->
+<script src="/resources/js/jquery/jquery-3.6.1.js"></script>
+<script src="/resources/js/slick-1.8.1/slick/slick.min.js"></script>
+<script>
+    $(document).ready(function () {
+        var $slider = $('#loginSlider');
+        var $playPauseButton = $('#playPause');
+        var $slideButtons = $('.slide-btn');
+        var isPlaying = true; // 슬라이더가 재생 중인지 여부
+
+        // 슬라이더 초기화
+        $slider.slick({
+            slidesToShow: 1,
+            slidesToScroll: 1,
+            autoplay: true,
+            autoplaySpeed: 3000,
+            dots: false,
+            arrows: false,
+            fade: true
+        });
+
+        // 첫 화면에서 정지(Pause) 버튼이 활성화되도록 설정
+        $playPauseButton.removeClass('play').addClass('pause').text('정지');
+
+        // 로딩 시 첫 번째 슬라이드 버튼에 active 클래스 추가
+        $slideButtons.eq(0).addClass('active');
+
+        // 재생/정지 버튼 클릭 이벤트
+        $playPauseButton.click(function () {
+            if (isPlaying) {
+                $slider.slick('slickPause');
+                $playPauseButton.removeClass('pause').addClass('play').text('재생');
+            } else {
+                $slider.slick('slickPlay');
+                $playPauseButton.removeClass('play').addClass('pause').text('정지');
+            }
+            isPlaying = !isPlaying; // 상태 토글
+        });
+
+        // 슬라이드 버튼 클릭 이벤트
+        $slideButtons.click(function () {
+            var index = $(this).index() - 1; // 클릭된 버튼의 인덱스 가져오기
+            $slider.slick('slickGoTo', index); // 해당 슬라이드로 이동
+
+            // 클릭된 버튼에 active 클래스 추가, 나머지에서 제거
+            $slideButtons.removeClass('active');
+            $(this).addClass('active');
+        });
+
+        // Slick Slider의 슬라이드 변경 시 호출되는 이벤트
+        $slider.on('afterChange', function (event, slick, currentSlide) {
+            // 모든 슬라이드 버튼에서 active 클래스를 제거
+            $slideButtons.removeClass('active');
+            // 현재 활성 슬라이드에 맞는 버튼에 active 클래스 추가
+            $slideButtons.eq(currentSlide).addClass('active');
+        });
+    });
+</script>
+<!-- /END Scripts -->
+</body>
+
+</html>

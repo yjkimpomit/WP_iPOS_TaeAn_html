@@ -1,0 +1,88 @@
+<!-- logsheet 화면 -->
+<div class="container-admin">
+	<div class="title-box">
+		<h3 class="title02">Logsheet</h3>
+	</div>
+
+	<!-- 검색영역 -->
+	<div class="search-box" role="search" aria-label="설비정보-검색">
+		<form id="form_search_work_request" method="post" autocomplete="off">
+			<input type="hidden" id="ColList" name="ColList" value="">
+
+			<div class="row">
+				<div class="col-12 col-md-3">
+					<label class="form-label" for="reqDeptOption">설비 번호</label>
+					<input class="form-control icon-return" id="reqDeptOption" name="reqDept"
+						onclick="searchReqDeptTreePopup($(this));" placeholder="설비 번호 또는 설비명 입력">
+				</div>
+				<div class="col-12 col-md">
+					<label class="visually-hidden" for="reqDeptInput">설비명</label>
+					<input class="form-control" type="text" value="" id="reqDeptInput" disabled=""
+						readonly="">
+				</div>
+
+				<!-- <div class="col col-md-auto">
+					<button type="button" class="btn btn-primary" onclick="fnWorkRequestSearch();">
+						<span class="icon-search"></span>
+						<span>검색</span>
+					</button>
+				</div> -->
+				<div class="col col-md-auto">
+					<button type="button" class="btn btn-primary" onclick="fnWorkRequestSearch();">
+						<span class="icon-edit"></span>
+						<span>수정</span>
+					</button>
+				</div>
+			</div>
+		</form>
+	</div>
+
+	<div class="logsheet-iframe" id="_FACILITY_DETAIL_VIEW_INFO">
+		<div class="logsheet-content">
+			<!-- tab-menu -->
+			<ul class="nav nav-tabs data-tab" role="tablist">
+				<li class="nav-item" role="presentation">
+					<button class="nav-link" data-bs-toggle="tab" type="button" role="tab" 
+						id="AoLogTab" 
+						aria-controls="AoLogTabPane" aria-selected="false" 
+						data-bs-target="#AoLogTabPane" data-page="tab06_logsheet_AO.html" >AO Log</button>
+				</li>
+				<li class="nav-item" role="presentation">
+					<button class="nav-link" data-bs-toggle="tab" type="button" role="tab" 
+						id="BoLogTab" 
+						aria-controls="BoLogTabPane" aria-selected="false" 
+						data-bs-target="#BoLogTabPane" data-page="tab06_logsheet_BO.html" >BO Log</button>
+				</li>
+				<li class="nav-item" role="presentation">
+					<button class="nav-link active" data-bs-toggle="tab" type="button" role="tab" 
+						id="ToLogTab" 
+						aria-controls="ToLogTabPane" aria-selected="false" 
+						data-bs-target="#ToLogTabPane" data-page="tab06_logsheet_TO.html" >TO Log</button>
+				</li>
+			</ul>
+
+			<!-- tab content -->
+			<div class="tab-content">
+				<div class="tab-pane fade" role="tabpanel" tabindex="0" id="AoLogTabPane" aria-labelledby="AoLogTab"></div>
+				<div class="tab-pane fade" role="tabpanel" tabindex="0" id="BoLogTabPane" aria-labelledby="BoLogTab"></div>
+				<div class="tab-pane fade active show" role="tabpanel" tabindex="0" id="ToLogTabPane" aria-labelledby="ToLogTab"></div>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+<script>
+$('#AoLogTabPane').load('tab06_logsheet_AO.html', function () {
+	setLogsheetCells(this);
+});
+
+$('#BoLogTabPane').load('tab06_logsheet_BO.html', function () {
+	setLogsheetCells(this);
+});
+
+$('#ToLogTabPane').load('tab06_logsheet_TO.html', function () {
+	setLogsheetCells(this);
+});
+
+</script>

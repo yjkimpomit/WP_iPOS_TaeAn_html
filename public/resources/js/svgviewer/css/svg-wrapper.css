@@ -1,0 +1,286 @@
+@charset "utf-8";
+/*
+20250109 yjkim
+SVGwrapper 전용 스타일로 뷰어의 바깥 요소에 사용되는 스타일
+iPOS 에서는 modal.css 에서 사용하고 있음
+*/
+.btn.disabled {
+	cursor: default;
+	pointer-events: auto;
+}
+
+/* svg-wrapper */
+.svg-wrapper {
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem;
+}
+
+.svg-wrapper .viewer,
+.svg-wrapper .datalist {
+	flex: 1 0 100%;
+	max-width: 100%;
+}
+
+@media(min-width: 1600px) {
+	.svg-wrapper {
+		height: 100vh;
+		flex-wrap: nowrap;
+		align-items: stretch;
+		justify-content: space-between;
+		overflow: hidden;
+	}
+	/*
+	.svg-wrapper .viewer {
+		flex: 1 0 auto;
+		max-width: calc(100% - 320px - 1rem);
+	}
+	*/
+	
+	/* 20251128 yjkim start - datalist 사용 안하기로 함 */
+	.svg-wrapper .viewer {
+		flex: 1 0 100%;
+		max-width: 100%;
+	}
+	/* 20251128 yjkim end  */
+	
+	.svg-wrapper .datalist {
+		flex: 1 0 320px;
+		max-width: 320px;
+	}
+	
+}
+
+/* viewer */
+.viewer {
+	display: flex;
+	align-content: flex-start;
+	flex-wrap: wrap;
+	gap: .25rem;
+}
+
+.viewer-header {
+	flex: 1 0 100%;
+	display: flex;
+	align-items: stretch;
+	justify-content: space-between;
+	gap: .5rem;
+}
+
+.viewer-header >* {
+	flex: 1;
+	display: flex;
+	align-items: center;
+	gap: .5rem;
+}
+
+.viewer-header .svg-title .btn[class*='icon-'] {
+	width: auto;
+	background-position: left center;
+	padding-left: 2rem;
+}
+
+.viewer-header .svg-links {
+	justify-content: flex-end;
+}
+
+.viewer-body {
+	flex: 1;
+}
+/*
+.viewer-body:only-child {
+	height: 100%;
+	box-shadow: 0 0 4px 0 rgba(214, 218, 229, 80%);
+}*/
+
+#svgarea {
+	width: 100%;
+	height: 100vh;
+	position: relative;
+	background-color: var(--white);
+	
+	border: 1px solid var(--border-neutral-default);
+	border-radius: .25rem;
+	overflow: hidden;
+}
+
+/* datalist */
+.datalist {
+	display: flex;
+	align-content: flex-start;
+	flex-wrap: wrap;
+	gap: .25rem;
+}
+
+.datalist-header {
+	flex: 1 0 100%;
+	max-width: 100%;
+	
+	display: flex;
+	align-items: center;
+	gap: .25rem;
+}
+.datalist-body {
+	flex: 1;
+	height: calc(100% - 36px - .25rem);
+}
+
+.datalist .form-select {
+	flex: 1 0 5rem;
+}
+
+.datalist [class*='form-'] {
+	height: 36px;
+}
+
+/* form elements */
+.form-select {
+	color: var(--text-neutral-default);
+	
+	border: 1px solid var(--border-neutral-secondary);
+	border-radius: .25rem;
+	overflow: hidden;
+	
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	
+	background-image: url('../images/icon-keyboard_arrow_down-gray.svg');
+	background-repeat: no-repeat;
+	background-position: right .25rem center;
+	background-size: auto 24px;
+}
+
+.form-control {
+	color: var(--text-neutral-default);
+	border: 1px solid var(--border-neutral-secondary);
+	border-radius: .25rem;
+	overflow: hidden;
+}
+.form-control::placeholder {
+	opacity: .8;
+	font-weight: 400;
+}
+
+/* table-responsive */
+.table-responsive {
+	border-top: 1px solid var(--border-neutral-default);
+	margin-bottom: 0;
+}
+
+.table-responsive:has(.table[aria-label="결과값"]) {
+	height: 360px;
+}
+
+@media(min-width: 1600px) {
+	.table-responsive:has(.table[aria-label="결과값"]) {
+		height: 100%;
+	}
+}
+
+.table {
+	border-collapse:separate;
+	border-spacing: 0;
+	margin-bottom: 0;
+}
+
+.table thead {
+	position: sticky;
+	top: 0;
+	z-index: 2;
+	background-color: var(--bg-neutral-tertiary);
+}
+
+.table thead th {
+	background-color: var(--bg-neutral-tertiary);
+}
+
+.table th,
+.table td {
+	height: 32px;
+	border-color: var(--bg-neutral-secondary);
+}
+
+/* 순번칼럼 너비 */
+.table[aria-label="결과값"] [data-field="순번"] {
+	width: 5rem;
+	text-align: center;
+}
+
+/* ID칼럼 너비 */
+.table[aria-label="결과값"] [data-field="ID"] {
+	width: 6rem;
+}
+.table[aria-label="결과값"] [data-field="Utag"] {
+	width: 6rem;
+}
+
+/* 아이콘 단독사용 */
+.icon[class*='icon-'] {
+	width: 24px;
+	height: 24px;
+	display: inline-block;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: auto;
+}
+
+/* 아이콘 버튼과 함께 사용 */
+.btn[class*='icon-'] {
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: auto 24px;
+	
+	width: 36px;
+	height: 36px;
+	flex-shrink: 0;
+	
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+/* icons */
+.icon-acute {
+	background-image: url(../images/icon-acute-gray.svg);
+}
+.icon-arrow_split {
+	background-image: url(../images/icon-arrow_split-gray.svg);
+}
+.icon-article {
+	background-image: url(../images/icon-article-gray.svg);
+}
+.icon-construction {
+	background-image: url(../images/icon-construction-gray.svg);
+}
+.icon-controller_gen {
+	background-image: url(../images/icon-controller_gen-gray.svg);
+}
+.icon-content_paste_go {
+	background-image: url(../images/icon-content_paste_go-gray.svg);
+}
+.icon-conversion_path {
+	background-image: url(../images/icon-conversion_path-gray.svg);
+}
+.icon-description {
+	background-image: url(../images/icon-description-gray.svg);
+}
+.icon-developer_guide {
+	background-image: url(../images/icon-developer_guide-gray.svg);
+}
+.icon-lab_profile {
+	background-image: url(../images/icon-lab_profile-gray.svg);
+}
+.icon-lab_profile {
+	background-image: url(../images/icon-lab_profile-gray.svg);
+}
+.icon-replay {
+	background-image: url(../images/icon-replay-gray.svg);
+}
+.icon-search {
+	background-image: url(../images/icon-search-white.svg);
+}
+.icon-swap_driving_apps_wheel {
+	background-image: url(../images/icon-swap_driving_apps_wheel-gray.svg);
+}

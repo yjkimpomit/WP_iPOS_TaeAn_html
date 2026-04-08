@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="theme-color" content="#FFFFFF">
+	<title>태안 퍼블리싱본 - iPOS RWD</title>
+
+	<meta name="description" content="서부발전 태안 i-POS 서비스 제공">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- favicon -->
+	<link rel="icon" href="/favicon.ico" sizes="any">
+	<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+
+	<!-- 기본 js, css 불러오기 start -->
+	<link rel="stylesheet" href="/resources/css/pano/common.css">
+	<link rel="stylesheet" href="/resources/css/pano/navigation.css"/>
+
+	<link rel="stylesheet" href="/resources/js/pano/pannellum_view.css"/>
+	<link rel="stylesheet" href="/resources/css/pano/jquery-ui.css">
+	<link rel="stylesheet" href="/resources/css/pano/view.css"/>
+	<link rel="stylesheet" href="/resources/css/pano/slick.css"/>
+
+	<link rel="stylesheet" href="/resources/js/pano/style.css"/>
+	<link rel="stylesheet" href="/resources/css/pano/ui.tabs.overflowResize.css"/>
+
+	<!-- slick & jsTree & highchart -->
+	<script src="/resources/js/jquery/jquery-3.6.1.js"></script>
+
+	<!-- 임시 ztree -->
+	<link rel="stylesheet" href="/resources/js/ztree/css/metroStyle/metroStyle.css" type="text/css">
+	<script src="/resources/js/ztree/js/jquery.ztree.all.min.js"></script>
+
+	<!-- 부트스트랩 JS -->
+	<script src="/resources/css/bootstrap/dist/js/popper.min.js"></script>
+	<script src="/resources/css/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+	<!-- bPopup -->
+	<script src="/resources/js/jquery/jquery.bpopup.min.js"></script>
+
+	<!-- winbox js -->
+	<link rel="stylesheet" href="/resources/js/winbox/winbox.min.css">
+	<script src="/resources/js/winbox/winbox.min.js"></script>
+
+	<!-- WP stylesheet -->
+	<script src="/resources/js/common.js" defer></script>
+
+	<!-- <%-- 변수 선언 --%> -->
+	<script>
+		/* <%-- 999/0 : mobile --%> */
+		//var checkMobile = "${sessionScope.loginInfo.iui_isadmin}";
+		var checkMobile = 0;
+	</script>
+	<script src="/resources/js/pano/panoview_mobile.js" defer></script>
+</head>
+<body class="body-popup pano-view">
+	<div id="pnlm"></div>
+	<div id="panoroot" style="height: 100vh;">
+		<!-- 4분할 -->
+		<div id="panorama1" style="display: block; width: 100%; height: 100%;" class="pnlm-container datasettrue" tabindex="0">
+			<div class="pnlm-ui pnlm-grab">
+				<div class="pnlm-dragfix" style="background-image: url(/resources/images/sample/pano/pano/20241219_172.jpg); background-size: 150%;"></div>
+				<div class="pnlm-sprite pnlm-hot-spot-debug-indicator" style="display: none;">
+					<div class="pnlm-panorama-info" style="display: none;">
+						<div class="pnlm-title-box"></div>
+						<div class="pnlm-author-box"></div>
+					</div>
+				</div>
+				<div class="pnlm-panorama-info" style="display: none;">
+					<div class="pnlm-title-box"></div>
+					<div class="pnlm-author-box"></div>
+				</div>
+				<div class="pnlm-load-box" style="display: none;">
+					<p>Loading...</p>
+					<div class="pnlm-lbox">
+						<div class="pnlm-loading"></div>
+					</div>
+					<div class="pnlm-lbar">
+						<div class="pnlm-lbar-fill" style="width: 100%;"></div>
+					</div>
+					<p class="pnlm-lmsg"></p>
+				</div>
+				<div class="pnlm-error-msg pnlm-info-box"></div>
+				<div class="pnlm-controls-container">
+					<div class="pnlm-zoom-controls pnlm-controls" style="display: block;">
+						<div class="pnlm-zoom-in pnlm-sprite pnlm-control"></div>
+						<div class="pnlm-zoom-out pnlm-sprite pnlm-control"></div>
+					</div>
+					<div class="pnlm-fullscreen-toggle-button pnlm-sprite pnlm-fullscreen-toggle-button-inactive pnlm-controls pnlm-control"
+						style="display: block;"></div>
+					<div></div>
+				</div>
+				<div class="pnlm-load-button" style="display: none;">
+					<p>Click to<br>Load<br>Panorama</p>
+				</div>
+				<div class="pnlm-compass pnlm-controls pnlm-control" style="display: inline; transform: rotate(-186.17deg);"></div>
+			</div>
+			<div class="pnlm-render-container">
+				<canvas width="1920" style="width: 100%; height: 100%;" height="100%"></canvas>
+				<a href="#">
+					<div class="pnlm-hotspot-base pnlm-hotspot pnlm-sprite pnlm-info pnlm-tooltip" id="12936730" style="visibility: hidden;">
+						<span style="width: 160px; margin-left: -80px; margin-top: -64px; visibility: hidden;">
+							Filter SEP-A- Safety VV
+						</span>
+					</div>
+				</a>
+			</div>
+		</div>
+		<div id="panorama2"></div>
+		<div id="panorama3"></div>
+		<div id="panorama4"></div>
+	</div>
+	<div id="popupContainer" class="modal fade pop-facility">
+		<div id="popupContents" class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable"></div>
+	</div>
+
+	<!-- 위치 location -->
+	<div id="rt_navi" class="breadcrumbs">
+		<div class="pano-logo" onclick="fnClosePano();">
+			<span class="visually-hidden">서부발전 태안 9,10호기</span>
+		</div>
+		<div class="links">
+			<a href="#">태안</a>
+			<a href="#">Steam Turbine Steam Turbine  Steam Turbine  Steam Turbine  Steam Turbine  Steam Turbine  Steam Turbine  Steam Turbine  Steam Turbine </a>
+			T1315 T1315 T1315 T1315 T1315 T1315 T1315
+		</div>
+	</div>
+	<button type="button" class="tree-menu" id="showTreeMenu" title="설비검색" onclick="showTreeMenu(this)"></button>
+	<button type="button" class="map-menu" id="showMiniMap" title="미니맵" onclick="showMiniMap(this)"></button>
+
+	<div class="user-navigator sub">
+    	<div id="treeview" class="sec tree-sec">
+			<div class="sec-box">
+				<div class="sec-header">
+                	<span class="title-h6">콘텐츠</span>
+					<button type="button" class="btn-resize" id="btnResize1" title="트리박스 확대" onclick="toggleResize(this)"></button>
+					<button type="button" class="btn-toggle-fold" id="btnResize2" title="트리박스 접기" onclick="toggleFold(this)"></button>
+				</div>
+				<div class="sec-body">
+					<label for="txtSearch" class="sr-only">검색할 카테고리를 입력하여 주십시요.</label>
+					<input type="text" id="txtSearch" class="form-control" placeholder="카테고리 입력" autocomplete="off">
+					<button type="button" class="tree-menu-close" id="hideTreeMenu" title="설비검색 닫기" onclick="hideTreeMenu(this)"></button>
+				</div>
+			</div>
+			<!-- 트리구조 박스 시작 :: 하위 부분 삭제후 프로그램 넣어 주세요~ -->
+			<!-- 트리 공간 -->
+			<div class="sec-cnt">
+				<!-- 개발용
+				<div class="tree-box" id="htmltree"></div> -->
+				<!-- 임시트리 start -->
+				<div class="jstree-box">
+					<div id="treeDemo" class="ztree"></div>
+					<!-- <div id="facTree"></div> -->
+				</div>
+				<!-- ztree -->
+				<script>
+				$(document).ready(function() {
+					$.fn.zTree.init($("#treeDemo"), setting, zNodes);
+				});
+				</script>
+				<script src="/resources/js/ztree-demo.js"></script>
+				<!-- 임시트리 end -->
+			</div>
+			<!-- 트리구조 박스 끝 -->
+		</div>
+
+    	<div id="miniview" class="sec mini-map">
+			<div class="sec-box">
+				<div class="sec-header">
+                	<span class="title-h6">미니맵</span>
+					<button type="button" class="btn-resize" id="btnResize3" title="미니맵 확대" onclick="toggleResize(this)"></button>
+					<button type="button" class="btn-toggle-fold" id="btnResize4" title="미니맵 접기" onclick="toggleFold(this)"></button>
+				</div>
+				<div class="sec-body">
+					<select id="miniList" name="" class="form-select" onchange="selMiniMap()">
+						<option>옵션</option>
+					</select>
+					<button type="button" class="map-menu-close" id="hideMiniMap" title="미니맵 닫기" onclick="hideMiniMap(this)"></button>
+				</div>
+			</div>
+
+			<div class="sec-cnt">
+				<div class="svg-box">
+					<div id="roomNum" class="room-num"></div>
+					<div id="minisvgzoom" style="overflow: hidden;">
+						<div id="miniscale" style="transition: transform .3s; transform-origin: 0 0 translate(0,0) scale(4, 4); cursor: default;">
+							<div id="minisvg" class="mini-svg">
+								<svg width="3000" height="3000" viewBox="0 0 1600 1280" id="svgResize"
+									xmlns="http://www.w3.org/2000/svg"
+									xmlns:svg="http://www.w3.org/2000/svg"
+									xmlns:xlink="http://www.w3.org/1999/xlink">
+									<g class="layer">
+										<image width="1600" height="1280" href_init="/resources/images/sample/pano/navigator/20241219_58.jpg" id="svg_bg_img" xlink:href="/resources/images/sample/pano/navigator/20241219_58.jpg" x="0" y="0"/>
+										<a id="svg_20" xlink:href="#">
+											<g displayname="GC02" id="svg_2">
+												<rect fill="#FF0000" width="44.27" height="18.54" id="svg_3" stroke="#FF0000" x="409.44" y="585.89"></rect>
+												<text fill="#FFFFFF" font-family="Malgun Gothic" font-size="24" id="svg_4" stroke="#FFFFFF" stroke-width="2" text-anchor="middle" transform="matrix(0.529431 0 0 0.652589 27.6274 - 106.268)" x="762.18" xml:space="preserve" y="1083.98">GC02</text>
+											</g>
+										</a>
+									</g>
+								</svg>
+							</div>
+							<div id="aaa11" value="50" class="pnlm_position" style="position: relative; display: block; pointer-events:none; top: 64%; left: 35%; transform: rotate(0deg);"></div>
+							<!-- 
+							<input id="bbb11" type="hidden" value="">
+							<input id="bbb22" type="hidden" value=""> -->
+							<!-- 지도 팝업창 보이는 화면-->
+							<!-- <div id="minibox"></div> -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+
+</body>
+</html>

@@ -1,0 +1,197 @@
+@charset "utf-8";
+
+/*
+ * 포미트 - 서부 iPOS 추가스타일
+ * 작성자 : 김윤지
+ * 작성일 : 2025.09.19
+ * WINBOX 탭UI 커스텀 스타일
+ *
+ */
+
+.winbox.max .wb-drag, .winbox.min .wb-drag {
+	cursor: move;
+}
+.wb-header {
+	background-image: linear-gradient(to right, var(--bg-default-default) 36%, var(--lighter30) 100%);
+	backdrop-filter: blur(4px);
+	border-bottom: 1px solid var(--border-neutral-tertiary);
+	color: var(--text-neutral-default);
+	
+	padding-left: 1.5rem;
+	padding-right: 1.5rem;
+}
+.winbox.max .wb-header,
+.winbox.min .wb-header {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.winbox.max {
+	border: none;
+	border-top: 1px solid var(--border-neutral-secondary);
+}
+
+.winbox {
+	background: transparent !important;
+	border-radius: 0;
+	border: 1px solid var(--border-neutral-secondary);
+}
+
+.winbox:not(.min) .wb-header {
+	height: 36px;
+	line-height: 36px;
+	display: flex;
+	flex-direction: row-reverse;
+	justify-content: space-between;
+	align-items: center;
+}
+.winbox:not(.min) .wb-header>* {
+	display: flex;
+	align-items: center;
+}
+.winbox:not(.min) .wb-header .wb-drag {
+	flex: 1;
+}
+.winbox:not(.min) .wb-body {
+	top: 36px;
+	overflow: hidden;
+}
+.winbox:not(.min) .wb-body iframe {
+	position: relative;
+	overflow: hidden;
+}
+
+.winbox.min {
+	height: 36px !important;
+}
+
+.winbox.min .wb-header {
+	max-width: 100%;
+	height: 100%;
+	overflow: hidden;
+}
+.winbox.min .wb-body {
+	width: 0;
+}
+
+/* wb-header title */
+.wb-drag {
+	display: flex;
+	align-items: center;
+}
+.wb-title {
+	font-family: var(--font-family), sans-serif;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 1.2;
+	color: var(--text-default-default);
+}
+
+/* tab controller */
+.wb-control {
+    display: flex;
+    align-items: center;
+}
+.wb-control * {
+    height: 20px;
+    background-position: center;
+}
+.wb-all-close {
+	background-image: url(/resources/images/icons/winbox-tab_close_all.svg) !important;
+	background-size: 20px !important;
+}
+.wb-all-min {
+	background-image: url(/resources/images/icons/winbox-tab_minimize_all.svg) !important;
+	background-size: 20px !important;
+}
+/* 최소 */
+.wb-min {
+	background-image: url(/resources/images/icons/winbox-tab-minimize.svg) !important;
+	background-size: 20px !important;
+}
+/* 최소-최대 */
+.wb-max {
+	background-image: url(/resources/images/icons/winbox-tab_inactive.svg) !important;
+	background-size: 20px !important;
+}
+/* 풀화면 */
+.wb-full {
+	background-image: url(/resources/images/icons/winbox-fullscreen.svg) !important;
+	background-size: 20px !important;
+}
+.wb-close {
+	background-image: url(/resources/images/icons/winbox-tab-close.svg) !important;
+	background-size: 20px !important;
+}
+.winbox.facility {
+	max-width: 100vw;
+}
+
+/*
+@media (min-width: 1800px) {
+	.winbox.facility {
+		max-height: 100vh;
+	}
+}*/
+
+/* 드래그 영역 재설정 */
+.wb-nw,
+.wb-ne,
+.wb-se,
+.wb-sw {
+	width: 48px;
+	height: 48px;
+}
+.wb-nw {
+	left: -24px;
+	top: -24px;
+	border-bottom-right-radius: 20px;
+}
+.wb-ne {
+	right: -24px;
+	top: -24px;
+	border-bottom-left-radius: 20px;
+}
+.wb-se {
+	right: -24px;
+	bottom: -24px;
+	border-top-left-radius: 20px;
+}
+.wb-sw {
+	left: -24px;
+	bottom: -24px;
+	border-top-right-radius: 20px;
+}
+
+@media (min-width: 1600px) {
+	.wb-nw,
+	.wb-ne,
+	.wb-se,
+	.wb-sw {
+		width: 32px;
+		height: 32px;
+	}
+	.wb-nw {
+		left: -16px;
+		top: -16px;
+		border-bottom-right-radius: 12px;
+	}
+	.wb-ne {
+		right: -16px;
+		top: -16px;
+		border-bottom-left-radius: 12px;
+	}
+	.wb-se {
+		right: -16px;
+		bottom: -16px;
+		border-top-left-radius: 12px;
+	}
+	.wb-sw {
+		left: -16px;
+		bottom: -16px;
+		border-top-right-radius: 12px;
+	}
+}
+
+
+

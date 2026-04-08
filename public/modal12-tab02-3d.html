@@ -1,0 +1,50 @@
+<h3 class="title02">3D 검색</h3>
+<!-- 검색영역 -->
+<div class="search-box" aria-label="3D-검색">
+	<div class="row">
+		<!-- 상위 폼 요소 (연관된 인풋 두 개 세트) -->
+		<div class="col-md-6 col-lg-4 col-xxl-auto mb-3">
+			<label class="form-label" for="select01">분류선택</label>
+			<select class="form-select" aria-label="분류선택" id="select01">
+				<option selected="">전체</option>
+				<option value="1">제목</option>
+			</select>
+		</div>
+		<div class="col-md-6 col-lg col-xxl-2 mb-3">
+			<label class="form-label" for="keyWord">검색어</label>
+			<input class="form-control" type="text" id="keyWord" placeholder="검색어 입력">
+		</div>
+		<div class="col-md-auto col-lg-auto mb-3">
+			<button type="button" class="btn btn-primary">
+				<span class="material-symbols-rounded">
+					search
+				</span> 검색
+			</button>
+		</div>
+	</div>
+</div>
+
+<!-- data title -->
+<div class="title-box">
+	<h4 class="title03">조회결과<small>(전체 1,280건)</small></h4>
+	
+	<div>
+		<div class="page-move">
+			<label for="selectPage01" class="visually-hidden">이동할 페이지</label>
+			<input type="number" id="selectPage01" class="form-control page" placeholder="1">
+			<span class="px-1"> / </span>
+			<span class="total">168</span>
+			<button type="button" class="btn btn-secondary">이동</button>
+		</div>
+			
+		<div class="btn-box">
+			<button type="button" class="btn btn-outline-primary">이전</button>
+			<button type="button" class="btn btn-outline-primary">다음</button>
+		</div>
+	</div>
+</div>
+
+<!-- data-grid -->
+<div class="thumb-board list">
+	<div class="no-data">조회된 데이터가 없습니다.</div>
+</div>

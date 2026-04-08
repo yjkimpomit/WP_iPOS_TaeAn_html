@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="theme-color" content="#FFFFFF">
+	<title>태안 퍼블리싱본 - iPOS RWD</title>
+
+	<meta name="description" content="서부발전 태안 i-POS 서비스 제공">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- favicon -->
+	<link rel="icon" href="/favicon.ico" sizes="any">
+	<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+
+	<!-- slick & jstree -->
+	<link rel="stylesheet" href="/resources/js/slick-1.8.1/slick/slick.css">
+	<link rel="stylesheet" href="/resources/js/slick-1.8.1/slick/slick-theme.css">
+	<link rel="stylesheet" href="/resources/js/jsTree/css/style.min.css">
+
+	<!-- slick & jsTree & highchart -->
+	<script src="/resources/js/jquery/jquery-3.6.1.js"></script>
+	<script src="/resources/js/slick-1.8.1/slick/slick.min.js"></script>
+
+	<!-- toastchart -->
+	<script src="/resources/js/toastchart/toastui-chart.js"></script>
+
+	<!-- chartjs -->
+	<script src="/resources/js/chart/chart.umd.js"></script>
+	<script src="/resources/js/chart/chartjs-adapter-date-fns.bundle.min.js"></script>
+
+	<!-- jstree -->
+	<!-- <script src="/resources/js/jsTree/js/jstree.min.js"></script>
+	<script src="/resources/js/jsTree/js/jstreeFacility.js"></script> -->
+
+	<!-- ztree -->
+	<link rel="stylesheet" href="/resources/js/ztree/css/metroStyle/metroStyle.css" type="text/css">
+	<script src="/resources/js/ztree/js/jquery.ztree.all.min.js"></script>
+
+	<!-- 부트스트랩 JS -->
+	<script src="/resources/css/bootstrap/dist/js/popper.min.js"></script>
+	<script src="/resources/css/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+	<!-- bPopup -->
+	<script src="/resources/js/jquery/jquery.bpopup.min.js"></script>
+
+	<!-- winbox js -->
+	<link rel="stylesheet" href="/resources/js/winbox/winbox.min.css">
+	<script src="/resources/js/winbox/winbox.min.js"></script>
+
+	<!-- WP stylesheet -->
+	<link rel="stylesheet" href="/resources/css/common.css">
+	<script src="/resources/js/common.js" defer></script>
+	<script src="/resources/js/device-info.js" defer></script>
+
+	<!-- <%-- 변수 선언 --%> -->
+	<script>
+		/* <%-- 999/0 : mobile --%> */
+		//var checkMobile = "${sessionScope.loginInfo.iui_isadmin}";
+		var checkMobile = 0;
+	</script>
+	<!-- 
+	<link rel="stylesheet" href="/unity3DViewer/TemplateData/style.css">
+	<link rel="manifest" href="/unity3DViewer/manifest.webmanifest"> -->
+</head>
+<body class="sub">
+<div class="container-drawing">
+
+	<!-- tab-menu -->
+	<ul class="nav nav-tabs" id="drawingTab" role="tablist">
+		<li class="nav-item" role="presentation">
+			<button class="nav-link active" id="controlTab" data-bs-toggle="tab" data-bs-target="#controlTabPane" type="button" role="tab" aria-controls="controlTabPane" aria-selected="true" data-page="./modal12-tab01-controlLogic.html">제어로직</button>
+		</li>
+		<li class="nav-item" role="presentation">
+			<button class="nav-link" id="3dTab"data-bs-toggle="tab" data-bs-target="#3dTabPane" type="button" role="tab" aria-controls="3dTabPane" aria-selected="false" data-page="./modal12-tab02-3d.html">3D</button>
+		</li>
+		<li class="nav-item" role="presentation">
+			<button class="nav-link" id="tagListTab"data-bs-toggle="tab" data-bs-target="#tagListTabPane" type="button" role="tab" aria-controls="tagListTabPane" aria-selected="false" data-page="./modal12-tab03-tagList.html">Tag List</button>
+		</li>
+		<li class="nav-item" role="presentation">
+			<button class="nav-link" id="pnidTab"data-bs-toggle="tab" data-bs-target="#pnidTabPane" type="button" role="tab" aria-controls="pnidTabPane" aria-selected="false" data-page="./modal12-tab04-pnid.html">P&ID</button>
+		</li>
+		<li class="nav-item" role="presentation">
+			<button class="nav-link" id="dataParcTab"data-bs-toggle="tab" data-bs-target="#dataParcTabPane" type="button" role="tab" aria-controls="dataParcTabPane" aria-selected="false" data-page="./modal12-tab05-dataParc.html">DataPARC</button>
+		</li>
+	</ul>
+
+	<!-- tab content -->
+	<div class="tab-content" id="drawingTabContent">
+
+		<!-- 제어로직 -->
+		<div class="tab-pane fade show active" id="controlTabPane" role="tabpanel" aria-labelledby="controlTab" tabindex="0"></div>
+
+		<!-- 3D -->
+		<div class="tab-pane fade" id="3dTabPane" role="tabpanel" aria-labelledby="3dTab" tabindex="0"></div>
+
+		<!-- 태그리스트 -->
+		<div class="tab-pane fade" id="tagListTabPane" role="tabpanel" aria-labelledby="tagListTab" tabindex="0"></div>
+
+		<!-- P&ID -->
+		<div class="tab-pane fade" id="pnidTabPane" role="tabpanel" aria-labelledby="pnidTab" tabindex="0"></div>
+		
+		<!-- DataPARC -->
+		<div class="tab-pane fade" id="dataParcTabPane" role="tabpanel" aria-labelledby="dataParcTab" tabindex="0"></div>
+	</div>
+
+</div>
+
+<script>
+$(document).ready(function() {
+	$.ajax({
+		method: 'GET',
+		url: 'modal12-tab01-controlLogic.html',
+		async: false,
+		dataType: 'html'
+	}).done(function(html) {
+		$('#controlTabPane').append(html);
+	});
+	
+	$.ajax({
+		method: 'GET',
+		url: 'modal12-tab02-3d.html',
+		async: false,
+		dataType: 'html'
+	}).done(function(html) {
+		$('#3dTabPane').append(html);
+	});
+	
+	$.ajax({
+		method: 'GET',
+		url: 'modal12-tab03-tagList.html',
+		async: false,
+		dataType: 'html'
+	}).done(function(html) {
+		$('#tagListTabPane').append(html);
+	});
+	
+	$.ajax({
+		method: 'GET',
+		url: 'modal12-tab04-pnid.html',
+		async: false,
+		dataType: 'html'
+	}).done(function(html) {
+		$('#pnidTabPane').append(html);
+	});
+	
+	$.ajax({
+		method: 'GET',
+		url: 'modal12-tab05-dataParc.html',
+		async: false,
+		dataType: 'html'
+	}).done(function(html) {
+		$('#dataParcTabPane').append(html);
+	});
+});
+</script>
+
+</body>
+</html>

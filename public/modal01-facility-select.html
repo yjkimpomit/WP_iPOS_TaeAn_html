@@ -1,0 +1,44 @@
+<div class="mb-2">
+	<label class="visually-hidden" for="searchFacility">설비명 입력</label>
+	<input class="form-control search-icon" id="searchFacility" placeholder="설비명 입력">
+</div>
+
+<div>
+	<div class="table-responsive">
+		<table class="table table-sm" aria-label="설비목록">
+			<thead>
+				<tr>
+					<th scope="col" data-field="설비번호">설비번호</th>
+					<th scope="col" data-field="설비명">설비명</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th data-field="설비번호" scope="row">81261234</th>
+					<td data-field="설비명">
+						STLP BTN TEMP Element
+					</td>
+				</tr>
+				<tr>
+					<th data-field="설비번호" scope="row">81261234</th>
+					<td data-field="설비명">
+						ST Main Oil TK Electrical HTR TEMP Element ST Main Oil TK Electrical HTR TEMP Element ST Main Oil TK Electrical HTR TEMP Element
+					</td>
+				</tr>
+				<tr>
+					<th data-field="설비번호" scope="row">81261234</th>
+					<td data-field="설비명">
+						STLP BTN TEMP Element
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<script>
+	const targetRow = document.querySelector('.table[aria-label="설비목록"] tbody tr');
+	duplicateByElement(targetRow, 20);
+	//duplicateRow('.table[aria-label="설비목록"]', 20);
+	//adjustStickyTable('.table[aria-label="설비목록"]');
+</script>

@@ -1,0 +1,547 @@
+@charset "utf-8";
+
+/*
+ * 포미트 - 서부 iPOS 관리자 스타일시트
+ * 2026.04.02
+ * 기본 사용자화면으로부터 복제하여, 추가된 스타일만 별도의 admin.override.css 파일에 정의
+*/
+
+
+/* =========================================================
+   # modal.css
+   ========================================================= */
+/* container- */
+[class*='container-'] {
+	padding: 1rem 0 0;
+	height: inherit;
+}
+body:not(.admin-sub) [class*='container-'] {
+	height: 100vh;
+	padding: 1rem;
+}
+.search-popup .modal-header .btn.close {
+	background: transparent url(/resources/admin/images/icons/icon-close.svg) no-repeat center;
+}
+
+.info-message::before {
+	background-image: url('/resources/admin/images/icons/icon-lighting-white.svg');
+}
+
+/* jstree 3D 모델 바로가기 아이콘 */
+.jstree-default .jstree-icon.icon-3d {
+	background-image: url('/resources/admin/images/icons/icon-view_in_ar-blue.svg');
+}
+
+.jstree-default .jstree-anchor.jstree-hovered .jstree-icon {
+	background-image: url('/resources/admin/images/icons/icon-view_in_ar-darkblue.svg');
+}
+.jstree-default .jstree-icon.icon-3d.disabled {
+	background-image: url('/resources/admin/images/icons/icon-view_in_ar-gray.svg');
+}
+
+.nox .em-title {
+	background-image: url(/resources/admin/images/icons/icon-nox-1.svg);
+}
+.right .nox .em-title {
+	background-image: url(/resources/admin/images/icons/icon-nox-2.svg);
+}
+.flow .em-title {
+	background-image: url(/resources/admin/images/icons/icon-flow.svg);
+}
+.noticePopup-footer .btn-close {
+	background-image: url('/resources/admin/images/icons/icon-close-white.svg');
+}
+
+.popup-links .page-item.first .page-link {
+	background: url('/resources/admin/images/icons/keyboard_double_arrow_left-gray.svg') no-repeat center;
+}
+.popup-links .page-item.prev .page-link {
+	background: url('/resources/admin/images/icons/keyboard_arrow_left-gray.svg') no-repeat center;
+}
+.popup-links .page-item.next .page-link {
+	background: url('/resources/admin/images/icons/keyboard_arrow_right-gray.svg') no-repeat center;
+}
+.popup-links .page-item.last .page-link {
+	background: url('/resources/admin/images/icons/keyboard_double_arrow_right-gray.svg') no-repeat center;
+}
+
+@media (min-width: 576px) {
+	.popup-links .page-item.first .page-link {
+		background: url('/resources/admin/images/icons/keyboard_double_arrow_left-white.svg') no-repeat center;
+	}
+	.popup-links .page-item.prev .page-link {
+		background: url('/resources/admin/images/icons/keyboard_arrow_left-white.svg') no-repeat center;
+	}
+	.popup-links .page-item.next .page-link {
+		background: url('/resources/admin/images/icons/keyboard_arrow_right-white.svg') no-repeat center;
+	}
+	.popup-links .page-item.last .page-link {
+		background: url('/resources/admin/images/icons/keyboard_double_arrow_right-white.svg') no-repeat center;
+	}
+}
+
+/* multiview 화면제어 */
+.icon.show-list {
+	background-image: url(/resources/admin/images/icons/stacks.svg);
+}
+.icon.fullscr {
+	background-image: url(/resources/admin/images/icons/fullscreen.svg);
+}
+.icon.fullscr-close {
+	background-image: url(/resources/admin/images/icons/fullscreen_exit.svg);
+}
+
+/* svg-wrapper */
+.svg-wrapper {
+	height: 100%;
+}
+
+/* 연계문서 목록 */
+.doc-header .icon.icon-close {
+    background-image: url(/resources/admin/images/icons/icon-close-white.svg);
+}
+
+/* 조기경보 일단위 팝업 */
+.ew-popup-close {
+	background-image: url(/resources/admin/images/icons/icon-close-gray.svg);
+}
+
+/* toast */
+.toast-header .toast-close {
+	background-image: url(/resources/admin/images/icons/icon-close-gray.svg);
+}
+
+/* ztree 커스터마이징 */
+.ztree li span.button {
+	background-image:url("/resources/admin/images/ztree/metro.png");
+}
+
+/* 3D 모델 연결되는 아이콘 */
+.ztree .icon-3d {
+	background-image: url(/resources/admin/images/icons/icon-view_in_ar-gray.svg);
+}
+.ztree .icon-3d:hover {
+	background-image: url(/resources/admin/images/icons/icon-view_in_ar-navy.svg);
+}
+.ztree .icon-panorama {
+	background-image: url(/resources/admin/images/icons/icon-vrpano-gray.svg);
+}
+.ztree .icon-panorama:hover {
+	background-image: url(/resources/admin/images/icons/icon-vrpano-navy.svg);
+}
+
+/* 관리자용 스타일 추가 */
+.admin-sub {
+	position: relative;
+}
+
+.admin-content {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+.admin-content .tab-content {
+	flex: 1;
+	padding-top: 1rem;
+	min-height: 480px;
+}
+
+/* 관리자에만 사이드패널 열고닫기 기능추가 */
+.panel-box.has-toggle {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	gap: 0;
+	overflow: hidden;
+}
+.panel-box.has-toggle > *:not(.js-panel-toggle) {
+	padding: 1rem;
+}
+
+.panel-box.has-toggle > .contents-panel {
+	flex: 1;
+	min-height: 0;
+}
+
+.panel-box.has-toggle > .side-panel.left {
+	opacity: 0.8;
+	margin-top: -248px;
+}
+.panel-box.has-toggle > .side-panel.left.is-open {
+	opacity: 1;
+	margin-top: 0;
+	height: 280px;
+}
+
+.panel-box.has-toggle > .js-panel-toggle {
+	position: relative;
+	z-index: 2;
+	display: flex;
+}
+.panel-box.has-toggle > .js-panel-toggle::after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 50%;
+	transform: translate(-50%, 24px);
+	border-radius: 1rem;
+	background-color: var(--bg-brand-dark);
+	border: 1px solid var(--border-brand-darkhover);
+	background-image: url(/resources/admin/images/icons/arrow_drop_down-white.svg);
+	background-repeat: no-repeat;
+	background-position: center;
+	
+	display: block;
+	width: 80px;
+	height: 16px;
+	overflow: hidden;
+}
+.panel-box.has-toggle:has(.is-open) > .js-panel-toggle::after {
+	transform: translate(-50%, 272px);
+	background-image: url(/resources/admin/images/icons/arrow_drop_up-white.svg);
+}
+
+@media (min-width: 1200px) {
+	.admin-sub {
+		height: 100vh;
+		display: flex;
+		flex-direction: column;
+	}
+	.admin-sub > .panel-box.has-toggle {
+		flex: 1;
+	}
+	.panel-box.has-toggle {
+		flex-direction: row;
+	}
+	.panel-box.has-toggle > .js-panel-toggle::after {
+		position: fixed;
+		top: 50vh;
+		left: 4px;
+		transform: translate(0, -40px);
+		background-image: url(/resources/admin/images/icons/arrow_right-white.svg);
+		width: 16px;
+		height: 80px;
+	}
+	.panel-box.has-toggle:has(.is-open) > .js-panel-toggle::after {
+		left: var(--wp-side-panel-width);
+		transform: translate(-8px, -40px);
+		background-image: url(/resources/admin/images/icons/arrow_left-white.svg);
+	}
+	.panel-box.has-toggle > .side-panel.left {
+        margin-top: 0;
+		opacity: 0.8;
+		margin-left: calc( (var(--wp-side-panel-width) * -1) + 12px);
+	}
+	.panel-box.has-toggle > .side-panel.left.is-open {
+		position: sticky;
+		z-index: 1;
+		
+		margin-left: 0;
+		height: 100%;
+        flex: 1;
+	}
+}
+
+/* 관리자 공통 */
+.container-admin {
+	padding-top: 0;
+}
+
+.container-admin iframe {
+	width: 100%;
+	height: 68vh;
+	border: 0;
+}
+
+.container-admin .doc-box.active {
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+@media(min-width: 1600px) {
+	.container-admin iframe {
+		height: 76vh;
+	}
+}
+
+/* 설비정보 */
+.facility-frame {
+	overflow-x: hidden;
+}
+
+.facility-frame .facility-photo {
+	max-width: 640px;
+	flex-direction: column;
+	
+	border-radius: .5rem;
+	background-color: var(--slate-50);
+}
+
+/* 3D 모델 */
+.container-admin .unity-frame {
+	padding: .5rem;
+}
+.container-admin .unity-frame #unity-container {
+	aspect-ratio: 16 / 9;
+	width: 100%;
+	height: auto;
+	top: 0;
+	left: 0;
+}
+.unity-frame .panel-box {
+	gap: 1rem;
+}
+.unity-frame .panel-box > * {
+	flex: 1;
+	overflow: hidden;
+	padding: 0;
+	background-color: transparent;
+}
+
+.unity-frame .side-panel.right {
+	overflow: hidden;
+	
+	display: flex;
+	flex-direction: column;
+	border: 0;
+}
+
+.unity-frame .side-panel.right > *:has(.table) {
+	flex: 1;
+	overflow: hidden;
+}
+.unity-frame .side-panel.right .table-responsive {
+	flex: 1;
+	max-height: 400px;
+}
+
+@media(min-width: 1200px) {
+	.unity-frame .panel-box {
+		height: 76svh;
+	}
+	.unity-frame .side-panel.right {
+		max-width: 400px;
+	}
+	.unity-frame .side-panel.right .table-responsive {
+		max-height: 100%;
+	}
+}
+
+@media(min-width: 1600px) {
+	.container-admin .unity-frame {
+		padding: 0;
+	}
+}
+
+/* 파노라마 */
+.container-admin .panorama-iframe {
+	flex: 1;
+	padding: .5rem;
+}
+
+@media(min-width: 1600px) {
+	.container-admin .panorama-iframe {
+		padding: 0;
+	}
+}
+
+/* dataPARC */
+.grid-box {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 1rem;
+}
+
+@media (min-width: 1600px) {
+	.grid-box {
+		gap: 1rem 1.5rem;
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+.grid-box:has(.dataparc-category) {
+	gap: 1rem;
+}
+.grid-cell> * {
+	margin: 0;
+}
+.grid-cell:has(.dataparc-category) {
+	background-color: var(--bg-neutral-tertiary);
+	border: solid 1px var(--border-neutral-tertiary);
+	border-radius: var(--radius-sm);
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	gap: .25rem;
+	padding: .25rem .5rem;
+}
+
+.dataparc-category {
+	display: flex;
+	align-items: stretch;
+	justify-content: space-between;
+}
+.dataparc-category.bg02 {
+	border: 1px solid var(--darker20);
+	background-color: var(--bg-neutral-defaulthover);
+}
+
+.dataparc-category > h4 {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex: 1;
+	max-width: 5rem;
+	color: var(--text-neutral-default);
+	margin: 0;
+	font-size: 1rem;
+}
+
+.category-list {
+	flex: 1;
+	gap: .25rem;
+	display: flex;
+	flex-wrap: wrap;
+}
+.category-list .btn-sm {
+	flex: 1;
+	padding: var(--bs-btn-padding-y) var(--bs-btn-padding-x);
+}
+
+@media(min-width: 1600px) {
+	.container-admin .dataparc-iframe {
+		height: 77svh;
+	}
+}
+
+/* logsheet */
+.logsheet-content {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+/* 설비정보 수정 */
+.file-uploader {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	padding: 1rem;
+}
+.file-uploader .dropzone {
+	flex: 1;
+	aspect-ratio: 16 / 5;
+	width: 100%;
+	height: auto;
+	
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 1rem;
+	background-color: var(--bg-neutral-tertiary);
+	border: 1px dashed var(--border-neutral-tertiary);
+	border-radius: .5rem;
+	min-height: 128px;
+	padding: 1rem;
+}
+
+/* =========================================================
+   # table.css
+   ========================================================= */
+/* 3D 모델 */
+.table-responsive:has(.table[aria-label="모델-설비리스트"]) {
+	min-height: 480px;
+}
+
+@media(min-width: 1200px) {
+	.table-responsive:has(.table[aria-label="모델-설비리스트"]) {
+		margin-bottom: 0;
+	}
+}
+
+/* 관리자용 로그시트 */
+.logsheet-container {
+	display: grid;
+	grid-template-columns: repeat(1, 1fr);
+	gap: 1.5rem;
+}
+
+.table-responsive.logsheet tbody tr > * {
+	white-space: normal;
+	word-break: keep-all;
+}
+.table-responsive.logsheet thead tr>*:last-child {
+	border-right: none;
+}
+
+.table-responsive.logsheet tbody th {
+	text-align: left;
+}
+.table-responsive.logsheet tbody td {
+	text-align: center;
+	white-space: nowrap;
+}
+.table[aria-label*="AO_"] tbody th[data-field="col1"] {
+	font-weight: 500;
+}
+
+.table-responsive.logsheet td > .d-flex {
+	gap: .25rem;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.table-responsive.logsheet td > .d-flex .form-control {
+	padding: calc(var(--space-1)*.5) calc(var(--space-1)*1.25);
+	text-align: center;
+}
+
+.table-responsive.logsheet td > .d-flex .btn {
+	width: 1.75rem;
+	height: 1.75rem;
+	--bs-btn-padding-x: 0;
+	--bs-btn-padding-y: 0;
+}
+
+@media(min-width: 1600px) {
+	.logsheet-container {
+		grid-template-columns: repeat(2, 1fr);
+		height: 100%;
+	}
+	.table-responsive.logsheet {
+		height: 312px;
+		margin-bottom: 0;
+	}
+	.table-responsive.logsheet:has([aria-label="AO_Logsheet1"]),
+	.table-responsive.logsheet:has([aria-label="AO_Logsheet2"]) {
+		height: 680px;
+	}
+	.table-responsive.logsheet:has([aria-label="TO_Logsheet2"]) {
+		grid-column: 2;
+		grid-row: 1 / span 2;
+		height: 664px;
+	}
+}
+
+/* 타겟아이디 배경컬러 지정 */
+.logsheet-container :target {
+	scroll-margin-top: 48px;
+}
+.logsheet-container tr:has(:target) > * {
+	background-color: var(--bg-brand-tertiaryhover);
+	transition: background-color .6s;
+}
+
+/* 파일관리 */
+.table-responsive:has([aria-label="파일-검색결과-리스트"]) {
+	height: 320px;
+}
+.table-responsive:has([aria-label="파일-검색결과-리스트"]) td[data-field="파일명"] {
+	text-align: left;
+}
+
+
+

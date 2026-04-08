@@ -1,0 +1,384 @@
+@charset "utf-8";
+/*#################### 경로표시 ####################*/
+.links {
+	position: absolute;
+	top: 8px;
+	left: calc(50% - 4px);
+	transform: translateX(-50%);
+	max-width: calc(100vw - 112px);
+	z-index: 1;
+	
+	border-radius: .5rem;
+	padding: .25rem .5rem;
+	background-color: #31343AB8;
+	
+	font-family: var(--font-family), sans-serif;
+	
+	display: flex;
+	align-items: center;
+	overflow-x: auto;
+}
+.links::-webkit-scrollbar {
+	width: 4px;
+	height: 4px;
+}
+.links::-webkit-scrollbar-track {
+	background-color: #FFFFFFB8;
+}
+
+.links::-webkit-scrollbar-thumb {
+	background-color: #31343A;
+}
+
+.main .links {
+	display: none;
+}
+
+@media(min-width: 1152px) {
+	.links {
+		max-width: calc(100vw - 720px);
+		left: 50%;
+	}
+}
+
+.links > a {
+	padding-right: 1.5rem;
+	background: url(/resources/images/icons/keyboard_arrow_right-white.svg) no-repeat right center;
+}
+
+.links,
+.links a {
+	white-space: nowrap;
+	flex: 1 0 auto;
+	color: var(--bs-light);
+}
+
+.links > a:hover {
+	color: var(--bs-white);
+}
+
+/* 모바일용 메뉴 온/오프 */
+.tree-menu {
+	position: fixed;
+	top: .5rem;
+	right: .5rem;
+	z-index: 1;
+	
+	display: inline-block;
+	width: 36px;
+	height: 36px;
+	border-radius: 4px;
+	background: #31343AB8 url(/resources/images/pano/common/icon-menu-white.svg) no-repeat center;
+}
+.map-menu {
+	position: fixed;
+	top: 3.5rem;
+	right: .5rem;
+	z-index: 1;
+	
+	display: inline-block;
+	width: 36px;
+	height: 36px;
+	border-radius: 4px;
+	background: #31343AB8 url(/resources/images/pano/common/icon-map_pin_review-white.svg) no-repeat center;
+}
+
+body.mobile .sec .sec-body {
+	display: flex;
+	align-items: center;
+	gap: .5rem;
+}
+
+body.mobile .sec .sec-body [class*='form-'] {
+	flex: 1;
+}
+
+body.mobile button[class*='-menu-close'] {
+	display: flex;
+}
+
+button[class*='-menu-close'] {
+	width: 36px;
+	height: 36px;
+	border-radius: 4px;
+	background: #31343AB8 url(/resources/images/pano/common/icon-close-white.svg) no-repeat center;
+	
+	display: none;
+}
+
+/*#################### 폼요소 ####################*/
+/* form-select */
+.user-navigator .form-select,
+.user-navigator .form-control {
+	height: 38px;
+	border-radius: .25rem;
+	background-size: auto;
+	background-repeat: no-repeat;
+	border-color: #31343A14;
+}
+
+.user-navigator .form-select {
+	background-image: url("/resources/images/pano/common/icon-keyboard_arrow_down-gray.svg");
+}
+
+.user-navigator .form-control {
+	background-image: url('/resources/images/pano/common/icon-search-gray.svg');
+	background-position: right 8px center;
+	padding-right: 2.25rem;
+}
+.user-navigator .form-control.active,
+.user-navigator .form-control:hover,
+.user-navigator .form-control:focus {
+	background-image: url('/resources/images/pano/common/icon-search-blue.svg');
+}
+
+/*#################### 모바일/웹 공통 ####################*/
+
+/* mini-svg */
+.mini-map .svg-box {
+	overflow: hidden;
+	border-radius: .25rem;
+}
+
+.mini-map .svg-box .mini-svg {
+	width: 100%;
+	height: 0;
+	padding-top: 56.25%;
+	
+	position: relative;
+	overflow: hidden;
+}
+
+.mini-map .svg-box .mini-svg svg {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 100%;
+	height: 100%;
+}
+
+.mini-map .svg-box .mini-svg svg .layer image {
+	overflow: hidden;
+}
+
+/* 레이더 마커 */
+.pnlm_position {
+	background-image: url(/resources/images/pano/common/icon_pin_point_red.png);
+	background-size: contain;
+	background-color: transparent;
+	width: 40px;
+	height: 40px;
+	margin-top: -20px;
+	margin-left: -20px;
+	
+	position: absolute;
+}
+
+/* 포지션 찾을때 hint 클래스 추가하여 확인 가능 */
+.mini-map .svg-box.hint {
+	position: relative;
+}
+.mini-map .svg-box.hint::before {
+	content: '';
+	width: 8px;
+	height: 8px;
+	
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	
+	background-color: green;
+	z-index: 9999;
+}
+.mini-map .svg-box.hint .pnlm_position {
+	border: solid 1px red;
+}
+
+/*#################### 반응형 JS와 미디어쿼리 연동 ####################*/
+/*
+ * 2025.01.10 yjkim
+ * 사용자뷰 모바일(스마트폰)용 스타일 적용하기 위해 분리하여 적용
+ * from pc.css, view.css
+ */
+
+/* 모바일에서 트리메뉴, 미니맵 활성화시 파노라마 확대기능 정지 */
+#panoroot.disabled {
+	touch-action: none;
+}
+
+/* --------- 사용자쪽 파노라마 뷰 화면에만 적용 --------- */
+.user-navigator {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	display: flex;
+	z-index: 20;
+}
+
+/* mobile */
+.user-navigator > .sec {
+	width: 100%;
+	background-color: #FFFFFF;
+	
+	position: absolute;
+	display: flex;
+	flex-direction: column;
+	gap: .5rem;
+	padding: .5rem;
+	
+	opacity: 0;
+	top: -9999em;
+}
+
+.user-navigator.active > .sec.show {
+	display: flex;
+	opacity: 1;
+	top: 0;
+}
+
+/* tree-sec */
+.user-navigator.active > .sec.tree-sec.show {
+	display: flex !important;
+	height: 100vh !important;
+}
+
+.user-navigator > .sec .sec-cnt {
+	flex: 1;
+	background-color: #f8f9FA;
+	border-radius: .25rem;
+	border: 1px solid #31343A14;
+	overflow-y: auto;
+}
+
+.user-navigator .sec-header {
+	display: none;
+}
+
+/* user-navigator for web */
+
+/* 1200px 웹버전 */
+@media(min-width: 1152px) {
+	.tree-menu, .map-menu {
+		display: none;
+	}
+	
+	.user-navigator {
+		top: .5rem;
+		left: auto;
+		right: .5rem;
+		
+		display: flex;
+		flex-direction: column;
+		width: 316px;
+		gap: .5rem;
+		
+		overflow: hidden;
+		max-height: calc(100vh - 1rem);
+	}
+	
+	.user-navigator > .sec {
+		flex: 1;
+		width: 100%;
+		background-color: #0d2d5dd9;
+		padding: .5rem;
+		margin: 0;
+		border-radius: .25rem;
+		
+		position: relative;
+		opacity: 1;
+		top: auto;
+	}
+	
+	.user-navigator:has(.sec.maximized) {
+		width: 640px;
+	}
+	
+	.user-navigator.main > .sec.tree-sec {
+		max-height: calc(100vh - 1rem);
+	}
+	
+	.user-navigator > .sec .tree-box {
+		min-height: 400px;
+	}
+	
+	/* 접었을 때 */
+	.user-navigator > .sec.folded > .sec-cnt {
+		display: none;
+	}
+	
+	.user-navigator .sec-header {
+		display: flex;
+		align-items: center;
+		gap: .5rem;
+	}
+
+	.user-navigator .sec-header .title-h6 {
+		flex: 1;
+		color: white;
+		font-weight: 500;
+		word-break: keep-all;
+		margin-left: .5rem;
+		margin-right: .5rem;
+	}
+	
+	.btn-resize {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		
+		width: 24px;
+		height: 24px;
+		background: url(/resources/images/pano/common/icon-expand_content-white.svg) no-repeat center;
+	}
+	[class*='-resize'].maximized {
+		background-image: url(/resources/images/pano/common/icon-collapse_content-white.svg);
+	}
+	.btn-toggle-fold {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		
+		width: 24px;
+		height: 24px;
+		background: url(/resources/images/pano/common/icon-unfold_less-white.svg) no-repeat center;
+	}
+	[class*='-fold'].folded {
+		background-image: url(/resources/images/pano/common/icon-unfold_more-white.svg);
+	}
+}
+
+/* 트리메뉴 첫번째 루트 요소 아이콘 제거 및 좌측 여백 조정 */
+.user-navigator > .sec.tree-sec .tree-box .jstree.jstree-1.jstree-default > ul > li > i {
+	display: none;
+}
+.user-navigator > .sec.tree-sec .tree-box .jstree.jstree-1.jstree-default > ul > li > ul > li.jstree-node {
+	margin-left: 0;
+}
+
+.user-navigator .tree-box .jstree-default > ul > li > .jstree-anchor > .jstree-icon {
+	width: 32px;
+}
+
+.user-navigator .tree-box .jstree-default .jstree-icon,
+.user-navigator .tree-box .jstree-default .jstree-icon:empty {
+	width: 32px;
+}
+
+.user-navigator .tree-box .jstree-anchor:has([onclick*="tagnofocus"]) .jstree-icon {
+	width: 20px;
+}
+
+.user-navigator .tree-box .jstree-default .jstree-search > .jstree-icon.jstree-themeicon.jstree-themeicon-custom {
+	background-image: url('/resources/images/pano/common/icon_left_pin_on.svg') !important;
+}
+.user-navigator .tree-box .jstree-default .jstree-search {
+	color: #0060A9;
+}
+.user-navigator .tree-box .jstree-default .jstree-clicked {
+	box-shadow: none;
+	background-color: #B4E0FF;
+	border-radius: .25rem;
+}

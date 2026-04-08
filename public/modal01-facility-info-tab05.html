@@ -1,0 +1,435 @@
+
+<div class="tm-stats-box">
+	<div class="tm-records">
+		<div class="title-box">
+			<h4 class="title03">TM 이력</h4>
+			<button class="btn btn-primary btn-sm btn-tm-add" type="button" onclick="showTmAdd()">
+				<span>TM 발행</span>
+			</button>
+		</div>
+		<!-- data-grid -->
+		<div class="table-responsive">
+			<table class="table table-sm" aria-label="TM-이력">
+				<thead>
+					<tr>
+						<th scope="col" data-field="진행상태">진행상태</th>
+						<th scope="col" data-field="요청번호">요청번호</th>
+						<th scope="col" data-field="요청명">요청명</th>
+						<th scope="col" data-field="요청일자">요청일자</th>
+						<th scope="col" data-field="요청자">요청자</th>
+						<th scope="col" data-field="요청부서">요청부서</th>
+						<th scope="col" data-field="감독부서">감독부서</th>
+						<th scope="col" data-field="설비번호">설비번호</th>
+						<th scope="col" data-field="설비명">설비명</th>
+						<th scope="col" data-field="호기">호기</th>
+						<th scope="col" data-field="작업중요도">작업중요도</th>
+						<th scope="col" data-field="우선순위">우선순위</th>
+						<th scope="col" data-field="증상">증상</th>
+						<th scope="col" data-field="오더번호">오더번호</th>
+						<th scope="col" data-field="오더상태">오더상태</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr onclick="showTmView();">
+						<th data-field="진행상태" scope="row">작업중</th>
+						<th data-field="요청번호" scope="col">12345</th>
+						<th data-field="요청명" scope="col">폐수처리 현장 유량계 점검요청</th>
+						<td data-field="요청일자">2024-10-16</td>
+						<td data-field="요청자">홍길동</td>
+						<td data-field="요청부서">환경화학부</td>
+						<td data-field="감독부서">ST 제어과</td>
+						<td data-field="설비번호">1234567</td>
+						<td data-field="설비명">
+							제1호기>터빈설비>터빈증기및추기/드레인계통>Turbine>터빈증기및추기/드레인계통>Turbine
+						</td>
+						<td data-field="호기">평택복합2단계</td>
+						<td data-field="작업중요도">B등급(일반)</td>
+						<td data-field="우선순위">A등급(중요작업)</td>
+						<td data-field="증상">오작동 (Malfunction)</td>
+						<td data-field="오더번호">12345</td>
+						<td data-field="오더상태">정산완료</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<script>
+	$(document).ready(function () {
+		const targetRow = document.querySelector('.table[aria-label="TM-이력"] tbody tr');
+		duplicateByElement(targetRow, 9);
+	});
+</script>
+	
+<!-- TM 이력 -->
+<div class="modal fade" tabindex="-1" id="tmView">
+	<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="title04">
+					<!-- 개발: 선택한 행의 data-field="요청명"에 해당하는 값을 타이틀로 넣어주세요 -->
+					폐수처리 현장 유량계 점검요청
+				</h5>
+				<button type="button" class="btn close">
+					<span class="material-symbols-rounded">
+					close
+					</span>
+				</button>
+			</div>
+
+			<div class="modal-body">
+				<div class="table-responsive">
+					<table class="table table-sm view-table" data-tab-id="modelTab05-pane" aria-label="TM-이력-상세보기">
+						<colgroup>
+							<col style="width: 128px;">
+							<col>
+							<col style="width: 128px;">
+							<col>
+						</colgroup>
+						<tbody>
+							<tr>
+								<th scope="row">요청명</th>
+								<td data-field="요청명">폐수처리 현장 유량계 점검요청</td>
+								<th scope="row">설비번호</th>
+								<td data-field="설비번호">52921-00300</td>
+							</tr>
+							<tr>
+								<th scope="row">요청자</th>
+								<td data-field="요청자">홍길동</td>
+								<th scope="row">요청부서</th>
+								<td data-field="요청부서"></td>
+							</tr>
+							<tr>
+								<th scope="row">감독부서</th>
+								<td data-field="감독부서"></td>
+								<th scope="row">우선순위</th>
+								<td data-field="우선순위"></td>
+							</tr>
+							<tr>
+								<th scope="row">작업중요도</th>
+								<td data-field="작업중요도"></td>
+								<th scope="row">Red Tag</th>
+								<td data-field="Red Tag">필요</td>
+							</tr>
+							<tr>
+								<th scope="row">증상</th>
+								<td data-field="증상">단선/단락(Disconnection/Short-circuit)</td>
+								<th scope="row">사업자코드</th>
+								<td data-field="사업자코드">5100 평택</td>
+							</tr>
+							<tr>
+								<th scope="row">요청내용</th>
+								<td data-field="요청내용" colspan="3">
+									<div class="overflow-y-scroll" style="height: 100px;">
+										요청내용이 들어갑니다.
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	function showTmView() {
+		$("#tmView").bPopup({
+			modalClose : false,
+			position: [0, 0],
+			opacity: .4,
+			speed : 450,
+			closeClass: "close",
+			onOpen: function () {
+				$(this).addClass('show detail-box');
+			},
+			onClose: function () {
+				$(this).removeClass('show');
+			}
+		});
+	}
+</script>
+
+<!-- TM 발행 -->
+<div class="modal fade" tabindex="-1" id="tmAdd">
+	<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="title04">TM 발행</h5>
+				<button type="button" class="btn close">
+					<span class="material-symbols-rounded">
+					close
+					</span>
+				</button>
+			</div>
+			
+			<div class="modal-body">
+				<div class="alert alert-primary required">
+					<p class="text-primary"><strong class="text-danger">*</strong> 표시는 필수입력 항목입니다.</p>
+				</div>
+
+				<div class="table-responsive">
+					<table class="table table-sm form-table" data-tab-id="modelTab05-pane" aria-label="TM-발행-정보입력">
+						<colgroup>
+							<col style="width: 8rem;">
+							<col>
+							<col style="width: 8rem;">
+							<col>
+						</colgroup>
+						<tbody>
+							<tr>
+								<th scope="row"><label class="form-label" for="requestName05">요청명</label></th>
+								<td colspan="3" data-field="요청명">
+									<input class="form-control" type="text" id="requestName05" value="Gas Turbine Line&VV">
+								</td>
+							</tr>
+							<tr>
+								<th scope="row"><label class="form-label" for="equipNoOption">설비번호</label></th>
+								<td colspan="3" data-field="설비번호">
+									<div class="row g-2" aria-labelledby="equipNo">
+										<div class="col-6">
+											<label class="visually-hidden" for="equipNoOption">설비번호 검색</label>
+											<input class="form-control search-icon" id="equipNoOption" onclick="searchFacilityPopup($(this));">
+										</div>
+										<div class="col-6">
+											<label class="visually-hidden" for="equipNoInput">설비번호</label>
+											<input class="form-control" type="text" value="" id="equipNoInput" disabled="" readonly="">
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<th scope="row"><label class="form-label" for="issuerOption">요청자</label></th>
+								<td data-field="요청자">
+									<div class="row g-2" aria-labelledby="issuer">
+										<div class="col-6">
+											<label class="visually-hidden" for="issuerOption">요청자 검색</label>
+											<input class="form-control search-icon" id="issuerNoOption" onclick="searchItemPopup($(this));">
+										</div>
+										<div class="col-6">
+											<label class="visually-hidden" for="issuerInput">요청자명</label>
+											<input class="form-control" type="text" value="" id="issuerInput" disabled="" readonly="">
+										</div>
+									</div>
+								</td>
+								<th scope="row" data-field="요청부서"><label class="form-label" for="reqDeptOption">요청부서</label></th>
+								<td data-field="요청부서">
+									<div class="row g-2" aria-labelledby="reqDept">
+										<div class="col-6">
+											<label class="visually-hidden" for="reqDeptOption">요청부서 검색</label>
+											<input class="form-control search-icon" id="reqDeptOption" onclick="searchTreePopup($(this));">
+										</div>
+										<div class="col-6">
+											<label class="visually-hidden" for="reqDeptInput">요청부서명</label>
+											<input class="form-control" type="text" value="" id="reqDeptInput" disabled="" readonly="">
+										</div>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<th scope="row"><label class="form-label" for="supvDeptOption">감독부서</label></th>
+								<td data-field="감독부서">
+									<div class="row g-2" aria-labelledby="supvDept">
+										<div class="col">
+											<label class="visually-hidden" for="supvDeptOption">감독부서 검색</label>
+											<input class="form-control search-icon" id="supvDeptOption" onclick="searchTreePopup($(this));">
+										</div>
+										<div class="col">
+											<label class="visually-hidden" for="supvDeptInput">감독부서</label>
+											<input class="form-control" type="text" value="" id="supvDeptInput" disabled="" readonly="">
+										</div>
+									</div>
+								</td>
+								<th scope="row"><label class="form-label" for="taskPriority05">* 우선순위</label></th>
+								<td data-field="우선순위">
+									<select class="form-select" id="taskPriority05">
+										<option selected>우선순위 선택</option>
+										<option value="1">긴급</option>
+										<option value="2">일상</option>
+										<option value="3">사후</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<th scope="row"><label class="form-label" for="taskPriority02">* 작업중요도</label></th>
+								<td data-field="작업중요도">
+									<select class="form-select" id="taskPriority02">
+										<option selected>중요도 선택</option>
+										<option value="1">A등급(중요작업)</option>
+										<option value="2">B등급(작업)</option>
+										<option value="3">C등급(작업)</option>
+									</select>
+								</td>
+								<th scope="row"><label class="form-label" for="redTag">Red Tag</label></th>
+								<td data-field="Red-Tag">
+									<div class="form-check">
+										<input class="form-check-input" type="checkbox" value="" id="redTag">
+										<label class="form-check-label" for="redTag">
+											Red Tag 필요
+										</label>
+									</div>
+								</td>
+							</tr>
+							<tr>
+								<th scope="row"><label class="form-label" for="symptom05">* 증상</label></th>
+								<td data-field="증상">
+									<select class="form-select" id="symptom05">
+										<option selected>증상 선택</option>
+										<option value="1">오지시(Indication Error)</option>
+										<option value="2">오염(Contamination)</option>
+										<option value="3">손상/파손(Breakdown)</option>
+										<option value="4">변형(Deformation)</option>
+										<option value="5">파열(Rupture)</option>
+										<option value="6">부식/침식(Corrosion/Erosion)</option>
+										<option value="7">진동이상(Vibration)</option>
+										<option value="8">이음(소음)(Noise)</option>
+										<option value="9">단선/단락(Disconnection/Short-circuit)</option>
+										<option value="10">동결(Freezing)</option>
+										<option value="11">과부하(Over Load)</option>
+										<option value="12">과열(Over Heat)</option>
+										<option value="13">막힘(Clogging)</option>
+										<option value="14">오작동(Malfunction)</option>
+										<option value="15">이완(Relaxation)</option>
+										<option value="16">패싱(Passing)</option>
+										<option value="17">운전정지(Trip)</option>
+										<option value="18">핀홀(Pinhole)</option>
+										<option value="19">탈락(Drop out)</option>
+										<option value="20">헌팅(Hunting)</option>
+										<option value="21">부족(Level, Pr, Temp, Flow Low 등)</option>
+										<option value="22">초과(Level, Pr, Temp, Flow High 등)</option>
+										<option value="23">고착(Fixation)</option>
+										<option value="24">오류(Error)</option>
+										<option value="25">마모/마멸(Wear/Abration)</option>
+										<option value="26">플래싱(Flashing)</option>
+										<option value="27">미작동(Not Working)</option>
+										<option value="28">균열(Crack)</option>
+									</select>
+								</td>
+								<th scope="row"><label for="businessCode05" class="form-label">* 사업자코드</label></th>
+								<td data-field="사업자코드">
+									<select class="form-select" id="businessCode05" disabled>
+										<option selected>5100 평택</option>
+									</select>
+								</td>
+							</tr>
+							<tr>
+								<th scope="row"><label for="requestDetails05" class="form-label">요청내용</label></th>
+								<td colspan="3" data-field="요청내용">
+									<textarea class="form-control" placeholder="요청내용 입력" id="requestDetails05"></textarea>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				
+				<div class="btn-box">
+					<button class="btn btn-primary" type="button">저장</button>
+					<button class="btn btn-secondary close" type="button">취소</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	function showTmAdd() {
+		$("#tmAdd").bPopup({
+			modalClose : false,
+			position: [0, 0],
+			opacity: .4,
+			speed : 450,
+			closeClass: "close",
+			onOpen: function () {
+				$(this).addClass('show detail-box');
+			},
+			onClose: function () {
+				$(this).removeClass('show');
+			}
+		});
+	}
+</script>
+
+<!-- 시설 코드 선택 팝업 -->
+<div class="modal fade" tabindex="-1" id="selectFacility">
+	<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="title04">설비검색</h5>
+				<button type="button" class="btn close">
+					<span class="material-symbols-rounded">
+					close
+					</span>
+				</button>
+			</div>
+			
+			<div class="modal-body">
+				<!-- 검색결과 리스트 -->
+				<div id="facilityList">
+					<div class="mb-2">
+						<label class="visually-hidden" for="inputFacility">설비명 입력</label>
+						<input class="form-control search-icon" id="inputFacility" placeholder="설비명 입력">
+					</div>
+					
+					<div>
+						<div class="table-responsive">
+							<table class="table table-sm sticky" aria-label="설비목록">
+								<thead>
+									<tr>
+										<th scope="col" data-field="설비번호">설비번호</th>
+										<th scope="col" data-field="설비명">설비명</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<th data-field="설비번호" scope="row">81261234</th>
+										<td data-field="설비명">
+											STLP BTN TEMP Element
+										</td>
+									</tr>
+									<tr>
+										<th data-field="설비번호" scope="row">81261234</th>
+										<td data-field="설비명">
+											ST Main Oil TK Electrical HTR TEMP Element ST Main Oil TK Electrical HTR TEMP Element ST Main Oil TK Electrical HTR TEMP Element
+										</td>
+									</tr>
+									<tr>
+										<th data-field="설비번호" scope="row">81261234</th>
+										<td data-field="설비명">
+											STLP BTN TEMP Element
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					
+					<script>
+						duplicateRow('.table[aria-label="설비목록"]', 20);
+					</script>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	function showSelectFacility() {
+		$("#selectFacility").bPopup({
+			modalClose : false,
+			position: [0, 0],
+			opacity: .4,
+			speed : 450,
+			closeClass: "close",
+			onOpen: function () {
+				$(this).addClass('show detail-box');
+			},
+			onClose: function () {
+				$(this).removeClass('show');
+			}
+		});
+	}
+</script>
+
+
+
+

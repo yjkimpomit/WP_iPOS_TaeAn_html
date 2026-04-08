@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="ko" data-branch="kimpo"></html>
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="theme-color" content="#FFFFFF">
+	<title>태안 퍼블리싱본 - iPOS RWD</title>
+
+	<meta name="description" content="서부발전 태안 i-POS 서비스 제공">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- favicon -->
+	<link rel="icon" href="/favicon.ico" sizes="any">
+	<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+
+	<!-- slick & jstree -->
+	<link rel="stylesheet" href="/resources/js/slick-1.8.1/slick/slick.css">
+	<link rel="stylesheet" href="/resources/js/slick-1.8.1/slick/slick-theme.css">
+	<link rel="stylesheet" href="/resources/js/jsTree/css/style.min.css">
+
+	<!-- slick & jsTree & highchart -->
+	<script src="/resources/js/jquery/jquery-3.6.1.js"></script>
+	<script src="/resources/js/slick-1.8.1/slick/slick.min.js"></script>
+
+	<!-- toastchart -->
+	<script src="/resources/js/toastchart/toastui-chart.js"></script>
+
+	<!-- chartjs -->
+	<script src="/resources/js/chart/chart.umd.js"></script>
+	<script src="/resources/js/chart/chartjs-adapter-date-fns.bundle.min.js"></script>
+
+	<!-- jstree -->
+	<!-- <script src="/resources/js/jsTree/js/jstree.min.js"></script>
+	<script src="/resources/js/jsTree/js/jstreeFacility.js"></script> -->
+
+	<!-- ztree -->
+	<link rel="stylesheet" href="/resources/js/ztree/css/metroStyle/metroStyle.css" type="text/css">
+	<script src="/resources/js/ztree/js/jquery.ztree.all.min.js"></script>
+
+	<!-- 부트스트랩 JS -->
+	<script src="/resources/css/bootstrap/dist/js/popper.min.js"></script>
+	<script src="/resources/css/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+	<!-- bPopup -->
+	<script src="/resources/js/jquery/jquery.bpopup.min.js"></script>
+
+	<!-- winbox js -->
+	<link rel="stylesheet" href="/resources/js/winbox/winbox.min.css">
+	<script src="/resources/js/winbox/winbox.min.js"></script>
+
+	<!-- WP stylesheet -->
+	<link rel="stylesheet" href="/resources/css/common.css">
+	<script src="/resources/js/common.js" defer></script>
+	<script src="/resources/js/device-info.js" defer></script>
+	
+	<!-- <script src="/resources/js/switch-theme.js" defer></script> -->
+
+	<!-- 변수 선언 -->
+	<script>
+		/* <%-- 999/0 : mobile --%> */
+		//var checkMobile = "${sessionScope.loginInfo.iui_isadmin}";
+		//var checkMobile = 999;
+		var checkMobile = null;
+		// 모바일이면 999, 데스크탑이면 0
+	</script>
+	<!-- 
+	<link rel="stylesheet" href="/unity3DViewer/TemplateData/style.css">
+	<link rel="manifest" href="/unity3DViewer/manifest.webmanifest"> -->
+
+    <!-- 
+        * js에 사용할 변수 선언
+        * 모바일 체크
+        * 사업소, 호기 정보
+        * IDMS 페이지 <=> 3D MODEL
+	-->
+	<script>
+		// check device
+		var checkDevice = "${device}";
+		var eqOrgNo = "${sessionScope.eqOrgNo}";
+		var hoki = "${sessionScope.hoki}";
+		var _isIdmsPage = false;
+	</script>
+</head>
+
+<body class="main header-open">
+	<div class="loading-box" style="display: none;">
+		<div class="loader"></div>
+	</div>
+	<!-- temp -->
+	<div id="viewport-info"></div>
+
+	<!-- 헤더파일 로드 -->
+	<div id="incTop" class="header-box"></div>
+
+	<!-- 메뉴파일 로드 -->
+	<div id="incLeft" class="left-box"></div>
+
+	<!-- 우측정보 로드
+	<div id="incRight" class="right-box"></div> -->
+
+	<!-- <span style="position: absolute; top: 0; left: 0; z-index: 301;" onclick="openControlGuide()">가이드박스</span> -->
+
+	<!-- 3D모델 사용가이드 -->
+	<div class="unity-guide" style="display: none;">
+		<div class="unity-guide-header">
+			<strong class="title">3D모델 사용가이드</strong>
+			<button type="button" class="btn close-guide" title="가이드박스 닫기" onclick="closeControlGuide();"></button>
+		</div>
+		<div class="unity-guide-body">
+			<!-- 터치기반인 경우 -->
+			<div class="finger-control">
+				<div class="item01">
+					<strong>회전</strong>
+					<p>한 손가락 터치로 회전</p>
+				</div>
+				<div class="item02">
+					<strong>확대/축소</strong>
+					<p>두 손가락 터치로 확대/축소</p>
+				</div>
+				<div class="item03">
+					<strong>이동</strong>
+					<p>세 손가락 터치로 이동</p>
+				</div>
+			</div>
+			<!-- 터치기반 아닌 경우 -->
+			<div class="mouse-control">
+				<div class="item01">
+					<strong>회전</strong>
+					<p>마우스 좌측 버튼 클릭 &amp; 드래그로 회전</p>
+				</div>
+				<div class="item02">
+					<strong>확대/축소</strong>
+					<p>마우스 휠로 스크롤</p>
+				</div>
+				<div class="item03">
+					<strong>이동</strong>
+					<p>마우스 휠 클릭 &amp; 드래그로 이동</p>
+				</div>
+			</div>
+		</div>
+		
+		<div class="unity-guide-footer" style="display: none;">
+			이 창은 5초후 자동으로 사라집니다. 이 팝업을 다시 보려면 하단의 <span class="icon-help">헬프</span> 버튼을 클릭해 주세요.
+		</div>
+	</div>
+
+	<div id="_OPERATION_GT_" class="op-box"></div>
+	<div id="_OPERATION_HRSG_" class="op-box"></div>
+	<div id="_OPERATION_ST_" class="op-box"></div>
+	<!-- <div id="_DAILY_SAFETY_" class="op-box"></div> -->
+
+	<!-- 메뉴 클릭시 열리는 팝업 : bPopup -->
+	<div class="modal fade external-popup" id="externalPopup" tabindex="-1">
+		<div class="modal-dialog modal-dialog-scrollable">
+			<div class="modal-content" id="popupContentView">
+
+				<div class="modal-header">
+					<h2 class="modal-title" id="modalTitle"></h2>
+					<button type="button" class="btn-close modal-close" aria-label="Close"></button>
+				</div>
+
+				<div class="modal-body" id="modalBodyContent">
+					<!-- 모달 페이지 로드 -->
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" tabindex="-1" id="mainInstall">
+		<div class="modal-dialog modal-dialog-centered">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h3 class="title04">
+						설치파일 안내
+					</h3>
+					<button type="button" class="btn close">
+						<span class="material-symbols-rounded">
+						close
+						</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<h4>VLC가 설치되어 있지 않습니다.</h4>
+					<p>설치 파일을 다운로드 받아 설치한 뒤에 CCTV를 확인할 수 있습니다.</p>
+			
+					<div class="text-center">
+						<button type="button" class="btn btn-primary" onclick="downloadCctvView();">
+							<span class="material-symbols-rounded">
+								install_desktop
+							</span>
+							<span>설치파일 다운로드</span>
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+		function viewVlcRtspMain(){
+			$("#mainInstall").bPopup({
+				modalClose : false,
+				position: [0, 0],
+				opacity: .4,
+				speed : 450,
+				closeClass: "close",
+				onOpen: function () {
+					$(this).addClass('show detail-box');
+				},
+				onClose: function () {
+					$(this).removeClass('show');
+				}
+			});
+		}
+	</script>
+
+	<!-- 유니티 시작 - Data 폴더 Path-->
+	<!-- 
+	<input id="dataPath" type="hidden" value="unity3DViewer"> -->
+	<div id="unity-container">
+		<div class="w-100 h-100 d-flex justify-content-center align-items-center">
+			<p>유니티영역</p>
+		</div>
+		<!-- <canvas id="unity-canvas" width="960" height="600" tabindex="-1"></canvas>
+		<div id="unity-loading-bar">
+			<div id="unity-logo"></div>
+			<div id="unity-progress-bar-empty">
+			<div id="unity-progress-bar-full"></div>
+			</div>
+		</div>
+		<div id="unity-warning"> </div> -->
+	</div>
+	<!--
+	<script src="/resources/js/unity/unity3DViewer.js"></script>
+	<script src="/resources/js/unity/unityUtil.js"></script>
+	<script src="/resources/js/unity/webUtil.js"></script> -->	
+
+	<!-- 검색박스내 부서 검색시 열리는 팝업 : 트리박스만 나오는 팝업 bPopup -->
+	<div class="modal fade search-popup type1" id="searchTreePopup" tabindex="-1">
+		<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="title04" id="searchTreeTitle"></h5>
+					<button type="button" class="btn close">
+						<span class="material-symbols-rounded"> close </span>
+					</button>
+				</div>
+				<div class="modal-body" id="searchTreeContent">
+					<!-- 트리메뉴 -->
+					트리메뉴
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- 검색박스내 사용자 검색시 열리는 팝업 : 트리박스 + 테이블 나오는 팝업 bPopup -->
+	<div class="modal fade search-popup type2" id="searchItemPopup" tabindex="-1">
+		<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="title04" id="searchItemTitle"></h5>
+					<button type="button" class="btn close">
+						<span class="material-symbols-rounded"> close </span>
+					</button>
+				</div>
+				<div class="modal-body" id="searchItemContent">
+					<!--  -->
+					<div class="panel-box">
+						<div class="side-panel left">
+							트리메뉴
+						</div>
+						<div class="contents-panel">
+							사용자 데이터
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- 설비마스터 팝업 : 팝업내 검색박스 + 트리박스 + 테이블 나오는 팝업 bPopup -->
+	<div class="modal fade search-popup type3" id="searchFacilityPopup" tabindex="-1">
+		<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="title04" id="searchFacilityTitle"></h5>
+					<button type="button" class="btn close">
+						<span class="material-symbols-rounded"> close </span>
+					</button>
+				</div>
+				<div class="modal-body" id="searchFacilityContent">
+					<!-- 검색영역 -->
+					<div class="search-box" role="region" aria-label="설비마스터-검색">
+						검색영역
+					</div>
+					<!--  -->
+					<div class="panel-box">
+						<div class="side-panel left">
+
+							트리메뉴
+						</div>
+						<div class="contents-panel">
+							사용자 데이터
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<!-- 점검종류 팝업 -->
+	<div class="modal fade search-popup type4" id="searchResultPopup" tabindex="-1">
+		<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="title04" id="searchResultTitle">점검종류 검색</h5>
+					<button type="button" class="btn close">
+						<span class="material-symbols-rounded"> close </span>
+					</button>
+				</div>
+				<div class="modal-body" id="searchResultContent">
+					<!-- 검색결과 리스트 -->
+					 <div class="search-box" role="region" aria-label="점검종류-검색">
+						점검종류-검색
+					 </div>
+					 <div class="table-responsive">
+						<table class="table table-sm sticky" aria-label="점검종류-결과">
+							<thead>
+								<tr>
+									<th scope="col" data-field="CODE">CODE</th>
+									<th scope="col" data-field="DESC">Description</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th data-field="CODE" scope="row">PM0012</th>
+									<td data-field="DESC">2/3 변색시 교체</td>
+								</tr>
+								<tr>
+									<th data-field="CODE" scope="row">PM0015</th>
+									<td data-field="DESC">가스 압력 유지 시험</td>
+								</tr>
+							</tbody>
+						</table>
+					 </div>
+					 
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- 공지팝업 -->
+	<div class="noticePopup popup-layer">
+		<div class="noticePopup-contents">
+			<div>
+				<div class="noticePopup-title">
+					<span>기력발전소 정기점검에 따른 운전계획 안내</span>
+				</div>
+				<div class="noticePopup-text">
+					<p>안정적인 발전설비 운영을 위해 아래와 같이 설비 정기점검을 실시합니다.</p>
+					<p>점검 기간 중 일부 설비 운영이 제한될 수 있으니 업무에 참고하시기 바랍니다.</p>
+					<p>관계자 여러분의 협조를 부탁드립니다.</p>
+				</div>
+			</div>
+		</div>
+		
+		<div class="noticePopup-footer">
+			<ul class="popup-links">
+				<li class="page-item first"><a href="#" class="page-link"><span class="visually-hidden">First</span></a></li>
+				<li class="page-item prev"><a href="#" class="page-link"><span class="visually-hidden">Prev</span></a></li>
+				<li class="page-item"><a href="#" class="page-link">1</a></li>
+				<li class="page-item active"><a href="#" class="page-link">2</a></li>
+				<li class="page-item"><a href="#" class="page-link">3</a></li>
+				<li class="page-item"><a href="#" class="page-link">4</a></li>
+				<li class="page-item"><a href="#" class="page-link">5</a></li>
+				<li class="page-item next"><a href="#" class="page-link"><span class="visually-hidden">Next</span></a></li>
+				<li class="page-item last"><a href="#" class="page-link"><span class="visually-hidden">Last</span></a></li>
+			</ul>
+			<div>
+				<div class="form-check form-check-inline">
+					<input class="form-check-input me-2" type="checkbox" id="inlineCheckbox1" value="option1">
+					<label class="form-check-label" for="inlineCheckbox1">오늘 하루 이창 열지 않기</label>
+				</div>
+				<button type="button" class="btn-close" title="닫기" onclick="closeThisPopup(this);"></button>
+			</div>
+		</div>
+	</div>
+
+	<!-- toast-popup -->
+	<div id="_EARLY_WARNING_ALARM_POPUP" class="toast-container">
+		<div class="toast show">
+			<div class="toast-header">
+				<!-- <strong class="badge bg-danger">9호기</strong> -->
+       			<span class="icon-alarm">조기 경보</span>
+				<button type="button" class="toast-close" data-bs-dismiss="toast" aria-label="Close"></button>
+			</div>
+			<div class="toast-body">
+				순환펌프 유량이 기준치의 60% 이하로 떨어졌습니다. 냉각계통 점검이 필요합니다.
+			</div>
+			<div class="toast-footer">
+				<span class="time">발생시각: 2025-12-08 00:00:00</span>
+			</div>
+		</div>
+	</div>
+
+	<script>
+		//temp - 헤더/좌측/우측 콘텐츠 로드
+		$.ajax({
+			method: 'GET',
+			url: 'incTop.html',
+			async: false,
+			dataType: 'html'
+		}).done(function(html) {
+			$('#incTop').append(html);
+		});
+
+		//
+		$.ajax({
+			method: 'GET',
+			url: 'incLeft.html',
+			async: false,
+			dataType: 'html'
+		}).done(function(html) {
+			$('#incLeft').append(html);
+		});
+
+		//
+		$.ajax({
+			method: 'GET',
+			url: 'incGT.html',
+			async: false,
+			dataType: 'html'
+		}).done(function(html) {
+			$('#_OPERATION_GT_').append(html);
+		});
+
+		//
+		$.ajax({
+			method: 'GET',
+			url: 'incHRSG.html',
+			async: false,
+			dataType: 'html'
+		}).done(function(html) {
+			$('#_OPERATION_HRSG_').append(html);
+		});
+
+		//
+		$.ajax({
+			method: 'GET',
+			url: 'incST.html',
+			async: false,
+			dataType: 'html'
+		}).done(function(html) {
+			$('#_OPERATION_ST_').append(html);
+		});
+
+		//
+		/* $.ajax({
+			method: 'GET',
+			url: 'incDailySafety.html',
+			async: false,
+			dataType: 'html'
+		}).done(function(html) {
+			$('#_DAILY_SAFETY_').append(html);
+		}); */
+	</script>
+
+	<script>
+		
+// 모든 toast-popup 처리
+document.querySelectorAll('.toast-popup').forEach(toast => {
+	const closeBtn = toast.querySelector('.toast-close');
+	if (closeBtn) {
+		closeBtn.addEventListener('click', () => hideToast(toast));
+	}
+
+	// 자동 닫기 타이머
+	let autoCloseTimer = setTimeout(() => hideToast(toast), 3000);
+
+	// 마우스 오버 시 자동 닫기 중지
+	toast.addEventListener('mouseenter', () => {
+		clearTimeout(autoCloseTimer);
+	});
+
+	// 마우스 아웃 시 다시 타이머 시작
+	toast.addEventListener('mouseleave', () => {
+		autoCloseTimer = setTimeout(() => hideToast(toast), 2000); // 남은 시간 혹은 기본 2초
+	});
+});
+
+function hideToast(toast) {
+	if (!toast || toast.classList.contains('closing')) return;
+
+	const cleanUp = () => {
+		if (toast.parentNode) toast.parentNode.removeChild(toast);
+	};
+
+	const onEnd = () => cleanUp();
+	toast.addEventListener('transitionend', onEnd, { once: true });
+
+	// 안전망
+	const safetyTimer = setTimeout(() => {
+		toast.removeEventListener('transitionend', onEnd);
+		cleanUp();
+	}, 500);
+
+	toast.classList.add('closing');
+}
+	</script>
+	
+</body>
+
+</html>

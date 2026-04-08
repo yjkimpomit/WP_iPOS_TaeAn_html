@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="theme-color" content="#FFFFFF">
+    <title>서부발전 iPOS 지능형 발전 운영시스템 :: 관리자 페이지</title>
+
+    <meta name="description" content="서부발전 i-POS 서비스 관리자 페이지">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- favicon -->
+    <link rel="icon" href="/resources/admin/images/favicon.ico" sizes="any">
+    <link rel="icon" href="/resources/admin/images/favicon.svg" type="image/svg+xml">
+
+    <!-- 공통 js -->
+    <script src="/resources/admin/js/jquery/jquery-3.6.1.js"></script>
+    <script src="/resources/admin/js/common/common.js"></script>
+
+    <!-- ztree -->
+    <link rel="stylesheet" href="/resources/admin/js/ztree/css/metroStyle/metroStyle.css" type="text/css">
+    <script src="/resources/admin/js/ztree/js/jquery.ztree.all.min.js"></script>
+
+    <!-- 부트스트랩 JS -->
+    <script src="/resources/admin/css/bootstrap/dist/js/popper.min.js"></script>
+    <script src="/resources/admin/css/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- winbox js -->
+    <link rel="stylesheet" href="/resources/admin/js/winbox/winbox.min.css">
+    <script src="/resources/admin/js/winbox/winbox.min.js"></script>
+
+    <!-- WP stylesheet -->
+    <link rel="stylesheet" href="/resources/admin/css/common.css">
+
+    <!-- unity -->
+    <link rel="stylesheet" href="/unity3DViewer/TemplateData/style.css">
+    <link rel="manifest" href="/unity3DViewer/manifest.webmanifest">
+
+	<style>
+		.table-responsive.logsheet {
+			height: auto !important;
+		}
+/* 
+		.table-responsive.logsheet tbody tr>* {
+			text-align: left;
+			white-space: nowrap;
+		}
+		.table-responsive.logsheet thead,
+		.table-responsive.logsheet .form-control,
+		.table-responsive.logsheet .btn {
+			display: none;
+		}
+		 */
+	</style>
+</head>
+
+<body class="admin-sub">
+
+	<div class="grid-box">
+		<div id="left" class="grid-cell"></div>
+		<div id="right" class="grid-cell"></div>
+	</div>
+
+	<script>
+		$.ajax({
+			method: 'GET',
+			url: '../tab06_logsheet_new/tab06_logsheet_TO03.html',
+			async: false,
+			dataType: 'html'
+		}).done(function(html) {
+			$('#left').append(html);
+		});
+		
+		$.ajax({
+			method: 'GET',
+			url: 'tab06_logsheet_TO03_old.html',
+			async: false,
+			dataType: 'html'
+		}).done(function(html) {
+			$('#right').append(html);
+		});
+	</script>
+
+</body>
+
+</html>

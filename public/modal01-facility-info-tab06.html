@@ -1,0 +1,110 @@
+<h3 class="title03">운전정보</h3>
+
+<!-- operation list -->
+<div class="table-responsive">
+	<table class="table table-sm" aria-label="운전정보">
+		<colgroup>
+			<col style="width: 196px;">
+			<col>
+			<col style="width: 128px;">
+			<col style="width: 96px;">
+			<col style="width: 96px;">
+			<col style="width: 160px;">
+		</colgroup>
+		<thead class="table-light">
+			<tr>
+				<th scope="col" data-field="태그">태그</th>
+				<th scope="col" data-field="상세정보">상세정보</th>
+				<th scope="col" data-field="운전정보">운전정보</th>
+				<th scope="col" data-field="건전성">건전성</th>
+				<th scope="col" data-field="예측값">예측값</th>
+				<th scope="col" data-field="TREND">TREND</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td data-field="태그">21MBX01AA401</td>
+				<td data-field="상세정보">Gas Turbine</td>
+				<td data-field="운전정보">True</td>
+				<td data-field="건전성">99.99</td>
+				<td data-field="예측값">29.20</td>
+				<td data-field="TREND">
+					<button type="button" class="btn btn-xs btn-outline-primary" onclick="showTrend(1);">
+						<span>트렌드 보기</span>
+					</button>
+				</td>
+			</tr>
+			<tr>
+				<td data-field="태그">21MBX01AA401</td>
+				<td data-field="상세정보">Gas Turbine</td>
+				<td data-field="운전정보">True</td>
+				<td data-field="건전성">99.99</td>
+				<td data-field="예측값">29.20</td>
+				<td data-field="TREND">
+					<button type="button" class="btn btn-xs btn-outline-primary" onclick="showTrend(2);">
+						<span>트렌드 보기</span>
+					</button>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<!-- 트렌드 팝업 -->
+<div class="modal fade" tabindex="-1" id="trendModal">
+	<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+		<div class="modal-content">
+
+		</div>
+	</div>
+</div>
+
+<script>
+	
+	function showTrend(type) {
+		$("#trendModal .modal-content").empty();
+
+		var csvURL = "";
+		switch(type) {
+			case 1:
+				//차트1
+				csvURL = "/js/facility/temp-florida-bergen-2023.csv";
+				break;
+			case 2:
+				//차트2
+				csvURL = "/js/facility/temp-florida-bergen-2024.csv";
+				break;
+		}
+
+		$("#trendModal").bPopup({
+			modalClose: false,
+			position: [0, 0],
+			opacity: 0.4,
+			speed: 450,
+			closeClass: "close",
+			onOpen: function () {
+				$(this).addClass("show detail-box");
+				// AJAX 요청으로 HTML 내용 로드
+				$.ajax({
+					type: "GET",
+					url: "modal01-facility-trend.html",
+					success: function(data) {
+						$("#trendModal .modal-content").html(data);
+						initializeTrendChart('chartTrend', csvURL);
+					},
+					error: function() {
+						console.log('로드실패');
+					}
+				});
+			},
+			onClose: function () {
+				// 모달이 닫힐 때 초기화 작업 수행
+				$("#trendModal .modal-content").empty();
+
+				// 추가된 클래스 제거
+				$(this).removeClass("show");
+			}
+		});
+	}
+
+</script>

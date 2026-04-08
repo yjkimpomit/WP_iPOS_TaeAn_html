@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="theme-color" content="#FFFFFF">
+    <title>서부발전 iPOS 지능형 발전 운영시스템 :: 관리자 페이지</title>
+
+    <meta name="description" content="서부발전 i-POS 서비스 관리자 페이지">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- favicon -->
+    <link rel="icon" href="/resources/admin/images/favicon.ico" sizes="any">
+    <link rel="icon" href="/resources/admin/images/favicon.svg" type="image/svg+xml">
+
+    <!-- 공통 js -->
+    <script src="/resources/admin/js/jquery/jquery-3.6.1.js"></script>
+    <script src="/resources/admin/js/common/common.js"></script>
+
+    <!-- ztree -->
+    <link rel="stylesheet" href="/resources/admin/js/ztree/css/metroStyle/metroStyle.css" type="text/css">
+    <script src="/resources/admin/js/ztree/js/jquery.ztree.all.min.js"></script>
+
+    <!-- 부트스트랩 JS -->
+    <script src="/resources/admin/css/bootstrap/dist/js/popper.min.js"></script>
+    <script src="/resources/admin/css/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- winbox js -->
+    <link rel="stylesheet" href="/resources/admin/js/winbox/winbox.min.css">
+    <script src="/resources/admin/js/winbox/winbox.min.js"></script>
+
+    <!-- WP stylesheet -->
+    <link rel="stylesheet" href="/resources/admin/css/common.css">
+
+    <!-- unity -->
+    <link rel="stylesheet" href="/unity3DViewer/TemplateData/style.css">
+    <link rel="manifest" href="/unity3DViewer/manifest.webmanifest">
+</head>
+
+<body class="admin-sub">
+	<div class="loading-box" style="display: none;">
+		<div class="loader"></div>
+	</div>
+
+	<div class="admin-header">
+		<img src="/resources/admin/images/logo-white.svg" alt="서부발전"> <span class="branch-name">태안 9, 10호기</span> <span class="title">관리자</span>
+	</div>
+
+	<div class="panel-box has-toggle">
+		<button type="button" id="leftPanelToggleBtn" class="js-panel-toggle"><span class="visually-hidden">좌측패널 닫기</span></button>
+		<div class="side-panel left">
+			<div class="tree-search">
+				<!-- 검색영역 -->
+				<div class="search-input-box">
+					<label class="visually-hidden" for="facSelect">검색옵션 선택</label>
+					<select class="form-select" id="facSelect">
+						<option value="1">설비</option>
+						<option value="2">부품</option>
+					</select>
+					<label for="facSearchInput" class="visually-hidden">설비명 입력</label>
+					<input type="text" class="form-control" list="datalistOptions" id="facSearchInput"
+						placeholder="설비번호/설비명 검색">
+					<button type="button" class="btn btn-secondary" id="facSearchButton" title="펼치기/접기"><img
+							src="/resources/admin/images/icons/icon-expand_all.svg" alt="펼치기"></button>
+				</div>
+
+				<datalist id="datalistOptions"></datalist>
+			</div>
+
+			<div class="jstree-box" style="flex: 1;">
+				<div class="loading-box" id="facLoadingBar" style="display: none;">
+					<div class="loader"></div>
+				</div>
+				<!-- <ul id="facTree" class="ztree"><li id="facTree_1" class="level0" tabindex="0" hidefocus="true" treenode=""><span id="facTree_1_switch" title="" class="button level0 switch roots_close" treenode_switch=""></span><a id="facTree_1_a" class="level0" treenode_a="" target="_blank" style=""><span id="facTree_1_ico" title="" treenode_ico="" class="button ico_close" style="display:none;"></span><span id="facTree_1_span" class="node_name"><span class="menu-item" data-node="node-30001"><span class="fac-name">제9호기</span></span></span></a></li><li id="facTree_37665" class="level0" tabindex="0" hidefocus="true" treenode=""><span id="facTree_37665_switch" title="" class="button level0 switch center_close" treenode_switch=""></span><a id="facTree_37665_a" class="level0" treenode_a="" target="_blank" style=""><span id="facTree_37665_ico" title="" treenode_ico="" class="button ico_close" style="display:none;"></span><span id="facTree_37665_span" class="node_name"><span class="menu-item" data-node="node-67665"><span class="fac-name">제9,10호기공용설비</span></span></span></a></li><li id="facTree_46218" class="level0" tabindex="0" hidefocus="true" treenode=""><span id="facTree_46218_switch" title="" class="button level0 switch bottom_close" treenode_switch=""></span><a id="facTree_46218_a" class="level0" treenode_a="" target="_blank" style=""><span id="facTree_46218_ico" title="" treenode_ico="" class="button ico_close" style="display:none;"></span><span id="facTree_46218_span" class="node_name"><span class="menu-item" data-node="node-76218"><span class="fac-name">제10호기</span></span></span></a></li></ul> -->
+			</div>
+		</div>
+
+		<div class="contents-panel">
+			<div class="admin-content">
+				<!-- tab-menu -->
+				<ul class="nav nav-tabs data-tab" role="tablist">
+					<li class="nav-item" role="presentation">
+						<button class="nav-link" data-bs-toggle="tab" type="button" role="tab" 
+							id="facilityTab" 
+							aria-controls="facilityTabPane" aria-selected="false" 
+							data-bs-target="#facilityTabPane" data-page="tab01_facility.html" >설비정보</button>
+					</li>
+					<li class="nav-item" role="presentation">
+						<button class="nav-link" data-bs-toggle="tab" type="button" role="tab" 
+							id="modelTab" 
+							aria-controls="modelTabPane" aria-selected="false"
+							data-bs-target="#modelTabPane" data-page="tab02_3dmodel.html" >3D 모델</button>
+					</li>
+					<li class="nav-item" role="presentation">
+						<button class="nav-link" data-bs-toggle="tab" type="button" role="tab" 
+							id="panoramaTab" 
+							aria-controls="panoramaTabPane" aria-selected="false" 
+							data-bs-target="#panoramaTabPane" data-page="tab03_panorama.html" >파노라마</button>
+					</li>
+					<li class="nav-item" role="presentation">
+						<button class="nav-link" data-bs-toggle="tab" type="button" role="tab" 
+							id="pnidTab" 
+							aria-controls="pnidTabPane" aria-selected="false"
+							data-bs-target="#pnidTabPane" data-page="tab04_pnid.html" >P&amp;ID</button>
+					</li>
+					<li class="nav-item" role="presentation">
+						<button class="nav-link" data-bs-toggle="tab" type="button" role="tab" 
+							id="dataparcTab" 
+							aria-controls="dataparcTabPane" aria-selected="false" 
+							data-bs-target="#dataparcTabPane" data-page="tab05_dataparc.html" >dataPARC</button>
+					</li>
+					<li class="nav-item" role="presentation">
+						<button class="nav-link active" data-bs-toggle="tab" type="button" role="tab" 
+							id="logsheetTab" 
+							aria-controls="logsheetTabPane" aria-selected="true" 
+							data-bs-target="#logsheetTabPane" data-page="tab06_logsheet.html" >LogSheet</button>
+					</li>
+					<li class="nav-item" role="presentation">
+						<button class="nav-link" data-bs-toggle="tab" type="button" role="tab" 
+							id="fileTab" 
+							aria-controls="fileTabPane" aria-selected="false"
+							data-bs-target="#fileTabPane" data-page="tab07_file.html" >파일관리</button>
+					</li>
+					<li class="nav-item" role="presentation">
+						<button class="nav-link" data-bs-toggle="tab" type="button" role="tab" 
+							id="multiviewTab" 
+							aria-controls="multiviewTabPane" aria-selected="false" 
+							data-bs-target="#multiviewTabPane" data-page="tab08_multiview.html" >멀티뷰</button>
+					</li>
+				</ul>
+
+				<!-- tab content -->
+				<div class="tab-content" id="dataTabContent">
+					<div class="tab-pane fade" role="tabpanel" tabindex="0" id="facilityTabPane" aria-labelledby="facilityTab"></div>
+					<div class="tab-pane fade" role="tabpanel" tabindex="0" id="modelTabPane" aria-labelledby="modelTab"></div>
+					<div class="tab-pane fade" role="tabpanel" tabindex="0" id="panoramaTabPane" aria-labelledby="panoramaTab"></div>
+					<div class="tab-pane fade" role="tabpanel" tabindex="0" id="pnidTabPane" aria-labelledby="pnidTab"></div>
+					<div class="tab-pane fade" role="tabpanel" tabindex="0" id="dataparcTabPane" aria-labelledby="dataparcTab"></div>
+					<div class="tab-pane fade active show" role="tabpanel" tabindex="0" id="logsheetTabPane" aria-labelledby="logsheetTab"></div>
+					<div class="tab-pane fade" role="tabpanel" tabindex="0" id="fileTabPane" aria-labelledby="fileTab"></div>
+					<div class="tab-pane fade" role="tabpanel" tabindex="0" id="multiviewTabPane" aria-labelledby="multiviewTab"></div>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+
+	<!-- 스크롤시 탑으로 이동 버튼 -->
+	<span class="icon-top"></span>
+	<script>
+	document.addEventListener("DOMContentLoaded", () => {
+		const btn = document.querySelector(".icon-top");
+		
+		function checkScroll() {
+			const hasScroll =
+				document.documentElement.scrollHeight >
+				document.documentElement.clientHeight;
+
+			btn.style.display = hasScroll ? "block" : "none";
+		}
+
+		btn.addEventListener("click", () => {
+			window.scrollTo({
+				top: 0,
+				behavior: "smooth"
+			});
+		});
+
+		window.addEventListener("resize", checkScroll);
+
+		/* 탭 클릭 시 scroll 체크 */
+		document.querySelectorAll('[data-bs-toggle="tab"]').forEach(tab => {
+			tab.addEventListener("click", () => {
+				setTimeout(checkScroll, 50);
+			});
+		});
+
+		checkScroll();
+	});
+	</script>
+
+
+	<!-- 탭콘텐츠 로드 -->
+	<script src="/resources/admin/js/tab-loader.js"></script>
+
+	<!-- // jquery-alert : 팝업 -->
+	<script>
+		loadCss("/resources/js/jquery/confirm/jquery-confirm.min.css");
+		loadCss("/resources/js/jquery/confirm/jquery-confirm-custom.css");
+	</script>
+	<script src="/resources/js/jquery/confirm/jquery-confirm.min.js"></script>
+	<script>
+		var iegNo = "";
+		var title = "알림", content = "테스트 중입니다.";
+
+		function fnMsg() {
+			$.alert({
+				title: title,
+				content: content,
+				type: 'blue',
+				autoClose: 'OK|2000',
+				countDown: false,
+				buttons: {
+					'OK': {
+						isHidden: true,
+						text: '확인',
+						btnClass: 'btn-blue',
+						action: function () {
+							//console.log("확인");
+						}
+					}
+				}  
+			});
+		}
+
+		$(function(){
+			//fnMsg();
+		});
+
+	</script>
+
+</body>
+
+</html>

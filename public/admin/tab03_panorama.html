@@ -1,0 +1,44 @@
+<!-- logsheet 화면 -->
+<div class="container-admin">
+	<div class="title-box">
+		<h3 class="title02">파노라마</h3>
+	</div>
+
+	<!-- 검색영역 -->
+	<div class="search-box" aria-label="설비정보-검색">
+		<form id="form_search_work_request" method="post" autocomplete="off">
+			<input type="hidden" id="ColList" name="ColList" value="">
+
+			<div class="row">
+				<div class="col-12 col-md-3">
+					<label class="form-label" for="reqDeptOption">설비 번호</label>
+					<input class="form-control" id="reqDeptOption" name="reqDept"
+						onclick="searchReqDeptTreePopup($(this));" placeholder="설비 번호 또는 설비명 입력">
+				</div>
+				<div class="col-12 col-md">
+					<label class="visually-hidden" for="reqDeptInput">설비명</label>
+					<input class="form-control" type="text" value="" id="reqDeptInput" disabled=""
+						readonly="">
+				</div>
+
+				<div class="col col-md-auto">
+					<button type="button" class="btn btn-primary" onclick="fnWorkRequestSearch();">
+						<span class="icon-search"></span>
+						<span>검색</span>
+					</button>
+				</div>
+				<div class="col col-md-auto">
+					<button type="button" class="btn btn-primary" onclick="fnWorkRequestSearch();">
+						<span class="icon-edit"></span>
+						<span>수정</span>
+					</button>
+				</div>
+			</div>
+		</form>
+	</div>
+
+	<div id="_FACILITY_DETAIL_VIEW_INFO">
+		<div>파노라마 화면</div>
+	</div>
+
+</div>

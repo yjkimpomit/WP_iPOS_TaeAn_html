@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="theme-color" content="#FFFFFF">
+	<title>태안 퍼블리싱본 - iPOS RWD</title>
+
+	<meta name="description" content="서부발전 태안 i-POS 서비스 제공">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- favicon -->
+	<link rel="icon" href="/favicon.ico" sizes="any">
+	<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+
+	<!-- slick & jstree -->
+	<link rel="stylesheet" href="/resources/js/slick-1.8.1/slick/slick.css">
+	<link rel="stylesheet" href="/resources/js/slick-1.8.1/slick/slick-theme.css">
+	<link rel="stylesheet" href="/resources/js/jsTree/css/style.min.css">
+
+	<!-- slick & jsTree & highchart -->
+	<script src="/resources/js/jquery/jquery-3.6.1.js"></script>
+	<script src="/resources/js/slick-1.8.1/slick/slick.min.js"></script>
+
+	<!-- toastchart -->
+	<script src="/resources/js/toastchart/toastui-chart.js"></script>
+
+	<!-- chartjs -->
+	<script src="/resources/js/chart/chart.umd.js"></script>
+	<script src="/resources/js/chart/chartjs-adapter-date-fns.bundle.min.js"></script>
+
+	<!-- jstree -->
+	<!-- <script src="/resources/js/jsTree/js/jstree.min.js"></script>
+	<script src="/resources/js/jsTree/js/jstreeFacility.js"></script> -->
+
+	<!-- ztree -->
+	<link rel="stylesheet" href="/resources/js/ztree/css/metroStyle/metroStyle.css" type="text/css">
+	<script src="/resources/js/ztree/js/jquery.ztree.all.min.js"></script>
+
+	<!-- 부트스트랩 JS -->
+	<script src="/resources/css/bootstrap/dist/js/popper.min.js"></script>
+	<script src="/resources/css/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+	<!-- bPopup -->
+	<script src="/resources/js/jquery/jquery.bpopup.min.js"></script>
+
+	<!-- winbox js -->
+	<link rel="stylesheet" href="/resources/js/winbox/winbox.min.css">
+	<script src="/resources/js/winbox/winbox.min.js"></script>
+
+	<!-- WP stylesheet -->
+	<link rel="stylesheet" href="/resources/css/common.css">
+	<script src="/resources/js/common.js" defer></script>
+	<script src="/resources/js/device-info.js" defer></script>
+
+	<!-- <%-- 변수 선언 --%> -->
+	<script>
+		/* <%-- 999/0 : mobile --%> */
+		//var checkMobile = "${sessionScope.loginInfo.iui_isadmin}";
+		var checkMobile = 0;
+	</script>
+	<!-- 
+	<link rel="stylesheet" href="/unity3DViewer/TemplateData/style.css">
+	<link rel="manifest" href="/unity3DViewer/manifest.webmanifest"> -->
+    <!-- 
+        * js에 사용할 변수 선언
+        * 모바일 체크
+        * 사업소, 호기 정보
+        * IDMS 페이지 <=> 3D MODEL
+	-->
+	<script>
+		// check device
+		var checkDevice = "${device}";
+		var eqOrgNo = "${sessionScope.eqOrgNo}";
+		var hoki = "${sessionScope.hoki}";
+		var _isIdmsPage = false;
+	</script>
+</head>
+<body class="sub">
+	<div class="container-log">
+		<div class="search-box" aria-label="방문자-검색">
+			<div class="row">
+				<div class="col-md-12 col-lg-auto mb-3">
+					<span class="form-label">방문자 집계</span>
+					<div class="row g-2 visitors">
+						<div class="col-auto">
+							<strong class="icon-groups">전체 </strong>
+							<span class="visually-hidden">방문자수: </span>
+							<span>1,325 명</span>
+						</div>
+						<div class="col-auto">
+							<strong class="icon-month">2026-03</strong>
+							<span>25 명</span>
+						</div>
+						<div class="col">
+							<strong class="icon-person">오늘</strong>
+							<span>48 명</span>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-1 mb-3"></div>
+                <div class="col-md-auto col-xl-3 mb-3">
+					<span class="form-label" id="searchPeriod">검색 기간</span>
+					<div class="row g-2 period-box" aria-labelledby="searchPeriod">
+						<div class="col">
+							<label class="visually-hidden" for="txtSearchStartDate">시작일</label>
+							<input type="date" class="form-control icon-calendar" name="searchStartDate" id="txtSearchStartDate">
+						</div>
+						<div class="col-auto">
+							<span class="form-control-plaintext">~</span>
+						</div>
+						<div class="col">
+							<label class="visually-hidden" for="txtSearchEndDate">종료일</label>
+							<input type="date" class="form-control icon-calendar" name="searchEndDate" id="txtSearchEndDate">
+						</div>
+					</div>
+				</div>
+
+				<div class="col col-md-auto mb-3">
+					<button type="button" class="btn btn-primary" onclick="fnLoadVisitList();">
+						<span class="material-symbols-rounded">
+							search
+						</span> 검색
+					</button>
+				</div>
+			</div>
+		</div>
+
+		<div class="title-box" id="divSearchResult">
+			<h4 class="title03">조회결과 <small id="searchResultCnt"></small></h4>
+			<div class="btn-box">
+				<button type="button" class="btn btn-primary" onclick="fnVisitExcelDownload()">
+					<span>엑셀 다운로드</span>
+				</button>
+			</div>
+		</div>
+
+		<div class="table-responsive">
+			<table class="table table-sm" aria-label="방문자정보">
+				<thead>
+				<tr>
+					<th scope="col" name="excelCol" data-field="방문일">방문일</th>
+					<th scope="col" name="excelCol" data-field="사번">사번</th>
+					<th scope="col" name="excelCol" data-field="이름">이름</th>
+					<th scope="col" name="excelCol" data-field="부서명">부서명</th>
+				</tr>
+				</thead>
+				<!-- <tbody>
+					<tr>
+						<td colspan="4">
+							<div class="no-data">
+								데이터가 없습니다.
+							</div>
+						</td>
+					</tr>
+				</tbody> -->
+				<tbody>
+					<tr>
+						<td data-field="방문일">2025-06-12</td>
+						<td data-field="사번">12345678</td>
+						<td data-field="이름">홍길동</td>
+						<td data-field="부서명">설계기획부</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<script src="/resources/js/duplicateByElement.js"></script>
+		<script>
+			const targetRow = document.querySelector('.table[aria-label="방문자정보"] tbody:has([data-field])');
+			duplicateByElement(targetRow, 10);
+		</script>
+	</div>
+</body>
+</html>

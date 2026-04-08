@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<title>P&ID VIEWER</title>
+	<!-- 
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+	-->
+	<link rel="stylesheet" href="../css/style.css">
+	<script src="../bootstrap/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+	<div class="svg-wrapper">
+		<div class="viewer">
+			<div class="viewer-header">
+				<div class="svg-title">
+					<a href="1" class="btn icon-description">
+						<span>DXAX-1F-LO-PP-01</span>
+					</a>
+				</div>
+				<div class="svg-links">
+					<a href="#" class="btn btn-secondary icon-arrow_split disabled" aria-disabled="true" title="운전 절차서">
+						<span class="visually-hidden">운전 절차서</span>
+					</a>
+					<a href="#" class="btn btn-secondary icon-construction disabled" aria-disabled="true" title="정비 절차서">
+						<span class="visually-hidden">정비 절차서</span>
+					</a>
+					<a href="#" class="btn btn-secondary icon-developer_guide disabled" aria-disabled="true" title="작업 지시서">
+						<span class="visually-hidden">작업 지시서</span>
+					</a>
+					<a href="#" class="btn btn-secondary icon-lab_profile disabled" aria-disabled="true" title="작업 결과 보고서">
+						<span class="visually-hidden">작업 결과 보고서</span>
+					</a>
+				</div>
+			</div>
+			<div class="viewer-body">
+				<div id="svgarea"></div>
+			</div>
+		</div>
+
+		<div class="datalist">
+			<div class="datalist-header">
+				<select id="idSelector" class="form-select">
+					<option value="text">Text</option>
+					<option value="id">ID</option>
+				</select>
+				<input type="text" id="tbSearchTarget" placeholder="텍스트 또는 ID 검색" value="" class="form-control">
+				<button type="button" class="btn btn-primary icon-search" title="찾기" onclick="safeFilterTable()"><span class="visually-hidden">찾기</span></button>
+				<button type="button" class="btn btn-secondary icon-replay" title="복원" onclick="handleResetTable()"><span class="visually-hidden">복원</span></button>
+			</div>
+			<div class="datalist-body">
+				<div class="table-responsive scroll-hide">
+					<table id="idTable" class="table" aria-label="결과값">
+						<thead>
+							<tr>
+								<th data-field="순번">순번</th>
+								<!-- SHOW_DEBUG_COLS check -->
+								<!-- <th data-field="실제">text(실제)</th> -->
+								<!-- <th data-field="후처리">후처리</th> -->
+								<th data-field="text-value">TEXT 값</th>
+								<th data-field="ID">ID</th>
+							</tr>
+						</thead>
+						<tbody id="idTableBody">
+							<tr>
+								<td data-field="순번">10</td>
+								<!-- <td data-field="실제">내용이 들어갑니다.</td>
+								<td data-field="후처리">내용이 들어갑니다.</td> -->
+								<td data-field="text-value">Plan</td>
+								<td data-field="ID">#759849</td>
+							</tr>
+							<tr>
+								<td data-field="순번">9</td>
+								<!-- <td data-field="실제">내용이 들어갑니다.</td>
+								<td data-field="후처리">내용이 들어갑니다.</td> -->
+								<td data-field="text-value">Front</td>
+								<td data-field="ID">#759849</td>
+							</tr>
+							<tr>
+								<td data-field="순번">8</td>
+								<!-- <td data-field="실제">내용이 들어갑니다.</td>
+								<td data-field="후처리">내용이 들어갑니다.</td> -->
+								<td data-field="text-value">Right</td>
+								<td data-field="ID">#759849</td>
+							</tr>
+							
+							<tr>
+								<td data-field="순번"></td>
+								<td data-field="text-value"></td>
+								<td data-field="ID"></td>
+							</tr>
+							<tr>
+								<td data-field="순번"></td>
+								<td data-field="text-value"></td>
+								<td data-field="ID"></td>
+							</tr>
+							<tr>
+								<td data-field="순번"></td>
+								<td data-field="text-value"></td>
+								<td data-field="ID"></td>
+							</tr>
+							<tr>
+								<td data-field="순번"></td>
+								<td data-field="text-value"></td>
+								<td data-field="ID"></td>
+							</tr>
+							<tr>
+								<td data-field="순번"></td>
+								<td data-field="text-value"></td>
+								<td data-field="ID"></td>
+							</tr>
+							<tr>
+								<td data-field="순번"></td>
+								<td data-field="text-value"></td>
+								<td data-field="ID"></td>
+							</tr>
+							<tr>
+								<td data-field="순번"></td>
+								<td data-field="text-value"></td>
+								<td data-field="ID"></td>
+							</tr>
+							<tr>
+								<td data-field="순번"></td>
+								<td data-field="text-value"></td>
+								<td data-field="ID"></td>
+							</tr>
+							<tr>
+								<td data-field="순번"></td>
+								<td data-field="text-value"></td>
+								<td data-field="ID"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script>
+
+		let parser = new DOMParser();
+		let svgDoc = null;
+		let svgElement = null;
+		let panZoom = null;
+		let svgType = null;
+		let ckType = null;
+
+		const svgns = 'http://www.w3.org/2000/svg';
+
+		window.addEventListener("DOMContentLoaded", function () {
+			// 예시 : http://127.0.0.1:5500/index.html?dataPath=/pnid/0a84da95_1-7171-UM-105-002.svg
+			// 예시 : http://127.0.0.1:5500/index.html?dataPath=/pnid/G12J-11420-BM-105-001.svg&searchTag=SA
+			// url 경로로 접근 시 작동
+			//initFromUrlParams();
+			// 파일 업로드 시 작동
+			//setupFileInputHandler();
+
+		});
+
+	</script>
+</body>
+
+</html>

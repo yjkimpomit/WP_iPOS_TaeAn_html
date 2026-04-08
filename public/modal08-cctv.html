@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="theme-color" content="#FFFFFF">
+	<title>태안 퍼블리싱본 - iPOS RWD</title>
+
+	<meta name="description" content="서부발전 태안 i-POS 서비스 제공">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- favicon -->
+	<link rel="icon" href="/favicon.ico" sizes="any">
+	<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+
+	<!-- slick & jstree -->
+	<link rel="stylesheet" href="/resources/js/slick-1.8.1/slick/slick.css">
+	<link rel="stylesheet" href="/resources/js/slick-1.8.1/slick/slick-theme.css">
+	<link rel="stylesheet" href="/resources/js/jsTree/css/style.min.css">
+
+	<!-- slick & jsTree & highchart -->
+	<script src="/resources/js/jquery/jquery-3.6.1.js"></script>
+	<script src="/resources/js/slick-1.8.1/slick/slick.min.js"></script>
+
+	<!-- toastchart -->
+	<script src="/resources/js/toastchart/toastui-chart.js"></script>
+
+	<!-- chartjs -->
+	<script src="/resources/js/chart/chart.umd.js"></script>
+	<script src="/resources/js/chart/chartjs-adapter-date-fns.bundle.min.js"></script>
+
+	<!-- jstree -->
+	<!-- <script src="/resources/js/jsTree/js/jstree.min.js"></script>
+	<script src="/resources/js/jsTree/js/jstreeFacility.js"></script> -->
+
+	<!-- ztree -->
+	<link rel="stylesheet" href="/resources/js/ztree/css/metroStyle/metroStyle.css" type="text/css">
+	<script src="/resources/js/ztree/js/jquery.ztree.all.min.js"></script>
+
+	<!-- 부트스트랩 JS -->
+	<script src="/resources/css/bootstrap/dist/js/popper.min.js"></script>
+	<script src="/resources/css/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+	<!-- bPopup -->
+	<script src="/resources/js/jquery/jquery.bpopup.min.js"></script>
+
+	<!-- winbox js -->
+	<link rel="stylesheet" href="/resources/js/winbox/winbox.min.css">
+	<script src="/resources/js/winbox/winbox.min.js"></script>
+
+	<!-- WP stylesheet -->
+	<link rel="stylesheet" href="/resources/css/common.css">
+	<script src="/resources/js/common.js" defer></script>
+	<script src="/resources/js/device-info.js" defer></script>
+
+	<!-- <%-- 변수 선언 --%> -->
+	<script>
+		/* <%-- 999/0 : mobile --%> */
+		//var checkMobile = "${sessionScope.loginInfo.iui_isadmin}";
+		var checkMobile = 0;
+	</script>
+	<!-- 
+	<link rel="stylesheet" href="/unity3DViewer/TemplateData/style.css">
+	<link rel="manifest" href="/unity3DViewer/manifest.webmanifest"> -->
+</head>
+<body class="sub">
+<div class="container-cctv">
+	<div class="title-box">
+		<h3 class="title02">CCTV 리스트</h3>
+	</div>
+
+	<div class="search-box" aria-label="CCTV-검색">
+		<form>
+			<div class="row">
+				<div class="col-md col-lg-4 col-xxl-3 mb-3">
+					<label class="form-label" for="cctvId">CCTV 명</label>
+					<input class="form-control" type="text" id="cctvId">
+				</div>
+				<div class="col-md col-lg-4 col-xxl-3 mb-3">
+					<label class="form-label" for="cctvPlace">CCTV 위치</label>
+					<input class="form-control" type="text" id="cctvPlace">
+				</div>
+							
+				<div class="col col-md-auto mb-3">
+					<button type="button" class="btn btn-primary">
+						<span class="material-symbols-rounded">
+							search
+						</span> 검색
+					</button>
+				</div>
+			</div>
+		</form>
+	</div>
+
+	<div class="title-box">
+		<h4 class="title03">조회결과<small>(235 건)</small></h4>
+		<div>
+			<div class="page-move">
+				<label for="selectPage02" class="visually-hidden">이동할 페이지</label>
+				<input type="number" id="selectPage02" class="form-control page" placeholder="1">
+				<span class="px-1"> / </span>
+				<span class="total">168</span>
+				<button type="button" class="btn btn-secondary">이동</button>
+			</div>
+				
+			<div class="btn-box">
+				<button type="button" class="btn btn-outline-primary">이전</button>
+				<button type="button" class="btn btn-outline-primary">다음</button>
+			</div>
+		</div>
+	</div>
+	
+	<div class="table-responsive">
+		<table class="table table-sm" aria-label="CCTV-리스트">
+			<thead>
+				<tr>
+					<th scope="col" data-field="CCTV-ID">CCTV ID</th>
+					<th scope="col" data-field="CCTV-명">CCTV 명</th>
+					<th scope="col" data-field="위치">위치</th>
+					<th scope="col" data-field="보기">보기</th>
+					<th scope="col" data-field="이동">이동</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td data-field="CCTV-ID">CCTV_1004</td>
+					<td data-field="CCTV-명">GT 입구 동측 확인용</td>
+					<td data-field="위치">GT Ground</td>
+					<td data-field="보기">
+						<button type="button" class="btn btn-xs btn-primary">
+							<span>보기</span>
+						</button>
+					</td>
+					<td data-field="이동">
+						<button type="button" class="btn btn-xs btn-info">
+							<span>이동</span>
+						</button>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<script src="/resources/js/duplicateByElement.js"></script>
+	<script>
+		const targetRow = document.querySelector('.table[aria-label] tbody tr');
+		duplicateByElement(targetRow, 10);
+	</script>
+
+</div>
+<!-- <div class="modal-footer">
+	<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+	<button type="button" class="btn btn-primary">저장</button>
+</div> -->
+
+<!-- VLC 설치팝업 -->
+<div class="modal fade" tabindex="-1" id="cctvInstall">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="title04">
+					설치파일 안내
+				</h5>
+				<button type="button" class="btn close">
+					<span class="material-symbols-rounded">
+					close
+					</span>
+				</button>
+			</div>
+
+			<div class="modal-body">
+				<h6>VLC가 설치되어 있지 않습니다.</h6>
+				<p>설치 파일을 다운로드 받아 설치한 뒤에 CCTV를 확인할 수 있습니다.</p>
+
+				<div class="text-center">
+					<button type="button" class="btn btn-primary" onclick="downloadCctvView();">
+						<span class="material-symbols-rounded">
+							install_desktop
+						</span>
+						<span>설치파일 다운로드</span>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+function checkVlcScheme(rtspUrl) {
+
+	var vlcUrl = rtspUrl;
+
+	return new Promise((resolve) => {
+		var timeout = setTimeout(() => {
+			resolve(false);
+		}, 2000);
+
+		var newDocument = document.implementation.createHTMLDocument("new Document");
+
+		var iframe = document.createElement('iframe');
+		iframe.style.display = 'none';
+		document.body.appendChild(iframe);
+
+		iframe.src = vlcUrl;
+
+		window.addEventListener('blur', ()=>{
+			clearTimeout(timeout);
+			resolve(true);
+		});
+	});
+}
+
+function viewVlcRtsp(rtspUrl) {
+	//checkVlcScheme(rtspUrl).then(isVleInstalled => {
+
+		//if(!isVlcInstalled) {
+			//alert("VLC가 설치되어 있지 않습니다.");
+			//$(".cctv-vlc").addClass('show').fadeIn(200);
+			//showDimOverlay();
+			$("#cctvInstall").bPopup({
+				modalClose : false,
+				position: [0, 0],
+				opacity: .4,
+				speed : 450,
+				closeClass: "close",
+				onOpen: function () {
+					$(this).addClass('show detail-box');
+				},
+				onClose: function () {
+					$(this).removeClass('show');
+				}
+			});
+		//}
+	//});
+}
+
+function downloadCctvView() {
+	//window.location.href="/cctv/setupFileDownload.do";
+	alert('다운로드 시작');
+}
+/* 
+function showVlcRtsp(rtspUrl) {
+	window.location.href = rtspUrl;
+}
+*/
+
+$('.cctv-vlc .btn.close').on('click', function() {
+	//$('.cctv-vlc').removeClass('show').fadeOut(400);
+	//hideDimOverlay();
+	$('.cctv-vlc').removeClass('show').prev('.dim-overlay').remove();
+});
+
+</script>
+
+</body>
+</html>

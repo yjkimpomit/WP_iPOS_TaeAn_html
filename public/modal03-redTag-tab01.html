@@ -1,0 +1,262 @@
+<h3 class="title02">Red Tag 발행</h3>
+<!-- 검색영역 -->
+<div class="search-box" aria-label="Red-Tag-발행-검색">
+	<div class="row">
+		<div class="col-12 mb-3">
+			<span class="form-label" id="category0101">구분</span>
+			<div aria-labelledby="category0101">
+				<div class="form-check form-check-inline">
+					<input class="form-check-input" type="radio" name="category01" id="category01" checked>
+					<label class="form-check-label" for="category01">
+						W/O
+					</label>
+				</div>
+				<div class="form-check form-check-inline">
+					<input class="form-check-input" type="radio" name="category02" id="category02">
+					<label class="form-check-label" for="category02">
+						기타
+					</label>
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-6 col-lg-4 col-xxl-3 mb-3">
+			<span class="form-label" id="supervisor">감독자</span>
+			<div class="row g-2" aria-labelledby="supervisor">
+				<div class="col">
+					<label class="visually-hidden" for="supervisorOption">감독자 검색</label>
+					<input class="form-control search-icon" id="supervisorOption" onclick="searchItemPopup($(this));">
+				</div>
+				<div class="col">
+					<label class="visually-hidden" for="supervisorInput">감독자</label>
+					<input class="form-control" type="text" value="" id="supervisorInput" disabled="" readonly="">
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6 col-lg-4 col-xxl-3 mb-3">
+			<label class="form-label" for="supvDeptSelect" id="supvDept">감독부서</label>
+			<div class="row g-2" aria-labelledby="supvDept">
+				<div class="col">
+					<label class="visually-hidden" for="supvDeptSelect">감독부서 검색</label>
+					<input class="form-control search-icon" id="supvDeptSelect" onclick="searchTreePopup($(this));">
+				</div>
+				<div class="col">
+					<label class="visually-hidden" for="supvDeptInput">감독부서</label>
+					<input class="form-control" type="text" value="" id="supvDeptInput" disabled="" readonly="">
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6 col-lg-4 col-xxl-3 mb-3">
+			<span class="form-label" id="opDept">운전부서</span>
+			<div class="row g-2" aria-labelledby="opDept">
+				<div class="col">
+					<label class="visually-hidden" for="opDeptSelect">운전부서 검색</label>
+					<input class="form-control search-icon" id="opDeptSelect" onclick="searchTreePopup($(this));">
+				</div>
+				<div class="col">
+					<label class="visually-hidden" for="opDeptInput">운전부서</label>
+					<input class="form-control" type="text" value="" id="opDeptInput" disabled="" readonly="">
+				</div>
+			</div>
+		</div>
+		<div class="col-md-6 col-lg-4 col-xxl-3 mb-3">
+			<span class="form-label" id="maintDept">정비부서</span>
+			<div class="row g-2" aria-labelledby="maintDept">
+				<div class="col">
+					<label class="visually-hidden" for="maintDeptSelect">정비부서 검색</label>
+					<input class="form-control search-icon" id="maintDeptSelect" onclick="searchTreePopup($(this));">
+				</div>
+				<div class="col">
+					<label class="visually-hidden" for="maintDeptInput">정비부서</label>
+					<input class="form-control" type="text" value="" id="maintDeptInput" disabled="" readonly="">
+				</div>
+			</div>
+		</div>
+
+		<div class="col-md-6 col-lg-4 col-xxl-3 mb-3">
+			<label class="form-label" for="orderType01">오더유형</label>
+			<select class="form-select" aria-label="오더유형 선택" id="orderType01">
+				<option selected>오더유형 선택</option>
+				<option value="1">경상오더</option>
+			</select>
+		</div>
+
+		<div class="col-md-6 col-lg-4 col-xxl-3 mb-3">
+			<label class="form-label" for="orderNo">오더 번호</label>
+			<input class="form-control" type="text" id="orderNo" placeholder="오더 번호 입력">
+		</div>
+
+		<div class="col-md-6 col-lg col-xxl-3 mb-3">
+			<label class="form-label" for="orderName">오더명</label>
+			<input class="form-control" type="text" id="orderName" placeholder="오더명 입력">
+		</div>
+
+		<div class="col-md col-lg-auto col-xxl mb-3">
+			<span class="form-label">Red Tag 포함</span>
+			<div class="form-check">
+				<input class="form-check-input" type="checkbox" id="redtagIncludeOrder" value="0">
+				<label class="form-check-label" for="redtagIncludeOrder">Red Tag가 포함된 작업오더</label>
+			</div>
+		</div>
+
+		<div class="col col-md-auto mb-3">
+			<button type="button" class="btn btn-primary">
+				<span class="material-symbols-rounded">
+					search
+				</span> 검색
+			</button>
+		</div>
+	</div>
+</div>
+
+<div class="row" id="issusList">
+	<div class="col-12" id="issueOrderList">
+		
+		<!-- data title -->
+		<div class="title-box">
+			<h4 class="title03">조회결과<small>(전체 1,280건)</small></h4>
+			
+			<div>
+				<div class="page-move">
+					<label for="selectPage03" class="visually-hidden">이동할 페이지</label>
+					<input type="number" id="selectPage03" class="form-control page" placeholder="1">
+					<span class="px-2">/</span>
+					<span class="total">168</span>
+					<button type="button" class="btn btn-secondary">이동</button>
+				</div>
+					
+				<div class="btn-box">
+					<button type="button" class="btn btn-outline-primary">이전</button>
+					<button type="button" class="btn btn-outline-primary">다음</button>
+					<button type="button" class="btn btn-primary btn-file-download">엑셀 다운로드</button>
+				</div>
+			</div>
+		</div>
+
+		<!-- data-grid -->
+		<div class="table-responsive">
+			<table class="table table-sm" aria-label="작업오더">
+				<thead>
+					<tr>
+						<th scope="col" data-field="오더타입">오더타입</th>
+						<th scope="col" data-field="진행상태">진행상태</th>
+						<th scope="col" data-field="작업오더">작업오더</th>
+						<th scope="col" data-field="오더명">오더명</th>
+						<th scope="col" data-field="감독자">감독자</th>
+						<th scope="col" data-field="설계일">대상기기명</th>
+						<th scope="col" data-field="감독부서">감독부서</th>
+						<th scope="col" data-field="운전부서">운전부서</th>
+						<th scope="col" data-field="정비부서">정비부서</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th data-field="오더타입" scope="row">경상오더</th>
+						<td data-field="진행상태">운전부서완료확인중</td>
+						<td data-field="작업오더">2221198</td>
+						<td data-field="오더명">화성남양 1단계 6호기 리포머 교체</td>
+						<td data-field="감독자">한국사</td>
+						<td data-field="설계일">2024-11-29</td>
+						<td data-field="감독부서">신재생설비</td>
+						<td data-field="운전부서">신재생설비</td>
+						<td data-field="정비부서">두산 퓨어셀 화성남양</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<script>
+			$(document).ready(function () {
+				const targetRow = document.querySelector('.table[aria-label="작업오더"] tbody tr');
+				duplicateRowByElement(targetRow, 20);
+				//duplicateRow('.table[aria-label="작업오더"]', 10);
+			});
+		</script>
+
+	</div>
+	<div class="col-xl-8" id="issueWorkOrderList">
+		
+		<!-- data title -->
+		<div class="title-box">
+			<div>
+				<h4 class="title04 my-0">작업오더(Red Tag) 설계 내용</h4>
+			</div>
+		</div>
+
+		<!-- data-grid -->
+		<div class="table-responsive mb-0">
+			<table class="table table-sm" aria-label="작업오더-설계-내용">
+				<thead>
+					<tr>
+						<th scope="col" data-field="대상기기번호">대상기기번호</th>
+						<th scope="col" data-field="대상기기명">대상기기명</th>
+						<th scope="col" data-field="조작요청내용">조작요청내용</th>
+						<th scope="col" data-field="출력자">출력자</th>
+						<th scope="col" data-field="츨력일자">츨력일자(년-월-일 시:분)</th>
+						<th scope="col" data-field="회수자">회수자</th>
+						<th scope="col" data-field="회수일자">회수일자</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th data-field="대상기기번호" scope="row">경상오더</th>
+						<td data-field="대상기기명">2221198</td>
+						<td data-field="조작요청내용">화성남양 1단계 6호기 리포머 교체</td>
+						<td data-field="출력자">홍길동</td>
+						<td data-field="츨력일자">2025-02-10 14:00</td>
+						<td data-field="회수자">한국사</td>
+						<td data-field="회수일자">2024-11-29</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<script>
+			$(document).ready(function () {
+				const targetRow = document.querySelector('.table[aria-label="작업오더-설계-내용"] tbody tr');
+				duplicateByElement(targetRow, 20);
+				//duplicateRow('.table[aria-label="작업오더-설계-내용"]', 4);
+			});
+		</script>
+	</div>
+	<div class="col-xl-4" id="issueWorkOrderOutputList">
+		<!-- data title -->
+		<div class="title-box">
+			<div>
+				<h4 class="title04 my-0">Red Tag 출력 리스트</h4>
+			</div>
+		</div>
+
+		<!-- data-grid -->
+		<div class="table-responsive mb-0">
+			<table class="table table-sm" aria-label="Red-Tag-출력-리스트">
+				<thead>
+					<tr>
+						<th scope="col" data-field="작업오더">작업오더</th>
+						<th scope="col" data-field="Barcode">Barcode</th>
+						<th scope="col" data-field="대상기기번호">대상기기번호</th>
+						<th scope="col" data-field="대상기기명">대상기기명</th>
+						<th scope="col" data-field="조작요청내용">조작요청내용</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th data-field="작업오더" scope="row">2221198</th>
+						<td data-field="Barcode">-<code>--barcode--</code></td>
+						<td data-field="대상기기번호">2221198-15842</td>
+						<td data-field="대상기기명">Gas Turbine Line&VV</td>
+						<td data-field="조작요청내용">동작불량 점검</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<script>
+			$(document).ready(function () {
+				const targetRow = document.querySelector('.table[aria-label="Red-Tag-출력-리스트"] tbody tr');
+				duplicateByElement(targetRow, 20);
+				//duplicateRow('.table[aria-label="Red-Tag-출력-리스트"]', 4);
+			});
+		</script>
+	</div>
+</div>

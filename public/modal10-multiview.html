@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="theme-color" content="#FFFFFF">
+	<title>태안 퍼블리싱본 - iPOS RWD</title>
+
+	<meta name="description" content="서부발전 태안 i-POS 서비스 제공">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- favicon -->
+	<link rel="icon" href="/favicon.ico" sizes="any">
+	<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+
+	<!-- slick & jstree -->
+	<link rel="stylesheet" href="/resources/js/slick-1.8.1/slick/slick.css">
+	<link rel="stylesheet" href="/resources/js/slick-1.8.1/slick/slick-theme.css">
+	<link rel="stylesheet" href="/resources/js/jsTree/css/style.min.css">
+
+	<!-- slick & jsTree & highchart -->
+	<script src="/resources/js/jquery/jquery-3.6.1.js"></script>
+	<script src="/resources/js/slick-1.8.1/slick/slick.min.js"></script>
+
+	<!-- toastchart -->
+	<script src="/resources/js/toastchart/toastui-chart.js"></script>
+
+	<!-- chartjs -->
+	<script src="/resources/js/chart/chart.umd.js"></script>
+	<script src="/resources/js/chart/chartjs-adapter-date-fns.bundle.min.js"></script>
+
+	<!-- jstree -->
+	<!-- <script src="/resources/js/jsTree/js/jstree.min.js"></script>
+	<script src="/resources/js/jsTree/js/jstreeFacility.js"></script> -->
+
+	<!-- ztree -->
+	<link rel="stylesheet" href="/resources/js/ztree/css/metroStyle/metroStyle.css" type="text/css">
+	<script src="/resources/js/ztree/js/jquery.ztree.all.min.js"></script>
+
+	<!-- 부트스트랩 JS -->
+	<script src="/resources/css/bootstrap/dist/js/popper.min.js"></script>
+	<script src="/resources/css/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+	<!-- bPopup -->
+	<script src="/resources/js/jquery/jquery.bpopup.min.js"></script>
+
+	<!-- winbox js -->
+	<link rel="stylesheet" href="/resources/js/winbox/winbox.min.css">
+	<script src="/resources/js/winbox/winbox.min.js"></script>
+
+	<!-- WP stylesheet -->
+	<link rel="stylesheet" href="/resources/css/common.css">
+	<script src="/resources/js/common.js" defer></script>
+	<script src="/resources/js/device-info.js" defer></script>
+
+	<!-- <%-- 변수 선언 --%> -->
+	<script>
+		/* <%-- 999/0 : mobile --%> */
+		//var checkMobile = "${sessionScope.loginInfo.iui_isadmin}";
+		var checkMobile = 0;
+	</script>
+	<!-- 
+	<link rel="stylesheet" href="/unity3DViewer/TemplateData/style.css">
+	<link rel="manifest" href="/unity3DViewer/manifest.webmanifest"> -->
+    <!-- 
+        * js에 사용할 변수 선언
+        * 모바일 체크
+        * 사업소, 호기 정보
+        * IDMS 페이지 <=> 3D MODEL
+	-->
+	<script>
+		// check device
+		var checkDevice = "${device}";
+		var eqOrgNo = "${sessionScope.eqOrgNo}";
+		var hoki = "${sessionScope.hoki}";
+		var _isIdmsPage = false;
+	</script>
+</head>
+<body class="sub">
+<!-- <div class="modal-header">
+	<h3 class="modal-title" id="modalLabel">대시보드</h3>
+	<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal-body p-0"> -->	
+	<script>
+		function showFullScreen(e) {
+			const $targetCell = $(e.target).closest('.cell');
+			if ($targetCell.length) {
+				$targetCell.addClass('fullscreen');
+			}
+		}
+		function closeFullScreen(e) {
+			const $targetCell = $(e.target).closest('.cell');
+			if ($targetCell.length) {
+				$targetCell.removeClass('fullscreen');
+			}
+		}
+
+		/* 연계문서 목록 토글 */
+		function toggleDocuList(e) {
+			const $btn = $(e.target).closest('.show-list');
+			const $cell = $(e.target).closest('.cell');
+			if (!$cell.length) return;
+
+			// 현재 활성화된 탭 내 doc-box 찾기
+			const $activePane = $cell.find('.tab-pane.active');
+			const $activeDocuBox = $cell.find('.doc-box');
+
+			if ($activeDocuBox.length) {
+				const isActive = $activeDocuBox.hasClass('active');
+
+				// 모든 탭의 doc-box 및 버튼 active 제거
+				$cell.find('.doc-box').removeClass('active');
+				$btn.removeClass('active');
+
+				// 현재 탭만 토글
+				if (!isActive) {
+					$activeDocuBox.addClass('active');
+					$btn.addClass('active');
+				}
+			}
+		}
+	</script>
+
+	<div class="idms-box">
+		<div class="grid-2x2">
+			<div class="cell">
+				<div class="cell-control">
+					<span title="전체화면 보기" class="icon fullscr" onclick="showFullScreen(event);"></span>
+					<span title="전체화면 닫기" class="icon fullscr-close" onclick="closeFullScreen(event);"></span>
+				</div>
+				<div class="idms-container ic-01">
+					<!-- tab nav -->
+					<ul class="nav nav-underline">
+						<li class="nav-item" role="presentation">
+							<button class="nav-link active" id="facility-tab01" data-bs-toggle="tab" data-bs-target="#facility-tab01-pane" type="button" role="tab" aria-controls="facility-tab01-pane" aria-selected="true">
+								설비정보 -
+								<span class="text">#9 FWH-8A EXT STM MOV</span>
+							</button>
+						</li>
+					</ul>
+					<!-- tab-content -->
+					<div class="tab-content" id="idmsTabContent01">
+						<div class="tab-pane fade show active" id="facility-tab01-pane" role="tabpanel" aria-labelledby="facility-tab01-pane" tabindex="0">
+							<!-- 설비정보 내용 들어갑니다. -->
+							<div id="_FACILITY_VIEW">
+								<iframe src="/modal01-facility-info.html" style="position: absolute; inset: 0px; width: 100%; height: 100%; border: 0px; display: block;"></iframe>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="cell">
+				<div class="cell-control">
+					<span title="목록 보기" class="icon show-list" onclick="toggleDocuList(event);"></span>
+					<span title="전체화면 보기" class="icon fullscr" onclick="showFullScreen(event);"></span>
+					<span title="전체화면 닫기" class="icon fullscr-close" onclick="closeFullScreen(event);"></span>
+				</div>
+				<!-- 연계문서 -->
+				<div class="doc-box">
+					<div class="doc-header">
+						<strong>연계문서</strong>
+						<span class="icon icon-close" title="닫기" onclick="closeDocuList(event);"></span>
+					</div>
+					<div class="doc-body">
+						<div class="doc-link" onclick="">A101J-3001_GH-186-023-221_COMBINED REHEAT VALVE ASS’Y</div>
+					</div>
+				</div>
+				<div class="idms-container ic-02">
+					<!-- tab nav -->
+					<ul class="nav nav-underline">
+						<li class="nav-item" role="presentation">
+							<button class="nav-link" id="pnid-tab02" data-bs-toggle="tab" data-bs-target="#pnid-tab02-pane" type="button" role="tab" aria-controls="pnid-tab02-pane" aria-selected="true">P&ID</button>
+						</li>
+						<li class="nav-item" role="presentation">
+							<button class="nav-link" id="clogic-tab02" data-bs-toggle="tab" data-bs-target="#clogic-tab02-pane" type="button" role="tab" aria-controls="clogic-tab02-pane" aria-selected="false">제어로직</button>
+						</li>
+						<li class="nav-item" role="presentation">
+							<button class="nav-link active" id="electric-tab02" data-bs-toggle="tab" data-bs-target="#electric-tab02-pane" type="button" role="tab" aria-controls="electric-tab02-pane" aria-selected="false">전기단선도</button>
+						</li>
+						<li class="nav-item" role="presentation">
+							<button class="nav-link" id="panorama-tab02" data-bs-toggle="tab" data-bs-target="#panorama-tab02-pane" type="button" role="tab" aria-controls="panorama-tab02-pane" aria-selected="false">파노라마</button>
+						</li>
+					</ul>
+					<!-- tab-content -->
+					<div class="tab-content" id="idmsTabContent02">
+						<div class="tab-pane fade" id="pnid-tab02-pane" role="tabpanel" aria-labelledby="pnid-tab02" tabindex="0">
+							<!-- P&ID  뷰어 들어갑니다.-->
+							<iframe src="/resources/js/svgviewer/pnid/index.html" scrolling="auto" data-mode="fill" style="position: absolute; inset: 0px; width: 100%; height: 100%; border: 0px; display: block;"></iframe>
+						</div>
+						<div class="tab-pane fade" id="clogic-tab02-pane" role="tabpanel" aria-labelledby="clogic-tab02" tabindex="0">
+							제어로직
+						</div>
+						<div class="tab-pane fade show active" id="electric-tab02-pane" role="tabpanel" aria-labelledby="electric-tab02" tabindex="0">
+							<iframe src="/resources/js/svgviewer/dataparc/index.html" scrolling="auto" data-mode="fill" style="position: absolute; inset: 0px; width: 100%; height: 100%; border: 0px; display: block;"></iframe>
+						</div>
+						<div class="tab-pane fade" id="panorama-tab02-pane" role="tabpanel" aria-labelledby="panorama-tab02" tabindex="0">
+							파노라마
+						</div>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="cell">
+				<div class="cell-control">
+					<span title="목록 보기" class="icon show-list" onclick="toggleDocuList(event);"></span>
+					<span title="전체화면 보기" class="icon fullscr" onclick="showFullScreen(event);"></span>
+					<span title="전체화면 닫기" class="icon fullscr-close" onclick="closeFullScreen(event);"></span>
+				</div>
+				<!-- 연계문서 -->
+				<div class="doc-box">
+					<div class="doc-header">
+						<strong>연계문서</strong>
+						<span class="icon icon-close" title="닫기" onclick="closeDocuList(event);"></span>
+					</div>
+					<div class="doc-body">
+						<div class="doc-link" onclick="">A101J-3001_GH-186-023-221_COMBINED REHEAT VALVE ASS’Y</div>
+					</div>
+				</div>
+				<div class="idms-container ic-03">
+					<!-- tab nav -->
+					<ul class="nav nav-underline">
+						<li class="nav-item" role="presentation">
+							<button class="nav-link" id="pnid-tab03" data-bs-toggle="tab" data-bs-target="#pnid-tab03-pane" type="button" role="tab" aria-controls="pnid-tab03-pane" aria-selected="true">P&ID</button>
+						</li>
+						<li class="nav-item" role="presentation">
+							<button class="nav-link" id="clogic-tab03" data-bs-toggle="tab" data-bs-target="#clogic-tab03-pane" type="button" role="tab" aria-controls="clogic-tab03-pane" aria-selected="false">제어로직</button>
+						</li>
+						<li class="nav-item" role="presentation">
+							<button class="nav-link" id="electric-tab03" data-bs-toggle="tab" data-bs-target="#electric-tab03-pane" type="button" role="tab" aria-controls="electric-tab03-pane" aria-selected="false">전기단선도</button>
+						</li>
+						<li class="nav-item" role="presentation">
+							<button class="nav-link active" id="panorama-tab03" data-bs-toggle="tab" data-bs-target="#panorama-tab03-pane" type="button" role="tab" aria-controls="panorama-tab03-pane" aria-selected="false">파노라마</button>
+						</li>
+					</ul>
+					<!-- tab-content -->
+					<div class="tab-content" id="idmsTabContent03">
+						<div class="tab-pane fade" id="pnid-tab03-pane" role="tabpanel" aria-labelledby="pnid-tab03" tabindex="0">
+							<!-- P&ID -->
+							<iframe src="/resources/js/svgviewer/pnid/index.html" scrolling="auto" data-mode="fill" style="position: absolute; inset: 0px; width: 100%; height: 100%; border: 0px; display: block;"></iframe>
+						</div>
+						<div class="tab-pane fade" id="clogic-tab03-pane" role="tabpanel" aria-labelledby="clogic-tab03" tabindex="0">
+							<!-- 제어로직 -->
+						</div>
+						<div class="tab-pane fade" id="electric-tab03-pane" role="tabpanel" aria-labelledby="electric-tab03" tabindex="0">
+							<!-- 전기단선도 -->
+							<iframe src="/resources/js/svgviewer/dataparc/index.html" scrolling="auto" data-mode="fill" style="position: absolute; inset: 0px; width: 100%; height: 100%; border: 0px; display: block;"></iframe>
+						</div>
+						<div class="tab-pane fade show active" id="panorama-tab03-pane" role="tabpanel" aria-labelledby="panorama-tab03" tabindex="0">
+							<!-- 파노라마 -->
+							<iframe width="100%" height="100%" src="modal13-panorama.html" style="position: absolute; inset: 0px; width: 100%; height: 100%; border: 0px; display: block;"></iframe>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="cell">
+				<div class="cell-control">
+					<span title="전체화면 보기" class="icon fullscr" onclick="showFullScreen(event);"></span>
+					<span title="전체화면 닫기" class="icon fullscr-close" onclick="closeFullScreen(event);"></span>
+				</div>
+				<div class="unity-box">
+					유니티영역
+				</div>
+			</div>
+		</div>
+		
+	</div>
+
+<!-- </div> -->
+<!-- <div class="modal-footer">
+	<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+	<button type="button" class="btn btn-primary">저장</button>
+</div> -->
+
+<!-- slick -->
+<!-- <script src="/resources/js/dashboard/slick-custom.js"></script> -->
+
+<!-- 하이차트 불러옴 -->
+<!-- <script src="/resources/js/dashboard/high-chart-custom.js"></script> -->
+</body>
+</html>

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="theme-color" content="#FFFFFF">
+	<title>태안 퍼블리싱본 - iPOS RWD</title>
+
+	<meta name="description" content="서부발전 태안 i-POS 서비스 제공">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- favicon -->
+	<link rel="icon" href="/favicon.ico" sizes="any">
+	<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+
+	<!-- slick & jstree -->
+	<link rel="stylesheet" href="/resources/js/slick-1.8.1/slick/slick.css">
+	<link rel="stylesheet" href="/resources/js/slick-1.8.1/slick/slick-theme.css">
+	<link rel="stylesheet" href="/resources/js/jsTree/css/style.min.css">
+
+	<!-- slick & jsTree & highchart -->
+	<script src="/resources/js/jquery/jquery-3.6.1.js"></script>
+	<script src="/resources/js/slick-1.8.1/slick/slick.min.js"></script>
+
+	<!-- toastchart -->
+	<script src="/resources/js/toastchart/toastui-chart.js"></script>
+
+	<!-- chartjs -->
+	<script src="/resources/js/chart/chart.umd.js"></script>
+	<script src="/resources/js/chart/chartjs-adapter-date-fns.bundle.min.js"></script>
+
+	<!-- jstree -->
+	<!-- <script src="/resources/js/jsTree/js/jstree.min.js"></script>
+	<script src="/resources/js/jsTree/js/jstreeFacility.js"></script> -->
+
+	<!-- ztree -->
+	<link rel="stylesheet" href="/resources/js/ztree/css/metroStyle/metroStyle.css" type="text/css">
+	<script src="/resources/js/ztree/js/jquery.ztree.all.min.js"></script>
+
+	<!-- 부트스트랩 JS -->
+	<script src="/resources/css/bootstrap/dist/js/popper.min.js"></script>
+	<script src="/resources/css/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+	<!-- bPopup -->
+	<script src="/resources/js/jquery/jquery.bpopup.min.js"></script>
+
+	<!-- winbox js -->
+	<link rel="stylesheet" href="/resources/js/winbox/winbox.min.css">
+	<script src="/resources/js/winbox/winbox.min.js"></script>
+
+	<!-- WP stylesheet -->
+	<link rel="stylesheet" href="/resources/css/common.css">
+	<script src="/resources/js/common.js" defer></script>
+	<script src="/resources/js/device-info.js" defer></script>
+
+	<!-- <%-- 변수 선언 --%> -->
+	<script>
+		/* <%-- 999/0 : mobile --%> */
+		//var checkMobile = "${sessionScope.loginInfo.iui_isadmin}";
+		var checkMobile = 0;
+	</script>
+	<!-- 
+	<link rel="stylesheet" href="/unity3DViewer/TemplateData/style.css">
+	<link rel="manifest" href="/unity3DViewer/manifest.webmanifest"> -->
+</head>
+<body class="sub">
+<div class="container-service">
+
+	<!-- tab-menu -->
+	<ul class="nav nav-tabs" id="serviceTab" role="tablist">
+		<li class="nav-item" role="presentation">
+			<button class="nav-link active" id="feedbackTab" data-bs-toggle="tab" data-bs-target="#feedbackTabPane" type="button" role="tab" aria-controls="feedbackTabPane" aria-selected="true" data-page="./modal15-tab01.html">
+				개선사항
+                <span class="icon-new" id="_NOTI_COUNT">1</span>
+			</button>
+		</li>
+		<li class="nav-item" role="presentation">
+			<button class="nav-link" id="settingTab" data-bs-toggle="tab" data-bs-target="#noticeTabPane" type="button" role="tab" aria-controls="noticeTabPane" aria-selected="false" data-page="./modal15-tab02.html">
+				공지사항
+                <span class="icon-new" id="_NOTI_COUNT">2</span>
+			</button>
+		</li>
+		<li class="nav-item" role="presentation">
+			<button class="nav-link" id="settingTab" data-bs-toggle="tab" data-bs-target="#settingTabPane" type="button" role="tab" aria-controls="settingTabPane" aria-selected="false" data-page="./modal15-tab03.html">
+				서비스 설정
+			</button>
+		</li>
+	</ul>
+
+	<!-- tab content -->
+	<div class="tab-content" id="serviceTabContent">
+		<!-- 개선사항 -->
+		<div class="tab-pane fade show active" id="feedbackTabPane" role="tabpanel" aria-labelledby="feedbackTab" tabindex="0"></div>
+
+		<!--공지사항 -->
+		<div class="tab-pane fade" id="noticeTabPane" role="tabpanel" aria-labelledby="settingTab" tabindex="0"></div>
+
+		<!--서비스 설정 -->
+		<div class="tab-pane fade" id="settingTabPane" role="tabpanel" aria-labelledby="settingTab" tabindex="0"></div>
+	</div>
+
+</div>
+
+<script>
+$(document).ready(function() {
+	$.ajax({
+		method: 'GET',
+		url: 'modal15-tab01.html',
+		async: false,
+		dataType: 'html'
+	}).done(function(html) {
+		$('#feedbackTabPane').append(html);
+	});
+	
+	$.ajax({
+		method: 'GET',
+		url: 'modal15-tab02.html',
+		async: false,
+		dataType: 'html'
+	}).done(function(html) {
+		$('#noticeTabPane').append(html);
+	});
+	
+	$.ajax({
+		method: 'GET',
+		url: 'modal15-tab03.html',
+		async: false,
+		dataType: 'html'
+	}).done(function(html) {
+		$('#settingTabPane').append(html);
+	});
+});
+</script>
+
+</body>
+</html>

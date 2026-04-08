@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="theme-color" content="#FFFFFF">
+	<title>태안 퍼블리싱본 - iPOS RWD</title>
+
+	<meta name="description" content="서부발전 태안 i-POS 서비스 제공">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- favicon -->
+	<link rel="icon" href="/favicon.ico" sizes="any">
+	<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+
+	<!-- slick & jstree -->
+	<link rel="stylesheet" href="/resources/js/slick-1.8.1/slick/slick.css">
+	<link rel="stylesheet" href="/resources/js/slick-1.8.1/slick/slick-theme.css">
+	<link rel="stylesheet" href="/resources/js/jsTree/css/style.min.css">
+
+	<!-- slick & jsTree & highchart -->
+	<script src="/resources/js/jquery/jquery-3.6.1.js"></script>
+	<script src="/resources/js/slick-1.8.1/slick/slick.min.js"></script>
+
+	<!-- toastchart -->
+	<script src="/resources/js/toastchart/toastui-chart.js"></script>
+
+	<!-- chartjs -->
+	<script src="/resources/js/chart/chart.umd.js"></script>
+	<script src="/resources/js/chart/chartjs-adapter-date-fns.bundle.min.js"></script>
+
+	<!-- jstree -->
+	<!-- <script src="/resources/js/jsTree/js/jstree.min.js"></script> -->
+	<script src="/resources/js/jsTree/js/jstreeFacility.js"></script>
+
+	<!-- 부트스트랩 JS -->
+	<script src="/resources/css/bootstrap/dist/js/popper.min.js"></script>
+	<script src="/resources/css/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+	<!-- bPopup -->
+	<script src="/resources/js/jquery/jquery.bpopup.min.js"></script>
+
+	<!-- winbox js -->
+	<link rel="stylesheet" href="/resources/js/winbox/winbox.min.css">
+	<script src="/resources/js/winbox/winbox.min.js"></script>
+
+	<!-- WP stylesheet -->
+	<link rel="stylesheet" href="/resources/css/common.css">
+	<script src="/resources/js/common.js" defer></script>
+	<script src="/resources/js/device-info.js" defer></script>
+
+	<!-- <%-- 변수 선언 --%> -->
+	<script>
+		/* <%-- 999/0 : mobile --%> */
+		//var checkMobile = "${sessionScope.loginInfo.iui_isadmin}";
+		var checkMobile = 0;
+	</script>
+	<!-- 
+	<link rel="stylesheet" href="/unity3DViewer/TemplateData/style.css">
+	<link rel="manifest" href="/unity3DViewer/manifest.webmanifest"> -->
+</head>
+<body class="sub">
+<!-- 설비정보 영역으로 설비정보 팝업 및 3D 모델 메뉴 클릭시 오픈되는 팝업 -->
+
+<!-- 우측 콘텐츠 -->
+<div class="container-facility">
+
+	<!-- 제목영역 -->
+	<!-- <div class="title-box">
+		<h3 class="title02">Gas Turbine</h3>
+		<button type="button" class="btn btn-primary move-to-3D" id="moveTo3D" onclick="modelLoadToUnity('12298270');">
+			<span class="material-symbols-rounded">
+				view_in_ar
+			</span>
+			<span>이동</span>
+		</button>
+	</div> -->
+
+	<!-- 데이터 테이블 -->
+		
+	<ul class="nav nav-tabs" id="facTab" role="tablist">
+		<li class="nav-item" role="presentation">
+			<button class="nav-link active" id="modelTab01" onclick="addContent(1, 'modelTab01-pane');" data-bs-toggle="tab" data-bs-target="#modelTab01-pane" type="button" role="tab" aria-controls="modelTab01-pane" aria-selected="true">설비정보</button>
+		</li>
+		<li class="nav-item" role="presentation">
+			<button class="nav-link" id="modelTab02" onclick="addContent(2, 'modelTab02-pane');" data-bs-toggle="tab" data-bs-target="#modelTab02-pane" type="button" role="tab" aria-controls="modelTab02-pane" aria-selected="false">정비이력</button>
+		</li>
+		<!-- <li class="nav-item" role="presentation">
+			<button class="nav-link disabled" id="modelTab03" onclick="addContent(3, 'modelTab03-pane');" data-bs-toggle="tab" data-bs-target="#modelTab03-pane" type="button" role="tab" aria-controls="modelTab03-pane" aria-selected="false">고장이력</button>
+		</li> -->
+		<li class="nav-item" role="presentation">
+			<button class="nav-link" id="modelTab04" onclick="addContent(4, 'modelTab04-pane');" data-bs-toggle="tab" data-bs-target="#modelTab04-pane" type="button" role="tab" aria-controls="modelTab04-pane" aria-selected="false">자재정보</button>
+		</li>
+		<li class="nav-item" role="presentation">
+			<button class="nav-link" id="modelTab05" onclick="addContent(5, 'modelTab05-pane');" data-bs-toggle="tab" data-bs-target="#modelTab05-pane" type="button" role="tab" aria-controls="modelTab05-pane" aria-selected="false">TM 이력</button>
+		</li>
+		<li class="nav-item" role="presentation">
+			<button class="nav-link" id="modelTab06" onclick="addContent(6, 'modelTab06-pane');" data-bs-toggle="tab" data-bs-target="#modelTab06-pane" type="button" role="tab" aria-controls="modelTab06-pane" aria-selected="false">운전정보</button>
+		</li>
+	</ul>
+
+	<!-- 탭 콘텐츠 -->
+	<div class="tab-content" id="facTabContent">
+			<!-- 
+		<div class="alert alert-primary my-4">
+			<p class="mb-0 text-center text-primary">좌측에서 설비명을 선택해 주세요.</p>
+		</div> -->
+		<!-- 설비정보 -->
+		<div class="tab-pane fade show active" id="modelTab01-pane" role="tabpanel" aria-labelledby="modelTab01" tabindex="0"></div>
+		<!-- 정비이력 -->
+		<div class="tab-pane fade" id="modelTab02-pane" role="tabpanel" aria-labelledby="modelTab02" tabindex="0"></div>
+		<!-- 고장이력 -->
+		<!-- <div class="tab-pane fade" id="modelTab03-pane" role="tabpanel" aria-labelledby="modelTab03" tabindex="0"></div> -->
+		<!-- 자재정보 -->
+		<div class="tab-pane fade" id="modelTab04-pane" role="tabpanel" aria-labelledby="modelTab04" tabindex="0"></div>
+		<!-- TM 실적 -->
+		<div class="tab-pane fade" id="modelTab05-pane" role="tabpanel" aria-labelledby="modelTab05" tabindex="0"></div>
+		<!-- 운전정보 -->
+		<div class="tab-pane fade" id="modelTab06-pane" role="tabpanel" aria-labelledby="modelTab06" tabindex="0"></div>			
+	</div>
+
+</div>
+
+<script>
+$(document).ready(function() {
+	//3D 모델에서 설비정보 클릭시, 이동버튼 가림처리
+	$("#moveTo3D").hide();
+
+	if( $("#externalPopup.facility").length ) {
+		$("#moveTo3D").show();
+
+		// 설비정보팝업 > 3D모델 이동 버튼 클릭시 콘텐츠 제거 후, 모달창 초기화
+		$("#moveTo3D").click(function() {
+			// 모달이 닫힐 때 초기화 작업 수행
+			//$("#externalPopup #modalTitle").empty();
+			//$("#externalPopup #modalBodyContent").empty();
+			
+			$("#externalPopup").bPopup().close();
+			$("#externalPopup.facility.show").removeClass().addClass('modal fade');
+			
+			closeOtherPopups();
+		});
+
+	}
+});
+
+$(document).ready(function() {
+	$.ajax({
+		method: 'GET',
+		url: 'modal01-facility-info-tab01.html',
+		async: false,
+		dataType: 'html'
+	}).done(function(html) {
+		$('#modelTab01-pane').append(html);
+	});
+});
+
+function addContent(type, tabId) {
+	$("#modelTab01-pane, #modelTab02-pane, #modelTab03-pane, #modelTab04-pane, #modelTab05-pane, #modelTab06-pane").empty();
+
+	var setUrl = "";
+	switch(type) {
+		case 1:
+			setUrl = "modal01-facility-info-tab01.html";
+			break;
+		case 2:
+			setUrl = "modal01-facility-info-tab02.html";
+			break;
+		case 3:
+			setUrl = "modal01-facility-info-tab03.html";
+			break;
+		case 4:
+			setUrl = "modal01-facility-info-tab04.html";
+			break;
+		case 5:
+			setUrl = "modal01-facility-info-tab05.html";
+			break;
+		case 6:
+			setUrl = "modal01-facility-info-tab06.html";
+			break;
+	}
+
+	$.ajax({
+		method: 'GET',
+		url: setUrl,
+		async: false,
+		data: {
+
+		},
+		dataType: 'html',
+		success: function(data) {
+			if( data != "" ) {
+				$('#' + tabId).html(data);
+			}
+		},
+		error: function(request, status, error) {
+			console.log("code: " + request.status + "\n message: " + request.responseText + "\n error: " + error);
+		}
+	});
+}
+
+
+</script>
+
+</body>
+</html>

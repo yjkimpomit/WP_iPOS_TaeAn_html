@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="theme-color" content="#FFFFFF">
+	<title>태안 퍼블리싱본 - iPOS RWD</title>
+
+	<meta name="description" content="서부발전 태안 i-POS 서비스 제공">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- favicon -->
+	<link rel="icon" href="/favicon.ico" sizes="any">
+	<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+
+	<!-- slick & jstree -->
+	<link rel="stylesheet" href="/resources/js/slick-1.8.1/slick/slick.css">
+	<link rel="stylesheet" href="/resources/js/slick-1.8.1/slick/slick-theme.css">
+	<link rel="stylesheet" href="/resources/js/jsTree/css/style.min.css">
+
+	<!-- slick & jsTree & highchart -->
+	<script src="/resources/js/jquery/jquery-3.6.1.js"></script>
+	<script src="/resources/js/slick-1.8.1/slick/slick.min.js"></script>
+
+	<!-- toastchart -->
+	<script src="/resources/js/toastchart/toastui-chart.js"></script>
+
+	<!-- chartjs -->
+	<script src="/resources/js/chart/chart.umd.js"></script>
+	<script src="/resources/js/chart/chartjs-adapter-date-fns.bundle.min.js"></script>
+
+	<!-- jstree -->
+	<!-- <script src="/resources/js/jsTree/js/jstree.min.js"></script>
+	<script src="/resources/js/jsTree/js/jstreeFacility.js"></script> -->
+
+	<!-- ztree -->
+	<link rel="stylesheet" href="/resources/js/ztree/css/metroStyle/metroStyle.css" type="text/css">
+	<script src="/resources/js/ztree/js/jquery.ztree.all.min.js"></script>
+
+	<!-- 부트스트랩 JS -->
+	<script src="/resources/css/bootstrap/dist/js/popper.min.js"></script>
+	<script src="/resources/css/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+	<!-- bPopup -->
+	<script src="/resources/js/jquery/jquery.bpopup.min.js"></script>
+
+	<!-- winbox js -->
+	<link rel="stylesheet" href="/resources/js/winbox/winbox.min.css">
+	<script src="/resources/js/winbox/winbox.min.js"></script>
+
+	<!-- WP stylesheet -->
+	<link rel="stylesheet" href="/resources/css/common.css">
+	<script src="/resources/js/common.js" defer></script>
+	<script src="/resources/js/device-info.js" defer></script>
+
+	<!-- <%-- 변수 선언 --%> -->
+	<script>
+		/* <%-- 999/0 : mobile --%> */
+		//var checkMobile = "${sessionScope.loginInfo.iui_isadmin}";
+		var checkMobile = 0;
+	</script>
+	<!-- 
+	<link rel="stylesheet" href="/unity3DViewer/TemplateData/style.css">
+	<link rel="manifest" href="/unity3DViewer/manifest.webmanifest"> -->
+</head>
+<body class="sub">
+<div class="facility-box">
+	
+	<div class="tree-search">
+		<!-- 검색영역 -->		
+		<div class="search-input-box">
+			<label class="visually-hidden" for="facSelect">검색옵션 선택</label>
+			<select class="form-select" id="facSelect">
+				<option value="1">설비</option>
+				<option value="2">부품</option>
+			</select>
+			<label for="search-input" class="visually-hidden">설비명 입력</label>
+			<input class="form-control" list="datalistOptions" id="search-input" placeholder="설비명 입력">
+			<button type="button" class="btn btn-primary" title="설비 검색">
+				<img src="/resources/images/icons/icon-search-white.svg" alt="검색">
+			</button>
+		</div>
+		<datalist id="datalistOptions">
+			<option value="Gas Turbine">
+			<option value="Steam Turbine">
+			<option value="HRSG 1">
+			<option value="ACC">
+		</datalist>
+	</div>
+
+	<!-- 트리메뉴 -->
+	<div class="jstree-box">
+		<div id="treeDemo" class="ztree"></div>
+		<!-- <div id="facTree"></div> -->
+	</div>
+
+	<!-- 우측 콘텐츠 -->
+	<!-- <div class="contents-panel" id="contentsPanel"> -->
+		<!-- 설비탭 영역 로드 : modal01-facility-info.html -->
+
+	<!-- </div> -->
+</div>
+
+<!-- ztree -->
+<script>
+$(document).ready(function() {
+	$.fn.zTree.init($("#treeDemo"), setting, zNodes);
+});
+</script>
+<script src="/resources/js/ztree-demo.js"></script>
+
+<!-- jstree 비활성
+<script>
+$(document).ready(function() {
+
+	$.fn.zTree.init($("#treeDemo"), setting, zNodes);
+
+	$('#facTree').on('click', '.jstree-anchor', function(e) {
+
+		const treeInstance = $('#facTree').jstree(true);
+		const nodeId = $(this).closest('li').attr('id');
+		const node = treeInstance.get_node(nodeId);
+
+		if (treeInstance.is_leaf(node)) {
+			console.log('Leaf node clicked:', node.text); 
+		} else {
+			console.log('Non-leaf node clicked:', node.text);
+		}
+	});
+
+
+});
+</script>
+<script src="/resources/js/facility/sample-treeMenu.js"></script> -->
+
+</body>
+</html>

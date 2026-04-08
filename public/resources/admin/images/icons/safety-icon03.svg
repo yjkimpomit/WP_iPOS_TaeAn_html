@@ -1,0 +1,24 @@
+<svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_10368_7406)">
+<circle cx="18" cy="18" r="18" fill="#D9D9D9"/>
+<mask id="mask0_10368_7406" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="36" height="36">
+<circle cx="18" cy="18" r="18" fill="#D9D9D9"/>
+</mask>
+<g mask="url(#mask0_10368_7406)">
+<path d="M6 3H30V36H6V3Z" fill="#9FA6B3"/>
+<path d="M18 3H30V36H18V3Z" fill="#7C99CA"/>
+<path d="M27.75 36H8.25V5.25H27.75V36Z" fill="#5C7099"/>
+<path d="M27.75 36H18V5.25H27.75V36Z" fill="#405580"/>
+<path d="M23.25 21.75H27.9961V23.332H23.25V21.75Z" fill="#FFCC66"/>
+<path d="M18 10.5C15.516 10.5 13.5 12.516 13.5 15C13.5 17.484 15.516 19.5 18 19.5C20.484 19.5 22.5 17.484 22.5 15C22.5 12.516 20.484 10.5 18 10.5Z" fill="#FF8066"/>
+<path d="M22.5 15C22.5 17.484 20.484 19.5 18 19.5V10.5C20.484 10.5 22.5 12.516 22.5 15Z" fill="#E63950"/>
+<path d="M15.75 14.25H20.25V15.75H15.75V14.25Z" fill="#E6F2FF"/>
+<path d="M18 14.25H20.25V15.75H18V14.25Z" fill="#CCE6FF"/>
+</g>
+</g>
+<defs>
+<clipPath id="clip0_10368_7406">
+<rect width="36" height="36" fill="white"/>
+</clipPath>
+</defs>
+</svg>

@@ -1,0 +1,524 @@
+@charset "UTF-8";
+/*
+* view 단독
+* 사용페이지 - 파노라마 사용자뷰 모든 페이지에서 사용중
+*/
+
+html:has(>body.pano-view),
+body.pano-view {
+	position: relative;
+}
+
+/*--------------------------파노라마 라이브러리 기본 끝------------------------*/
+#panoroot{
+	border:0;
+	padding:0;
+	margin:0;
+	clear:both;
+}
+	
+#panorama1 {
+	clear:both;
+	border:0;
+	padding:0;
+	margin:0;
+	width: 100%;
+	height: 100%;
+	float:left;
+}
+#panorama2 {
+	border:0;
+	padding:0;
+	margin:0;
+	float:left;
+	display:none;
+}
+#panorama3 {
+	clear:both;	
+	border:0;
+	padding:0;
+	margin:0;
+	float:left;
+	display:none;
+}
+#panorama4 {
+	border:0;
+	padding:0;
+	margin:0;
+	float:left;
+}
+#panorama5 {
+	float:left;
+	display:none;
+}
+#panorama6 {
+	float:left;
+	display:none;
+}
+#panorama7 {
+	clear:both;
+	float:left;
+	display:none;
+}
+#panorama8 {
+	float:left;
+	display:none;
+}
+#panorama9 {
+	float:left;
+	display:none;
+}
+.borderDiv {
+	width: 1920px;
+	height: 684px;
+	padding:0;
+	margin:0;
+	overflow: hidden;
+	left: 0px;
+	position: relative;
+}
+.mainContainer {
+	padding:0;
+	margin:0;
+	/*width: 3000px;
+	height: 2000px;*/
+	background-color: #fff;
+	position: relative;
+}
+
+/* KYJ 2023-06-08 */
+#containment-wrapper {
+	/* background-color: red; */
+    position: relative;
+}
+#containment-wrapper > .mainContainer {
+	/* background-color: rgba(255, 255, 0, 0.5) !important; */
+	
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#containment-wrapper > .mainContainer > svg {
+	/* background-color: rgba(0, 255, 255, 0.5) !important; */
+    align-self: center;
+    justify-self: center;
+    
+    position: absolute !important;
+    
+    min-width: 100%;
+    max-width: 100%; 
+    max-height: 100%;
+}
+#containment-wrapper > .mainContainer > svg > g {
+    align-self: center;
+    justify-self: center;
+}
+
+/* room-num */
+.room-num {
+	display: none;
+	
+    position: absolute;
+    top: .5rem;
+    left: .5rem;
+    
+    background: #595c6c;
+    border-radius: .25rem;
+    color: #fff;
+    z-index: 999;
+    
+    font-family: sans-serif;
+    font-size: 1rem;
+    padding: .125rem .25rem;
+}
+
+.mouseDown{
+	cursor:progress  ;
+
+}
+.year_ly{
+	position:relative;
+	float:left;
+	width:960px;
+	height:70px;
+	/*background:url('/img/time.jpg');*/
+}
+.year_txt{position:relative;top:0px;margin-top:0px;}
+.year_txt span{font-size:12px;}
+
+.ui-state-highlight {background:#000000cc;}
+.c_both{clear:both;}
+.f_left{float:left;}
+
+/*--------------------------기본 제공 셋팅 끝------------------------*/
+
+/*타임랩스*/
+
+#pnlm {position: relative;}
+#pnlm .pn_nav {height: 78px;overflow-x: scroll;overflow-y: hidden;}
+#pnlm .pn_nav > ul.box {margin: 0;padding: 10px 0 0 0;width:max-content;}
+#pnlm .pn_nav > ul.box > li {float:left;padding: 5px 10px 30px;background:#000;width:200px;position: relative;text-align: center;box-sizing: border-box;}
+#pnlm .pn_nav > ul.box > li:last-child::after {display: none;}
+#pnlm .pn_nav > ul.box > li::after {display: inline-block;content: "";width:1px;height: 30px;background:#5C5C5C;position: absolute;top:50%;right:0;transform: translateY(-50%);}
+#pnlm .pn_nav > ul.box > li > ul {display: flex;width: 100%;position: absolute;bottom:0;left:0;padding:0;}
+#pnlm .pn_nav > ul.box > li > ul > li {position: relative;;width:3%;box-sizing: border-box;text-align: center;font-size: 5px;}
+#pnlm .pn_nav > ul.box > li > ul > li > span {margin-top: 5px;position: absolute;left:-4px;top:-27px;cursor: pointer;z-index: 1}
+#pnlm .pn_nav > ul.box > li > ul > li > span:hover {z-index: 10000}
+.top_menu{width:18px;height:16px;background-color:#a1c74fde;transition:all 0.3s;z-index:1;}
+.tm_focus {background-color:#f1c31c;}
+.top_menu:focus {background-color:#f1c31c;}
+.top_menu::after {text-align: center;content: '';position: absolute;width: 0;height: 0;border-width: 9px;border-style: solid;border-color: #a1c74fe3 transparent transparent transparent;bottom: -18px;left: -9px;margin: 0 50%;transition:all 0.3s;}
+.top_menu:hover {background-color:#f1c31c;color:#000;font-weight: 700;z-index:10000;}
+.top_menu:hover::after {border-color: #f1c31c transparent transparent transparent;}
+
+/*파노라마 분활 위치선택 css*/
+.box_top{border:2px solid #fff;width:100%;height:20px;position:absolute;top:0px;left:0px;z-index:1000;}
+.box_left{border:2px solid #fff;width:20px;height:auto;top:0px;left:0px;right:0px;bottom:0px;position:absolute;margin:22px 0px 22px 0px;z-index:1000;}
+.box_center{border:2px solid #fff;width:calc(100% - 46px);height:auto;top:0px;left:22px;right:0px;bottom:0px;position:absolute;margin:22px 0px 22px 0px;z-index:1000;}	
+.box_right{border:2px solid #fff;width:20px;height:auto;position:absolute;left:auto;top:0px;bottom:0px;right:0px;margin:22px 0px 22px 0px;z-index:1000;}
+.box_bottom{border:2px solid #fff;width:100%;height:20px;position:absolute;bottom:0px;left:0px;z-index:1000;}
+.box_x{position: absolute;width: 36px;height: 36px;right: 10px;top: 12px;line-height: 36px;background: #00000085;z-index: 10000;border-radius: 50px;}
+.box_x > a {line-height:25px;padding: 8px 13px;}
+
+
+
+/*미니맵 팝업창
+.mini-map {
+	position: absolute; 
+	right: 20px; 
+	bottom: 20px;
+	
+	width: 200px; 
+	height: 134px; 
+	
+	border: none; 
+	background-color: var(--bs-gray-900);
+	border-bottom-left-radius: .25rem;
+	border-bottom-right-radius: .25rem;
+}
+*/
+
+.pn_bom {position: fixed;bottom: 10px;right:10px;}
+.pn_bom > div {position: relative;}
+.pn_bom .min_on {display: none;}
+.pn_bom > div .min {position: absolute;top:10px;right:10px;text-align: center;}
+.pn_bom > div .min > li:first-child {cursor: pointer;}
+.pn_bom .min_meun {position: absolute;top:10px;left:10px;display: flex;background:rgba(51, 51, 51, 0.654);padding: 5px 10px;}
+.pn_bom .min_meun > li {position: relative;padding-right:7px;}
+.pn_bom .min_meun > li > img {margin-left:11px;margin-bottom: 3px;}
+.pn_bom .min_meun > li:last-child {padding-right: 0;}
+.min_off {display:none;position: absolute;bottom: 15px;right: 30px;margin: 0 0px 5px 0;padding:10px;background:rgba(51, 51, 51, 0.654);border-radius:50px;transition: all 0.2s;cursor: pointer;}
+.min_off:hover {background:#333}
+.pn_bom {position:absolute;right:40px;bottom:30px;width:200px;height:134px;border:2px solid white;background-color:white;user-select: auto;
+    min-width: 170px;
+    min-height: 120px;
+    box-sizing: border-box;
+    flex-shrink: 0;
+    border: 10px solid rgb(34, 34, 34);}
+  
+/* 
+#minisvg {
+	width: 100%;height:100%
+}
+*/
+#minibox {
+	position:absolute;
+	top:0px;
+	width:161px;
+	height:78px;
+	background-color:#000;
+	opacity:0.2;
+}
+
+
+
+
+/*분활 지정 날짜*/
+/* 2023-02-27 이현석 분할날짜 불필요 */
+.clspanorama{ display:none !important; position:absolute;left:50%;bottom:20px;height:25px;background-color:#000000a3;padding:7px 16px;border-radius:5px } 
+
+/* 20200819 수정내용-------------------------------------------------- */
+
+/*hover event*/
+g.layer > a rect,
+g.layer > a ellipse,
+g.layer > a circle,
+g.layer > a polygon,
+g.layer > a polyline,
+g.layer > a path {
+	stroke-width: .25rem;
+}
+g.layer > a:hover path,
+rect:hover,
+ellipse:hover {
+	fill: #0040ff;
+	fill-opacity: 0.5;
+	mix-blend-mode: multiply;
+}
+
+path:hover {
+	fill: #0040ff;
+	mix-blend-mode: multiply;
+}
+
+/*
+div.pnlm-tooltip span:hover {
+	background-color: #0040ff;
+	opacity:0.5;
+	mix-blend-mode: multiply;
+}
+*/
+
+/* 2023-02-22 이현석 미니맵 수정 */
+.miniviewoff {display:none!important;}
+/* KYJ 2023-10-19
+.mini-map .form-control {
+	position: absolute;
+    top: -40px;
+    left:0;
+    
+    border-radius: 0;
+    
+    padding: 0px 2rem 0px 1rem;
+    outline: 0;
+    background: var(--bs-gray-900) url(/images/pano/common/icon_down01.png) no-repeat right 16px center;
+    border: solid 1px var(--bs-gray-900);
+    
+    color: #fff;
+    
+    font-weight: 700;
+    width: 100%;
+    height: 40px;
+    
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+    
+	border-top-left-radius: .25rem;
+	border-top-right-radius: .25rem;
+	
+    cursor: pointer;
+}
+
+.mini-map .map-box {
+	border-top: solid 1px var(--bs-gray-700);
+	position: relative;
+	overflow: hidden;
+}
+*/
+
+/*23/0411*/
+.navi_btn {
+	position: absolute;
+    right: 20px;
+    top: 75px;
+    height: 38px;
+    background-color: #000000a3;
+    padding: 8px 15px;
+    border-radius: 5px;
+}
+#div_btn {position: absolute;top: 75px;right: 20px;
+}
+/* #div_btn .pint-btns {display:flex;padding: 6px 12px;background-color: #000000a3;border-radius:5px;} */
+#div_btn .pint-btns {display:flex;border-radius:5px;}
+#div_btn .pint-btns li {padding:0 2px}
+#div_btn .pint-btns > li > button {padding: 5px 11px;letter-spacing: -0.38px;}
+.div_btn_btn01 {background: #f6f6f6;color:#454545}
+.div_btn_btn02 {background: #070707;}
+.div_btn_btn03 {background: #808080;}
+
+.pincursor {
+	cursor:url("/resources/images/pano/common/pin02.png"),auto
+}
+#frm_popup label {color:#fff;padding:10px 0;display: inline-block;}
+#frm_popup textarea {width: 62%;margin:12px 0 10px 58px;border-radius: 5px;border: 1px solid #d8d8d8;resize: none;color:#333;}
+.divflex {display:flex;justify-content: space-between;}
+.ui-widget.ui-widget-content {border:none !important;    height: 187px;}
+.ui-draggable .ui-dialog-titlebar, .ui-widget-content, .ui-widget.ui-widget-content, .ui-widget-content {background:#424141;}
+.ui-dialog .ui-dialog-buttonpane {background:#424141;}
+.wr_linktag {width:12%;display: inline-block;font-size:14px;margin-left: 5px;color:#333;}
+/*포인트 추가 팝업창*/
+.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset .ui-button:active {border: none;}
+.ui-dialog-titlebar .ui-button {border: none;background: #fff0;}
+.ui-dialog-titlebar .ui-button:active,.ui-dialog-titlebar .ui-button:hover {border:none;background: #4e4e4e69;}
+span.ui-button-icon.ui-icon.ui-icon-closethick {background-image: url(/resources/images/pano/common/layer_popup_close.png);background-position: center;}
+.ui-draggable .ui-dialog-titlebar {border-bottom: 1px solid #747474;border-radius: 0;}
+.ui-widget.ui-widget-content {border-radius: 0;}
+.ui-dialog .ui-dialog-titlebar {padding: 18px 14px !important;}
+.ui-dialog .ui-dialog-titlebar-close {right: 12px !important;}
+.ui-dialog .ui-dialog-buttonpane {margin-top:0;}
+#frm_popup fieldset {margin-top:0}
+.ui-widget-header {border: none;background: #fff;}
+.ui-widget-content {border:none;}
+.ui-dialog .ui-dialog-buttonpane button {
+	padding:10px 25px;
+	background-color: #2a2a2a;
+	color: #fff;
+	height: 40px;
+	line-height: 24px;
+	text-align: center;
+	font-size: 13px;
+	border-radius: 5px;
+}
+
+.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset > button:nth-of-type(1){
+	background: #f9fafc;
+	margin-left: 10px;
+	display: inline-block;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	font-size: 13px;
+	font-weight: 600;
+	color: #111;
+	border-radius: 5px;
+	letter-spacing: -0.5px;
+	padding: 0 50px;
+	cursor: pointer;
+}
+        
+.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset > button:nth-of-type(2){
+	display: inline-block;
+	margin-left: 16px;
+	height: 40px;
+	padding: 0 50px;
+	line-height: 40px;
+	border-radius: 5px;
+	background: #111;
+	color: #fff;
+	font-weight: 600;
+	font-size: 13px;
+	text-align: center;
+	letter-spacing: -0.5px;
+	border: none;
+	cursor: pointer;
+}
+#frm_popup .public_name{padding-right: 35px!important;}
+
+/*2023-06-12 파노라마 뷰어 전체화면*/
+.div_naviFull {
+	position: fixed;
+	top: 10px;
+	left: 10px;
+	z-index: 99;
+	cursor: pointer;
+}
+.div_naviFull > button {
+	border: none;
+	background-color: transparent;
+}
+.div_naviFull > button > img {
+	cursor: pointer;
+}
+
+.div_miniView_on_off {
+	position: fixed;
+	bottom: 16px;
+	right: 16px;
+	z-index: 99;
+	cursor: pointer;
+}
+.div_miniView_on_off > button {
+	border: none;
+	background-color: transparent;
+}
+.div_miniView_on_off > button > img {
+	cursor: pointer;
+}
+
+.view_popup_btn {
+	position: absolute;
+	bottom:20px;
+	left:20px;
+}
+.view_popup_btn:hover {
+	background-color: #000;
+	color: #fff;
+}
+
+.slide_view {
+	width: 937px;
+	z-index: 999;
+	position: absolute;
+	top: 20px;
+	left: 21%;
+	background-color: #333333;
+	padding: 40px;
+	border-radius: 5px;
+}
+	.swiper {
+	width: 100%;
+	height: 100%;
+	}
+
+	.swiper-slide {
+	text-align: center;
+	font-size: 18px;
+	background: #fff;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	}
+
+	.swiper-slide img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	}
+
+	.swiper {
+	width: 100%;
+	height: 300px;
+	margin-left: auto;
+	margin-right: auto;
+	}
+
+	.swiper-slide {
+	background-size: cover;
+	background-position: center;
+	}
+
+	.mySwiper2 {
+	height: 80%;
+	width: 100%;
+	}
+
+	.mySwiper {
+	margin-top: 10px;
+	height: 20%;
+	box-sizing: border-box;
+	padding: 10px 0;
+	}
+
+	.mySwiper .swiper-slide {
+	width: 25%;
+	height: 100%;
+	opacity: 0.4;
+	}
+
+	.mySwiper .swiper-slide-thumb-active {
+	opacity: 1;
+	}
+
+	.swiper-slide img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	}
+	.swiper_popup_btn {
+	display: flex;
+	justify-content: flex-end;
+	padding-bottom: 15px;
+	cursor: pointer;
+	}
+	
+
+
+/* 파노라마 뷰화면 핀 - 타이틀 : 20231121 */
+div.pnlm-tooltip span {
+	cursor: pointer;
+}

@@ -1,0 +1,67 @@
+@charset "utf-8";
+
+/* 
+ * 포미트 - 서부 iPOS 공통 스타일시트
+ * 작성자 : 김윤지
+ * 작성일 : 2024.11.18
+ * 임포트 파일 : 리셋, 부트스트랩, 폰트
+ * 
+ */
+
+@media (min-width: 1600px) {
+	.col-xxxl-1 {
+	    flex: 0 0 auto;
+	    width: 8.33333333%;
+	}
+	.col-xxxl-2 {
+	    flex: 0 0 auto;
+	    width: 16.66666667%;
+	}
+	.col-xxxl-3 {
+	    flex: 0 0 auto;
+	    width: 25%;
+	}
+	.col-xxxl-4 {
+	    flex: 0 0 auto;
+	    width: 33.33333333%;
+	}
+	.col-xxxl-5 {
+	    flex: 0 0 auto;
+	    width: 41.66666667%;
+	}
+	.col-xxxl-6 {
+	    flex: 0 0 auto;
+	    width: 50%;
+	}
+	.col-xxxl-7 {
+	    flex: 0 0 auto;
+	    width: 58.33333333%;
+	}
+	.col-xxxl-8 {
+	    flex: 0 0 auto;
+	    width: 66.66666667%;
+	}
+	.col-xxxl-9 {
+	    flex: 0 0 auto;
+	    width: 75%;
+	}
+	.col-xxxl-10 {
+	    flex: 0 0 auto;
+	    width: 83.33333333%;
+	}
+	.col-xxxl-11 {
+	    flex: 0 0 auto;
+	    width: 91.66666667%;
+	}
+	.col-xxxl-12 {
+    	flex: 0 0 auto;
+	    width: 100%;
+	}
+	.col-xxxl {
+		flex: 1 0 0%;
+	}
+	.col-xxxl-auto {
+	    flex: 0 0 auto;
+	    width: auto;
+	}
+}

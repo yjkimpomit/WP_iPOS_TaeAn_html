@@ -1,0 +1,136 @@
+
+<h3 class="title03">자재정보<small>(전체 3건)</small></h3>
+<p class="info-message" id="infoMessage">조회할 항목을 선택해 주세요.</p>
+
+<div class="table-responsive">
+	<table class="table table-sm" aria-label="자재정보">
+		<thead class="table-light">
+			<tr>
+				<th scope="col" data-field="자재번호">자재번호</th>
+				<th scope="col" data-field="품명및규격">품명 및 규격</th>
+				<th scope="col" data-field="자재클래스">자재클래스</th>
+				<th scope="col" data-field="연간소요량">연간소요량</th>
+				<th scope="col" data-field="총누적소요량">총누적소요량</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td data-field="자재번호">123456</td>
+				<td data-field="품명및규격">부쉬,일반형,기계용,BUSH,GENERAL,MECHANICAL,Ø66x44,HBSC4</th>
+				<td data-field="자재클래스">12342030A</td>
+				<td data-field="연간소요량">1</td>
+				<td data-field="총누적소요량">1</td>
+			</tr>
+			<tr>
+				<td data-field="자재번호">852456</td>
+				<td data-field="품명및규격">씰,비금속 원형 단면형,SEAL,NONMETALLIC ROUND SECTION,OR 117-8,NBR SHORE A75</th>
+				<td data-field="자재클래스">2030A1234</td>
+				<td data-field="연간소요량">182</td>
+				<td data-field="총누적소요량">1,256</td>
+			</tr>
+			<tr>
+				<td data-field="자재번호">726456</td>
+				<td data-field="품명및규격">GENERAL,MECHANICAL,Ø66x44,HBSC4</th>
+				<td data-field="자재클래스">203430A12</td>
+				<td data-field="연간소요량">1</td>
+				<td data-field="총누적소요량">1</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<script>
+	$(document).ready(function () {
+		const targetRow = document.querySelector('.table[aria-label="자재정보"] tbody tr:nth-child(2)');
+		duplicateByElement(targetRow, 7);
+	});
+</script>
+
+<h4 class="title04">자재상세</h4>
+
+<!-- <div class="alert alert-primary message">
+	<p class="mb-0 text-center text-primary">조회할 항목을 선택해 주세요.</p>
+</div> -->
+
+<!-- info -->
+<div class="table-responsive">
+	<table class="table table-sm view-table" data-tab-id="modelTab04-pane" aria-label="자재상세">
+		<colgroup>
+			<col style="width: 180px;">
+			<col>
+			<col style="width: 180px;">
+			<col>
+			<col style="width: 180px;">
+			<col>
+		</colgroup>
+		<tbody>
+			<tr>
+				<th scope="row">자재번호</th>
+				<td data-field="자재번호">123456</td>
+				<th scope="row">MEIC</th>
+				<td data-field="MEIC">기계</td>
+				<th scope="row">자재그룹</th>
+				<td data-field="자재그룹">A20</td>
+			</tr>
+			<tr>
+				<th scope="row">자재클래스</th>
+				<td data-field="자재클래스">2030C4568</td>
+				<th scope="row">자재클래스명</th>
+				<td data-field="자재클래스">부쉬,일반형,기계용</td>
+				<th scope="row">단위</th>
+				<td data-field="단위"></td>
+			</tr>
+			<tr>
+				<th scope="row">구 자재번호</th>
+				<td data-field="구자재번호"></td>
+				<th scope="row">품질등급</th>
+				<td data-field="품질등급">S</td>
+				<th scope="row">생성요청자</th>
+				<td data-field="생성요청자"></td>
+			</tr>
+			<tr>
+				<th scope="row">생성요청부서</th>
+				<td data-field="생성요청부서"></td>
+				<th scope="row">생성일</th>
+				<td data-field="생성일"></td>
+				<th scope="row">변경일</th>
+				<td data-field="변경일">2021-06-13</td>
+			</tr>
+			<tr>
+				<th scope="row">호기</th>
+				<td data-field="호기">52933</td>
+				<th scope="row">주 설비명</th>
+				<td data-field="주설비명" colspan="3">Primary Air Fan</td>
+			</tr>
+			<tr>
+				<th scope="row">품명 및 규격</th>
+				<td data-field="품명및규격" colspan="5">부쉬, 일반형, 기계용, BUSH, GENERAL, MECHANICAL, Ø66x44, HBSC4</td>
+			</tr>
+			<tr>
+				<th scope="row">연간소요량</th>
+				<td data-field="연간소요량">1</td>
+				<th scope="row">총누적소요량</th>
+				<td data-field="총누적소요량">1</td>
+				<th scope="row">자재유형</th>
+				<td data-field="자재유형">SUBR</td>
+			</tr>
+			<tr>
+				<th scope="row">인수검사여부</th>
+				<td data-field="인수검사여부">X</td>
+				<th scope="row">공장검사여부</th>
+				<td data-field="공장검사여부">A</td>
+				<th scope="row">시리얼넘버</th>
+				<td data-field="시리얼넘버"></td>
+			</tr>
+			<tr>
+				<th scope="row">제조사 부품식별번호</th>
+				<td data-field="제조사부품식별번호"></td>
+				<th scope="row">제조사</th>
+				<td data-field="제조사">한국중공업</td>
+				<th scope="row">모델넘버</th>
+				<td data-field="모델넘버"></td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+

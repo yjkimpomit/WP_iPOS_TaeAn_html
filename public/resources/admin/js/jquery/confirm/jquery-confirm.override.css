@@ -1,0 +1,170 @@
+@charset "utf-8";
+@import url(/resources/admin/css/variables.css);
+/*
+* 포미트 - 서부 iPOS 공통 스타일시트
+* 작성자 : 김윤지
+* 작성일 : 2026-03-19
+* SweetAlert2 커스텀 스타일
+*/
+
+
+@-webkit-keyframes type-blue {
+	1%,100% {
+		border-color: var(--blue-600)
+	}
+	
+	50% {
+		border-color: var(--blue-400)
+	}
+}
+
+@keyframes type-blue {
+	1%,100% {
+		border-color: var(--blue-600)
+	}
+	
+	50% {
+		border-color: var(--blue-400)
+	}
+}
+
+@-webkit-keyframes type-green {
+	1%,100% {
+		border-color: var(--green-400)
+	}
+	
+	50% {
+		border-color: var(--green-300)
+	}
+}
+
+@keyframes type-green {
+	1%,100% {
+		border-color: var(--green-400)
+	}
+	
+	50% {
+		border-color: var(--green-300)
+	}
+}
+
+@-webkit-keyframes type-red {
+	1%,100% {
+		border-color: var(--red-600)
+	}
+	
+	50% {
+		border-color: var(--red-400)
+	}
+}
+
+@keyframes type-red {
+	1%,100% {
+		border-color: var(--red-600)
+	}
+	
+	50% {
+		border-color: var(--red-400)
+	}
+}
+
+@-webkit-keyframes type-orange {
+	1%,100% {
+		border-color: var(--yellow-400)
+	}
+	
+	50% {
+		border-color: var(--yellow-300)
+	}
+}
+
+@keyframes type-orange {
+	1%,100% {
+		border-color: var(--yellow-400)
+	}
+	
+	50% {
+		border-color: var(--yellow-300)
+	}
+}
+
+@-webkit-keyframes type-purple {
+	1%,100% {
+		border-color: var(--purple-400)
+	}
+	
+	50% {
+		border-color: var(--purple-300)
+	}
+}
+
+@keyframes type-purple {
+	1%,100% {
+		border-color: var(--purple-400)
+	}
+	
+	50% {
+		border-color: var(--purple-300)
+	}
+}
+
+@-webkit-keyframes type-dark {
+	1%,100% {
+		border-color: var(--slate-700)
+	}
+	
+	50% {
+		border-color: var(--slate-500)
+	}
+}
+
+@keyframes type-dark {
+	1%,100% {
+		border-color: var(--slate-700)
+	}
+	
+	50% {
+		border-color: var(--slate-500)
+	}
+}
+
+/* blue */
+.jconfirm .jconfirm-box.jconfirm-type-blue {
+	border-top: solid 8px var(--blue-400);
+}
+.jconfirm .jconfirm-box .jconfirm-buttons button.btn-blue {
+	background-color: var(--blue-600);
+}
+
+/* red */
+.jconfirm .jconfirm-box.jconfirm-type-red {
+	border-top: solid 8px var(--red-400);
+}
+.jconfirm .jconfirm-box .jconfirm-buttons button.btn-red {
+	background-color: var(--red-600);
+}
+
+/* dark */
+.jconfirm .jconfirm-box.jconfirm-type-dark {
+	border-top: solid 8px var(--slate-500);
+}
+.jconfirm .jconfirm-box .jconfirm-buttons button.btn-dark {
+	background-color: var(--slate-700);
+}
+
+/* box style */
+.jconfirm.jconfirm-white .jconfirm-box,
+.jconfirm.jconfirm-light .jconfirm-box {
+	border-radius: 0;
+}
+
+.jconfirm .jconfirm-box div.jconfirm-title-c {
+	font-weight: 700;
+	font-size: 1.25rem;
+	line-height: 1.4;
+}
+
+.jconfirm.jconfirm-white .jconfirm-box .jconfirm-buttons button,
+.jconfirm.jconfirm-light .jconfirm-box .jconfirm-buttons button {
+	font-size: 1rem;
+}

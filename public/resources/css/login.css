@@ -1,0 +1,544 @@
+@charset "utf-8";
+
+/* 
+ * 포미트 - 서부 iPOS 공통 스타일시트
+ * 작성자 : 김윤지
+ * 작성일 : 2024.11.20
+ * 임포트 파일 : 리셋, 부트스트랩, 폰트
+ * 
+ */
+
+@import url(/resources/css/bootstrap/dist/css/bootstrap.min.css);
+@import url(/resources/css/reset.css);
+
+/*#################### 폰트 ####################*/
+@import url(/resources/fonts/NotoSansKR/NotoSansKR.css);
+@import url(/resources/fonts/Roboto/Roboto.css);
+@import url(/resources/css/variables.css);
+@import url(/resources/css/animation.css);
+
+/*#################### bootstrap overriding ####################*/
+body {
+	font-family: var(--font-family), sans-serif;
+	color: var(--text-neutral-default);
+	max-width: 1920px;
+}
+
+a {
+	color: var(--text-neutral-default);
+	text-decoration: none;
+}
+
+a:hover {
+	color: var(--text-brand-tertiary);
+}
+
+a[onclick] {
+	cursor: pointer;
+}
+
+small {
+	font-weight: 400 !important;
+}
+
+strong {
+	font-weight: 700;
+}
+
+#viewport-info {
+	position: absolute;
+	right: 1rem;
+	bottom: 1rem;
+	
+	padding: 1rem;
+	font-size: 1rem;
+	font-weight: 700;
+	background-color: rgba(255, 255, 255, .5);
+	z-index: 9;
+	
+	display: none;
+}
+
+/*#################### login box ####################*/
+.login {
+	min-width: 100%;
+	min-height: 100%;
+	display: flex;
+	flex-wrap: nowrap;
+	justify-content: flex-start;
+}
+
+@media (min-width: 1024px) {
+	.login {
+		justify-content: space-between;
+	}
+}
+
+.login-wrap {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	align-content: center;
+	align-items: center;
+	justify-content: center;
+	flex: 1 1 auto;
+}
+
+.visual-box {
+	width: 100%;
+	background-color: var(--bg-neutral-tertiary);
+	min-height: 100vh;
+}
+
+@media (min-width: 1024px) {
+	.login-wrap {
+		width: 100%;
+		flex-direction: row;
+		flex-wrap: nowrap;
+	}
+	
+	.visual-box {
+		height: 100%;
+		overflow: hidden;
+		display: block;
+	}
+}
+
+.login-panel {
+	/* height: 100%; */
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	flex-wrap: nowrap;
+	
+	position: absolute;
+	top: 0;
+	left: 0;
+	padding: 8rem 0;
+	height: 100vh;
+}
+
+@media (min-width: 1024px) {
+	.login-panel {
+		background-color: var(--bg-default-default);
+		padding: 3rem 0;
+		box-shadow: 0 20px 50px 12px rgba(0, 0, 0, 0.25);
+		z-index: 2;
+		max-width: 400px;
+		
+		position: relative;
+	}
+}
+
+@media (min-width: 1200px) {
+	.login-panel {
+		padding: 0;
+	}
+}
+
+@media (min-width: 1400px) {
+	.login-panel {
+		max-width: 640px;
+	}
+}
+
+@media (min-width: 1800px) {
+	.login-panel {
+		max-width: 720px;
+	}
+}
+
+.login-box {
+	display: flex;
+	align-items: flex-start;
+	
+	margin: 0 auto;
+	flex-wrap: nowrap;
+	flex-direction: column;
+	background-color: var(--lighter70);
+	padding: 2rem 2rem 0;
+	border-radius: .5rem;
+	backdrop-filter: blur(4px);
+	border: solid 1px var(--border-default-white);
+}
+
+@media (min-width: 768px) {
+	.login-box {
+		justify-content: center;
+	}
+}
+
+@media (min-width: 1024px) {
+	.login-box {
+		height: 100%;
+		padding: 0 2rem;
+		backdrop-filter: none;
+		background-color: transparent;
+		border: none;
+		align-items: flex-start;
+	}
+}
+
+.logo {
+	width: 100%;
+	height: 80px;
+	
+	background-image: url(/resources/images/logo.svg);
+	background-repeat: no-repeat;
+	background-position: left center;
+	background-size: auto 32px;
+	
+	padding-left: 80px;
+	margin-bottom: 2rem;
+}
+
+@media (min-width: 768px) {
+	.logo {
+		width: 100%;
+		height: 80px;
+		background-size: auto 48px;
+		padding-left: 104px;
+	}
+}
+
+.logo>div {
+	display: block;
+	line-height: 1;
+	padding-top: 1.375rem;
+}
+
+.logo .branch {
+	display: flex;
+	align-items: center;
+	font-size: 1rem;
+	margin-bottom: 0.5rem;
+}
+
+.logo .system {
+	font-weight: 700;
+	font-family: var(--font-family-en), sans-serif;
+	position: relative;
+	padding-left: .5rem;
+	margin-left: .5rem;
+}
+
+.logo .system::before {
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 0;
+	transform: translateY(-50%);
+	display: inline-block;
+	width: 1px;
+	height: 14px;
+	margin-top: 1px;
+	background-color: var(--border-neutral-default);
+}
+
+.logo .desc {
+	display: block;
+	font-size: .875rem;
+	letter-spacing: -.025rem;
+}
+
+.title {
+	font-size: 1.75rem;
+	font-weight: 700;
+	margin-bottom: 2rem;
+}
+
+.login-box form>div {
+	position: relative;
+	
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+	margin-bottom: 1rem;
+}
+
+.login-box form>div [class*='icon-'] {
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	left: .5rem;
+	
+	width: 24px;
+	height: 24px;
+	
+	display: flex;
+	align-self: center;
+	
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 20px;
+}
+
+.login-box form>div .icon-account {
+	background-image: url(/resources/images/icons/icon-person-gray.svg);
+}
+
+.login-box form>div .icon-lock {
+	background-image: url(/resources/images/icons/icon-lock-gray.svg);
+}
+
+.form-control[type="text"],
+.form-control[type="password"] {
+	padding-left: 2.5rem;
+}
+
+.form-check-label {
+	margin-left: .5rem;
+}
+
+.err-box:has(span) {
+	margin: 1rem 0;
+	color: var(--text-danger-default);
+	background-color: var(--bg-danger-tertiary);
+	
+	border-radius: var(--radius-sm);
+	border: solid 1px var(--bg-danger-tertiaryhover);
+	
+	padding: .75rem 2rem;
+	
+	flex-direction: column;
+}
+
+.btn {
+	--bs-btn-color: var(--text-default-onneutral);
+	--bs-btn-bg: var(--bg-brand-defaulthover);
+	--bs-btn-border-color: var(--border-brand-default);
+	
+	--bs-btn-hover-color: var(--text-default-onneutral);
+	--bs-btn-hover-bg: var(--bg-brand-dark);
+	--bs-btn-hover-border-color: var(--border-brand-dark);
+	
+	--bs-btn-active-color: var(--text-default-onneutral);
+	--bs-btn-active-bg: var(--bg-brand-dark);
+	--bs-btn-active-border-color: var(--border-brand-dark);
+	
+	--bs-btn-disabled-color: var(--text-default-onneutral);
+	--bs-btn-disabled-bg: var(--bg-brand-defaulthover);
+	--bs-btn-disabled-border-color: var(--border-brand-default);
+	width: 100%;
+	margin-bottom: 4rem;
+}
+
+
+/* login-slider */
+.slider-box {
+	height: 100%;
+	width: 100%;
+	display: block;
+	position: relative;
+}
+
+.slider-container {
+	width: 100vw;
+	height: 100vh;
+	/* 상위 div를 화면 전체에 맞게 설정 */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	
+	overflow: hidden;
+}
+
+.slick-slider {
+	width: 100%;
+	height: 100%;
+	/* 슬라이더를 상위 div에 꽉 차게 설정 */
+}
+
+.slick-slide {
+	height: 100%;
+	/* 슬라이드가 슬라이더에 맞게 높이 설정 */
+}
+
+.slick-slide div {
+	width: 100%;
+	height: 100vh;
+	/* 슬라이더 높이를 viewport에 맞춤 */
+}
+
+.slide01,
+.slide02 {
+	height: 100vh;
+	background-size: auto 100vh;
+	background-position: center left;
+	background-repeat: no-repeat;
+}
+
+.slide01 {
+	background-color: var(--bg-neutral-secondary);
+	background-image: url(/resources/images/login-visual-01.jpg);
+}
+
+.slide02 {
+	background-color: var(--bg-neutral-default);
+	background-image: url(/resources/images/login-visual-02.jpg);
+}
+
+@media (min-width: 992px) {
+	#main-content {
+		width: 100%;
+	}
+}
+
+@media (min-width: 1024px) {
+	
+	.slide01,
+	.slide02 {
+		background-position: left center;
+		position: relative;
+	}
+}
+
+@media (min-width: 1200px) {
+	.simple-panel {
+		padding-left: 10rem;
+		padding-right: 10rem;
+	}
+}
+
+/* 문구추가 */
+.slick-slide .text-box {
+	display: none;
+}
+
+@media(min-width: 1600px) {
+	.slick-slide .text-box {
+		display: block;
+		color: var(--text-neutral-onneutral);
+		
+		position: absolute;
+		width: auto;
+		height: auto;
+	}
+	
+	.slick-slide .text-box h2 {
+		--bs-heading-color: var(--text-neutral-onneutral);
+		font-size: 2.5rem;
+		font-weight: 700;
+		text-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
+	}
+	
+	.slick-slide .text-box h2 span {
+		font-weight: 500;
+		margin-left: .5rem;
+		padding-left: 1rem;
+		position: relative;
+	}
+	
+	.slick-slide .text-box h2 span::before {
+		content: '';
+		position: absolute;
+		top: 50%;
+		left: 0;
+		transform: translateY(-50%);
+		display: inline-block;
+		width: 1px;
+		height: 32px;
+		margin-top: 2px;
+		background-color: var(--bg-neutral-secondary);
+	}
+	
+	.slick-slide .text-box p {
+		font-size: 1.5rem;
+		text-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+	}
+	
+	.slide01 .text-box,
+	.slide02 .text-box {
+		top: 2rem;
+		left: 2rem;
+	}
+}
+
+/* 컨트롤 버튼박스 */
+.controls {
+	position: absolute;
+	top: auto;
+	left: 50%;
+	transform: translateX(-50%);
+	bottom: 24px;
+	
+	background: rgba(0, 0, 0, 0.4);
+	padding: 4px 8px;
+	border-radius: 24px;
+	
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.controls button {
+	font-size: 0;
+	text-indent: -9999em;
+	cursor: pointer;
+	
+	padding: 0;
+	border: none;
+}
+
+
+/* 슬라이드 버튼 */
+.slide-btn {
+	margin: 4px;
+	width: 12px;
+	height: 12px;
+	border-radius: 24px;
+	
+	background: var(--bg-default-default);
+}
+
+.slide-btn.active {
+	background-color: var(--icon-brand-secondary);
+}
+
+/* play-pause */
+#playPause {
+	margin: 4px 8px;
+	position: relative;
+	width: 16px;
+	height: 16px;
+	border: none;
+	cursor: pointer;
+}
+
+#playPause.play,
+#playPause.pause {
+	background: none;
+}
+
+#playPause.play::before {
+	content: "";
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	width: 0;
+	height: 0;
+	border-top: 6px solid transparent;
+	border-bottom: 6px solid transparent;
+	border-left: 8px solid var(--border-default-white);
+	transform: translate(-50%, -50%);
+}
+
+#playPause.pause::before,
+#playPause.pause::after {
+	content: "";
+	position: absolute;
+	top: 50%;
+	width: 3px;
+	height: 12px;
+	background-color: var(--bg-default-default);
+	transform: translateY(-50%);
+}
+
+#playPause.pause::before {
+	left: 10px;
+}
+
+#playPause.pause::after {
+	right: 10px;
+}

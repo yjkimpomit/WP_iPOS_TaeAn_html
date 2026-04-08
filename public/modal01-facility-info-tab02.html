@@ -1,0 +1,167 @@
+
+<h3 class="title03">정비이력<small>(전체 4건)</small></h3>
+<p class="info-message" id="infoMessage">조회할 항목을 선택해 주세요.</p>
+
+<div class="table-responsive">
+	<table class="table table-sm" aria-label="정비이력">
+		<thead class="table-light">
+			<tr>
+				<th scope="col" data-field="설비번호">설비번호</th>
+				<th scope="col" data-field="설비명">설비명</th>
+				<th scope="col" data-field="오더번호">오더번호</th>
+				<th scope="col" data-field="오더타입">오더타입</th>
+				<th scope="col" data-field="오더명">오더명</th>
+				<th scope="col" data-field="설계일">설계일</th>
+				<th scope="col" data-field="상태">상태</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td data-field="설비번호">15605430</td>
+				<td data-field="설비명">#5 PDA-S 본체 정비상세</td>
+				<td data-field="오더번호">2012585</td>
+				<td data-field="오더타입">경상오더</td>
+				<td data-field="오더명">
+					<span class="badge text-bg-primary">자재구매</span>
+					<span>산업 2호기 보일러제어설비 개선공사 추가 소모품</span>
+				</td>
+				<td data-field="설계일">2021-04-25 11:15</td>
+				<td data-field="상태">정산완료</td>
+			</tr>
+			<tr>
+				<td data-field="설비번호">02605430</td>
+				<td data-field="설비명">#5 PDA-S 본체 정비상세</td>
+				<td data-field="오더번호">2024585</td>
+				<td data-field="오더타입">경상오더</td>
+				<td data-field="오더명">
+					<span class="badge text-bg-primary">자재구매</span>
+					<span>산업 2호기 보일러제어설비 개선공사 추가 소모품</span>
+				</td>
+				<td data-field="설계일">2021-04-25 11:15</td>
+				<td data-field="상태">정산완료</td>
+			</tr>
+			<tr>
+				<td data-field="설비번호">55605430</td>
+				<td data-field="설비명">#5 PDA-S 본체 정비상세</td>
+				<td data-field="오더번호">5625585</td>
+				<td data-field="오더타입">경상오더</td>
+				<td data-field="오더명">
+					<span class="badge text-bg-primary">자재구매</span>
+					<span>산업 2호기 보일러제어설비 개선공사 추가 소모품</span>
+				</td>
+				<td data-field="설계일">2021-04-25 11:15</td>
+				<td data-field="상태">정산완료</td>
+			</tr>
+			<tr>
+				<td data-field="설비번호">87505430</td>
+				<td data-field="설비명">#5 PDA-S 본체 정비상세</td>
+				<td data-field="오더번호">9812585</td>
+				<td data-field="오더타입">경상오더</td>
+				<td data-field="오더명">
+					<span class="badge text-bg-primary">자재구매</span>
+					<span>산업 2호기 보일러제어설비 개선공사 추가 소모품</span>
+				</td>
+				<td data-field="설계일">2021-04-25 11:15</td>
+				<td data-field="상태">정산완료</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
+<script>
+	$(document).ready(function () {
+		const targetRow = document.querySelector('.table[aria-label="정비이력"] tbody tr:nth-child(4)');
+		duplicateByElement(targetRow, 6);
+	});
+</script>
+
+<h4 class="title04">#5 PDA-S 본체 정비상세</h4>
+
+<!-- <div class="alert alert-primary message">
+	<p class="mb-0 text-center text-primary">조회할 항목을 선택해 주세요.</p>
+</div> -->
+
+<div class="table-responsive">
+	<table class="table table-sm view-table" data-tab-id="modelTab02-pane" aria-label="정비상세">
+		<colgroup>
+			<col style="width: 160px;">
+			<col>
+			<col style="width: 160px;">
+			<col>
+			<col style="width: 160px;">
+			<col>
+			<col style="width: 160px;">
+			<col>
+		</colgroup>
+		<tbody>
+			<tr>
+				<th scope="row">오더번호</th>
+				<td data-field="오더번호">2032515</td>
+				<th scope="row">오더명</th>
+				<td data-field="오더명" colspan="5">[자재구매] 산업 2호기 보일러제어설비 개선공사 추가 소모품</td>
+			</tr>
+			<tr>
+				<th scope="row">설비번호</th>
+				<td data-field="설비번호">15605430</td>
+				<th scope="row">설비명</th>
+				<td data-field="설비명" colspan="5">#5 PDA-S 본체</td>
+			</tr>
+			<tr>
+				<th scope="row">진행상태</th>
+				<td data-field="진행상태">정산완료</td>
+				<th scope="row">오더타입</th>
+				<td data-field="오더타입">경상오더</td>
+				<th scope="row">정비조건</th>
+				<td data-field="정비조건" colspan="3">운전중</td>
+			</tr>
+			<tr>
+				<th scope="row">요청번호</th>
+				<td data-field="요청번호"></td>
+				<th scope="row">요청종류</th>
+				<td data-field="요청종류"></td>
+				<th scope="row">요청일자</th>
+				<td data-field="요청일자" colspan="3"></td>
+			</tr>
+			<tr>
+				<th scope="row">요청명</th>
+				<td data-field="요청명" colspan="7"></td>
+			</tr>
+			<tr>
+				<th scope="row">요청내용</th>
+				<td data-field="요청내용" colspan="7"></td>
+			</tr>
+			<tr>
+				<th scope="row">설계자 사번</th>
+				<td data-field="설계자사번">1245899</td>
+				<th scope="row">설계자이름</th>
+				<td data-field="설계자이름">홍길동</td>
+				<th scope="row">설계부서</th>
+				<td data-field="설계부서" colspan="3">보일러관리파트</td>
+			</tr>
+			<tr>
+				<th scope="row">정비부서</th>
+				<td data-field="정비부서">보일러관리파트</td>
+				<th scope="row">작업중요도</th>
+				<td data-field="작업중요도" colspan="5">C등급(Minor)</td>
+			</tr>
+			<tr>
+				<th scope="row">설계 시작일</th>
+				<td data-field="설계시작일">2021-04-25</td>
+				<th scope="row">설계 완료일</th>
+				<td data-field="설계완료일">2021-05-30</td>
+				<th scope="row">실제 시작일</th>
+				<td data-field="실제시작일">2021-07-08</td>
+				<th scope="row">실제 완료일</th>
+				<td data-field="실제완료일">2021-07-09</td>
+			</tr>
+			<tr>
+				<th scope="row">WBS코드</th>
+				<td data-field="WBS코드" colspan="7">WBS</td>
+			</tr>
+			<tr>
+				<th scope="row">작업내용</th>
+				<td data-field="작업내용" colspan="7">기본2호기 보일러관리설비 개선공사 추가소요자재 구매</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

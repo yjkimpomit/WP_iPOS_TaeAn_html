@@ -1,0 +1,126 @@
+@charset "utf-8";
+
+/* 
+ * POMIT reset.css
+ * 2025-11-27
+ * 부트스트랩 이전에 적용되어야 하는 스타일만 정의하고 나머지 스타일은 common.css 에 정의한다
+ */
+ 
+button {
+	border-width: 0;
+	padding: 0;
+}
+
+ul,
+ol {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+li {
+	padding: 0;
+	margin: 0;
+}
+
+.box-shadow-light {
+	box-shadow: 0 0 4px rgba(0, 0, 0, 0.08);
+}
+.box-shadow-medium {
+	box-shadow: 0 0 8px rgba(0, 0, 0, 0.08);
+}
+.box-shadow-large {
+	box-shadow: 0 0 16px rgba(0, 0, 0, 0.08);
+}
+
+small {
+	font-weight: 400 !important;
+}
+
+strong {
+	font-weight: 700;
+}
+
+.alert {
+	padding: .75rem 1rem;
+}
+
+/* 모든 브라우저에서 스핀버튼 제거 */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+/* firefox에서 스핀버튼 제거
+input[type="number"] {
+	-ㅡmoz-appearance: textfield;
+} */
+
+input[type="date"],
+input[type="week"],
+input[type="datetime-local"],
+input.icon-calendar {
+	background-image: url('../images/icon-date_range.svg');
+	background-size: 20px;
+	background-repeat: no-repeat;
+	background-position: right 8px center;
+}
+
+input[type="month"] {
+	background-image: url('../images/icon-calendar_month-gray.svg');
+	background-size: 20px;
+	background-repeat: no-repeat;
+	background-position: right 8px center;
+}
+
+input[type="time"] {
+	background-image: url('../images/icon-clock.svg');
+	background-size: 20px;
+	background-repeat: no-repeat;
+	background-position: right 8px center;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="time"]::-webkit-calendar-picker-indicator,
+input[type="datetime-local"]::-webkit-calendar-picker-indicator,
+input.icon-calendar::-webkit-calendar-picker-indicator {
+	margin-left: .5rem;
+}
+
+/* 달력인풋 고정크기적용시 사용 */
+@media(min-width: 768px) {
+	.row > [class*='-auto'] > input[type="date"],
+	.row > [class*='-auto'] > input[type="time"] {
+		width: 128px;
+	}
+}
+
+/* line-clamp */
+.line-clamp {
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+.line-clamp.single {
+	-webkit-line-clamp: 1;
+}
+
+.line-clamp.double {
+	-webkit-line-clamp: 2;
+}
+
+.d-none {
+	display: none !important;
+}
+
+/* focus */
+*:focus:not(:focus-visible) {
+	outline: none;
+	box-shadow: none;
+}
+
+
+

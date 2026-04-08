@@ -1,0 +1,184 @@
+<h3 class="title02">미결 TM현황 검색</h3>
+<!-- 검색영역 -->
+<div class="search-box">
+	<form>
+		<div class="row">
+			<div class="col-md-5 col-lg-5 col-xxl-2 mb-3">
+				<label for="branch03" class="form-label">사업소</label>
+				<select class="form-select" aria-label="사업소 선택" id="branch03" disabled>
+					<option>사업소 선택</option>
+					<option value="1" selected>평택2복합</option>
+				</select>
+			</div>
+		
+			<!-- 상위 폼 요소 (연관된 인풋 두 개 세트) -->
+			<div class="col-md-7 col-lg-7 col-xxl mb-3">
+				<span id="dateRangePicker0303" class="form-label form-control-plaintext">요청기간</span>
+				<div class="row g-2 period-box" aria-labelledby="dateRangePicker0303">
+					<div class="col">
+						<label class="visually-hidden" for="startDate0303">시작일</label>
+						<input type="date" class="form-control icon-calendar" id="startDate0303">
+					</div>
+					<div class="col-auto">
+						<span class="form-control-plaintext text-center">~</span>
+					</div>
+					<div class="col">
+						<label class="visually-hidden" for="endDate0303">종료일</label>
+						<input type="date" class="form-control icon-calendar" id="endDate0303">
+					</div>
+				</div>
+			</div>
+		
+			<!-- 상위 폼 요소 2 (연관된 인풋 두 개 세트) -->
+			<div class="col-md-5 col-lg-5 col-xxl mb-3">
+				<span id="requestDept0303" class="form-label form-control-plaintext">요청부서</span>
+				<div class="row g-2" aria-labelledby="requestDept0303">
+					<div class="col">
+						<label class="visually-hidden" for="requestDept03">요청부서 검색</label>
+						<input class="form-control search-icon" id="requestDept03" onclick="searchTreePopup($(this));">
+					</div>
+					<div class="col">
+						<label class="visually-hidden" for="requestDept03Input">요청부서명</label>
+						<input class="form-control" type="text" value="" id="requestDept03Input" disabled="" readonly="">
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md col-lg-5 col-xxl mb-3">
+				<span id="supervisingDept03" class="form-label form-control-plaintext">감독부서</span>
+				<div class="row g-2" aria-labelledby="supervisingDept03">
+					<div class="col">
+						<label class="visually-hidden" for="supervisingDept0303">감독부서 검색</label>
+						<input class="form-control search-icon" id="supervisingDept0303" onclick="searchTreePopup($(this));">
+					</div>
+					<div class="col">
+						<label class="visually-hidden" for="supervisingDept0303Input">감독부서명</label>
+						<input class="form-control" type="text" value="" id="supervisingDept0303Input" disabled="" readonly="">
+					</div>
+				</div>
+			</div>
+		
+			<div class="col-md-auto col-lg col-xxl-auto mb-3">
+				<button type="button" class="btn btn-primary">
+					<span class="material-symbols-rounded">
+						search
+					</span> 검색
+				</button>
+			</div>
+		
+			<!-- 상위 폼 요소 2 (연관된 인풋 두 개 세트)
+			<div class="col-md-4 mb-3">
+				<label id="아이디입력" class="form-label">레이블입력</label>
+				<div class="row" aria-labelledby="아이디입력">
+					<div class="col">
+						
+					</div>
+					<div class="col">
+						
+					</div>
+				</div>
+			</div>
+			-->
+		</div>
+	</form>
+</div>
+
+<!-- data title -->
+<div class="title-box">
+	<h4 class="title03">조회결과<small>(전체 1,280건)</small></h4>
+	
+	<div>
+		<div class="page-move">
+			<label for="selectPage03" class="visually-hidden">이동할 페이지</label>
+			<input type="number" id="selectPage03" class="form-control page" placeholder="1">
+			<span class="px-1"> / </span>
+			<span class="total">168</span>
+			<button type="button" class="btn btn-secondary">이동</button>
+		</div>
+			
+		<div class="btn-box">
+			<button type="button" class="btn btn-outline-primary">이전</button>
+			<button type="button" class="btn btn-outline-primary">다음</button>
+		</div>
+	</div>
+</div>
+
+<!-- data-grid -->
+<div class="table-responsive">
+	<table class="table table-sm" aria-label="미결-TM현황">
+		<thead>
+			<tr>
+				<th scope="col" data-field="설비번호">설비번호</th>
+				<th scope="col" data-field="설비명">설비명</th>
+				<th scope="col" data-field="계">계</th>
+				<th scope="col" data-field="누설">누설(Leakage)</th>
+				<th scope="col" data-field="오지시">오지시(Indication Error)</th>
+				<th scope="col" data-field="오염">오염(Contamination)</th>
+				<th scope="col" data-field="손상-파손">손상/파손(Breakdown)</th>
+				<th scope="col" data-field="변형">변형(Deformation)</th>
+				<th scope="col" data-field="파열">파열(Rupture)</th>
+				<th scope="col" data-field="부식-침식">부식/침식(Corrosion/Erosion)</th>
+				<th scope="col" data-field="진동이상">진동이상(Vibration)</th>
+				<th scope="col" data-field="이음-소음">이음(소음)(Noise)</th>
+				<th scope="col" data-field="단선-단락">단선/단락(Disconnection/Short-circuit)</th>
+				<th scope="col" data-field="동결">동결(Freezing)</th>
+				<th scope="col" data-field="과부하">과부하(Over Load)</th>
+				<th scope="col" data-field="과열">과열(Over Heat)</th>
+				<th scope="col" data-field="막힘">막힘(Clogging)</th>
+				<th scope="col" data-field="오작동">오작동(Malfunction)</th>
+				<th scope="col" data-field="이완">이완(Relaxation)</th>
+				<th scope="col" data-field="패싱">패싱(Passing)</th>
+				<th scope="col" data-field="운전정지">운전정지(Trip)</th>
+				<th scope="col" data-field="핀홀">핀홀(Pinhole)</th>
+				<th scope="col" data-field="탈락">탈락(Drop out)</th>
+				<th scope="col" data-field="헌팅">헌팅(Hunting)</th>
+				<th scope="col" data-field="부족">부족(Level, Pr, Temp, Flow Low 등)</th>
+				<th scope="col" data-field="초과">초과(Level, Pr, Temp, Flow High 등)</th>
+				<th scope="col" data-field="고착">고착(Fixation)</th>
+				<th scope="col" data-field="오류">오류(Error)</th>
+				<th scope="col" data-field="마모-마멸">마모/마멸(Wear/Abration)</th>
+				<th scope="col" data-field="플래싱">플래싱(Flashing)</th>
+				<th scope="col" data-field="미작동">미작동(Not Working)</th>
+				<th scope="col" data-field="균열">균열(Crack)</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<th data-field="설비번호" scope="row">11811234</th>
+				<td data-field="설비명">
+					제1호기>보일러설비>통풍계통>Air HTR>AH-A Duct
+				</td>
+				<td data-field="계">2</td>
+				<td data-field="누설">0</td>
+				<td data-field="오지시">0</td>
+				<td data-field="오염">5</td>
+				<td data-field="손상/파손">4</td>
+				<td data-field="변형">1</td>
+				<td data-field="파열">0</td>
+				<td data-field="부식/침식">0</td>
+				<td data-field="진동이상">1</td>
+				<td data-field="이음(소음)">2</td>
+				<td data-field="단선/단락">0</td>
+				<td data-field="동결">0</td>
+				<td data-field="과부하">0</td>
+				<td data-field="과열">2</td>
+				<td data-field="막힘">0</td>
+				<td data-field="오작동">0</td>
+				<td data-field="이완">0</td>
+				<td data-field="패싱">0</td>
+				<td data-field="운전정지">0</td>
+				<td data-field="핀홀">0</td>
+				<td data-field="탈락">0</td>
+				<td data-field="헌팅">0</td>
+				<td data-field="부족">0</td>
+				<td data-field="초과">0</td>
+				<td data-field="고착">0</td>
+				<td data-field="오류">0</td>
+				<td data-field="마모-마멸">0</td>
+				<td data-field="플래싱">0</td>
+				<td data-field="미작동">0</td>
+				<td data-field="균열">0</td>
+			</tr>
+		</tbody>
+	</table>
+</div>

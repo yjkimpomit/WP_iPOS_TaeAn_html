@@ -1,0 +1,764 @@
+@charset "utf-8";
+
+/* 
+ * 포미트 - 서부 iPOS 공통 스타일시트
+ * 작성자 : 김윤지
+ * 작성일 : 2024.11.14
+ * 내용 : 테이블 단위 개별 스타일 설정 - 높이, 텍스트 정렬 등
+ * 
+ */
+
+/* no-data */
+.no-data {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 64px 40px;
+	font-size: 1rem;
+	background-color: var(--bg-neutral-tertiary);
+}
+.table-responsive:has(.table .no-data) {
+	height: auto !important;
+}
+.table tr>*:has(.no-data) {
+	padding: 0 !important;
+	border-bottom-color: transparent;
+}
+
+/* table-responsive */
+.table-responsive {
+	border: none;
+	border-top: solid 1px var(--border-neutral-default);
+}
+
+/* table */
+.table {
+	margin-bottom: 0;
+}
+
+.table th {
+	font-weight: 500;
+	position: relative;
+}
+
+.table th,
+.table td {
+	vertical-align: middle;
+	white-space: nowrap;
+	text-align: center;
+	padding: .5rem .75rem;
+	border-right: solid 1px var(--border-neutral-secondary);
+	border-bottom: solid 1px var(--border-neutral-secondary);
+
+	color: var(--text-neutral-default);
+}
+
+.table thead tr>*:last-child,
+.table thead [scope="rowgroup"]:last-child,
+.table tbody tr>*:last-child,
+.table tfoot tr>*:last-child {
+	border-right: none;
+}
+
+.table td button {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.table tbody th [class*='material-'][disabled],
+.table tbody td [class*='material-'][disabled] {
+	opacity: .32;
+	color: var(--text-disabled-default);
+}
+
+/* 데이터 없는 경우 */
+.empty {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 2rem 80px;
+	min-height: 120px;
+	font-size: 1rem;
+	background-color: var(--bg-neutral-tertiary);
+}
+.thumb-board.list:has(.empty) {
+	grid-template-columns: repeat(1, 1fr);
+	background-color: var(--bg-neutral-tertiary);
+}
+
+/* .view-table */
+.view-table td {
+	white-space: normal;
+	word-break: keep-all;
+}
+
+.view-table tbody td {
+	text-align: left;
+}
+
+/* 반응형테이블 고정 헤더 & 칼럼 */
+/* thead, tbody th 스크롤시 고정 */
+.table {
+	border-collapse: separate;
+	border-spacing: 0;
+}
+.table thead {
+	position: sticky;
+	top: 0;
+	z-index: 2;
+	background-color: var(--bg-neutral-secondary);
+}
+
+.table thead th {
+	background-color: var(--lighter40);
+	border-bottom: solid 1px var(--border-neutral-secondary);
+}
+
+.table tbody th {
+	font-weight: 400;
+	background-color: var(--bg-neutral-tertiary);
+}
+
+.table.table-sm th,
+.table.table-sm td {
+	padding-top: .25rem;
+	padding-bottom: .25rem;
+	font-size: .9375rem;
+	line-height: 1.4;
+}
+
+.table.view-table th,
+.table.view-table td {
+	padding: .5rem .5rem;
+	vertical-align: middle;
+}
+
+.table.view-table tbody tr th,
+.table.view-table tfoot tr th {
+	background-color: var(--bg-neutral-tertiary);
+	text-align: right;
+}
+
+.table.view-table tbody tr td {
+	min-width: 80px;
+	line-height: inherit;
+}
+
+@media (min-width: 992px) {
+	.table.view-table tbody tr td .form-check {
+		padding-left: 0;
+		margin-bottom: 0;
+	}
+
+	.table.view-table tbody tr td .form-check-input {
+		margin-top: .25rem;
+	}
+}
+
+/* 폼테이블에만 적용 */
+.table.form-table th,
+.table.form-table td {
+	padding: .25rem .5rem;
+	vertical-align: middle;
+}
+
+.table.form-table td {
+	text-align: left;
+}
+
+.table.form-table tbody tr th,
+.table.form-table tfoot tr th {
+	background-color: var(--bg-neutral-tertiary);
+	text-align: right;
+}
+
+.table.form-table tbody tr td {
+	min-width: 80px;
+	line-height: inherit;
+}
+
+@media (min-width: 992px) {
+	.table.form-table tbody tr td .form-check {
+		padding-left: 0;
+		margin-bottom: 0;
+	}
+	
+	.table.form-table tbody tr td .form-check-input {
+		margin-top: .25rem;
+	}
+}
+
+.table.form-table .form-label,
+.table.form-table .form-check {
+	margin-bottom: 0;
+}
+
+.table.form-table .btn.btn-icon {
+	width: 38px;
+	height: 38px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.table.form-table td .row {
+	align-items: center;
+}
+
+/* 반응형 테이블 높이 설정 */
+/* 10개 행 높이 - 400px */
+.table-responsive {
+	/* TM 현황에 10개씩 불러오는 테이블 기준
+	min-height: 240px; */
+	overflow-y: auto;
+	margin-bottom: 1rem;	
+	background-color: var(--bg-neutral-tertiary);
+}
+
+/* 테이블 소팅 기능 */
+.table .sort {
+	background-repeat: no-repeat;
+	background-size: 32px;
+	background-position: right 0 center;
+	
+	padding-right: 2rem;
+	cursor: pointer;
+}
+
+.table .sort.icon-up {
+	background-image: url("/resources/images/icons/icon-arrow-up-gray.svg");
+}
+.table .sort.icon-up.active {
+	background-image: url("/resources/images/icons/icon-arrow-down-blue.svg");
+}
+.table .sort.icon-down {
+	background-image: url("/resources/images/icons/icon-arrow-down-gray.svg");
+}
+.table .sort.icon-down.active {
+	background-image: url("/resources/images/icons/icon-arrow-down-blue.svg");
+}
+
+/* 테이블 합계 */
+.table tbody tr.total th {
+	font-weight: 700;
+	text-align: left;
+}
+.table tbody tr.total td {
+	font-weight: 700;
+    background-color: var(--bg-brand-tertiary);
+}
+
+/* 테이블 내 텍스트 긴 경우 ... 처리 text-ellipsis */
+.table:not(.view-table) tbody [data-field="오더명"],
+.table:not(.view-table) tbody [data-field="요청명"],
+.table:not(.view-table) tbody [data-field="설비명"],
+.table:not(.view-table) tbody [data-field="대상기기명"] {
+	min-width: 360px;
+	max-width: 640px;
+	white-space: normal;
+	word-break: break-all;
+}
+.table:not(.view-table) tbody [data-field="증상"] {
+	min-width: 6rem;
+	white-space: normal;
+	word-break: keep-all;
+}
+
+.table:not(.view-table) tbody [data-field="설비번호"] {
+	min-width: 6rem;
+}
+
+/* text-align */
+.table tbody [data-field="품명및규격"],
+.table tbody [data-field="요청부서"],
+.table tbody [data-field="감독부서"],
+.table tbody [data-field="Tag번호"],
+.table tbody [data-field="오더명"],
+.table tbody [data-field="정비부서"],
+.table tbody [data-field="대상기기번호"],
+.table tbody [data-field="요청명"],
+.table tbody [data-field="설비명"],
+.table tbody [data-field="점검명"],
+.table tbody [data-field="점검부위"],
+.table tbody [data-field="포함설비명"],
+.table tbody [data-field="태그"],
+.table tbody [data-field="상세정보"],
+.table tbody [data-field="대상기기명"],
+.table[aria-label="오더종류-데이터"] tbody [data-field="상태"],
+.table[aria-label="오더종류-데이터"] tbody [data-field="작업명"],
+.table[aria-label="공사종류-데이터"] tbody [data-field="공사내용"],
+.table[aria-label="운전정보"] tbody [data-field="태그"],
+.table[aria-label="apc이력"] tbody [data-field="장소"],
+.table[aria-label="CCTV-리스트"] tbody [data-field="CCTV-명"],
+.table[aria-label="CCTV-리스트"] tbody [data-field="위치"],
+.table[aria-label="작업요청건수"] tbody [data-field="호기"],
+.table[aria-label="작업요청처리현황"] tbody [data-field="구분(호기명)"],
+.table[aria-label="점검종류-결과"] tbody [data-field="DESC"],
+.table[aria-label="점검보고서-리스트"] tbody [data-field="제목"],
+.table[aria-label="자재정보"] tbody [data-field="품명"],
+.table[aria-label="자재정보"] tbody [data-field="규격"],
+.table[aria-label="apc장비상태"] tbody [data-field="장비명"],
+.table[aria-label="작업위험성-평가표"] tbody [data-field="유해-위험요인"],
+.table[aria-label="작업위험성-평가표"] tbody [data-field="감소대책"],
+.table[aria-label="공지사항-리스트"] tbody [data-field="제목"],
+.table tbody [data-field="작업허가"],
+.table tbody [data-field="공사종류"],
+.table tbody [data-field="공사명"],
+.table tbody [data-field="작업명"],
+.table tbody [data-field="WBS"],
+.table tbody [data-field="계층정보"] {
+	text-align: left;
+}
+
+.table[aria-label="자재정보"] tbody [data-field="연간소요량"],
+.table[aria-label="자재정보"] tbody [data-field="총누적소요량"],
+.table[aria-label="작업요청건수"] tbody td,
+.table[aria-label="작업요청처리현황"] tbody td,
+.table tbody [data-field="설계재료비"],
+.table tbody [data-field="설계노무비"],
+.table tbody [data-field="설계경비"],
+.table tbody [data-field="설계금액계"],
+.table tbody [data-field="실적재료비"],
+.table tbody [data-field="실적노무비"],
+.table tbody [data-field="실적경비"],
+.table tbody [data-field="실적금액계"] {
+	text-align: right;
+}
+
+/* text-align -- 20250902 예외처리 */
+.table[aria-label="종합현황-일별조회결과"] tbody [data-field="감독부서"] {
+	text-align: center;
+}
+.table[aria-label="종합현황-일별조회결과"] tbody [data-field="작업장소"],
+.table[aria-label="종합현황-일별조회결과"] tbody [data-field="공사/작업명"]{
+	text-align: left;
+	min-width: 380px;
+}
+
+/* facility */
+.table-responsive:has([aria-label="설비정보"]) {
+	height: 220px;
+}
+
+.table-responsive:has([aria-label="정비이력"]),
+.table-responsive:has([aria-label="자재정보"]) {
+	height: 320px;
+}
+
+.table-responsive:has([aria-label="TM-이력"]),
+.table-responsive:has([aria-label="운전정보"]) {
+	max-height: 608px;
+}
+
+/* 설비상세 테이블에만 적용 */
+.modal.facility .view-table tr:first-child th {
+	background-color: var(--bg-neutral-secondary);
+	font-weight: 700;
+}
+.modal.facility .view-table tr:first-child td {
+	background-color: var(--bg-neutral-tertiary);
+	font-weight: 700;
+}
+
+.modal.facility .view-table tbody td {
+	text-align: left;
+}
+.table-responsive:has(.table[aria-label="설비목록"]) {
+	height: 460px;
+}
+.table-responsive:has(.table[aria-label="설비목록"]) tbody [data-field="설비명"] {
+	white-space: wrap;
+	word-break: keep-all;
+}
+
+.table-responsive:has([aria-label="포함설비목록"]) {
+	height: 160px;
+}
+
+.table[aria-label="설비정보"] td > button {
+	--bs-btn-padding-x: 0;
+	display: inline-flex;
+	margin-right: .25rem;
+	width: 1.5rem;
+	height: 1.5rem;
+}
+
+.table tr > [data-field="첨부"] .icon-attach {
+	margin: 0 auto;
+}
+
+/* icon-attach */
+.icon-attach {
+	font-size: 0;
+	text-indent: -9999em;
+}
+
+.icon-attach {
+	width: 24px;
+	height: 24px;
+	display: flex;
+	
+	background-image: url('/resources/images/icons/attach_file-gray.svg');
+	background-size: 24px;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
+.icon-attach[disabled] {
+	opacity: .4;
+	background-image: url('/resources/images/icons/attach_file_off-lightgray.svg');
+}
+
+/* move-to-3D, move-to-pano : 20260408 버튼내 아이콘을 아이콘스타일로 변경
+.table[aria-label="설비정보"] .btn.disabled,
+.table[aria-label="설비정보"] .btn span + span {
+	display: none;
+}
+
+.table[aria-label="설비정보"] td .btn span {
+	position: absolute;
+	top: -9999em;
+	left: -9999em;
+	text-indent: -9999em;
+	
+	width: 0;
+	height: 0;
+}
+
+.table[aria-label="설비정보"] td .move-to-3D,
+.table[aria-label="설비정보"] td .move-to-pano {
+	background-repeat: no-repeat;
+	background-size: 20px;
+	background-position: center;
+	width: 24px;
+	height: 24px;
+	background-color: var(--bg-neutral-secondary);
+	border-radius: 0;
+}
+.table[aria-label="설비정보"] td .move-to-3D {
+	background-image: url('/resources/images/icons/icon-view_in_ar-gray.svg');
+}
+.table[aria-label="설비정보"] td .move-to-pano {
+	background-image: url('/resources/images/icons/icon-vrpano-gray.svg');
+}*/
+
+.table[aria-label="설비정보"] .btn.disabled {
+	display: none;
+}
+
+.table[aria-label="다발-TM현황"] thead th {
+	max-width: 6rem;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.table-responsive:has(.table[aria-label="작업요청건수"]),
+.table-responsive:has(.table[aria-label="작업요청처리현황"]) {
+	height: 360px;
+}
+@media (min-width: 1536px) {
+	.table-responsive:has(.table[aria-label="작업요청건수"]),
+	.table-responsive:has(.table[aria-label="작업요청처리현황"]) {
+		height: 400px;
+	}
+}
+
+/* red tag*/
+.table-responsive:has(.table[aria-label="작업오더"]) {
+	height: 240px; 
+}
+.table-responsive:has(.table[aria-label="작업오더-설계-내용"]),
+.table-responsive:has(.table[aria-label="Red-Tag-출력-리스트"]) {
+	height: 160px; 
+}
+
+/* prevention > 01 정비비용 고장경향분석 */
+.table-responsive:has(.table[aria-label="정비비용-고장-경향정보"]) {
+	height: auto;
+}
+
+/* prevention > 02 점검보고서 */
+.table-responsive:has(.table[aria-label="점검보고서-리스트"]) {
+	height: auto;
+}
+.table-responsive:has(.table[aria-label="점검보고서-상세내용"]) {
+	height: auto;
+	max-height: 48vh;
+}
+.table-responsive:has(.table[aria-label="점검보고서-상세내용-점검결과"]) {
+	height: auto;
+	max-height: 32vh;
+}
+
+@media(min-width: 1400px) {
+	.table-responsive:has(.table[aria-label="점검보고서-리스트"]) {
+		max-height: 240px;
+	}
+	.table-responsive:has(.table[aria-label="점검보고서-리스트"]) {
+		max-height: 200px;
+	}
+	.table-responsive:has(.table[aria-label="점검보고서-상세내용"]),
+	.table-responsive:has(.table[aria-label="점검보고서-상세내용-점검결과"]) {
+		max-height: 128px;
+	}
+}
+
+/* prevention > 03 점검결과 */
+.table-responsive:has(.table[aria-label="점검결과-리스트"]) {
+	height: auto;
+}
+.table-responsive:has(.table[aria-label="점검종류-리스트"]) {
+	height: auto;
+	max-height: 48vh;
+}
+.table-responsive:has(.table[aria-label="점검내용-리스트"]) {
+	height: auto;
+	max-height: 32vh;
+}
+
+@media(min-width: 1400px) {
+	.table-responsive:has(.table[aria-label="점검결과-리스트"]) {
+		max-height: 240px;
+	}
+	.table-responsive:has(.table[aria-label="점검종류-리스트"]),
+	.table-responsive:has(.table[aria-label="점검내용-리스트"]) {
+		max-height: 160px;
+	}
+	.table-responsive:has(.table[aria-label="점검내용-리스트"]) {
+		max-height: 160px;
+		margin-bottom: 0;
+	}
+}
+
+/* prevention > 04 점검결과(Chart) */
+.table-responsive:has(.table[aria-label="점검결과(Chart)-리스트"]) {
+	height: auto;
+}
+
+.table-responsive:has(.table[aria-label="점검종류(Chart)-리스트"]) {
+	height: auto;
+	max-height: 48vh;
+}
+
+.table-responsive:has(.table[aria-label="점검내용(Chart)-리스트"]) {
+	height: auto;
+	max-height: 32vh;
+}
+@media(min-width: 1400px) {
+	.table-responsive:has(.table[aria-label="점검결과(Chart)-리스트"]) {
+		max-height: 240px;
+	}
+	.table-responsive:has(.table[aria-label="점검종류(Chart)-리스트"]) {
+		max-height: 172px;
+		margin-bottom: 0;
+	}
+	
+	.table-responsive:has(.table[aria-label="점검내용(Chart)-리스트"]) {
+		max-height: 471px;
+		margin-bottom: 0;
+	}
+}
+
+/* prevention > 05 이상점검결과 */
+.table-responsive:has(.table[aria-label="이상점검결과-리스트"]) {
+	height: auto;
+}
+
+/* prevention > 06 미점검일정 */
+.table-responsive:has(.table[aria-label="미점검-일정-리스트"]) {
+	height: auto;
+}
+
+/* CCTV */
+.table-responsive:has(.table[aria-label="CCTV-리스트"]) {
+	height: auto;
+}
+
+/* APC - 452px 10개의 행 */
+.table-responsive:has(.table[aria-label="apc이력"]) {
+	height: auto;
+}
+
+/* LOG - 방문자정보 */
+.table-responsive:has(.table[aria-label="방문자정보"]) {
+	height: auto;
+	min-height: 336px;
+}
+
+/* 일일안전현황 dailySafety */
+.table-responsive:has(.table[aria-label="종합현황-일별조회결과"]) {
+	height: auto;
+}
+
+.table tbody [data-field="공사-작업명"]{
+	min-width: 320px;
+	text-align: left;
+}
+.table tbody [data-field="위험작업-허가서"],
+.table tbody [data-field="공사업체명"] {
+	min-width: 240px;
+	text-align: left;
+}
+
+/* 경상오더 */
+.table-responsive:has(.table[aria-label="경상오더-조회결과"]) {
+	height: 320px;
+}
+
+.table-responsive:has(.table[aria-label="품질안전설계-리스트"]) {
+	height: 160px;
+}
+.table[aria-label="품질안전설계-리스트"] tbody [data-field="추가작업"] {
+	min-width: 320px;
+}
+.table[aria-label="품질안전설계-리스트"] tbody [data-field="작업위치"] {
+	min-width: 320px;
+}
+
+.table-responsive:has(.table[aria-label="작업위험성-평가표"]) {
+	height: 160px;
+}
+
+/* 공사오더 */
+.table-responsive:has(.table[aria-label="공사오더-조회결과"]) {
+	height: 320px;
+}
+
+/* TD 조회값에 따른 스타일 지정 */
+.table td:has(.yn) {
+	font-weight: 700;
+	background-color: var(--bg-default-defaulthover);
+}
+.table td:has(.yn.yes) {
+	color: var(--bg-brand-default);
+}
+.table td:has(.yn.no) {
+	color: var(--bg-neutral-default);
+}
+
+/* dailySafety */
+@media (min-width: 1400px) {
+	.modal.daily-safety .tab-content:has(.panel-box) {
+		height: calc(100% - 42px);
+	}
+
+	.modal.daily-safety .tab-pane:has(.panel-box) {
+		padding: 0;
+		height: 100%;
+	}
+
+	.modal.daily-safety .panel-box {
+		height: 100%;
+	}
+}
+
+/* 대표설비 */
+.modal.facility .view-table[aria-label="설비상세"] .main-equipment th {
+    color: var(--text-neutral-secondary);
+    background-color: var(--bg-neutral-secondary);
+}
+.modal.facility .view-table[aria-label="설비상세"] .main-equipment td {
+    color: var(--text-neutral-tertiary);
+    background-color: var(--bg-neutral-tertiary);
+}
+
+/* 단계별 테이블 스타일 */
+.table tbody tr:hover > * {
+	background-color: var(--bg-brand-tertiary);
+}
+
+.table.form-table tbody tr:hover > *,
+.table.view-table tbody tr:hover > * {
+	background-color: transparent;
+}
+
+.table tbody tr.active > * {
+	background-color: var(--bg-brand-tertiaryhover);
+}
+
+/* TM 이력 */
+.table[aria-label="작업요청확정"] tbody [data-field="요청부서"] {
+	min-width: 10rem;
+}
+
+@media (min-width: 1400px) {
+	.modal.tm .tab-content:has(.multiple-tm) {
+		height: calc(100% - 42px);
+	}
+
+	.modal.tm .tab-pane:has(.multiple-tm) {
+		padding: 0;
+		height: 100%;
+	}
+
+	.modal.tm .panel-box.multiple-tm {
+		height: 100%;
+	}
+}
+
+/* 대시보드 테이블 */
+/* .dashboard-box .table th,
+.dashboard-box .table td {
+	padding: .25rem .5rem;
+}
+.table[aria-label*="기기별-"] [data-field="현재값"],
+.table[aria-label*="기기별-"] [data-field="기대값"] {
+	width: 4rem; 
+}
+.table[aria-label*="기기별-"] [data-field="출력"],
+.table[aria-label*="기기별-"] [data-field="효율"],
+.table[aria-label*="기기별-"] [data-field="효율(입출력)"] {
+	text-align: left;
+}
+.table[aria-label*="기기별-"] td:has(.value) {
+	min-width: 4rem;
+} */
+
+/* APC 장비설정 */
+.table[aria-label="apc장비상태"] [data-field="장비명"] {
+    word-break: break-all;
+    white-space: normal;
+}
+.table[aria-label="apc장비상태"] [data-field="상태"] {
+	width: 5rem;
+}
+.table[aria-label="apc장비상태"] [data-field="상태"] .badge {
+	width: 100%;
+	font-size: .9375rem;
+    --bs-badge-padding-x: 0.75rem;
+    --bs-badge-padding-y: 0.5rem;
+}
+.table[aria-label="apc장비상태"] [data-field="초기화"] {
+	width: 6rem;
+}
+
+/* 태그리스트 */
+.table[aria-label="태그리스트"] [data-field="태그번호"] {
+	width: 8rem;
+}
+.table[aria-label="태그리스트"] [data-field="태그ID"] {
+	width: 16rem;
+}
+.table[aria-label="태그리스트"] [data-field="Description"] {
+	text-align: left;
+}
+
+/* QRCODE */
+.table-responsive:has(.table[aria-label="logsheet-result"]) {
+	min-height: 280px;
+}
+.table[aria-label="logsheet-result"] td .is-over {
+	color: var(--icon-danger-ondangertertiary);
+	font-weight: 700;
+}
+.table[aria-label="logsheet-result"] td .is-under {
+	color: var(--icon-brand-onneutraltertiary);
+	font-weight: 700;
+}
+
+
+
+
+
+

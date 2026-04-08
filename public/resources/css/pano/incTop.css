@@ -1,0 +1,97 @@
+@charset "utf-8";
+
+/*#################### 헤더 ####################*/
+
+.header-box {
+	width: 100%;
+	position: relative;
+	height: var(--header-height);
+	/*
+	overflow: hidden;
+	*/
+	overflow: visible;
+	/* 서브메뉴 때문에 visible로 변경 */
+}
+.header-box::after {
+	content: '';
+	display: block;
+	position: absolute;
+	bottom: 0;
+	
+	width: 100%;
+	height: 1px;
+	border-bottom: solid 1px var(--bs-border-color);
+}
+
+.header {
+	width: 100%;
+	height: var(--header-height);
+
+	display: flex;
+	align-items: center;
+		justify-content: space-between;
+
+	background: white;
+	position: relative;
+}
+
+.header>.inner-box {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+}
+
+/* logo */
+.logo {
+	width: auto;
+	height: 100%;
+	
+	background: url('/resources/images/logo.svg');
+	background-repeat: no-repeat;
+	background-size: auto 40px;
+	background-position: left center;
+		
+	margin-left: 1rem;
+	
+	padding-top: .25rem;
+	padding-left: 84px;
+	
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+}
+
+.logo > div {
+	display: block;
+	line-height: 1;
+	font-family: var(--font-family), sans-serif;
+	font-size: .875rem;
+	color: var(--bs-body-color);
+}
+.logo .branch {
+	display: block;
+}
+.logo .branch .system {
+	font-family: var(--font-family-en), sans-serif;
+	position: relative;
+	padding-left: .5rem;
+	margin-left: .25rem;
+}
+.logo .branch .system::before {
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 0;
+	transform: translateY(-50%);
+	display: inline-block;
+	width: 1px;
+	height: 14px;
+	background-color: var(--bs-border-color);
+}
+.logo .desc {
+	display: block;
+	letter-spacing: -.025rem;
+	margin-top: .375rem;
+}
+

@@ -1,0 +1,190 @@
+
+
+				<!-- data title -->
+				<div class="title-box">
+					<h4 class="title03">조회결과<small>(전체 1,280건)</small></h4>
+					
+					<div>
+						<div class="page-move">
+							<label for="selectPage02" class="visually-hidden">이동할 페이지</label>
+							<input type="number" id="selectPage02" class="form-control page" placeholder="1">
+							<span class="px-1"> / </span>
+							<span class="total">168</span>
+							<button type="button" class="btn btn-secondary">이동</button>
+						</div>
+							
+						<div class="btn-box">
+							<button type="button" class="btn btn-outline-primary">이전</button>
+							<button type="button" class="btn btn-outline-primary">다음</button>
+							<button type="button" class="btn btn-primary btn-file-download">엑셀 다운로드</button>
+						</div>
+					</div>
+				</div>
+
+				<!-- 조회결과 영역 -->
+				<div class="table-responsive">
+					<table class="table table-sm" aria-label="조기경보-조회결과">
+						<thead>
+							<tr>
+								<th scope="col" name="excelCol" data-field="more" onclick="toggleAllAlarmTr();"><img src="/resources/images/icons/icon-expand_all-darkgray.svg" alt="전체보기"></th>
+								<th scope="col" name="excelCol" data-field="Occurrence-Time">Occurrence Time</th>
+								<th scope="col" name="excelCol" data-field="Logic">Logic</th>
+								<th scope="col" name="excelCol" data-field="Count">Count</th>
+								<th scope="col" name="excelCol" data-field="Diagram">Diagram</th>
+								<th scope="col" name="excelCol" data-field="Message">Message</th>
+							</tr>
+						</thead>
+						<!-- 월별 알람리스트 -->
+						<tbody>
+							<tr>
+								<td colspan="6">
+									<div class="no-data">조회된 데이터가 없습니다.</div>
+								</td>
+							</tr>
+							<tr>
+								<th data-field="more" onclick="toggleAlarmTr(this);"><img src="/resources/images/icons/icon-add-gray.svg" alt="시간정보"></th>
+								<td data-field="Occurrence-Time">2025-11-13 08:04:40</td>
+								<td data-field="Logic">
+									9호기 > 보일러설비 > 보일러수및증기계통 > Superheater > Roof Tube & Convention Pass Wall 현장계측기
+								</td>
+								<td data-field="Count">2</td>
+								<td data-field="Diagram">
+									<div class="ew-total">
+										총 1,000건
+									</div>
+								</td>
+								<td data-field="Message">발전 출력 비정상 변동 - 운전 상태 확인 요망</td>
+							</tr>
+							<!-- tr 단위로 show/hide -->
+							<tr style="display: none;">
+								<td class="time-group" colspan="6">
+									<div class="tg-box">
+										<div class="tg-title">
+											<strong>2025-11-13</strong> <span class="total">8건</span>
+										</div>
+										<div class="tg-list">
+											<div class="item"><span>2025-12-18 14:15:09 ~ 2025-12-03 14:28:41</span></div>
+											<div class="item"><span>2025-12-18 14:31:34 ~ 2025-12-03 14:34:13</span></div>
+											<div class="item"><span>2025-12-18 14:41:14 ~ 2025-12-03 14:42:11</span></div>
+											<div class="item"><span>2025-12-18 14:42:37 ~ 2025-12-03 14:48:57</span></div>
+											<div class="item"><span>2025-12-18 14:48:59 ~ 2025-12-03 14:49:08</span></div>
+											<div class="item"><span>2025-12-18 14:49:14 ~ 2025-12-03 14:53:10</span></div>
+										</div>
+									</div>
+
+									<div class="tg-box">
+										<div class="tg-title">
+											<strong>2025-11-13</strong> <span class="total">24건</span>
+										</div>
+										<div class="tg-list">
+											<div class="item"><span>2025-12-18 14:15:09 ~ 2025-12-03 14:28:41</span></div>
+											<div class="item"><span>2025-12-18 14:31:34</span></div>
+											<div class="item"><span>2025-12-03 14:42:11</span></div>
+											<div class="item"><span>2025-12-03 14:48:57</span></div>
+											<div class="item"><span>2025-12-18 14:48:59 ~ 2025-12-03 14:49:08</span></div>
+											<div class="item"><span>2025-12-18 14:31:34</span></div>
+											<div class="item"><span>2025-12-03 14:42:11</span></div>
+											<div class="item"><span>2025-12-03 14:48:57</span></div>
+											<div class="item"><span>2025-12-18 14:31:34</span></div>
+											<div class="item"><span>2025-12-03 14:42:11</span></div>
+											<div class="item"><span>2025-12-03 14:48:57</span></div>
+											<div class="item"><span>2025-12-18 14:31:34</span></div>
+											<div class="item"><span>2025-12-03 14:42:11</span></div>
+											<div class="item"><span>2025-12-03 14:48:57</span></div>
+											<div class="item"><span>2025-12-18 14:42:37 ~ 2025-12-03 14:48:57</span></div>
+											<div class="item"><span>2025-12-18 14:48:59 ~ 2025-12-03 14:49:08</span></div>
+											<div class="item"><span>2025-12-18 14:49:14 ~ 2025-12-03 14:53:10</span></div>
+										</div>
+									</div>
+
+								</td>
+							</tr>
+						</tbody>
+						<!-- 일별 알람리스트 -->
+						<tbody>
+							<tr class="_TR_RESULT_DATA">
+								<th data-field="more" onclick="toggleAlarmTr(this);"><img src="/resources/images/icons/icon-add-gray.svg" alt="시간정보"></th>
+								<td data-field="Occurrence-Time">2025-11-13 08:04:40</td>
+								<td data-field="Logic">
+									9호기 > 보일러설비 > 보일러수및증기계통 > Superheater > Roof Tube & Convention Pass Wall 현장계측기
+								</td>
+								<td data-field="Count">2</td>
+								<td data-field="Diagram">
+									<div class="diagram-list">
+										<div class="ew-occured" onclick="showEarlyWarning(this);">0</div>
+										<div>1</div>
+										<div>2</div>
+										<div>3</div>
+										<div>4</div>
+										<div class="ew-occured" onclick="showEarlyWarning(this);">5</div>
+										<div>6</div>
+										<div>7</div>
+										<div class="ew-occured" onclick="showEarlyWarning(this);">8</div>
+										<div>9</div>
+										<div>10</div>
+										<div>11</div>
+										<div>12</div>
+										<div>13</div>
+										<div>14</div>
+										<div>15</div>
+										<div class="ew-occured" onclick="showEarlyWarning(this);">16</div>
+										<div class="ew-occured" onclick="showEarlyWarning(this);">17</div>
+										<div class="ew-occured" onclick="showEarlyWarning(this);">18</div>
+										<div>19</div>
+										<div>20</div>
+										<div>21</div>
+										<div>22</div>
+										<div class="ew-occured" onclick="showEarlyWarning(this);">23</div>
+									</div>
+								</td>
+								<td data-field="Message">발전 출력 비정상 변동 - 운전 상태 확인 요망</td>
+							</tr>
+							<!-- tr 단위로 show/hide -->
+							<tr style="display: none;">
+								<td class="time-group" colspan="6">
+									<div class="tg-box">
+										<div class="tg-title">
+											<strong>2025-11-13</strong> <span class="total">8건</span>
+										</div>
+										<div class="tg-list">
+											<div class="item"><strong>2025-11-13</strong> <span>07:04:40</span> <span>~</span> <strong>2025-11-13</strong> <span>07:20:41</span></div>
+											<div class="item"><strong>2025-11-13</strong> <span>07:04:40</span></div>
+											<div class="item"><strong>2025-11-13</strong> <span>07:04:40</span></div>
+											<div class="item"><strong>2025-11-13</strong> <span>07:04:40</span> <span>~</span> <strong>2025-11-13</strong> <span>07:20:41</span></div>
+											<div class="item"><strong>2025-11-13</strong> <span>07:04:40</span> <span>~</span> <strong>2025-11-13</strong> <span>07:20:41</span></div>
+											<div class="item"><strong>2025-11-13</strong> <span>07:04:40</span> <span>~</span> <strong>2025-11-13</strong> <span>07:20:41</span></div>
+											<div class="item"><strong>2025-11-13</strong> <span>07:04:40</span> <span>~</span> <strong>2025-11-13</strong> <span>07:20:41</span></div>
+											<div class="item"><strong>2025-11-13</strong> <span>07:04:40</span> <span>~</span> <strong>2025-11-13</strong> <span>07:20:41</span></div>
+										</div>
+									</div>
+								</td>
+							</tr>
+
+						</tbody>
+					</table>
+				</div>
+
+				<div class="ew-popup">
+					<div class="ew-header">
+						<h5 class="modal-title">알람발생시각 <small>(총 100건)</small></h5>
+						<button type="button" class="ew-popup-close" aria-label="Close" onclick="closeEarlyWarning(this)"></button>
+					</div>
+					<div class="ew-body">
+						<div class="tg-box">
+							<div class="tg-title">
+								<strong>2025-12</strong><span>(7건)</span>
+							</div>
+							<div class="tg-list">
+								<div class="item"><span>2025-12-18 14:15:09 ~ 2025-12-03 14:28:41</span></div>
+								<div class="item"><span>2025-12-18 14:31:34 ~ 2025-12-03 14:34:13</span></div>
+								<div class="item"><span>2025-12-18 14:34:27 ~ 2025-12-03 14:40:52</span></div>
+								<div class="item"><span>2025-12-18 14:41:14 ~ 2025-12-03 14:42:11</span></div>
+								<div class="item"><span>2025-12-18 14:42:37 ~ 2025-12-03 14:48:57</span></div>
+								<div class="item"><span>2025-12-18 14:48:59 ~ 2025-12-03 14:49:08</span></div>
+								<div class="item"><span>2025-12-18 14:49:14 ~ 2025-12-03 14:53:10</span></div>					
+							</div>
+						</div>
+					
+					</div>
+				</div>
+

@@ -1,0 +1,328 @@
+<h3 class="title02">작업요청 확정</h3>
+<!-- 검색영역 -->
+<div class="search-box" aria-label="작업요청-확정-검색">
+	<div class="row">
+		<!-- 상위 폼 요소 (연관된 인풋 두 개 세트) -->
+		<div class="col-md-6 col-lg-4 col-xxl-2 mb-3">
+			<span class="form-label" id="dateRangePicker01">요청기간</span>
+			<div class="row g-2 period-box" aria-labelledby="dateRangePicker01">
+				<div class="col">
+					<label class="visually-hidden" for="startDate0102">시작일</label>
+					<input type="text" class="form-control icon-calendar" id="startDate0102">
+				</div>
+				<div class="col-auto">
+					<span class="form-control-plaintext text-center">~</span>
+				</div>
+				<div class="col">
+					<label class="visually-hidden" for="endDate0102">종료일</label>
+					<input type="text" class="form-control icon-calendar" id="endDate0102">
+				</div>
+			</div>
+		</div>
+		<div class="col-md-auto col-lg-auto mb-3">
+			<button type="button" class="btn btn-primary">
+				<span class="material-symbols-rounded">
+					search
+				</span> 검색
+			</button>
+		</div>
+	</div>
+</div>
+
+<!-- data title -->
+<div class="title-box">
+	<h4 class="title03">조회결과<small>(전체 1,280건)</small></h4>
+	
+	<div>
+		<div class="page-move">
+			<label for="selectPage01" class="visually-hidden">이동할 페이지</label>
+			<input type="number" id="selectPage01" class="form-control page" placeholder="1">
+			<span class="px-1"> / </span>
+			<span class="total">168</span>
+			<button type="button" class="btn btn-secondary">이동</button>
+		</div>
+			
+		<div class="btn-box">
+			<button type="button" class="btn btn-outline-primary">이전</button>
+			<button type="button" class="btn btn-outline-primary">다음</button>
+		</div>
+	</div>
+</div>
+
+<!-- data-grid -->
+<div class="table-responsive" style="height: auto;">
+	<table class="table table-sm" aria-label="작업요청확정">
+		<thead>
+			<tr>
+				<th scope="col" data-field="첨부">첨부</th>
+				<th scope="col" data-field="요청유형">요청유형</th>
+				<th scope="col" data-field="승인일자">승인일자</th>
+				<th scope="col" data-field="진행상태">진행상태</th>
+				<th scope="col" data-field="요청번호">요청번호</th>
+				<th scope="col" data-field="요청명">요청명</th>
+				<th scope="col" data-field="요청자">요청자</th>
+				<th scope="col" data-field="요청부서">요청부서</th>
+				<th scope="col" data-field="감독부서">감독부서</th>
+				<th scope="col" data-field="작업중요도">작업중요도</th>
+				<th scope="col" data-field="우선순위">우선순위</th>
+				<th scope="col" data-field="Red-TAG-필요">Red TAG 필요</th>
+				<th scope="col" data-field="증상">증상</th>
+				<th scope="col" data-field="최근1년간-동일증상">최근1년간 동일증상</th>
+				<th scope="col" data-field="설비번호">설비번호</th>
+				<th scope="col" data-field="설비명">설비명</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr onclick="showDetail($(this));">
+				<th scope="row" data-field="첨부">
+					<span class="icon-attach">
+						attachment
+					</span>
+				</th>
+				<th scope="col" data-field="요청유형">TM</th>
+				<th scope="col" data-field="승인일자">2024-07-20</th>
+				<th scope="col" data-field="진행상태">확정완료</th>
+				<th scope="col" data-field="요청번호">123456</th>
+				<th scope="col" data-field="요청명">CTCS#A, B 볼 회수율 불량</th>
+				<td data-field="요청자">홍길동</td>
+				<td data-field="요청부서">복합발전운영본부</td>
+				<td data-field="감독부서">복기ST과</td>
+				<td data-field="작업중요도">B등급(일반)</td>
+				<td data-field="우선순위">일상</td>
+				<td data-field="Red-TAG-필요">0</td>
+				<td data-field="증상">누설(Leakage)</td>
+				<td data-field="최근1년간-동일증상">0</td>
+				<td data-field="설비번호">12345678</td>
+				<td data-field="설비명">CTCS Line</td>
+			</tr>
+			<tr onclick="showDetail($(this));">
+				<th scope="row" data-field="첨부">
+					<span class="icon-attach">
+						attachment
+					</span>
+				</th>
+				<th scope="col" data-field="요청유형">TM</th>
+				<th scope="col" data-field="승인일자">2024-11-20</th>
+				<th scope="col" data-field="진행상태">확정완료</th>
+				<th scope="col" data-field="요청번호">458752</th>
+				<th scope="col" data-field="요청명">2복합 SLP Screen Wash WTR PP #B Gland 누수 2복합 SLP Screen Wash WTR PP #B Gland 누수</th>
+				<td data-field="요청자">홍길동</td>
+				<td data-field="요청부서">복합발전운영본부</td>
+				<td data-field="감독부서">복기ST과</td>
+				<td data-field="작업중요도">A등급(중요)</td>
+				<td data-field="우선순위">일상</td>
+				<td data-field="Red-TAG-필요">0</td>
+				<td data-field="증상">누설(Leakage)</td>
+				<td data-field="최근1년간-동일증상">0</td>
+				<td data-field="설비번호">12345678</td>
+				<td data-field="설비명">CTCS Line</td>
+			</tr>
+			<tr onclick="showDetail($(this));">
+				<th scope="row" data-field="첨부">
+					<span class="icon-attach">
+						attachment
+					</span>
+				</th>
+				<th scope="col" data-field="요청유형">TM</th>
+				<th scope="col" data-field="승인일자">2024-12-01</th>
+				<th scope="col" data-field="진행상태">확정완료</th>
+				<th scope="col" data-field="요청번호">015752</th>
+				<th scope="col" data-field="요청명">SLP Screen Wash Gland 누수</th>
+				<td data-field="요청자">홍길동</td>
+				<td data-field="요청부서">복합발전운영본부</td>
+				<td data-field="감독부서">복기ST과</td>
+				<td data-field="작업중요도">A등급(중요)</td>
+				<td data-field="우선순위">일상</td>
+				<td data-field="Red-TAG-필요">0</td>
+				<td data-field="증상">누설(Leakage)</td>
+				<td data-field="최근1년간-동일증상">0</td>
+				<td data-field="설비번호">12345678</td>
+				<td data-field="설비명">CTCS Line</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<script>
+	$(document).ready(function () {
+		const targetRow = document.querySelector('.table[aria-label="작업요청확정"] tbody tr');
+		duplicateByElement(targetRow, 20);
+		//duplicateRow('.table[aria-label="작업요청확정"]', 47);
+	});
+</script>
+
+<div class="modal fade detail-box" tabindex="-1" id="showTmDetail">
+	<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="title04">
+					<!-- 개발: 선택한 행의 data-field="요청명"에 해당하는 값을 타이틀로 넣어주세요 -->
+					CTCS#A, B 볼 회수율 불량 CTCS#A, B 볼 회수율 불량CTCS#A, B 볼 회수율 불량CTCS#A, B 볼 회수율 불량CTCS#A, B 볼 회수율 불량CTCS#A, B 볼 회수율 불량
+				</h5>
+				<button type="button" class="btn close">
+					<span class="material-symbols-rounded">
+					close
+					</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<h6 class="title05">개요</h6>
+
+				<div class="table-responsive">
+					<table class="table table-sm view-table" data-tab-id="tab01-pane" aria-label="TM-현황상세-개요">
+						<colgroup>
+							<col style="width: 128px;">
+							<col>
+							<col style="width: 128px;">
+							<col>
+							<col style="width: 128px;">
+							<col>
+						</colgroup>
+						<tbody>
+							<tr>
+								<th scope="row">요청번호</th>
+								<td data-field="요청번호">12345</td>
+								<th scope="row">진행상태</th>
+								<td data-field="진행상태">발행중</td>
+								<th scope="row">설비번호</th>
+								<td data-field="설비번호">52921-00300</td>
+							</tr>
+							<tr>
+								<th scope="row">설비등급</th>
+								<td data-field="설비등급">회의 평택2복합 일일정비회의 평택2복합 일일정비회의 평택2복합 일일정비회의 평택2복합 일일정비회의 평택2복합 일일정비회의 평택2복합 일일정비회의 평택2복합 일일정비</td>
+								<th scope="row">계층정보</th>
+								<td data-field="계층정보">회의 평택2복합 일일정비회의 평택2복합 일일정비회의 평택2복합 일일정비회의 평택2복합 일일정비회의 평택2복합 일일정비회의 평택2복합 일일정비회의 평택2복합 일일정비</td>
+								<th scope="row">일일정비회의</th>
+								<td data-field="일일정비회의">평택2복합 일일정비회의 평택2복합 일일정비회의 평택2복합 일일정비회의 평택2복합 일일정비회의 평택2복합 일일정비회의 평택2복합 일일정비회의 평택2복합 일일정비회의 평택2복합 일일정비회의 평택2복합 일일정비회의 평택2복합 일일정비회의 </td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				
+				<h6 class="title05">일반정보</h6>
+
+				<div class="table-responsive">
+					<table class="table table-sm view-table" data-tab-id="tab01-pane" aria-label="TM-현황상세-일반정보">
+						<colgroup>
+							<col style="width: 128px;">
+							<col>
+							<col style="width: 128px;">
+							<col>
+							<col style="width: 128px;">
+							<col>
+						</colgroup>
+						<tbody>
+							<tr>
+								<th scope="row">요청일시</th>
+								<td data-field="요청일시">2024-12-12 14:30</td>
+								<th scope="row">요청부서</th>
+								<td data-field="요청부서">복합발전운영부</td>
+								<th scope="row">요청자</th>
+								<td data-field="요청자">홍길동</td>
+							</tr>
+							<tr>
+								<th scope="row">감독부서</th>
+								<td data-field="감독부서">전기제어부</td>
+								<th scope="row">감독부서2</th>
+								<td data-field="감독부서2"></td>
+								<th scope="row">감독부서3</th>
+								<td data-field="감독부서3"></td>
+							</tr>
+							<tr>
+								<th scope="row">반송처리자</th>
+								<td data-field="반송처리자"></td>
+								<th scope="row">반송일자</th>
+								<td data-field="반송일자"></td>
+								<th scope="row">반송사유</th>
+								<td data-field="반송사유"></td>
+							</tr>
+							<tr>
+								<th scope="row">확정자</th>
+								<td data-field="확정자"></td>
+								<th scope="row">확정일시</th>
+								<td data-field="확정일시" colspan="3"></td>
+							</tr>
+							<tr>
+								<th scope="row">취소자</th>
+								<td data-field="취소자"></td>
+								<th scope="row">취소일시</th>
+								<td data-field="취소일시"></td>
+								<th scope="row">취소사유</th>
+								<td data-field="취소사유"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				
+				<h6 class="title05">요청정보</h6>
+
+				<div class="table-responsive">
+					<table class="table table-sm view-table" data-tab-id="tab01-pane" aria-label="TM-현황상세-요청정보">
+						<colgroup>
+							<col style="width: 128px;">
+							<col>
+							<col style="width: 128px;">
+							<col>
+							<col style="width: 128px;">
+							<col>
+						</colgroup>
+						<tbody>
+							<tr>
+								<th scope="row">작업중요도</th>
+								<td data-field="작업중요도">A등급(중요작업)</td>
+								<th scope="row">우선순위</th>
+								<td data-field="우선순위">일상</td>
+								<th scope="row">Red Tag 필요</th>
+								<td data-field="Red-Tag-필요">없음</td>
+							</tr>
+							<tr>
+								<th scope="row">증상</th>
+								<td data-field="증상" colspan="3">단선/단락 (Disconnection/Short-circuit)</td>
+								<th scope="row">최근 1년간 동일설비/증상</th>
+								<td data-field="최근-1년간-동일설비-증상">없음</td>
+							</tr>
+							<tr>
+								<th scope="row">요청내용</th>
+								<td data-field="요청내용" colspan="5">
+									<div class="overflow-y-scroll" style="height: 100px;">
+										요청내용이 들어갑니다
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	//클릭된 행 클래스 설정
+	var setActiveRow = null;
+
+	function showDetail(row) {
+		setActiveRow = row;
+
+		//클릭된 행 클래스 추가 및 다른 행의 클래스 제거
+		var $table = $(row).closest('table');
+
+		if(setActiveRow) {
+			$table.find('tr.active').not(this).removeClass("active");
+			$(setActiveRow).addClass('active');
+		}
+			
+		$("#showTmDetail").bPopup({
+			modalClose : false,
+			position: [0, 0],
+			opacity: .4,
+			speed : 450,
+			closeClass: "close",
+			onOpen: function () {
+				$(this).addClass('show detail-box');
+			},
+			onClose: function () {
+				$(this).removeClass('show');
+			}
+		});
+	}
+</script>

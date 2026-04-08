@@ -1,0 +1,51 @@
+@charset "utf-8";
+@import url(/resources/css/variables.css);
+/*
+* 포미트 - 서부 iPOS 공통 스타일시트
+* 작성자 : 김윤지
+* 작성일 : 2026-03-19
+* SweetAlert2 커스텀 스타일
+*/
+
+/* success */
+div:where(.swal2-icon).swal2-success {
+	border-color: var(--green-300);
+	color: var(--green-300);
+}
+div:where(.swal2-icon).swal2-success [class^=swal2-success-line] {
+	background-color: var(--green-300);
+}
+div:where(.swal2-icon).swal2-success .swal2-success-ring {
+	border-color: var(--green-300);
+}
+
+/* error */
+div:where(.swal2-icon).swal2-error {
+	border-color: var(--red-400);
+	color: var(--red-400);
+}
+div:where(.swal2-icon).swal2-error [class^=swal2-x-mark-line] {
+	background-color: var(--red-400);
+}
+
+/* warning */
+div:where(.swal2-icon).swal2-warning {
+	border-color: var(--orange-300);
+	color: var(--orange-300);
+}
+
+/* info */
+div:where(.swal2-icon).swal2-info {
+	border-color: var(--cyan-300);
+	color: var(--cyan-300);
+}
+
+/* question */
+div:where(.swal2-icon).swal2-question {
+	border-color: var(--slate-400);
+	color: var(--slate-400);
+}
+
+div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-confirm) {
+	--swal2-confirm-button-background-color: var(--slate-700);
+}

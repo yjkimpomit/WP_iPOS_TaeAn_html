@@ -1,0 +1,59 @@
+@charset "UTF-8";
+
+@media print {
+
+	/* 페이지 여백 설정 */
+	@page {
+		size: A4 landscape;
+		margin: 1cm 1cm 3cm;
+	}
+	
+	body {
+		page-break-before: always;
+	}
+
+	/* 스크롤 해제 */
+	html, body {
+		height: auto;
+	}
+	#unity-container {
+		height: calc(100vw * (9/16) - 88px) !important;
+	}
+
+	.external-popup.modal.show,
+	.external-popup.modal.show .modal-dialog {
+		height: auto;
+	}
+	.external-popup .modal-body {
+		min-height: 640px;
+		height: auto;
+	}
+
+	.table-responsive,
+	.table {
+		width: 100%;
+		height: auto !important;
+		overflow: visible;
+	}
+	.table th, .table td {
+		white-space: normal;
+		word-break: break-all;
+	}
+
+	/* 칼럼 너비 조정 해제 - 모든 텍스트 다 보이게  */
+	.table:not(.view-table) tbody [data-field="오더명"], 
+	.table:not(.view-table) tbody [data-field="요청명"], 
+	.table:not(.view-table) tbody [data-field="설비명"], 
+	.table:not(.view-table) tbody [data-field="대상기기명"] {
+		min-width: 8rem;
+		max-width: inherit;
+	}
+}
+
+/* 
+@page {
+	size: a4;
+	page-break-after: always; 
+	counter-increment: page;
+}
+ */
