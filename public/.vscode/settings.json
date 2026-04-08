@@ -1,7 +1,7 @@
 {	
 	"liveServer.settings.host": "10.4.131.9",
 	//"liveServer.settings.host": "192.168.68.106",
-	"liveServer.settings.port": 5505,
+	"liveServer.settings.port": 5550,
 
 	"workbench.colorCustomizations": {
 		"activityBar.activeBackground": "#3399ff",
