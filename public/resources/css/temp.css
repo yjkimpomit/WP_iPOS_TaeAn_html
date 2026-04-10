@@ -1,0 +1,157 @@
+<table class="table table-sm" aria-label="대시보드-일일안전현황">
+            <thead>
+            <tr>
+                <strong>일반</strong>
+                <span class="_QS_G">0</span>
+
+                <strong>화기</strong>
+                <span class="_QS_HW">0</span>
+
+                <strong>밀폐</strong>
+				<span class="_QS_C">0</span>
+                
+                <strong>고소</strong>
+				<span class="_QS_H">0</span>
+                
+                <strong>중량물</strong>
+                <span class="_QS_HO">0</span>
+                
+                <strong>정전</strong>
+				<span class="_QS_PO">0</span>
+
+                <strong>굴착</strong>
+                <span class="_QS_E">0</span>
+
+                <strong>잠수</strong>
+                <span class="_QS_D">0</span>
+
+                <strong>화학물질</strong>
+                <span class="_QS_CS">0</span>
+
+                <strong>방사선</strong>
+                <span class="_QS_R">0</span>
+
+                <strong>기타</strong>
+                <span class="_QS_O">0</span>
+
+                <strong>합계</strong>
+                <span class="_QS_TOT">0</span>
+            </tr>
+            </tbody>
+        </table>
+
+
+		
+    
+    <%-- 9호기-환경 --%>
+    <div class="table-responsive">
+        <table class="table table-sm" aria-label="9호기-환경">
+            <thead>
+            <tr>
+                <th scope="colgroup" colspan="5" data-field="환경">환경</th>
+            </tr>
+            <tr>
+                <th scope="col" data-field="Sox">Sox</th>
+                <th scope="col" data-field="NOx">NOx</th>
+                <th scope="col" data-field="O2">O2</th>
+                <th scope="col" data-field="CO">CO</th>
+                <th scope="col" data-field="Dust">Dust</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td data-field="Sox"><span id="">0.0</span><small>PPM</small></td>
+                <td data-field="NOx"><span id="">20.14</span><small>PPM</small></td>
+                <td data-field="O2"><span id="">0.0</span><small>PPM</small></td>
+                <td data-field="CO"><span id="">0.0</span><small>PPM</small></td>
+                <td data-field="Dust"><span id="">0.0</span><small>PPM</small></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <%-- 9호기-성능 --%>
+    <div class="table-responsive">
+        <table class="table table-sm" aria-label="9호기-성능">
+            <thead>
+            <tr>
+                <th scope="colgroup" colspan="7" data-field="성능">성능</th>
+            </tr>
+            <tr>
+                <th scope="col" data-field="보일러">보일러</th>
+                <th scope="col" data-field="터빈">터빈</th>
+                <th scope="col" data-field="종합">종합</th>
+                <th scope="col" data-field="기대값">기대값</th>
+                <th scope="col" data-field="현재">현재</th>
+                <th scope="col" data-field="보정값">보정값</th>
+                <th scope="col" data-field="열 소비율">열 소비율</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td data-field="보일러"><span id="">1,000</span><small>MW</small></td>
+                <td data-field="터빈"><span id="">20</span><small>KV</small></td>
+                <td data-field="종합"><span id="">30</span><small>°C</small></td>
+                <td data-field="기대값"><span id="">40</span><small>MPa</small></td>
+                <td data-field="현재"><span id="">60</span><small>MPa</small></td>
+                <td data-field="보정값"><span id="">50</span><small>°C</small></td>
+                <td data-field="열-소비율"><span id="">60</span><small>MPa</small></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    
+    <%-- 9호기 일일안전현황 --%>
+    <div class="dashboard-safety">
+        <h2>9호기 일일안전현황</h2>
+        <div class="grid grid--6 ds-group">
+            <div class="ds-item total">
+                <strong>합계</strong>
+                <span class="_QS_TOT">0</span>
+            </div>
+            <div class="ds-item">
+                <strong>일반</strong>
+                <span class="_QS_G">0</span>
+            </div>
+            <div class="ds-item">
+                <strong>화기</strong>
+                <span class="_QS_HW">0</span>
+            </div>
+            <div class="ds-item">
+                <strong>밀폐</strong>
+                <span class="_QS_C">0</span>
+            </div>
+            <div class="ds-item">
+                <strong>고소</strong>
+                <span class="_QS_H">0</span>
+            </div>
+            <div class="ds-item">
+                <strong>중량물</strong>
+                <span class="_QS_HO">0</span>
+            </div>
+            <div class="ds-item">
+                <strong>정전</strong>
+                <span class="_QS_PO">0</span>
+            </div>
+            <div class="ds-item">
+                <strong>굴착</strong>
+                <span class="_QS_E">0</span>
+            </div>
+            <div class="ds-item">
+                <strong>잠수</strong>
+                <span class="_QS_D">0</span>
+            </div>
+            <div class="ds-item">
+                <strong>화학물질</strong>
+                <span class="_QS_CS">0</span>
+            </div>
+            <div class="ds-item">
+                <strong>방사선</strong>
+                <span class="_QS_R">0</span>
+            </div>
+            <div class="ds-item">
+                <strong>기타</strong>
+                <span class="_QS_O">0</span>
+            </div>
+        </div>
+    </div>
