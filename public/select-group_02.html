@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="theme-color" content="#FFFFFF">
+	<title>태안 퍼블리싱본 - iPOS RWD</title>
+
+	<meta name="description" content="서부발전 태안 i-POS 서비스 제공">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- favicon -->
+    <link rel="icon" href="/resources/images/favicon.ico" sizes="any">
+    <link rel="icon" href="/resources/images/favicon.svg" type="image/svg+xml">
+
+    <script src="/resources/js/jquery/jquery-3.6.1.js"></script>
+
+    <!-- WP stylesheet -->
+    <link rel="stylesheet" href="/resources/css/select-group.css">
+
+    <script>
+        function fnGoIndex(val) {
+            /*if(val === '5100') {
+                location.href = "http://localhost:9000/index.do";
+            }
+            else {*/
+                $("#form #eqOrgNo").val(val);
+                $("#form").submit();
+            //}
+        }
+    </script>
+</head>
+
+<body>	
+<form name="form" id="form" method="post" action="${pageContext.request.contextPath}/index.do">
+    <input type="hidden" name="eqOrgNo" id="eqOrgNo" value="5100">
+</form>
+
+<div class="bg-box1"></div>
+<div class="bg-box2"></div>
+
+<div>
+    <div class="logo">
+        <div class="bi">
+            <span class="visually-hidden-focusable">서부발전</span>
+            <strong class="branch">i-POS</strong>
+            <span class="desc">지능형 발전 운영시스템</span>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="header-title">
+        <h1>안녕하세요. <br>발전소를 선택해 주세요.</h1>
+    </div>
+    <div class="select-group">
+		<div class="bg01 disabled"<%-- ${order}--%> style="order: 2;">
+			<!--<a href="javascript:" onclick="fnGoIndex('5100')">-->
+			<a href="javascript:;">
+				<h2 class="btn-plant">평택2복합</h2>
+			</a>
+		</div>
+		<div class="bg02" style="order: 1;">
+			<a href="javascript:" onclick="fnGoIndex('5000')">
+				<h2 class="btn-plant">태안 9,10호기</h2>
+			</a>
+		</div>
+    </div>
+</div>
+
+</body>
+
+</html>

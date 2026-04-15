@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="theme-color" content="#FFFFFF">
+	<title>태안 그룹선택화면</title>
+
+	<meta name="description" content="서부발전 태안 i-POS 서비스 제공">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- favicon -->
+    <link rel="icon" href="/resources/images/favicon.ico" sizes="any">
+    <link rel="icon" href="/resources/images/favicon.svg" type="image/svg+xml">
+
+    <script src="/resources/js/jquery/jquery-3.6.1.js"></script>
+
+    <!-- WP stylesheet -->
+    <link rel="stylesheet" href="/resources/css/select-group.css">
+
+    <script>
+        function fnGoIndex(val) {
+            /*if(val === '5100') {
+                location.href = "http://localhost:9000/index.do";
+            }
+            else {*/
+                $("#form #eqOrgNo").val(val);
+                $("#form").submit();
+            //}
+        }
+    </script>
+</head>
+
+<body>
+<h1 class="visually-hidden">발전소 선택 화면</h1>
+
+<form name="form" id="form" method="post" action="/index.html">
+    <input type="hidden" name="eqOrgNo" id="eqOrgNo" value="5100">
+</form>
+
+<div class="logo">
+	<div class="bi">
+		<div class="visually-hidden">서부발전</div>
+		<div class="system">i-POS</div>
+		<!-- 개발참고 -->
+		<div class="branch">
+			<div class="select-plant">
+				<span>태안 9, 10호기</span>
+				<!-- <span class="icon icon-arrow"></span> -->
+			</div>
+			<!-- <div class="plant-group">
+				<span>평택 2복합</span>
+				<span>태안 9, 10호기</span>
+				<span>김포열병합</span>
+			</div> -->
+		</div>
+	</div>
+</div>
+
+<div class="map-ui">
+	<div class="map-stage">
+		<img src="images/map-korea.png" alt="지역 지도" class="map-image">
+
+		<!-- 핀 1 -->
+		<div class="map-pin-wrap" style="top: 28%; left: 42%;">
+			<button type="button" class="map-pin" aria-expanded="false" aria-controls="info-pt">
+				<span class="blind">평택2복합</span>
+			</button>
+
+			<div class="map-info" id="info-seoul" role="dialog" aria-label="평택2복합 정보">
+				<button type="button" class="map-info-close" aria-label="정보 닫기">×</button>
+				<div class="map-info-line"></div>
+				<div class="map-info-body">
+					<strong class="map-info-title">서울 사업소</strong>
+					<p class="map-info-text">운영 상태 정상</p>
+					<p class="map-info-text">담당 설비 12개</p>
+				</div>
+			</div>
+		</div>
+			
+		<a href="javascript:;" data-field="평택">
+			<div class="pin pin--pt disabled">
+				<div class="branch-info">
+					<p></p>
+					<h2>평택2복합</h2>
+				</div>
+			</div>
+		</a>
+
+		<a href="javascript:" data-field="태안" onclick="fnGoIndex('5000')">
+			<div class="pin pin--ta">
+				<div class="branch-info">
+					<p>유연탄(석탄) 1050MW</p>
+					<h2>태안 발전본부 <small>9, 10호기</small></h2>
+				</div>
+			</div>
+		</a>
+
+		<a href="javascript:;" data-field="서인천">
+			<div class="pin pin--wic disabled">
+				<div class="branch-info">
+					<p></p>
+					<h2>서인천 발전본부</h2>
+				</div>
+			</div>
+		</a>
+
+		<a href="javascript:;" data-field="김포">
+			<div class="pin pin--gp disabled">
+				<div class="branch-info">
+					<p></p>
+					<h2>김포 발전본부</h2>
+				</div>
+			</div>
+		</a>
+		
+		<a href="javascript:;" data-field="군산">
+			<span class="pin pin-gs"></span>
+			<div class="branch-info disabled">
+				<p></p>
+				<h2>군산 발전본부</h2>
+			</div>
+		</a>
+			
+	</div>
+
+</div>
+
+</body>
+
+</html>

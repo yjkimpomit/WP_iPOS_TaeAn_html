@@ -1072,7 +1072,7 @@ $(document).ready(function () {
 // 헤더 > 발전소 선택
 function initPlantSelect() {
     const $plantGroup = $('.plant-group');
-    const $selectBtn = $('.select-plant');
+    const $selectBtn = $('.select-plant .icon-arrow');
 
     // 발전소 선택 버튼 클릭 시 (토글 방식)
     $selectBtn.on('click', function (e) {

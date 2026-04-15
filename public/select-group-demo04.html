@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>반응형 지도 핀 인터랙션</title>
+	<style>
+		* {
+			box-sizing: border-box;
+		}
+
+		html,
+		body {
+			margin: 0;
+			padding: 0;
+			background: #081521;
+			font-family: "Pretendard", "Noto Sans KR", Arial, sans-serif;
+			color: #fff;
+		}
+
+		body {
+			min-width: 320px;
+		}
+
+		.map-section {
+			width: 100%;
+			padding: 0;
+			background: #081521;
+		}
+
+		.map-stage {
+			position: relative;
+			width: 100%;
+			max-width: 100%;
+			line-height: 0;
+			overflow: visible;
+			background: #081521;
+		}
+
+		.map-image {
+			display: block;
+			width: 100%;
+			height: auto;
+			max-width: 100%;
+			user-select: none;
+			-webkit-user-drag: none;
+			pointer-events: none;
+		}
+
+		.map-overlay {
+			position: absolute;
+			inset: 0;
+			z-index: 10;
+		}
+
+		.hotspot {
+			position: absolute;
+			inset: 0;
+			pointer-events: none;
+		}
+
+		.pin {
+			position: absolute;
+			left: var(--x);
+			top: var(--y);
+			transform: translate(-50%, -50%);
+			width: 22px;
+			height: 22px;
+			border: 0;
+			border-radius: 50%;
+			padding: 0;
+			background: #12b3ff;
+			box-shadow:
+				0 0 0 6px rgba(18, 179, 255, 0.18),
+				0 0 18px rgba(18, 179, 255, 0.5);
+			cursor: pointer;
+			pointer-events: auto;
+			transition: transform 0.2s ease, box-shadow 0.2s ease;
+			z-index: 30;
+		}
+
+		.pin::before,
+		.pin::after {
+			content: "";
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			border-radius: 50%;
+			transform: translate(-50%, -50%);
+		}
+
+		.pin::before {
+			width: 36px;
+			height: 36px;
+			border: 1px solid rgba(255, 255, 255, 0.24);
+			animation: pinPulse 2s ease-out infinite;
+		}
+
+		.pin::after {
+			width: 8px;
+			height: 8px;
+			background: #fff;
+		}
+
+		.pin:hover,
+		.pin:focus-visible,
+		.hotspot.is-active .pin {
+			transform: translate(-50%, -50%) scale(1.08);
+			box-shadow:
+				0 0 0 8px rgba(18, 179, 255, 0.24),
+				0 0 24px rgba(18, 179, 255, 0.72);
+			outline: none;
+		}
+
+		.pin-label {
+			position: absolute;
+			left: var(--x);
+			top: calc(var(--y) + 24px);
+			transform: translateX(-50%);
+			white-space: nowrap;
+			padding: 6px 10px;
+			font-size: 13px;
+			font-weight: 600;
+			line-height: 1;
+			color: #fff;
+			background: rgba(3, 29, 52, 0.78);
+			border: 1px solid rgba(255, 255, 255, 0.14);
+			border-radius: 999px;
+			backdrop-filter: blur(8px);
+			opacity: 0;
+			visibility: hidden;
+			transition: opacity 0.2s ease;
+			pointer-events: none;
+			z-index: 25;
+		}
+
+		.hotspot.is-active .pin-label,
+		.pin:hover+.pin-label {
+			opacity: 1;
+			visibility: visible;
+		}
+
+		.info-line {
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 0;
+			height: 2px;
+			background: linear-gradient(90deg, rgba(18, 179, 255, 0.95), rgba(255, 255, 255, 0.95));
+			transform-origin: 0 50%;
+			opacity: 0;
+			pointer-events: none;
+			z-index: 12;
+			transition: opacity 0.2s ease;
+			filter: drop-shadow(0 0 4px rgba(18, 179, 255, 0.45));
+		}
+
+		.hotspot.is-active .info-line {
+			opacity: 1;
+		}
+
+		.info-box {
+			position: absolute;
+			width: min(340px, calc(100vw - 32px));
+			min-width: 240px;
+			opacity: 0;
+			visibility: hidden;
+			pointer-events: none;
+			z-index: 40;
+		}
+
+		.hotspot.is-active .info-box {
+			opacity: 1;
+			visibility: visible;
+			pointer-events: auto;
+		}
+
+		.info-box__panel {
+			padding: 18px 18px 16px;
+			border-radius: 18px;
+			background: rgba(7, 25, 42, 0.94);
+			border: 1px solid rgba(115, 189, 250, 0.42);
+			box-shadow:
+				0 18px 50px rgba(0, 0, 0, 0.35),
+				inset 0 1px 0 rgba(255, 255, 255, 0.06);
+			backdrop-filter: blur(14px);
+			opacity: 0;
+			transform: translateY(14px);
+			transition: opacity 0.3s ease, transform 0.3s ease;
+		}
+
+		.hotspot.is-active .info-box__panel {
+			opacity: 1;
+			transform: translateY(0);
+		}
+
+		.info-box__header {
+			display: flex;
+			align-items: flex-start;
+			justify-content: space-between;
+			gap: 12px;
+			margin-bottom: 12px;
+		}
+
+		.info-box__title-wrap {
+			min-width: 0;
+		}
+
+		.info-box__title {
+			margin: 0;
+			font-size: 20px;
+			line-height: 1.2;
+			font-weight: 700;
+		}
+
+		.info-box__sub {
+			margin: 6px 0 0;
+			font-size: 13px;
+			line-height: 1.4;
+			color: rgba(255, 255, 255, 0.7);
+		}
+
+		.info-box__close {
+			flex: 0 0 auto;
+			width: 34px;
+			height: 34px;
+			border: 0;
+			border-radius: 50%;
+			background: rgba(255, 255, 255, 0.08);
+			color: #fff;
+			font-size: 18px;
+			line-height: 1;
+			cursor: pointer;
+			transition: background 0.2s ease, transform 0.2s ease;
+		}
+
+		.info-box__close:hover {
+			background: rgba(255, 255, 255, 0.16);
+			transform: scale(1.04);
+		}
+
+		.info-box__body {
+			display: grid;
+			gap: 10px;
+		}
+
+		.info-box__item {
+			display: grid;
+			grid-template-columns: 72px 1fr;
+			gap: 8px;
+			align-items: start;
+			font-size: 14px;
+			line-height: 1.5;
+		}
+
+		.info-box__label {
+			color: #73bdfa;
+			font-weight: 600;
+		}
+
+		.info-box__value {
+			color: rgba(255, 255, 255, 0.92);
+			word-break: keep-all;
+		}
+
+		@keyframes fadeMoveUp {
+			from {
+				opacity: 0;
+				transform: translateY(14px);
+			}
+
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+
+		@keyframes pinPulse {
+			0% {
+				transform: translate(-50%, -50%) scale(0.8);
+				opacity: 0.8;
+			}
+
+			70% {
+				transform: translate(-50%, -50%) scale(1.3);
+				opacity: 0;
+			}
+
+			100% {
+				transform: translate(-50%, -50%) scale(1.3);
+				opacity: 0;
+			}
+		}
+
+		@media (max-width: 1024px) {
+			.info-box {
+				width: min(320px, calc(100vw - 24px));
+			}
+		}
+
+		@media (max-width: 767px) {
+			.pin {
+				width: 20px;
+				height: 20px;
+			}
+
+			.pin::before {
+				width: 32px;
+				height: 32px;
+			}
+
+			.pin-label {
+				top: calc(var(--y) + 22px);
+				font-size: 12px;
+				padding: 5px 9px;
+			}
+
+			.info-box {
+				width: min(300px, calc(100vw - 20px));
+				min-width: 220px;
+				padding: 16px 16px 14px;
+				border-radius: 16px;
+			}
+
+			.info-box__title {
+				font-size: 18px;
+			}
+
+			.info-box__item {
+				grid-template-columns: 64px 1fr;
+				font-size: 13px;
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<section class="map-section">
+		<div class="map-stage" id="mapStage">
+			<img class="map-image" src="/resources/images/group/map-bg.jpg" alt="지도 이미지" />
+
+			<div class="map-overlay">
+				<!-- 샘플 좌표: 실제 지도 기준으로 수정 -->
+				<div class="hotspot" style="--x: 32%;--y: 30%;" data-name="서울센터">
+					<button type="button" class="pin" aria-label="서울센터 정보 열기"></button>
+					<span class="pin-label">서울센터</span>
+					<span class="info-line"></span>
+					<div class="info-box" role="dialog" aria-label="서울센터 정보">
+						<div class="info-box__panel">
+							<div class="info-box__header">
+								<div class="info-box__title-wrap">
+									<h3 class="info-box__title">서울센터</h3>
+									<p class="info-box__sub">북서권 운영 거점</p>
+								</div>
+								<button type="button" class="info-box__close" aria-label="정보 닫기">✕</button>
+							</div>
+							<div class="info-box__body">
+								<div class="info-box__item">
+									<span class="info-box__label">위치</span>
+									<span class="info-box__value">서울특별시 강서구</span>
+								</div>
+								<div class="info-box__item">
+									<span class="info-box__label">설비</span>
+									<span class="info-box__value">관제 시스템 / 통합 모니터링</span>
+								</div>
+								<div class="info-box__item">
+									<span class="info-box__label">상태</span>
+									<span class="info-box__value">정상 운영 중</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="hotspot" style="--x: 42%;--y: 24%;" data-name="춘천거점">
+					<button type="button" class="pin" aria-label="춘천거점 정보 열기"></button>
+					<span class="pin-label">춘천거점</span>
+					<span class="info-line"></span>
+					<div class="info-box" role="dialog" aria-label="춘천거점 정보">
+						<div class="info-box__panel">
+							<div class="info-box__header">
+								<div class="info-box__title-wrap">
+									<h3 class="info-box__title">춘천거점</h3>
+									<p class="info-box__sub">중앙 상단 배치 예시</p>
+								</div>
+								<button type="button" class="info-box__close" aria-label="정보 닫기">✕</button>
+							</div>
+							<div class="info-box__body">
+								<div class="info-box__item">
+									<span class="info-box__label">위치</span>
+									<span class="info-box__value">강원특별자치도 춘천시</span>
+								</div>
+								<div class="info-box__item">
+									<span class="info-box__label">설비</span>
+									<span class="info-box__value">현장 수집 노드 / 알람 연계</span>
+								</div>
+								<div class="info-box__item">
+									<span class="info-box__label">비고</span>
+									<span class="info-box__value">상단 핀은 하단 방향 우선</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="hotspot" style="--x: 38%;--y: 12%;" data-name="대전센터">
+					<button type="button" class="pin" aria-label="대전센터 정보 열기"></button>
+					<span class="pin-label">대전센터</span>
+					<span class="info-line"></span>
+					<div class="info-box" role="dialog" aria-label="대전센터 정보">
+						<div class="info-box__panel">
+							<div class="info-box__header">
+								<div class="info-box__title-wrap">
+									<h3 class="info-box__title">대전센터</h3>
+									<p class="info-box__sub">중앙권 운영 허브</p>
+								</div>
+								<button type="button" class="info-box__close" aria-label="정보 닫기">✕</button>
+							</div>
+							<div class="info-box__body">
+								<div class="info-box__item">
+									<span class="info-box__label">위치</span>
+									<span class="info-box__value">대전광역시 유성구</span>
+								</div>
+								<div class="info-box__item">
+									<span class="info-box__label">설비</span>
+									<span class="info-box__value">분석 서버 / 데이터 연계 API</span>
+								</div>
+								<div class="info-box__item">
+									<span class="info-box__label">상태</span>
+									<span class="info-box__value">운영 준비 중</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="hotspot" style="--x: 74%;--y: 48%;" data-name="포항기지">
+					<button type="button" class="pin" aria-label="포항기지 정보 열기"></button>
+					<span class="pin-label">포항기지</span>
+					<span class="info-line"></span>
+					<div class="info-box" role="dialog" aria-label="포항기지 정보">
+						<div class="info-box__panel">
+							<div class="info-box__header">
+								<div class="info-box__title-wrap">
+									<h3 class="info-box__title">포항기지</h3>
+									<p class="info-box__sub">동부권 배치 예시</p>
+								</div>
+								<button type="button" class="info-box__close" aria-label="정보 닫기">✕</button>
+							</div>
+							<div class="info-box__body">
+								<div class="info-box__item">
+									<span class="info-box__label">위치</span>
+									<span class="info-box__value">경상북도 포항시</span>
+								</div>
+								<div class="info-box__item">
+									<span class="info-box__label">설비</span>
+									<span class="info-box__value">원격 제어 / 설비 상태 수집</span>
+								</div>
+								<div class="info-box__item">
+									<span class="info-box__label">비고</span>
+									<span class="info-box__value">우측 핀은 좌측 방향 우선</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="hotspot" style="--x: 68%; --y: 60%;" data-name="울산기지">
+					<button type="button" class="pin" aria-label="울산기지 정보 열기"></button>
+					<span class="pin-label">울산기지</span>
+					<span class="info-line"></span>
+					<div class="info-box" role="dialog" aria-label="울산기지 정보">
+						<div class="info-box__panel">
+							<div class="info-box__header">
+								<div class="info-box__title-wrap">
+									<h3 class="info-box__title">울산기지</h3>
+									<p class="info-box__sub">남동권 운영 거점</p>
+								</div>
+								<button type="button" class="info-box__close" aria-label="정보 닫기">✕</button>
+							</div>
+							<div class="info-box__body">
+								<div class="info-box__item">
+									<span class="info-box__label">위치</span>
+									<span class="info-box__value">울산광역시 남구</span>
+								</div>
+								<div class="info-box__item">
+									<span class="info-box__label">설비</span>
+									<span class="info-box__value">설비 진단 / 이상징후 감시</span>
+								</div>
+								<div class="info-box__item">
+									<span class="info-box__label">상태</span>
+									<span class="info-box__value">구축 완료</span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<script>
+		(function () {
+			const mapStage = document.getElementById('mapStage');
+			const hotspots = Array.from(mapStage.querySelectorAll('.hotspot'));
+			const isTouchDevice = window.matchMedia('(hover: none), (pointer: coarse)').matches;
+			let activeHotspot = null;
+
+			function clamp(value, min, max) {
+				return Math.min(Math.max(value, min), max);
+			}
+
+			function closeHotspot(hotspot) {
+				if (!hotspot) return;
+				hotspot.classList.remove('is-active');
+				if (activeHotspot === hotspot) {
+					activeHotspot = null;
+				}
+			}
+
+			function closeAllExcept(current) {
+				hotspots.forEach((hotspot) => {
+					if (hotspot !== current) {
+						hotspot.classList.remove('is-active');
+					}
+				});
+			}
+
+			function getPinCenter(pinRect, stageRect) {
+				return {
+					x: pinRect.left - stageRect.left + (pinRect.width / 2),
+					y: pinRect.top - stageRect.top + (pinRect.height / 2)
+				};
+			}
+
+			function choosePlacement(pinX, pinY, stageW, stageH, boxW, boxH, gap) {
+				const safe = 16;
+
+				const spaces = {
+					top: pinY - gap,
+					bottom: stageH - pinY - gap,
+					left: pinX - gap,
+					right: stageW - pinX - gap
+				};
+
+				const isTopZone = pinY < stageH * 0.33;
+				const isBottomZone = pinY > stageH * 0.67;
+				const isLeftZone = pinX < stageW * 0.33;
+				const isRightZone = pinX > stageW * 0.67;
+
+				const preferred = [];
+
+				if (isBottomZone) preferred.push('top');
+				else if (isTopZone) preferred.push('bottom');
+
+				if (isLeftZone) preferred.push('right');
+				else if (isRightZone) preferred.push('left');
+
+				preferred.push('top', 'bottom', 'right', 'left');
+
+				const unique = [...new Set(preferred)];
+
+				for (const dir of unique) {
+					if (dir === 'top' && spaces.top >= boxH + safe) return dir;
+					if (dir === 'bottom' && spaces.bottom >= boxH + safe) return dir;
+					if (dir === 'left' && spaces.left >= boxW + safe) return dir;
+					if (dir === 'right' && spaces.right >= boxW + safe) return dir;
+				}
+
+				return unique[0] || 'top';
+			}
+
+			function getBoxPosition(direction, pinX, pinY, boxW, boxH, stageW, stageH, gap, edgePadding) {
+				let left = 0;
+				let top = 0;
+
+				switch (direction) {
+					case 'top':
+						left = pinX - (boxW / 2);
+						top = pinY - boxH - gap;
+						break;
+					case 'bottom':
+						left = pinX - (boxW / 2);
+						top = pinY + gap;
+						break;
+					case 'left':
+						left = pinX - boxW - gap;
+						top = pinY - (boxH / 2);
+						break;
+					case 'right':
+						left = pinX + gap;
+						top = pinY - (boxH / 2);
+						break;
+				}
+
+				left = clamp(left, edgePadding, stageW - boxW - edgePadding);
+				top = clamp(top, edgePadding, stageH - boxH - edgePadding);
+
+				return { left, top };
+			}
+
+			function drawLine(pinRect, boxRect, stageRect, line) {
+				const pinX = pinRect.left - stageRect.left + (pinRect.width / 2);
+				const pinY = pinRect.top - stageRect.top + (pinRect.height / 2);
+
+				const boxLeft = boxRect.left - stageRect.left;
+				const boxTop = boxRect.top - stageRect.top;
+				const boxRight = boxLeft + boxRect.width;
+				const boxBottom = boxTop + boxRect.height;
+				const boxCenterX = boxLeft + (boxRect.width / 2);
+				const boxCenterY = boxTop + (boxRect.height / 2);
+
+				let targetX = boxCenterX;
+				let targetY = boxCenterY;
+
+				const dxCenter = pinX - boxCenterX;
+				const dyCenter = pinY - boxCenterY;
+
+				if (Math.abs(dxCenter) > Math.abs(dyCenter)) {
+					targetX = dxCenter > 0 ? boxRight : boxLeft;
+					targetY = clamp(pinY, boxTop + 14, boxBottom - 14);
+				} else {
+					targetY = dyCenter > 0 ? boxBottom : boxTop;
+					targetX = clamp(pinX, boxLeft + 14, boxRight - 14);
+				}
+
+				const dx = targetX - pinX;
+				const dy = targetY - pinY;
+				const length = Math.sqrt(dx * dx + dy * dy);
+				const angle = Math.atan2(dy, dx) * (180 / Math.PI);
+
+				line.style.left = pinX + 'px';
+				line.style.top = pinY + 'px';
+				line.style.width = length + 'px';
+				line.style.transform = 'rotate(' + angle + 'deg)';
+			}
+
+			function positionInfoBox(hotspot) {
+				const pin = hotspot.querySelector('.pin');
+				const box = hotspot.querySelector('.info-box');
+				const line = hotspot.querySelector('.info-line');
+
+				if (!pin || !box || !line) return;
+
+				hotspot.classList.add('is-active');
+
+				box.style.left = '0px';
+				box.style.top = '0px';
+
+				const stageRect = mapStage.getBoundingClientRect();
+				const pinRect = pin.getBoundingClientRect();
+				const boxRect = box.getBoundingClientRect();
+
+				const pinCenter = getPinCenter(pinRect, stageRect);
+				const gap = window.innerWidth <= 767 ? 72 : 100;
+				const edgePadding = window.innerWidth <= 767 ? 10 : 16;
+
+				const direction = choosePlacement(
+					pinCenter.x,
+					pinCenter.y,
+					stageRect.width,
+					stageRect.height,
+					boxRect.width,
+					boxRect.height,
+					gap
+				);
+
+				const pos = getBoxPosition(
+					direction,
+					pinCenter.x,
+					pinCenter.y,
+					boxRect.width,
+					boxRect.height,
+					stageRect.width,
+					stageRect.height,
+					gap,
+					edgePadding
+				);
+
+				box.style.left = pos.left + 'px';
+				box.style.top = pos.top + 'px';
+
+				requestAnimationFrame(() => {
+					drawLine(pinRect, box.getBoundingClientRect(), stageRect, line);
+				});
+			}
+
+			function openHotspot(hotspot) {
+				if (!hotspot) return;
+
+				closeAllExcept(hotspot);
+				hotspot.classList.add('is-active');
+				activeHotspot = hotspot;
+				positionInfoBox(hotspot);
+			}
+
+			hotspots.forEach((hotspot) => {
+				const pin = hotspot.querySelector('.pin');
+				const closeBtn = hotspot.querySelector('.info-box__close');
+
+				pin.addEventListener('click', function (e) {
+					e.preventDefault();
+					e.stopPropagation();
+					openHotspot(hotspot);
+				});
+
+				if (!isTouchDevice) {
+					pin.addEventListener('mouseenter', function () {
+						openHotspot(hotspot);
+					});
+				}
+
+				closeBtn.addEventListener('click', function (e) {
+					e.preventDefault();
+					e.stopPropagation();
+					closeHotspot(hotspot);
+				});
+			});
+
+			window.addEventListener('resize', function () {
+				if (activeHotspot) {
+					positionInfoBox(activeHotspot);
+				}
+			});
+
+			window.addEventListener('orientationchange', function () {
+				if (activeHotspot) {
+					positionInfoBox(activeHotspot);
+				}
+			});
+
+			window.addEventListener('load', function () {
+				if (activeHotspot) {
+					positionInfoBox(activeHotspot);
+				}
+			});
+		})();
+	</script>
+</body>
+
+</html>

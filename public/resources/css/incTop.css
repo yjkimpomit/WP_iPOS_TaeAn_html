@@ -103,7 +103,7 @@
 }
 
 .logo .bi .branch {
-	color: var(--text-default-default);
+	color: var(--logo-text);
 }
 @media (min-width: 1680px) {
 	.logo {
@@ -129,7 +129,7 @@
 }
 .logo .bi .select-plant {
 	position: relative;
-	cursor: pointer;
+	/* cursor: pointer; */
 
 	display: inline-flex;
 	align-items: center;
@@ -142,6 +142,7 @@
 	background-size: 24px;
 	width: 1.5rem;
 	height: 1.5rem;
+	display: none;
 }
 
 html[data-theme='dark'] .logo .bi .select-plant .icon-arrow {

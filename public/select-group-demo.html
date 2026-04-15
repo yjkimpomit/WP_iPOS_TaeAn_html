@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>지도 핀 정보 팝업</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f3f6fa;
+      color: #111;
+    }
+
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      margin: -1px;
+      padding: 0;
+      overflow: hidden;
+      border: 0;
+      clip: rect(0 0 0 0);
+      white-space: nowrap;
+    }
+
+    .map-section {
+      width: 100%;
+    }
+
+    .map-board {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .map-board__image {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    /* 핀 기준 그룹 */
+    .map-spot {
+      position: absolute;
+      left: var(--x);
+      top: var(--y);
+      transform: translate(-50%, -50%);
+      z-index: 10;
+    }
+
+    /* 핀 */
+    .map-pin {
+      position: relative;
+      z-index: 30;
+      width: 22px;
+      height: 22px;
+      margin: 0;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+    }
+
+    .map-pin__dot {
+      position: relative;
+      display: block;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: #e53935;
+      box-shadow:
+        0 0 0 4px rgba(229, 57, 53, 0.18),
+        0 6px 14px rgba(0, 0, 0, 0.22);
+      transition: transform 0.2s ease;
+    }
+
+    .map-pin__dot::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: rgba(229, 57, 53, 0.28);
+      animation: pinPulse 1.8s ease-out infinite;
+    }
+
+    .map-pin:hover .map-pin__dot,
+    .map-pin:focus-visible .map-pin__dot,
+    .map-pin.is-active .map-pin__dot {
+      transform: scale(1.08);
+    }
+
+    .map-pin:focus-visible {
+      outline: none;
+    }
+
+    /* 팝업 래퍼 */
+    .map-pop {
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 20;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .map-pop.is-open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    /* 연결선 */
+    .map-pop__line {
+      position: absolute;
+      left: 10px;
+      top: 10px;
+      z-index: 21;
+      pointer-events: none;
+    }
+
+    .map-pop.is-right .map-pop__line,
+    .map-pop.is-left .map-pop__line {
+      width: var(--line-size, 60px);
+      height: 2px;
+      background: #2f3b52;
+    }
+
+    .map-pop.is-bottom .map-pop__line,
+    .map-pop.is-top .map-pop__line {
+      width: 2px;
+      height: var(--line-size, 60px);
+      background: #2f3b52;
+    }
+
+    /* 패널 */
+    .map-panel {
+      position: absolute;
+      z-index: 22;
+      width: min(280px, calc(100vw - 32px));
+      border: 1px solid #d8e0ea;
+      border-radius: 14px;
+      background: #fff;
+      box-shadow: 0 14px 36px rgba(0, 0, 0, 0.16);
+      padding: 16px 18px 14px;
+      opacity: 0;
+      transform: translateY(8px) scale(0.96);
+      transition: opacity 0.24s ease, transform 0.24s ease;
+    }
+
+    .map-pop.is-open .map-panel {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    /* 방향별 패널 위치 */
+    .map-pop.is-right .map-panel {
+      left: calc(10px + var(--line-size, 60px) + 12px);
+      top: -28px;
+    }
+
+    .map-pop.is-left .map-panel {
+      right: calc(12px + var(--line-size, 60px));
+      top: -28px;
+    }
+
+    .map-pop.is-bottom .map-panel {
+      left: 18px;
+      top: calc(10px + var(--line-size, 60px) + 12px);
+    }
+
+    .map-pop.is-top .map-panel {
+      left: 18px;
+      bottom: calc(12px + var(--line-size, 60px));
+    }
+
+    .map-panel__close {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 32px;
+      height: 32px;
+      border: 0;
+      border-radius: 8px;
+      background: #eef3f8;
+      color: #222;
+      font-size: 20px;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .map-panel__close:hover {
+      background: #e1e9f1;
+    }
+
+    .map-panel__title {
+      display: block;
+      margin-bottom: 8px;
+      padding-right: 36px;
+      font-size: 18px;
+      font-weight: 700;
+      color: #111;
+    }
+
+    .map-panel__body {
+      font-size: 14px;
+      line-height: 1.55;
+      color: #444;
+    }
+
+    .map-panel__body p {
+      margin: 4px 0;
+    }
+
+    @keyframes pinPulse {
+      0% {
+        transform: scale(1);
+        opacity: 0.75;
+      }
+      70% {
+        transform: scale(1.8);
+        opacity: 0;
+      }
+      100% {
+        transform: scale(1.8);
+        opacity: 0;
+      }
+    }
+
+    @media (max-width: 1024px) {
+      .map-panel {
+        width: min(240px, calc(100vw - 24px));
+      }
+    }
+
+    @media (max-width: 767px) {
+      .map-pin {
+        width: 18px;
+        height: 18px;
+      }
+
+      .map-pop__line {
+        left: 8px;
+        top: 8px;
+      }
+
+      .map-panel {
+        width: min(220px, calc(100vw - 20px));
+        padding: 14px 16px 12px;
+      }
+
+      .map-panel__title {
+        font-size: 16px;
+      }
+
+      .map-panel__body {
+        font-size: 13px;
+      }
+
+      .map-pop.is-right .map-panel {
+        left: calc(8px + var(--line-size, 46px) + 10px);
+        top: -20px;
+      }
+
+      .map-pop.is-left .map-panel {
+        right: calc(10px + var(--line-size, 46px));
+        top: -20px;
+      }
+
+      .map-pop.is-bottom .map-panel {
+        left: 14px;
+        top: calc(8px + var(--line-size, 46px) + 10px);
+      }
+
+      .map-pop.is-top .map-panel {
+        left: 14px;
+        bottom: calc(10px + var(--line-size, 46px));
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="map-section">
+    <div class="map-board" id="mapBoard">
+      <img
+        src="/resources/images/group/map-bg.jpg"
+        alt="지역별 지점 지도"
+        class="map-board__image"
+      />
+
+      <!-- 서울 -->
+      <div class="map-spot" style="--x:32%; --y:28%;">
+        <button
+          type="button"
+          class="map-pin"
+          data-pin="seoul"
+          aria-expanded="false"
+          aria-controls="panel-seoul"
+        >
+          <span class="map-pin__dot"></span>
+          <span class="visually-hidden">서울 정보 보기</span>
+        </button>
+
+        <div
+          class="map-pop is-right"
+          id="panel-seoul"
+          data-panel="seoul"
+          style="--line-size:60px;"
+          aria-hidden="true"
+        >
+          <span class="map-pop__line"></span>
+
+          <div class="map-panel">
+            <button type="button" class="map-panel__close" aria-label="닫기">×</button>
+            <strong class="map-panel__title">서울</strong>
+            <div class="map-panel__body">
+              <p>서울 지역 운영센터</p>
+              <p>담당 설비: 3개소</p>
+              <p>상태: 정상 운영</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 대전 -->
+      <div class="map-spot" style="--x:46%; --y:49%;">
+        <button
+          type="button"
+          class="map-pin"
+          data-pin="daejeon"
+          aria-expanded="false"
+          aria-controls="panel-daejeon"
+        >
+          <span class="map-pin__dot"></span>
+          <span class="visually-hidden">대전 정보 보기</span>
+        </button>
+
+        <div
+          class="map-pop is-bottom"
+          id="panel-daejeon"
+          data-panel="daejeon"
+          style="--line-size:52px;"
+          aria-hidden="true"
+        >
+          <span class="map-pop__line"></span>
+
+          <div class="map-panel">
+            <button type="button" class="map-panel__close" aria-label="닫기">×</button>
+            <strong class="map-panel__title">대전</strong>
+            <div class="map-panel__body">
+              <p>대전 지역 설비관제소</p>
+              <p>담당 설비: 2개소</p>
+              <p>상태: 점검 예정</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 부산 -->
+      <div class="map-spot" style="--x:72%; --y:74%;">
+        <button
+          type="button"
+          class="map-pin"
+          data-pin="busan"
+          aria-expanded="false"
+          aria-controls="panel-busan"
+        >
+          <span class="map-pin__dot"></span>
+          <span class="visually-hidden">부산 정보 보기</span>
+        </button>
+
+        <div
+          class="map-pop is-left"
+          id="panel-busan"
+          data-panel="busan"
+          style="--line-size:70px;"
+          aria-hidden="true"
+        >
+          <span class="map-pop__line"></span>
+
+          <div class="map-panel">
+            <button type="button" class="map-panel__close" aria-label="닫기">×</button>
+            <strong class="map-panel__title">부산</strong>
+            <div class="map-panel__body">
+              <p>부산 지역 지점</p>
+              <p>담당 설비: 4개소</p>
+              <p>상태: 정상 운영</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 강릉 -->
+      <div class="map-spot" style="--x:68%; --y:24%;">
+        <button
+          type="button"
+          class="map-pin"
+          data-pin="gangneung"
+          aria-expanded="false"
+          aria-controls="panel-gangneung"
+        >
+          <span class="map-pin__dot"></span>
+          <span class="visually-hidden">강릉 정보 보기</span>
+        </button>
+
+        <div
+          class="map-pop is-top"
+          id="panel-gangneung"
+          data-panel="gangneung"
+          style="--line-size:56px;"
+          aria-hidden="true"
+        >
+          <span class="map-pop__line"></span>
+
+          <div class="map-panel">
+            <button type="button" class="map-panel__close" aria-label="닫기">×</button>
+            <strong class="map-panel__title">강릉</strong>
+            <div class="map-panel__body">
+              <p>강릉 관측 지점</p>
+              <p>담당 설비: 1개소</p>
+              <p>상태: 운영 중</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+    (function () {
+      var board = document.getElementById('mapBoard');
+      if (!board) return;
+
+      var pins = board.querySelectorAll('.map-pin');
+      var pops = board.querySelectorAll('.map-pop');
+
+      function closeAll() {
+        pins.forEach(function (pin) {
+          pin.classList.remove('is-active');
+          pin.setAttribute('aria-expanded', 'false');
+        });
+
+        pops.forEach(function (pop) {
+          pop.classList.remove('is-open');
+          pop.setAttribute('aria-hidden', 'true');
+        });
+      }
+
+      function openPanel(key) {
+        var pin = board.querySelector('.map-pin[data-pin="' + key + '"]');
+        var pop = board.querySelector('.map-pop[data-panel="' + key + '"]');
+
+        if (!pin || !pop) return;
+
+        closeAll();
+
+        pin.classList.add('is-active');
+        pin.setAttribute('aria-expanded', 'true');
+
+        pop.classList.add('is-open');
+        pop.setAttribute('aria-hidden', 'false');
+      }
+
+      pins.forEach(function (pin) {
+        var key = pin.getAttribute('data-pin');
+
+        pin.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          openPanel(key);
+        });
+
+        pin.addEventListener('mouseenter', function () {
+          if (window.matchMedia('(hover: hover)').matches) {
+            openPanel(key);
+          }
+        });
+
+        pin.addEventListener('focus', function () {
+          openPanel(key);
+        });
+
+        pin.addEventListener('touchstart', function (e) {
+          e.stopPropagation();
+          openPanel(key);
+        }, { passive: true });
+      });
+
+      board.addEventListener('click', function (e) {
+        var closeBtn = e.target.closest('.map-panel__close');
+        if (!closeBtn) return;
+        e.preventDefault();
+        e.stopPropagation();
+        closeAll();
+      });
+    })();
+  </script>
+
+</body>
+</html>

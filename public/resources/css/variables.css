@@ -543,11 +543,14 @@
 
 /* Component Tokens */
 :root {
+	/* select-group */
+	--logo-text: var(--text-base);
+	--logo-divider: var(--border-neutral-muted);
 	
 	/* header */
-	--info-box-text: var(--text-default-default);
-	--info-box-text-inverse: var(--text-default-onneutral);
-	--info-box-col1-bg: var(--bg-neutral-tertiary);
+	--info-box-text: var(--text-base);
+	--info-box-text-inverse: var(--text-inverse);
+	--info-box-col1-bg: var(--surface-neutral-subtle);
 	--info-box-col2-bg: var(--surface-primary-stronger);
 	--info-box-col3-bg: var(--surface-info-strong);
 	
