@@ -81,6 +81,13 @@
 		var hoki = "${sessionScope.hoki}";
 		var _isIdmsPage = false;
 	</script>
+
+	<script>
+		$(document).ready(function () {
+			const $menu = $('.menu-link[data-class="outbound"]');
+			fnOpenPopup('modal17-app-main.html', $menu);
+		});
+	</script>
 </head>
 
 <body class="main header-open">

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="theme-color" content="#FFFFFF">
+	<title>태안 퍼블리싱본 - iPOS RWD</title>
+
+	<meta name="description" content="서부발전 태안 i-POS 서비스 제공">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<!-- favicon -->
+	<link rel="icon" href="/favicon.ico" sizes="any">
+	<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+
+	<!-- slick & jstree -->
+	<link rel="stylesheet" href="/resources/js/slick-1.8.1/slick/slick.css">
+	<link rel="stylesheet" href="/resources/js/slick-1.8.1/slick/slick-theme.css">
+	<link rel="stylesheet" href="/resources/js/jsTree/css/style.min.css">
+
+	<!-- slick & jsTree & highchart -->
+	<script src="/resources/js/jquery/jquery-3.6.1.js"></script>
+	<script src="/resources/js/slick-1.8.1/slick/slick.min.js"></script>
+
+	<!-- toastchart -->
+	<script src="/resources/js/toastchart/toastui-chart.js"></script>
+	<link rel="stylesheet" href="/resources/js/toastchart/toastui-chart.css">
+
+	<!-- chartjs -->
+	<script src="/resources/js/chart/chart.umd.js"></script>
+	<script src="/resources/js/chart/chartjs-adapter-date-fns.bundle.min.js"></script>
+
+	<!-- jstree -->
+	<!-- <script src="/resources/js/jsTree/js/jstree.min.js"></script>
+	<script src="/resources/js/jsTree/js/jstreeFacility.js"></script> -->
+
+	<!-- ztree -->
+	<link rel="stylesheet" href="/resources/js/ztree/css/metroStyle/metroStyle.css" type="text/css">
+	<script src="/resources/js/ztree/js/jquery.ztree.all.min.js"></script>
+
+	<!-- 부트스트랩 JS -->
+	<script src="/resources/css/bootstrap/dist/js/popper.min.js"></script>
+	<script src="/resources/css/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+	<!-- bPopup -->
+	<script src="/resources/js/jquery/jquery.bpopup.min.js"></script>
+
+	<!-- winbox js -->
+	<link rel="stylesheet" href="/resources/js/winbox/winbox.min.css">
+	<script src="/resources/js/winbox/winbox.min.js"></script>
+
+	<!-- WP stylesheet -->
+	<link rel="stylesheet" href="/resources/css/common.css">
+	<script src="/resources/js/common.js" defer></script>
+	<script src="/resources/js/device-info.js" defer></script>
+
+	<!-- <%-- 변수 선언 --%> -->
+	<script>
+		/* <%-- 999/0 : mobile --%> */
+		//var checkMobile = "${sessionScope.loginInfo.iui_isadmin}";
+		var checkMobile = 0;
+	</script>
+	<!-- 
+	<link rel="stylesheet" href="/unity3DViewer/TemplateData/style.css">
+	<link rel="manifest" href="/unity3DViewer/manifest.webmanifest"> -->
+</head>
+
+<body class="sub sub--app-main">
+	<div class="app-main">
+		<h1 class="app-page-title">서비스 바로가기</h1>
+		<div class="app-nav-group app-nav-group--primary">
+			<div onclick="fnLogsheetOepn()" class="app-nav-item" data-title="로그시트">
+				<strong>로그시트<small>QR CODE</small></strong>
+			</div>
+			<div onclick="fnOpenPopup('/earlywarning/index.do', $(this))" class="app-nav-item" data-title="조기경보">
+				<strong>조기경보</strong>
+			</div>
+			<div onclick="fnAndroidShowUnity()" class="app-nav-item" data-title="3D모델">
+				<strong>3D 모델</strong>
+			</div>
+		</div>
+		<div class="app-nav-group app-nav-group--secondary">
+			<div onclick="fnOpenPopup('/dailySafety/index.do?tabIdx=0', $(this))" class="app-nav-item" data-title="일일안전작업현황">
+				<strong>일일안전작업현황</strong>
+			</div>
+			<div onclick="fnOpenPopup('${panoUrl}', $(this))" data-class="panorama" class="app-nav-item" data-title="파노라마">
+				<strong>파노라마</strong>
+			</div>
+			<div onclick="" class="app-nav-item" data-title="설비검색">
+				<strong>설비검색</strong>
+			</div>
+			<div onclick="fnOpenPopup('/serviceinfo/index.do?tabIdx=0', $(this))" class="app-nav-item" data-title="개선사항">
+				<strong>서비스 개선사항</strong>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

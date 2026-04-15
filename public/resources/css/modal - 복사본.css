@@ -2565,9 +2565,8 @@ html[data-theme="dark"] .toast-header .toast-close {
 	
 	background-color: var(--app-nav-bg);
 	background-repeat: no-repeat;
-	background-position: bottom 1rem right 1rem;
-
-	padding: 1rem;
+	background-position: center right 1.5rem;
+	padding: 1rem 1.5rem;
 }
 .app-nav-item strong {
 	display: flex;
@@ -2600,12 +2599,19 @@ html[data-theme="dark"] .toast-header .toast-close {
 	border-color: var(--app-nav-primary-border);
 	background-color: var(--app-nav-primary-bg);
 	background-image: url(/resources/images/icons/appicon-qrcode.svg);
+	
+	padding: 1rem;
+	background-position: bottom 1rem right 1rem;
 }
 .app-nav-item[ data-title="조기경보"] {
 	background-image: url(/resources/images/icons/appicon-alarm.svg);
+	padding: 1rem;
+	background-position: bottom 1rem right 1rem;
 }
 .app-nav-item[ data-title="3D모델"] {
 	background-image: url(/resources/images/icons/appicon-3d-model.svg);
+	padding: 1rem;
+	background-position: bottom 1rem right 1rem;
 }
 .app-nav-item[ data-title="일일안전작업현황"] {
 	background-image: url(/resources/images/icons/appicon-wp-safety.svg);
@@ -2623,3 +2629,4 @@ html[data-theme="dark"] .toast-header .toast-close {
 	background-image: url(/resources/images/icons/appicon-service.svg);
 
 }
+
