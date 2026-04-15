@@ -106,19 +106,19 @@
 	--purple-800: #550066;
 	--purple-900: #33003D;
 	
-	--cyan-50:  #EBFBFF;
-	--cyan-100: #C3F1FD;
-	--cyan-200: #86E0F9;
-	--cyan-300: #51D6FB;
-	--cyan-400: #00CAFF;
-	--cyan-500: #00A7D6;
-	--cyan-600: #0089AD;
-	--cyan-700: #006C85;
-	--cyan-800: #004E5C;
-	--cyan-900: #00323D;
+	--cyan-50:  #EFFBFE;
+	--cyan-100: #CAEEF6;
+	--cyan-200: #9FDFEF;
+	--cyan-300: #66D8F5;
+	--cyan-400: #28BCE2;
+	--cyan-500: #0080A0;
+	--cyan-600: #016179;
+	--cyan-700: #015165;
+	--cyan-800: #014151;
+	--cyan-900: #01313D;
 	
 	--slate-50: #F7F8FA;
-	--slate-100: #E1E5EB;
+	--slate-100: #EBEFF5;
 	--slate-200: #CAD1DC;
 	--slate-300: #B6BFCC;
 	--slate-400: #99A4B2;
@@ -431,7 +431,81 @@
 	--lighter60: var(--white-600);
 	--lighter70: var(--white-700);
 	--lighter80: var(--white-800);
+}
+
+/* 2026-04-09 : 순차적으로 시맨틱과 컴포넌트로 분리할 목적으로 추가된 스타일 */
+/* Semantic Tokens */
+:root {
+	/* base > subtle > muted > strong > stronger > heavy */
+	--surface-neutral-base: var(--white-900);
+	--surface-neutral-subtle: var(--slate-50);
+	--surface-neutral-muted: var(--slate-100);
+	--surface-neutral-strong: var(--slate-200);
 	
+	--border-neutral-base: var(--slate-50);
+	--border-neutral-subtle: var(--slate-100);
+	--border-neutral-muted: var(--slate-200);
+	--border-neutral-strong: var(--slate-300);
+	
+	--surface-primary: var(--blue-500);
+	--surface-primary-strong: var(--blue-600);
+	--surface-primary-stronger: var(--blue-700);
+	--surface-primary-heavy: var(--blue-800);
+	--surface-primary-subtle: var(--blue-100);
+	--surface-secondary: var(--slate-600);
+	--surface-danger: var(--red-600);
+	--surface-warning: var(--yellow-600);
+	--surface-success: var(--green-600);
+	--surface-info: var(--cyan-500);
+	--surface-info-strong: var(--cyan-600);
+	--surface-info-stronger: var(--cyan-700);
+	--surface-info-heavy: var(--cyan-800);
+	--surface-info-subtle: var(--cyan-100);
+	
+	--border-primary: var(--blue-600);
+	--border-primary-strong: var(--blue-700);
+	--border-primary-subtle: var(--blue-200);
+	--border-secondary: var(--slate-600);
+	--border-secondary-strong: var(--slate-700);
+	--border-danger: var(--red-600);
+	--border-danger-strong: var(--red-700);
+	--border-warning: var(--yellow-600);
+	--border-warning-strong: var(--yellow-700);
+	--border-success: var(--green-600);
+	--border-success-strong: var(--green-700);
+	--border-info: var(--cyan-600);
+	--border-info-strong: var(--cyan-700);
+	--border-info-stronger: var(--cyan-800);
+	--border-info-subtle: var(--cyan-200);
+	
+	--text-base: var(--slate-900);
+	--text-subtle: var(--slate-700);
+	--text-muted: var(--slate-100);
+	--text-strong: var(--slate-200);
+	
+	--text-primary: var(--blue-500);
+	--text-primary-strong: var(--blue-600);
+	--text-primary-stronger: var(--blue-700);
+	--text-secondary: var(--slate-500);
+	--text-secondary-strong: var(--slate-600);
+	--text-secondary-stronger: var(--slate-700);
+	--text-danger: var(--red-500);
+	--text-danger-strong: var(--red-600);
+	--text-danger-stronger: var(--red-700);
+	--text-warning: var(--yellow-500);
+	--text-warning-strong: var(--yellow-600);
+	--text-warning-stronger: var(--yellow-700);
+	--text-success: var(--green-500);
+	--text-success-strong: var(--green-600);
+	--text-success-stronger: var(--green-700);
+	--text-info: var(--cyan-500);
+	--text-info-strong: var(--cyan-600);
+	--text-info-stronger: var(--cyan-700);
+	--text-inverse: var(--white-900);
+}
+
+/* Bootstrap Override */
+:root {
 	/* btn */
 	--bs-border-radius: var(--radius-sm);
 	--bs-border-radius-xs: calc(var(--radius-sm) * 0.5);
@@ -466,26 +540,66 @@
 	--bs-btn-bg: var(--bg-default-default);
 }
 
-/* Semantic Tokens */
-:root {
-	--surface-default: var(--white-900);
-	--surface-subtle: var(--slate-50);
-	--border-subtle: var(--slate-100);
-}
-
-
 /* Component Tokens */
 :root {
+	
+	/* Box */
+	--box-bg-neutral-base: var(--surface-neutral-base);
+	--box-bg-neutral-subtle: var(--surface-neutral-subtle);
+	--box-bg-neutral-muted: var(--surface-neutral-muted);
+	--box-bg-neutral-strong: var(--surface-neutral-strong);
+	
+	--box-border-neutral-base: var(--border-neutral-base);
+	--box-border-neutral-subtle: var(--border-neutral-subtle);
+	--box-border-neutral-muted: var(--border-neutral-muted);
+	--box-border-neutral-strong: var(--border-neutral-strong);
+	
+	/* box-bg-primary */
+	--box-bg-primary: var(--surface-primary);
+	--box-bg-primary-strong: var(--surface-primary-strong);
+	--box-bg-primary-stronger: var(--surface-primary-stronger);
+	--box-bg-primary-subtle: var(--surface-primary-subtle);
+	
+	/* border-bg-primary */
+	--box-border-primary: var(--border-primary);
+	--box-border-primary-strong: var(--border-primary-strong);
+	--box-border-primary-subtle: var(--border-primary-subtle);
+	
+	/* box-bg-info */
+	--box-bg-info: var(--surface-info);
+	--box-bg-info-strong: var(--surface-info-strong);
+	--box-bg-info-stronger: var(--surface-info-stronger);
+	--box-bg-info-subtle: var(--surface-info-subtle);
+	
+	/* border-bg-info */
+	--box-border-info: var(--border-info);
+	--box-border-info-strong: var(--border-info-strong);
+	--box-border-info-stronger: var(--border-info-stronger);
+	--box-border-info-subtle: var(--border-info-subtle);
+	
+	/* box-title */
+	--box-title-neutral: var(--text-base);
+	--box-title-primary: var(--text-primary);
+	--box-title-primary-strong: var(--text-primary-strong);
+	--box-title-primary-stronger: var(--text-primary-stronger);
+	--box-title-danger: var(--text-danger);
+	--box-title-danger-strong: var(--text-danger-strong);
+	--box-title-danger-stronger: var(--text-danger-stronger);
+	--box-title-info: var(--text-info);
+	--box-title-info-strong: var(--text-info-strong);
+	--box-title-info-stronger: var(--text-info-stronger);
+	--box-title-inverse: var(--text-inverse);
+	
 	/* layout */
 	--grid-gap: 16px;
 	--grid-auto-min: 160px;
 	
-	--grid-item-bg: var(--surface-default);
+	--grid-item-bg: var(--surface-base);
 	--grid-item-border: var(--border-subtle);
 	--grid-item-padding: 16px;
 	--grid-item-radius: 8px;
 	
-	--form-block-bg: var(--surface-default);
+	--form-block-bg: var(--surface-base);
 	--form-block-border: var(--border-subtle);
 }
 

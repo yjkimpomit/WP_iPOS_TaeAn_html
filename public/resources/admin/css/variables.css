@@ -417,7 +417,52 @@
 	--lighter60: var(--white-600);
 	--lighter70: var(--white-700);
 	--lighter80: var(--white-800);
+}
+
+/* 2026-04-09 : 순차적으로 시맨틱과 컴포넌트로 분리할 목적으로 추가된 스타일 */
+/* Semantic Tokens */
+:root {
+	/* base > subtle > muted > strong > stronger > heavy */
+	--surface-base: var(--white-900);
+	--surface-subtle: var(--slate-50);
+	--surface-muted: var(--slate-100);
+	--surface-strong: var(--slate-200);
 	
+	--surface-primary: var(--blue-600);
+	--surface-secondary: var(--slate-600);
+	--surface-danger: var(--red-600);
+	--surface-warning: var(--yellow-600);
+	--surface-success: var(--green-600);
+	--surface-info: var(--cyan-600);
+	
+	--border-base: var(--slate-50);
+	--border-subtle: var(--slate-100);
+	--border-muted: var(--slate-200);
+	--border-strong: var(--slate-300);
+	
+	--border-primary: var(--blue-700);
+	--border-secondary: var(--slate-700);
+	--border-danger: var(--red-700);
+	--border-warning: var(--yellow-700);
+	--border-success: var(--green-700);
+	--border-info: var(--cyan-700);
+	
+	--text-base: var(--slate-900);
+	--text-subtle: var(--slate-700);
+	--text-muted: var(--slate-100);
+	--text-strong: var(--slate-200);
+	
+	--text-primary: var(--blue-500);
+	--text-secondary: var(--slate-500);
+	--text-danger: var(--red-500);
+	--text-warning: var(--yellow-600);
+	--text-success: var(--green-500);
+	--text-info: var(--cyan-600);
+	--text-inverse: var(--white-900);
+}
+
+/* Bootstrap Override */
+:root {
 	/* btn */
 	--bs-border-radius: var(--radius-sm);
 	--bs-border-radius-xs: calc(var(--radius-sm) * 0.5);
@@ -450,4 +495,49 @@
 	--bs-toast-header-bg: var(--bg-danger-tertiary);
 	--bs-toast-header-color: var(--text-neutral-default);
 	--bs-btn-bg: var(--bg-default-default);
+}
+
+/* Component Tokens */
+:root {
+	
+	/* Box */
+	--box-bg-base: var(--surface-base);
+	--box-bg-subtle: var(--surface-subtle);
+	--box-bg-muted: var(--surface-muted);
+	--box-bg-strong: var(--surface-strong);
+	
+	--box-border-base: var(--border-base);
+	--box-border-subtle: var(--border-subtle);
+	--box-border-muted: var(--border-muted);
+	--box-border-strong: var(--border-strong);
+	
+	/* layout */
+	--grid-gap: 16px;
+	--grid-auto-min: 160px;
+	
+	--grid-item-bg: var(--surface-base);
+	--grid-item-border: var(--border-subtle);
+	--grid-item-padding: 16px;
+	--grid-item-radius: 8px;
+	
+	--form-block-bg: var(--surface-base);
+	--form-block-border: var(--border-subtle);
+}
+
+@media (min-width: 768px) {
+	:root {
+		--grid-auto-min: 240px;
+	}
+}
+
+@media (min-width: 992px) {
+	:root {
+		--grid-auto-min: 360px;
+	}
+}
+
+@media (min-width: 1200px) {
+	:root {
+		--grid-auto-min: 400px;
+	}
 }

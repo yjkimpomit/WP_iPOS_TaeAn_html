@@ -105,14 +105,6 @@
 .logo .bi .branch {
 	color: var(--text-default-default);
 }
-
-@media (min-width: 1535.9px) and (max-width: 1799.9px) {
-	.logo .bi {
-		flex-direction: column;
-		align-items: flex-start;
-		gap: 0.125rem;
-	}
-}
 @media (min-width: 1536px) {
 	.logo {
 		min-width: 200px;
@@ -129,33 +121,10 @@
 		padding-top: .25rem;
 		padding-left: 68px;
 	}
-}
-@media (min-width: 1800px) {
-	.logo {
-		background-size: auto 40px;
-		padding-top: .25rem;
-		padding-left: 84px;
-	}
 	.logo .bi {
-		flex-direction: row;
-		align-items: center;
-		gap: .75rem;
-	}
-	.logo .bi .branch {
-		position: relative;
-		padding-left: .75rem;
-	}
-	.logo .bi .branch::before {
-		content: '';
-		position: absolute;
-		top: 50%;
-		left: 0;
-		transform: translateY(-50%);
-		
-		display: block;
-		width: 1px;
-		height: 14px;
-		border: solid 1px var(--border-neutral-default);
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 0;
 	}
 }
 .logo .bi .select-plant {
@@ -273,7 +242,7 @@ html[data-theme='dark'] .logo .bi .select-plant .icon-arrow {
 	height: 96px;
 }
 .operation-status.visible .info-box.safety {
-	height: 146px;
+	height: 280px;
 }
 .operation-status.visible .info-box.safety,
 .operation-status.visible .info-box.tm{
@@ -329,14 +298,13 @@ html[data-theme='dark'] .logo .bi .select-plant .icon-arrow {
 	flex-direction: column;
 	align-items: flex-start;
 	justify-content: space-between;
-	gap: .125rem;
-	
+	gap: 0;
 	font-family: var(--font-family-en), sans-serif;
 }
 
 .operation-status .info-box>.title {
 	display: block;
-	margin: 0 0 .5rem;
+	margin: 0 0 .25rem;
 	
 	font-family: var(--font-family), sans-serif;
 	font-size: 15px;
@@ -344,19 +312,30 @@ html[data-theme='dark'] .logo .bi .select-plant .icon-arrow {
 }
 
 .operation-status .info-box>.title>small {
-	font-size: 12px;
+	font-size: 13px;
 	font-weight: 700;
 }
 
 .operation-status .info-box span {
 	font-family: var(--font-family-en), sans-serif;
 	font-size: 12px;
+	font-weight: 700;
 	white-space: nowrap;
 }
 
 .operation-status .info-box strong {
 	font-size: 16px;
 	line-height: 1.2;
+}
+
+.operation-status .info-box.safety>.title {
+	font-size: 15px;
+}
+.operation-status .info-box span {
+	font-size: 14px;
+}
+.operation-status .info-box.safety strong {
+	font-size: 20px;
 }
 
 .operation-status .info-box small {
@@ -366,13 +345,13 @@ html[data-theme='dark'] .logo .bi .select-plant .icon-arrow {
 
 .info-box.safety {
 	color: var(--text-default-default);
-	background-color: var(--bg-default-default);
+	background-color: var(--bg-neutral-tertiary);
 	position: relative;
 }
 .operation-status .info-box.safety ul {
 	flex-wrap: wrap;
 }
-.info-box.tm {
+/*.info-box.tm {
 	color: var(--text-default-default);
 	background-color: var(--bg-neutral-tertiary);
 	position: relative;
@@ -383,12 +362,12 @@ html[data-theme='dark'] .logo .bi .select-plant .icon-arrow {
 }
 .info-box.air .title {
 	color: var(--text-default-onneutral);
-}
+}*/
 
 /* efficiency */
 .info-box.efficiency-9 {
 	color: var(--text-default-onneutral);
-	background-color: var(--bg-brand-dark);
+	background-color: var(--box-bg-info-strong);
 }
 .info-box.efficiency-9 .title {
 	color: var(--text-default-onneutral);
@@ -396,7 +375,7 @@ html[data-theme='dark'] .logo .bi .select-plant .icon-arrow {
 
 .info-box.efficiency-10 {
 	color: var(--text-default-onneutral);
-	background-color: var(--bg-brand-darkhover);
+	background-color: var(--box-bg-primary-stronger);
 }
 .info-box.efficiency-10 .title {
 	color: var(--text-default-onneutral);
@@ -408,14 +387,12 @@ html[data-theme='dark'] .logo .bi .select-plant .icon-arrow {
 		align-items: center;
 		height: 100%;
 	}
-	
 	.operation-status .info-box {
-		padding: 1rem 1.25rem;
-		border-left: 1px solid var(--darker20);
+		padding: 1rem 1.5rem;
+		border-left: 1px solid var(--darker10);
 	}
-	.operation-status .info-box.safety {
-		padding-left: 0;
-		border-color: transparent;
+		.operation-status .info-box.safety .title {
+		display: none;
 	}
 	.operation-status .info-box.safety ul {
 		flex-wrap: nowrap;
@@ -427,16 +404,15 @@ html[data-theme='dark'] .logo .bi .select-plant .icon-arrow {
 		flex: 1 0 auto;
 		justify-content: center;
 	}
-	
-	.operation-status .info-box[class*='efficiency-'] > ul > li:last-child {
-		padding-left: 0 !important;
-	}
 }
 @media (min-width: 1535.9px) and (max-width: 1799.9px) {
+	.operation-status .info-box ul {
+		gap: 1.5rem;
+	}
 	/* 일부만 아이콘 제거 */
+	.operation-status .info-box.safety>ul>li,
 	.operation-status .info-box.tm>ul>li,
-	.operation-status .info-box.air>ul>li,
-	.operation-status .info-box[class*='efficiency-']>ul>li{
+	.operation-status .info-box.air>ul>li {
 		padding-left: 0 !important;
 		background-size: 0 !important;
 	}
@@ -446,29 +422,44 @@ html[data-theme='dark'] .logo .bi .select-plant .icon-arrow {
 .operation-status .safety.info-box>ul li.icon01 {
 	background-image: url("/resources/images/icons/safety-icon01.svg");
 }
-
 .operation-status .safety.info-box>ul li.icon02 {
 	background-image: url("/resources/images/icons/safety-icon02.svg");
 }
-
 .operation-status .safety.info-box>ul li.icon03 {
 	background-image: url("/resources/images/icons/safety-icon03.svg");
 }
-
 .operation-status .safety.info-box>ul li.icon04 {
 	background-image: url("/resources/images/icons/safety-icon04.svg");
 }
-
 .operation-status .safety.info-box>ul li.icon05 {
 	background-image: url("/resources/images/icons/safety-icon05.svg");
 }
-
 .operation-status .safety.info-box>ul li.icon06 {
 	background-image: url("/resources/images/icons/safety-icon06.svg");
 }
-.header .safety.info-box > ul li.icon07 {
+.operation-status .safety.info-box > ul li.icon07 {
 	background-image: url("/resources/images/icons/safety-icon07.svg");
 }
+
+.operation-status .safety.info-box > ul li.icon08 {
+	background-image: url("/resources/images/icons/safety-icon08.svg");
+}
+.operation-status .safety.info-box > ul li.icon09 {
+	background-image: url("/resources/images/icons/safety-icon09.svg");
+}
+.operation-status .safety.info-box > ul li.icon10 {
+	background-image: url("/resources/images/icons/safety-icon10.svg");
+}
+.operation-status .safety.info-box > ul li.icon11 {
+	background-image: url("/resources/images/icons/safety-icon11.svg");
+}
+.operation-status .safety.info-box > ul li.icon12 {
+	background-image: url("/resources/images/icons/safety-icon12.svg");
+}
+.operation-status .safety.info-box > ul li.icon13 {
+	background-image: url("/resources/images/icons/safety-icon13.svg");
+}
+
 /* tm */
 .tm.info-box>ul>li.icon01 {
 	background-image: url("/resources/images/icons/tm-icon01.svg");
@@ -490,8 +481,14 @@ html[data-theme='dark'] .logo .bi .select-plant .icon-arrow {
 .efficiency-9.info-box>ul li:first-child {
 	background-image: url("/resources/images/icons/efficiency-icon02.svg");
 }
+.efficiency-9.info-box>ul li:last-child {
+	background-image: url("/resources/images/icons/efficiency-icon04.svg");
+}
 .efficiency-10.info-box>ul li:first-child {
 	background-image: url("/resources/images/icons/efficiency-icon03.svg");
+}
+.efficiency-10.info-box>ul li:last-child {
+	background-image: url("/resources/images/icons/efficiency-icon04.svg");
 }
 
 /* 임시 - 운전정보작업중 메세지용 */

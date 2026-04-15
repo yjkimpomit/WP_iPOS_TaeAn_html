@@ -348,71 +348,9 @@ body:not(.admin-sub) [class*='container-'] {
 }
 
 /* dataPARC */
-.grid-box {
-	display: grid;
-	grid-template-columns: 1fr;
-	gap: 1rem;
-}
-
-@media (min-width: 1600px) {
-	.grid-box {
-		gap: 1rem 1.5rem;
-		grid-template-columns: repeat(2, 1fr);
-	}
-}
-
-.grid-box:has(.dataparc-category) {
-	gap: 1rem;
-}
-.grid-cell> * {
-	margin: 0;
-}
-.grid-cell:has(.dataparc-category) {
-	background-color: var(--bg-neutral-tertiary);
-	border: solid 1px var(--border-neutral-tertiary);
-	border-radius: var(--radius-sm);
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	gap: .25rem;
-	padding: .25rem .5rem;
-}
-
-.dataparc-category {
-	display: flex;
-	align-items: stretch;
-	justify-content: space-between;
-}
-.dataparc-category.bg02 {
-	border: 1px solid var(--darker20);
-	background-color: var(--bg-neutral-defaulthover);
-}
-
-.dataparc-category > h4 {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex: 1;
-	max-width: 5rem;
-	color: var(--text-neutral-default);
-	margin: 0;
-	font-size: 1rem;
-}
-
-.category-list {
-	flex: 1;
-	gap: .25rem;
-	display: flex;
-	flex-wrap: wrap;
-}
-.category-list .btn-sm {
-	flex: 1;
-	padding: var(--bs-btn-padding-y) var(--bs-btn-padding-x);
-}
-
 @media(min-width: 1600px) {
 	.container-admin .dataparc-iframe {
-		height: 77svh;
+		height: 70svh;
 	}
 }
 

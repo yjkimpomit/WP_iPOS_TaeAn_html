@@ -48,8 +48,10 @@
 	.search-box {
 		padding: .5rem 1rem .75rem;
 	}
-	.search-box .row {
-		align-items: flex-end;
+}
+@media (min-width: 1232px) {
+	.search-box {
+		padding: .5rem 1.5rem .75rem;
 	}
 }
 
@@ -130,21 +132,29 @@
 
 /* 간격 */
 .search-box .form-label {
-	padding: .25rem 0 0;
-	margin-bottom: .125rem;
+	/*padding: .25rem 0 0;*/
+	margin-bottom: .25rem;
 	font-size: .875rem;
 	font-weight: 700;
 	display: inline-block;
 }
 
+/* 2026-04-08
 .search-box .row {
 	--bs-gutter-x: .5rem;
 	--bs-gutter-y: .5rem;
 	align-items: flex-end;
 	justify-content: flex-start;
 }
+*/
+.search-box .row {
+	--bs-gutter-x: 1rem;
+	--bs-gutter-y: .5rem;
+	align-items: flex-end;
+	justify-content: flex-start;
+}
 
-.search-box .row > [class*='mb-3'] {
+.search-box .row > * {
 	margin-bottom: 0 !important;
 }
 
@@ -153,6 +163,26 @@
 	justify-content: center;
 	gap: .25rem;
 }
+@media (min-width: 576px) {
+	.search-box .row {
+		align-items: flex-end;
+	}
+}
+
+.search-box .row > .col-form-label {
+	line-height: 1.125;
+	border-radius: var(--radius-sm);
+}
+@media (min-width: 816px) {
+	.search-box .row:has(.col-form-label) {
+		--bs-gutter-x: 0.5rem;
+	}
+	
+	.search-box .row:has(.col-form-label) > div:not(.col-form-label) {
+		padding-right: 1.5rem;
+	}
+}
+
 
 /* 2025.02.25 yjkim - 검색박스 간격 줄임 */
 .search-box .form-control-plaintext:not(.form-label),
@@ -187,14 +217,13 @@ input[type="date"], input[type="week"], input[type="datetime-local"], input.icon
 }
 
 /* 검색박스 내부 버튼 */
-#cctvInstall .btn.btn-install,
 .search-box .btn {
 	position: relative;
 	display: flex;
 	align-items: center;
 	justify-items: center;
 	gap: .5rem;
-	padding-left: .75rem;
+	padding-left: 1rem;
 	padding-right: 1rem;
 }
 

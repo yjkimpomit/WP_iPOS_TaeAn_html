@@ -5,7 +5,8 @@
 * 작성자 : 김윤지
 * 작성일 : 2025.09.19
 * 임포트 파일 : 리셋, 부트스트랩, 폰트
-* 스타일 변경의 관리성을 확보하기 위해 사용자 스타일시트를 복제하고, 추가 스타일은 오버라이드 방식으로 정의
+* 사용자 스타일과 맞추고, 관리자용으로 추가하는 스타일은 오버라이드 방식으로 정의
+* 단, 이미지경로는 관리자로 별도 수정
 */
 
 @import url(/resources/admin/css/bootstrap/dist/css/bootstrap.min.css);
@@ -431,12 +432,12 @@ input[id="facilityRefList"]+.title03 {
 	content: '';
 	position: absolute;
 	left: 0;
-	bottom: 0;
+	bottom: -.25rem;
 
 	display: block;
 	width: 100%;
 	height: 1px;
-	background-color: var(--border-default-tertiary);
+	background-color: var(--border-neutral-secondary);
 }
 
 .title07 {
@@ -566,24 +567,71 @@ input[id="facilityRefList"]+.title03 {
 }
 /*#################### Button Color Overrides ####################*/
 .btn-primary {
-	--bs-btn-color: var(--text-default-onneutral);
-	--bs-btn-bg: var(--bg-brand-defaulthover);
+	--bs-btn-bg: var(--surface-primary);
 	--bs-btn-border-color: var(--border-brand-default);
-	
 	--bs-btn-hover-color: var(--text-default-onneutral);
 	--bs-btn-hover-bg: var(--bg-brand-dark);
 	--bs-btn-hover-border-color: var(--border-brand-dark);
-	
 	--bs-btn-active-color: var(--text-default-onneutral);
 	--bs-btn-active-bg: var(--bg-brand-dark);
 	--bs-btn-active-border-color: var(--border-brand-dark);
-	
 	--bs-btn-disabled-color: var(--text-default-onneutral);
 	--bs-btn-disabled-bg: var(--bg-brand-defaulthover);
 	--bs-btn-disabled-border-color: var(--border-brand-default);
 }
+.btn-secondary {
+	--bs-btn-color: var(--text-neutral-default);
+	--bs-btn-bg: var(--bg-neutral-secondary);
+	--bs-btn-border-color: var(--border-neutral-default);
+	--bs-btn-hover-color: var(--text-neutral-default);
+	--bs-btn-hover-bg: var(--bg-neutral-secondaryhover);
+	--bs-btn-hover-border-color: var(--border-neutral-default);
+	--bs-btn-active-color: var(--text-neutral-default);
+	--bs-btn-active-bg: var(--bg-neutral-secondaryhover);
+	--bs-btn-active-border-color: var(--border-neutral-default);
+	--bs-btn-disabled-color: var(--text-neutral-default);
+	--bs-btn-disabled-bg: var(--bg-neutral-secondary);
+	--bs-btn-disabled-border-color: var(--border-neutral-default);
+}
+.btn-success {
+	--bs-btn-bg: var(--green-500);
+	--bs-btn-disabled-bg: var(--green-500);
+	--bs-btn-border-color: var(--green-500);
+	--bs-btn-disabled-border-color: var(--green-500);
+	--bs-btn-hover-bg: var(--green-600);
+	--bs-btn-hover-border-color: var(--green-600);
+	--bs-btn-active-bg: var(--green-700);
+	--bs-btn-active-border-color: var(--green-700);
+}
+.btn-danger {
+	--bs-btn-bg: var(--red-500);
+	--bs-btn-disabled-bg: var(--red-500);
+	--bs-btn-border-color: var(--red-500);
+	--bs-btn-disabled-border-color: var(--red-500);
+	--bs-btn-hover-bg: var(--red-600);
+	--bs-btn-hover-border-color: var(--red-600);
+	--bs-btn-active-bg: var(--red-700);
+	--bs-btn-active-border-color: var(--red-700);
+}
+.btn-info {
+	--bs-btn-bg: var(--cyan-500);
+	--bs-btn-color: var(--text-inverse);
+	--bs-btn-border-color: var(--cyan-500);
+	--bs-btn-hover-color: var(--text-inverse);
+	--bs-btn-hover-bg: var(--cyan-600);
+	--bs-btn-hover-border-color: var(--cyan-600);
+	--bs-btn-focus-shadow-rgb: 11, 172, 204;
+	--bs-btn-active-color: var(--text-inverse);
+	--bs-btn-active-bg: var(--cyan-700);
+	--bs-btn-active-border-color: var(--cyan-700);
+	--bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+	--bs-btn-disabled-color: var(--text-inverse);
+	--bs-btn-disabled-bg: var(--cyan-500);
+	--bs-btn-disabled-border-color: var(--cyan-500);
+}
+
 .btn-outline-primary {
-	--bs-btn-bg: var(--bg-default-default);
+	--bs-btn-bg: var(--surface-base);
 	--bs-btn-color: var(--text-brand-secondary);
 	--bs-btn-border-color: var(--border-brand-default);
 	
@@ -598,24 +646,8 @@ input[id="facilityRefList"]+.title03 {
 	--bs-btn-disabled-color: var(--text-brand-secondary);
 	--bs-btn-disabled-border-color: var(--border-brand-default);
 }
-.btn-secondary {
-	--bs-btn-color: var(--text-neutral-default);
-	--bs-btn-bg: var(--bg-neutral-secondary);
-	--bs-btn-border-color: var(--border-neutral-default);
-	
-	--bs-btn-hover-color: var(--text-neutral-default);
-	--bs-btn-hover-bg: var(--bg-neutral-secondaryhover);
-	--bs-btn-hover-border-color: var(--border-neutral-default);
-	
-	--bs-btn-active-color: var(--text-neutral-default);
-	--bs-btn-active-bg: var(--bg-neutral-secondaryhover);
-	--bs-btn-active-border-color: var(--border-neutral-default);
-	
-	--bs-btn-disabled-color: var(--text-neutral-default);
-	--bs-btn-disabled-bg: var(--bg-neutral-secondary);
-	--bs-btn-disabled-border-color: var(--border-neutral-default);
-}
 .btn-outline-secondary {
+	--bs-btn-bg: var(--surface-base);
 	--bs-btn-color: var(--text-neutral-default);
 	--bs-btn-border-color: var(--border-neutral-default);
 	
@@ -630,65 +662,21 @@ input[id="facilityRefList"]+.title03 {
 	--bs-btn-disabled-color: var(--text-neutral-default);
 	--bs-btn-disabled-border-color: var(--border-neutral-default);
 }
-
-.btn-success {
-	--bs-btn-bg: var(--green-500);
-	--bs-btn-disabled-bg: var(--green-500);
-	--bs-btn-border-color: var(--green-500);
-	--bs-btn-disabled-border-color: var(--green-500);
-	
-	--bs-btn-hover-bg: var(--green-600);
-	--bs-btn-hover-border-color: var(--green-600);
-	
-	--bs-btn-active-bg: var(--green-700);
-	--bs-btn-active-border-color: var(--green-700);
-}
-
-.btn-danger {
-	--bs-btn-bg: var(--red-500);
-	--bs-btn-disabled-bg: var(--red-500);
-	--bs-btn-border-color: var(--red-500);
-	--bs-btn-disabled-border-color: var(--red-500);
-	
-	--bs-btn-hover-bg: var(--red-600);
-	--bs-btn-hover-border-color: var(--red-600);
-	
-	--bs-btn-active-bg: var(--red-700);
-	--bs-btn-active-border-color: var(--red-700);
-}
-
-.btn-info {
-	--bs-btn-color: var(--white);
-	--bs-btn-bg: var(--cyan-500);
-	--bs-btn-border-color: var(--cyan-500);
-	--bs-btn-hover-color: var(--white);
-	--bs-btn-hover-bg: var(--cyan-600);
-	--bs-btn-hover-border-color: var(--cyan-600);
-	--bs-btn-focus-shadow-rgb: 11, 172, 204;
-	--bs-btn-active-color: var(--white);
-	--bs-btn-active-bg: var(--cyan-700);
-	--bs-btn-active-border-color: var(--cyan-700);
-	--bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-	--bs-btn-disabled-color: var(--white);
-	--bs-btn-disabled-bg: var(--cyan-500);
-	--bs-btn-disabled-border-color: var(--cyan-500);
-}
-
 .btn-outline-info {
-	--bs-btn-bg: var(--bg-default-default);
-	--bs-btn-color: #0dcaf0;
-	--bs-btn-border-color: #0dcaf0;
-	--bs-btn-hover-color: #000;
-	--bs-btn-hover-bg: #0dcaf0;
-	--bs-btn-hover-border-color: #0dcaf0;
+	--bs-btn-bg: var(--surface-base);
+	--bs-btn-color: var(--text-info);
+	--bs-btn-border-color: var(--border-info);
+	--bs-btn-hover-color: var(--surface-base);
+	--bs-btn-hover-bg: var(--border-info);
+	--bs-btn-hover-border-color: var(--border-info);
 	--bs-btn-focus-shadow-rgb: 13, 202, 240;
-	--bs-btn-active-color: #000;
-	--bs-btn-active-bg: #0dcaf0;
-	--bs-btn-active-border-color: #0dcaf0;
+	--bs-btn-active-color: var(--surface-base);
+	--bs-btn-active-bg: var(--border-info);
+	--bs-btn-active-border-color: var(--border-info);
 	--bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-	--bs-btn-disabled-color: #0dcaf0;
-	--bs-btn-disabled-bg: transparent;
-	--bs-btn-disabled-border-color: #0dcaf0;
+	--bs-btn-disabled-color: var(--surface-base);
+	--bs-btn-disabled-bg: var(--surface-info);
+	--bs-btn-disabled-border-color: var(--border-info);
 	--bs-gradient: none;
 }
 
@@ -777,6 +765,11 @@ input[id="facilityRefList"]+.title03 {
 	width: 1rem;
 }
 
+.icon-close {
+	background-image: url(/resources/admin/images/icons/icon-close.svg);
+	background-repeat: no-repeat;
+	background-position: center;
+}
 .icon-search {
 	background-image: url(/resources/admin/images/icons/icon-search-white.svg);
 	background-repeat: no-repeat;
@@ -846,12 +839,22 @@ input[id="facilityRefList"]+.title03 {
 	background-image: url(/resources/admin/images/icons/folder_data-blue.svg);
 }
 .icon-3d {
+	background-image: url(/resources/admin/images/icons/icon-view_in_ar-blue.svg);
+	background-repeat: no-repeat;
+	background-position: center;
+}
+.btn-primary .icon-3d {
 	background-image: url(/resources/admin/images/icons/icon-view_in_ar-white.svg);
 	background-repeat: no-repeat;
 	background-position: center;
 }
-.icon-3d.darkblue {
-	background-image: url(/resources/admin/images/icons/icon-view_in_ar-darkblue.svg);
+.icon-pano {
+	background-image: url(/resources/admin/images/icons/icon-vrpano-blue.svg);
+	background-repeat: no-repeat;
+	background-position: center;
+}
+.btn-primary .icon-pano {
+	background-image: url(/resources/admin/images/icons/icon-vrpano-white.svg);
 	background-repeat: no-repeat;
 	background-position: center;
 }
@@ -871,6 +874,19 @@ input[id="facilityRefList"]+.title03 {
 [class*='icon-'].icon > svg {
 	width: 100%;
 	height: 100%;
+}
+
+.modal-header .btn.close:has(.icon-close) {
+	background-image: none;
+}
+
+.modal-header .icon.icon-close + span,
+.btn > .icon.icon-pano + span,
+.btn > .icon.icon-3d + span{
+	text-indent: -99999em;
+	position: absolute;
+	top: -9999em;
+	left: -9999em;
 }
 
 /*
@@ -1217,6 +1233,84 @@ body.sub #unity-container {
 	background-color: transparent !important;
 	width: 100%;
 	height: 100%;
+}
+
+/* form block */
+.form-block {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+/* textarea */
+.form-block .form-control {
+	width: 100%;
+	min-height: 120px;
+	resize: vertical;
+	background-color: var(--form-block-bg);
+	border: 1px solid var(--form-block-border);
+}
+
+/* basic grid */
+.grid {
+	display: grid;
+	gap: var(--grid-gap);
+}
+
+.grid--2 {
+	grid-template-columns: 1fr;
+}
+.grid--3 {
+	grid-template-columns: 1fr;
+}
+.grid--6 {
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.grid--auto {
+	grid-template-columns: repeat(auto-fit, minmax(var(--grid-auto-min), 1fr));
+}
+
+@media (min-width: 992px) {
+	.grid--2 {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+	.grid--3 {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+	.grid--3 > :nth-child(3) {
+		grid-column: 1 / -1;
+	}
+}
+@media (min-width: 1200px) {
+	.grid--3 {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+	.grid--3 > :nth-child(3) {
+		grid-column: auto;
+	}
+	.grid--6 {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+	.grid--6 > :nth-child(6) {
+		grid-column: 1 / -1;
+	}
+}
+@media (min-width: 1800px) {
+	.grid--6 {
+		grid-template-columns: repeat(6, minmax(0, 1fr));
+	}
+	.grid--6 > :nth-child(6) {
+		grid-column: auto;
+	}
+}
+
+/* grid item */
+.grid__item {
+	min-width: 0;
+	background: var(--grid-item-bg);
+	border: 1px solid var(--grid-item-border);
+	padding: var(--grid-item-padding);
+	border-radius: var(--grid-item-radius);
 }
 
 
