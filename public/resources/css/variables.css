@@ -544,6 +544,7 @@
 /* Component Tokens */
 :root {
 	/* select-group */
+	--group-text: var(--text-base);
 	--logo-text: var(--text-base);
 	--logo-divider: var(--border-neutral-muted);
 	

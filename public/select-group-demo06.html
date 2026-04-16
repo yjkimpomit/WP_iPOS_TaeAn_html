@@ -7,397 +7,403 @@
 	<title>반응형 지도 핀 인터랙션</title>
 	<style>
 		* {
-			box-sizing: border-box;
-		}
+	box-sizing: border-box;
+}
 
-		html,
-		body {
-			margin: 0;
-			padding: 0;
-			background: #081521;
-			font-family: "Pretendard", "Noto Sans KR", Arial, sans-serif;
-			color: #fff;
-			overflow: hidden;
-		}
+html,
+body {
+	margin: 0;
+	padding: 0;
+	background: #081521;
+	font-family: "Pretendard", "Noto Sans KR", Arial, sans-serif;
+	color: #fff;
+	overflow-x: hidden;
+}
 
-		body {
-			min-width: 320px;
-		}
+body {
+	min-width: 320px;
+	background: url(/resources/images/group/map-bg.png) no-repeat center 0;
+	background-size: cover;
+}
 
-		.map-section {
-			width: 100%;
-			padding: 0;
-			background: #081521;
-		}
+.map-section {
+	width: 100vw;
+	height: 100vh;
+	padding: 0;
 
-		.map-stage {
-			position: relative;
-			width: 100%;
-			max-width: 100%;
-			line-height: 0;
-			overflow: visible;
-			background: #081521;
-		}
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
 
-		.map-image {
-			display: block;
-			width: 100%;
-			height: auto;
-			max-width: 100%;
-			user-select: none;
-			-webkit-user-drag: none;
-			pointer-events: none;
-		}
+.map-stage {
+	position: relative;
+	width: 100%;
+	max-width: 100%;
+	line-height: 0;
+	overflow: visible;
 
-		.map-overlay {
-			position: absolute;
-			inset: 0;
-			z-index: 10;
-		}
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
 
-		.hotspot {
-			position: absolute;
-			inset: 0;
-			pointer-events: none;
-		}
+.map-image {
+	display: block;
+	width: 100%;
+	height: auto;
+	max-width: 960px;
+	user-select: none;
+	-webkit-user-drag: none;
+	pointer-events: none;
+}
 
-		.pin {
-			position: absolute;
-			left: var(--x);
-			top: var(--y);
-			transform: translate(-50%, -50%);
-			width: 80px;
-			height: 80px;
-			border: 0;
-			padding: 0;
-			/* 
-			border-radius: 50%;
-			background: #12b3ff;
-			box-shadow:
-				0 0 0 6px rgba(18, 179, 255, 0.18),
-				0 0 18px rgba(18, 179, 255, 0.5);
-			background: #e53935;
-			box-shadow:
-				0 0 0 4px rgba(229, 57, 53, 0.18),
-				0 6px 14px rgba(0, 0, 0, 0.22); 
-			transition: transform 0.2s ease, box-shadow 0.2s ease;
-			*/
-			background: url(/resources/images/icons/pin-red.svg) no-repeat center;
-			background-size: 48px;
-			cursor: pointer;
-			pointer-events: auto;
-			z-index: 30;
-		}
+.map-overlay {
+	position: absolute;
+	top: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	z-index: 10;
+	width: 100%;
+	max-width: 960px;
+	height: 100%;
+}
 
-		.pin.disabled {
-			background-image: url(/resources/images/icons/pin-gray.svg)
-		}
+.hotspot {
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
+}
 
-		.pin::before,
-		.pin::after {
-			content: "";
-			position: absolute;
-			left: 50%;
-			top: 50%;
-			transform: translate(-50%, -50%);
-		}
-/* 
-		.pin::before {
-			width: 36px;
-			height: 36px;
-			border: 1px solid rgba(255, 255, 255, 0.24);
-			animation: pinPulse 2s ease-out infinite;
-		}
+.hotspot:hover,
+.hotspot.is-active {
+	z-index: 50;
+}
 
-		.pin::after {
-			width: 8px;
-			height: 8px;
-			background: #fff;
-		} */
+.pin {
+	position: absolute;
+	left: var(--x);
+	top: var(--y);
+	transform: translate(-50%, -50%);
+	width: 80px;
+	height: 80px;
+	border: 0;
+	padding: 0;
+	background: url(/resources/images/icons/pin-red.svg) no-repeat center;
+	background-size: 48px;
+	cursor: pointer;
+	pointer-events: auto;
+	z-index: 2;
+}
 
-		.pin:hover,
-		.pin:focus-visible,
-		.hotspot.is-active .pin {
-			transform: translate(-50%, -50%) scale(1.08);
-			/* box-shadow:
-				0 0 0 8px rgba(18, 179, 255, 0.24),
-				0 0 24px rgba(18, 179, 255, 0.72); */
-			outline: none;
-		}
+.pin.disabled {
+	background-image: url(/resources/images/icons/pin-gray.svg);
+}
 
-		.pin-label {
-			position: absolute;
-			left: var(--x);
-			top: calc(var(--y) + 24px);
-			transform: translateX(-50%);
-			white-space: nowrap;
-			padding: 6px 10px;
-			font-size: 13px;
-			font-weight: 600;
-			line-height: 1;
-			color: #fff;
-			background: rgba(3, 29, 52, 0.78);
-			border: 1px solid #ffffff24;
-			border-radius: 999px;
-			backdrop-filter: blur(8px);
-			opacity: 0;
-			visibility: hidden;
-			transition: opacity 0.2s ease;
-			pointer-events: none;
-			z-index: 25;
+.pin::before,
+.pin::after {
+	content: "";
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
 
-			opacity: 0;
-			display: none;
-		}
+.pin:hover,
+.pin:focus-visible,
+.hotspot.is-active .pin {
+	transform: translate(-50%, -50%) scale(1.08);
+	outline: none;
+}
 
-		/* .hotspot.is-active .pin-label,
-		.pin:hover+.pin-label {
-			opacity: 1;
-			visibility: visible;
-		} */
+.pin-label {
+	display: none;
+}
 
-		.info-line {
-			position: absolute;
-			left: 0;
-			top: 0;
-			width: 0;
-			height: 2px;
-			background: linear-gradient(90deg, #ffffffF2, #07192AF2);
-			transform-origin: 0 50%;
-			opacity: 0;
-			pointer-events: none;
-			z-index: 12;
-			transition: opacity 0.2s ease;
-			filter: drop-shadow(0 0 4px rgba(18, 179, 255, 0.45));
-		}
+.info-line {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 0;
+	height: 2px;
+	background: linear-gradient(90deg, #ffffffF2, #07192AF2);
+	transform-origin: 0 50%;
+	opacity: 0;
+	pointer-events: none;
+	z-index: 1;
+	transition: opacity 0.2s ease;
+	filter: drop-shadow(0 0 4px rgba(18, 179, 255, 0.45));
+}
 
-		.hotspot.is-active .info-line {
-			opacity: 1;
-		}
+.hotspot.is-active .info-line {
+	opacity: 1;
+}
 
-		.info-box {
-			position: absolute;
-			width: min(640px, calc(100vw - 32px));
-			min-width: 320px;
-			opacity: 0;
-			visibility: hidden;
-			pointer-events: none;
-			z-index: 40;
-		}
+.info-box {
+	position: absolute;
+	width: min(640px, calc(100vw - 32px));
+	min-width: 560px;
+	opacity: 0;
+	visibility: hidden;
+	pointer-events: none;
+	z-index: 3;
+}
 
-		.hotspot.is-active .info-box {
-			opacity: 1;
-			visibility: visible;
-			pointer-events: auto;
-		}
+.hotspot.is-active .info-box {
+	opacity: 1;
+	visibility: visible;
+	pointer-events: auto;
+}
 
-		.info-box__panel {
-			padding: 1.5rem 1.5rem;
-			border-radius: 1.5rem;
-			background: rgba(7, 25, 42, 0.94);
-			border: 1px solid rgba(115, 189, 250, 0.42);
-			box-shadow:
-				0 18px 50px rgba(0, 0, 0, 0.35),
-				inset 0 1px 0 rgba(255, 255, 255, 0.06);
-			backdrop-filter: blur(14px);
-			opacity: 0;
-			transform: translateY(14px);
-			transition: opacity 0.3s ease, transform 0.3s ease;
-		}
+.info-box__panel {
+	padding: 1.5rem;
+	border-radius: 1.5rem;
+	background: rgba(7, 25, 42, 0.94);
+	border: 1px solid rgba(115, 189, 250, 0.42);
+	box-shadow:
+		0 18px 50px rgba(0, 0, 0, 0.35),
+		inset 0 1px 0 rgba(255, 255, 255, 0.06);
+	backdrop-filter: blur(14px);
+	opacity: 0;
+	transform: translateY(14px);
+	transition: opacity 0.3s ease, transform 0.3s ease;
+}
 
-		.hotspot.is-active .info-box__panel {
-			opacity: 1;
-			transform: translateY(0);
-		}
+.hotspot.is-active .info-box__panel {
+	opacity: 1;
+	transform: translateY(0);
+}
 
-		.info-box__content {
-		display: flex;
-		gap: 12px;
-		align-items: flex-start;
-		}
+.info-box__content {
+	display: flex;
+	gap: 1.5rem;
+	align-items: center;
+}
 
-		.info-box__media {
-		flex: 0 0 200px;
-		height: 160px;
-		border-radius: 12px;
-		overflow: hidden;
-		}
+.info-box__media {
+	flex: 0 0 160px;
+	width: 160px;
+	height: 144px;
+	border-radius: .5rem;
+	overflow: hidden;
+	background: rgba(255, 255, 255, 0.06);
+}
 
-		.info-box__media img {
+.info-box__media img {
+	width: 100%;
+	height: auto;
+	object-fit: cover;
+	display: block;
+}
+
+.info-box__main {
+	flex: 1;
+	min-width: 0;
+}
+
+.info-box__header {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	gap: .5rem;
+	margin-bottom: 1.5rem;
+}
+
+.info-box__title-wrap {
+	min-width: 0;
+}
+
+.info-box__title {
+	margin: 0;
+	font-size: 20px;
+	line-height: 1.2;
+	font-weight: 700;
+	word-break: keep-all;
+}
+
+.info-box__sub {
+	margin: .5rem 0 0;
+	font-size: 13px;
+	line-height: 1.4;
+	color: rgba(255, 255, 255, 0.7);
+	word-break: keep-all;
+}
+
+.info-box__close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+
+	flex: 0 0 auto;
+	width: 2rem;
+	height: 2rem;
+	border: 0;
+	border-radius: 50%;
+	background: rgba(255, 255, 255, 0.08) url(/resources/images/icons/icon-close-white.svg) no-repeat center;
+	background-size: 20px;
+	line-height: 1;
+	cursor: pointer;
+	transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.info-box__body {
+	display: grid;
+	gap: .5rem;
+}
+
+.info-box__item {
+	display: grid;
+	grid-template-columns: 128px 1fr;
+	gap: 8px;
+	align-items: start;
+	font-size: 14px;
+	line-height: 1.5;
+}
+
+.info-box__label {
+	color: #73bdfa;
+	font-weight: 600;
+}
+
+.info-box__value {
+	color: rgba(255, 255, 255, 0.92);
+	word-break: keep-all;
+}
+
+@keyframes fadeMoveUp {
+	from {
+		opacity: 0;
+		transform: translateY(14px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes pinPulse {
+	0% {
+		transform: translate(-50%, -50%) scale(0.8);
+		opacity: 0.8;
+	}
+
+	70% {
+		transform: translate(-50%, -50%) scale(1.3);
+		opacity: 0;
+	}
+
+	100% {
+		transform: translate(-50%, -50%) scale(1.3);
+		opacity: 0;
+	}
+}
+
+/* desktop ~ large tablet */
+@media (max-width: 1280px) {
+	.info-box {
+		width: min(600px, calc(100vw - 32px));
+		min-width: 520px;
+	}
+}
+
+/* tablet */
+@media (max-width: 1024px) {
+	.info-box {
+		width: min(320px, calc(100vw - 24px));
+		min-width: 240px;
+	}
+
+	.info-box__panel {
+		padding: 1.25rem;
+		border-radius: 1.25rem;
+	}
+
+	.info-box__content {
+		flex-direction: column;
+		gap: 16px;
+	}
+
+	.info-box__media {
+		flex: none;
 		width: 100%;
-		height: 100%;
-		object-fit: cover;
-		display: block;
-		}
+		height: auto;
+		aspect-ratio: 5 / 4;
+		max-width: 160px;
+	}
 
-		.info-box__main {
-		flex: 1;
+	.info-box__main {
+		width: 100%;
+	}
+
+	.info-box__item {
+		grid-template-columns: 120px 1fr;
+		font-size: 13px;
+	}
+}
+
+/* mobile */
+@media (max-width: 767px) {
+	.map-stage {
+		overflow: visible;
+	}
+
+	.pin {
+		width: 44px;
+		height: 44px;
+		background-size: 28px;
+	}
+
+	.info-box {
+		width: min(320px, calc(100vw - 20px));
 		min-width: 0;
-		}
+		max-width: calc(100vw - 20px);
+	}
 
-		.info-box__header {
-			display: flex;
-			align-items: flex-start;
-			justify-content: space-between;
-			gap: 12px;
-			margin-bottom: 12px;
-		}
+	.info-box__panel {
+		padding: 16px 16px 14px;
+		border-radius: 16px;
+	}
 
-		.info-box__title-wrap {
-			min-width: 0;
-		}
+	.info-box__content {
+		gap: 14px;
+	}
 
-		.info-box__title {
-			margin: 0;
-			font-size: 20px;
-			line-height: 1.2;
-			font-weight: 700;
-		}
+	.info-box__title {
+		font-size: 18px;
+	}
 
-		.info-box__sub {
-			margin: 6px 0 0;
-			font-size: 13px;
-			line-height: 1.4;
-			color: rgba(255, 255, 255, 0.7);
-		}
+	.info-box__sub {
+		font-size: 12px;
+	}
 
-		.info-box__close {
-			flex: 0 0 auto;
-			width: 34px;
-			height: 34px;
-			border: 0;
-			border-radius: 50%;
-			background: rgba(255, 255, 255, 0.08);
-			color: #fff;
-			font-size: 18px;
-			line-height: 1;
-			cursor: pointer;
-			transition: background 0.2s ease, transform 0.2s ease;
-		}
+	.info-box__item {
+		grid-template-columns: 1fr;
+		gap: 4px;
+		font-size: 13px;
+	}
 
-		.info-box__close:hover {
-			background: rgba(255, 255, 255, 0.16);
-			transform: scale(1.04);
-		}
+	.info-box__label small {
+		display: inline;
+	}
 
-		.info-box__body {
-			display: grid;
-			gap: 10px;
-		}
-
-		.info-box__item {
-			display: grid;
-			grid-template-columns: 88px 1fr;
-			gap: 8px;
-			align-items: start;
-			font-size: 14px;
-			line-height: 1.5;
-		}
-
-		.info-box__label {
-			color: #73bdfa;
-			font-weight: 600;
-		}
-
-		.info-box__label small {
-			display: block;
-		}
-
-		.info-box__value {
-			color: rgba(255, 255, 255, 0.92);
-			word-break: keep-all;
-		}
-
-		@keyframes fadeMoveUp {
-			from {
-				opacity: 0;
-				transform: translateY(14px);
-			}
-
-			to {
-				opacity: 1;
-				transform: translateY(0);
-			}
-		}
-
-		@keyframes pinPulse {
-			0% {
-				transform: translate(-50%, -50%) scale(0.8);
-				opacity: 0.8;
-			}
-
-			70% {
-				transform: translate(-50%, -50%) scale(1.3);
-				opacity: 0;
-			}
-
-			100% {
-				transform: translate(-50%, -50%) scale(1.3);
-				opacity: 0;
-			}
-		}
-
-		@media (max-width: 1024px) {
-			.info-box {
-				width: min(320px, calc(100vw - 24px));
-			}
-		}
-
-		@media (max-width: 767px) {
-			.map-stage {
-				overflow: visible;
-			}
-
-			.info-box {
-				max-width: calc(100vw - 16px);
-			}
-
-			.pin {
-				width: 20px;
-				height: 20px;
-			}
-
-			.pin::before {
-				width: 32px;
-				height: 32px;
-			}
-
-			.pin-label {
-				top: calc(var(--y) + 22px);
-				font-size: 12px;
-				padding: 5px 9px;
-			}
-
-			.info-box {
-				width: min(300px, calc(100vw - 20px));
-				min-width: 220px;
-			}
-
-			.info-box__panel {
-				padding: 16px 16px 14px;
-				border-radius: 16px;
-			}
-
-			.info-box__title {
-				font-size: 18px;
-			}
-
-			.info-box__item {
-				grid-template-columns: 64px 1fr;
-				font-size: 13px;
-			}
-		}
+	.info-box__close {
+		width: 32px;
+		height: 32px;
+		font-size: 16px;
+	}
+}
 	</style>
 </head>
 
 <body>
 	<section class="map-section">
 		<div class="map-stage" id="mapStage">
-			<img class="map-image" src="/resources/images/group/map-bg.jpg" alt="지도 이미지" />
+			<img class="map-image" src="/resources/images/group/map.png" alt="지도 이미지" />
 
 			<div class="map-overlay">
 				<!-- 샘플 좌표: 실제 지도 기준으로 수정 -->
-				<div class="hotspot" style="--x: 32%;--y: 30%;" data-name="태안발전본부">
+				<div class="hotspot" style="--x: 24%;--y: 28%;" data-name="태안발전본부">
 					<button type="button" class="pin" aria-label="태안발전본부 정보 열기"></button>
 					<span class="pin-label">태안발전본부</span>
 					<span class="info-line"></span>
@@ -414,23 +420,19 @@
 								<div class="info-box__main">
 									<div class="info-box__header">
 										<div class="info-box__title-wrap">
-											<h3 class="info-box__title">태안발전본부</h3>
+											<h3 class="info-box__title">태안발전본부 <small>(9, 10호기)</small></h3>
 											<p class="info-box__sub">최첨단 자동제어설비 발전소</p>
 										</div>
-										<button type="button" class="info-box__close" aria-label="정보 닫기">✕</button>
+										<button type="button" class="info-box__close" aria-label="정보 닫기"></button>
 									</div>
 									<div class="info-box__body">
 										<div class="info-box__item">
-											<span class="info-box__label">설비용량<small>(신재생 제외)</small></span>
-											<span class="info-box__value">태안#9: 1,050MW, 태안#10: 1,050MW</span>
+											<span class="info-box__label">설비용량</span>
+											<span class="info-box__value">각 1,050<small>MW</small></span>
 										</div>
 										<div class="info-box__item">
-											<span class="info-box__label">발전연료</span>
-											<span class="info-box__value">유연탄(석탄)</span>
-										</div>
-										<div class="info-box__item">
-											<span class="info-box__label">상태</span>
-											<span class="info-box__value">구축 중</span>
+											<span class="info-box__label">추진단계</span>
+											<span class="info-box__value">2026년 오픈예정</span>
 										</div>
 									</div>
 								</div>
@@ -439,7 +441,7 @@
 					</div>
 				</div>
 
-				<div class="hotspot" style="--x: 42%;--y: 24%;" data-name="평택발전본부">
+				<div class="hotspot" style="--x: 34%;--y: 22%;" data-name="평택발전본부">
 					<button type="button" class="pin" aria-label="평택발전본부 정보 열기"></button>
 					<span class="pin-label">평택발전본부</span>
 					<span class="info-line"></span>
@@ -456,22 +458,18 @@
 								<div class="info-box__main">
 									<div class="info-box__header">
 										<div class="info-box__title-wrap">
-											<h3 class="info-box__title">평택발전본부</h3>
+											<h3 class="info-box__title">평택발전본부 <small>복합 #2</small></h3>
 											<p class="info-box__sub">천연가스 발전소</p>
 										</div>
-										<button type="button" class="info-box__close" aria-label="정보 닫기">✕</button>
+										<button type="button" class="info-box__close" aria-label="정보 닫기"></button>
 									</div>
 									<div class="info-box__body">
 										<div class="info-box__item">
-											<span class="info-box__label">설비용량(㎿)</span>
-											<span class="info-box__value">복합 #2: 868.5</span>
+											<span class="info-box__label">설비용량</span>
+											<span class="info-box__value">868.5<small>MW</small></span>
 										</div>
 										<div class="info-box__item">
-											<span class="info-box__label">발전연료</span>
-											<span class="info-box__value">가스터빈, 증기터빈</span>
-										</div>
-										<div class="info-box__item">
-											<span class="info-box__label">상태</span>
+											<span class="info-box__label">추진단계</span>
 											<span class="info-box__value">구축완료</span>
 										</div>
 									</div>
@@ -481,7 +479,7 @@
 					</div>
 				</div>
 
-				<div class="hotspot" style="--x: 38%;--y: 12%;" data-name="김포발전본부">
+				<div class="hotspot" style="--x: 30%;--y: 10%;" data-name="김포발전본부">
 					<button type="button" class="pin disabled" aria-label="김포발전본부 정보 열기"></button>
 					<span class="pin-label">김포발전본부</span>
 					<span class="info-line"></span>
@@ -501,20 +499,20 @@
 											<h3 class="info-box__title">김포발전본부</h3>
 											<p class="info-box__sub">열병합발전소</p>
 										</div>
-										<button type="button" class="info-box__close" aria-label="정보 닫기">✕</button>
+										<button type="button" class="info-box__close" aria-label="정보 닫기"></button>
 									</div>
 									<div class="info-box__body">
 										<div class="info-box__item">
 											<span class="info-box__label">설비용량</span>
-											<span class="info-box__value">510MW(GT 357MW / ST 161MW), 열 281Gcal/h</span>
+											<span class="info-box__value">510<small>MW</small>(GT 357<small>MW</small> / ST 161<small>MW</small>), <br>열 281<small>Gcal/h</small></span>
 										</div>
-										<div class="info-box__item">
+										<!-- <div class="info-box__item">
 											<span class="info-box__label">발전연료</span>
 											<span class="info-box__value">LNG</span>
-										</div>
+										</div> -->
 										<div class="info-box__item">
-											<span class="info-box__label">상태</span>
-											<span class="info-box__value">구축 준비 중</span>
+											<span class="info-box__label">추진단계</span>
+											<span class="info-box__value">구축대기</span>
 										</div>
 									</div>
 								</div>
@@ -524,7 +522,7 @@
 					</div>
 				</div>
 
-				<div class="hotspot" style="--x: 40%;--y: 18%;" data-name="서인천발전본부">
+				<div class="hotspot" style="--x: 32%;--y: 16%;" data-name="서인천발전본부">
 					<button type="button" class="pin disabled" aria-label="서인천발전본부 정보 열기"></button>
 					<span class="pin-label">서인천발전본부</span>
 					<span class="info-line"></span>
@@ -544,21 +542,21 @@
 											<h3 class="info-box__title">서인천발전본부</h3>
 											<p class="info-box__sub">‘녹색기업’인증 친환경발전소</p>
 										</div>
-										<button type="button" class="info-box__close" aria-label="정보 닫기">✕</button>
+										<button type="button" class="info-box__close" aria-label="정보 닫기"></button>
 									</div>
 									<div class="info-box__body">
 										<div class="info-box__item">
 											<span class="info-box__label">설비용량<small>(신재생 제외)</small></span>
-											<span class="info-box__value">1,861.8 (1,800)MW </span>
-										</div>
-										<div class="info-box__item">
-											<span class="info-box__label">발전연료</span>
-											<span class="info-box__value">LNG,연료전지,태양광</span>
+											<span class="info-box__value">1,861.8 (1,800)<small>MW</small></span>
 										</div>
 										<!-- <div class="info-box__item">
-											<span class="info-box__label">비고</span>
-											<span class="info-box__value">우측 핀은 좌측 방향 우선</span>
+											<span class="info-box__label">발전연료</span>
+											<span class="info-box__value">LNG,연료전지,태양광</span>
 										</div> -->
+										<div class="info-box__item">
+											<span class="info-box__label">추진단계</span>
+											<span class="info-box__value">미구축</span>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -567,7 +565,7 @@
 					</div>
 				</div>
 
-				<div class="hotspot" style="--x: 38%;--y: 46%;" data-name="군산발전본부">
+				<div class="hotspot" style="--x: 30%;--y: 44%;" data-name="군산발전본부">
 					<button type="button" class="pin disabled" aria-label="군산발전본부 정보 열기"></button>
 					<span class="pin-label">군산발전본부</span>
 					<span class="info-line"></span>
@@ -587,21 +585,21 @@
 											<h3 class="info-box__title">군산발전본부</h3>
 											<p class="info-box__sub">최신형 발전설비를 갖춘 친환경 복합발전소</p>
 										</div>
-										<button type="button" class="info-box__close" aria-label="정보 닫기">✕</button>
+										<button type="button" class="info-box__close" aria-label="정보 닫기"></button>
 									</div>
 									<div class="info-box__body">
 										<div class="info-box__item">
 											<span class="info-box__label">설비용량<small>(신재생 제외)</small></span>
-											<span class="info-box__value">719.4 719.35(718.4)MW</span>
-										</div>
-										<div class="info-box__item">
-											<span class="info-box__label">발전연료</span>
-											<span class="info-box__value">LNG,태양광</span>
+											<span class="info-box__value">718.4<small>MW</small></span>
 										</div>
 										<!-- <div class="info-box__item">
-											<span class="info-box__label">상태</span>
-											<span class="info-box__value">구축 완료</span>
+											<span class="info-box__label">발전연료</span>
+											<span class="info-box__value">LNG,태양광</span>
 										</div> -->
+										<div class="info-box__item">
+											<span class="info-box__label">추진단계</span>
+											<span class="info-box__value">미구축</span>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -616,6 +614,7 @@
 	<script>
 		(function () {
 			const mapStage = document.getElementById('mapStage');
+			const mapOverlay = mapStage.querySelector('.map-overlay');
 			const hotspots = Array.from(mapStage.querySelectorAll('.hotspot'));
 			const isTouchDevice = window.matchMedia('(hover: none), (pointer: coarse)').matches;
 			let activeHotspot = null;
@@ -772,19 +771,19 @@
 				box.style.left = '0px';
 				box.style.top = '0px';
 
-				const stageRect = mapStage.getBoundingClientRect();
+				const overlayRect = mapOverlay.getBoundingClientRect();
 				const pinRect = pin.getBoundingClientRect();
 				const boxRect = box.getBoundingClientRect();
 
-				const pinCenter = getPinCenter(pinRect, stageRect);
+				const pinCenter = getPinCenter(pinRect, overlayRect);
 				const gap = window.innerWidth <= 767 ? 44 : 88;
 				const edgePadding = window.innerWidth <= 767 ? 8 : 16;
 
 				const direction = choosePlacement(
 					pinCenter.x,
 					pinCenter.y,
-					stageRect.width,
-					stageRect.height,
+					overlayRect.width,
+					overlayRect.height,
 					boxRect.width,
 					boxRect.height,
 					gap
@@ -796,8 +795,8 @@
 					pinCenter.y,
 					boxRect.width,
 					boxRect.height,
-					stageRect.width,
-					stageRect.height,
+					overlayRect.width,
+					overlayRect.height,
 					gap,
 					edgePadding
 				);
@@ -806,7 +805,7 @@
 				box.style.top = pos.top + 'px';
 
 				const redrawLine = () => {
-					drawLine(pin.getBoundingClientRect(), box.getBoundingClientRect(), stageRect, line);
+					drawLine(pin.getBoundingClientRect(), box.getBoundingClientRect(), overlayRect, line);
 				};
 
 				requestAnimationFrame(() => {

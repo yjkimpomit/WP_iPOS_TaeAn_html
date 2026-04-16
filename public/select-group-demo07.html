@@ -2,33 +2,443 @@
 <html lang="ko">
 
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="theme-color" content="#FFFFFF">
-	<title>태안 퍼블리싱본 - iPOS RWD</title>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>반응형 지도 핀 인터랙션</title>
+	<link rel="stylesheet" href="/resources/css/variables.css">
+	<style>
+		/* map-bg */
+		html,
+		body {
+			margin: 0;
+			padding: 0;
+			background: #081521;
+			font-family: "Noto Sans KR", Arial, sans-serif;
+			overflow-x: hidden;
+		}
 
-	<meta name="description" content="서부발전 태안 i-POS 서비스 제공">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+		body {
+			min-width: 320px;
+			background: url(/resources/images/group/map-bg.png) no-repeat center 0;
+			background-size: cover;
+		}
 
-    <!-- favicon -->
-    <link rel="icon" href="/resources/images/favicon.ico" sizes="any">
-    <link rel="icon" href="/resources/images/favicon.svg" type="image/svg+xml">
+		.map-section {
+			width: 100vw;
+			height: 100vh;
+			padding: 0;
 
-    <script src="/resources/js/jquery/jquery-3.6.1.js"></script>
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
 
-    <!-- WP stylesheet -->
-    <link rel="stylesheet" href="/resources/css/select-group.css">
+		.map-stage {
+			position: relative;
+			width: 100%;
+			max-width: 100%;
+			line-height: 0;
+			overflow: visible;
+
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.map-image {
+			display: block;
+			width: 100%;
+			height: auto;
+			max-width: 960px;
+			user-select: none;
+			-webkit-user-drag: none;
+			pointer-events: none;
+		}
+
+		.map-overlay {
+			position: absolute;
+			top: 0;
+			left: 50%;
+			transform: translateX(-50%);
+			z-index: 10;
+			width: 100%;
+			max-width: 960px;
+			height: 100%;
+		}
+
+		.hotspot {
+			position: absolute;
+			inset: 0;
+			pointer-events: none;
+		}
+
+		.hotspot:hover,
+		.hotspot.is-active {
+			z-index: 50;
+		}
+
+		.pin {
+			position: absolute;
+			left: var(--x);
+			top: var(--y);
+			transform: translate(-50%, -50%);
+			width: 80px;
+			height: 80px;
+			border: 0;
+			padding: 0;
+			background: url(/resources/images/icons/pin-red.svg) no-repeat center;
+			background-size: 48px;
+			cursor: pointer;
+			pointer-events: auto;
+			z-index: 2;
+		}
+
+		.pin.disabled {
+			background-image: url(/resources/images/icons/pin-gray.svg);
+		}
+
+		.pin::before,
+		.pin::after {
+			content: "";
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+		}
+
+		.pin:hover,
+		.pin:focus-visible,
+		.hotspot.is-active .pin {
+			transform: translate(-50%, -50%) scale(1.08);
+			outline: none;
+		}
+
+		.pin-label {
+			position: absolute;
+			left: var(--x);
+			top: calc(var(--y) + 24px);
+			transform: translateX(-50%);
+			white-space: nowrap;
+			padding: 6px 10px;
+			font-size: 13px;
+			font-weight: 600;
+			line-height: 1;
+			color: #fff;
+			background: rgba(3, 29, 52, 0.78);
+			border: 1px solid rgba(255, 255, 255, 0.14);
+			border-radius: 999px;
+			backdrop-filter: blur(8px);
+			opacity: 0;
+			visibility: hidden;
+			transition: opacity 0.2s ease;
+			pointer-events: none;
+			z-index: 25;
+		}
+
+		.hotspot.is-unbuilt .pin:hover+.pin-label {
+			opacity: 1;
+			visibility: visible;
+		}
+
+		.info-line {
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 0;
+			height: 2px;
+			background: linear-gradient(90deg, #ffffffF2, #07192AF2);
+			transform-origin: 0 50%;
+			opacity: 0;
+			pointer-events: none;
+			z-index: 1;
+			transition: opacity 0.2s ease;
+			filter: drop-shadow(0 0 4px rgba(18, 179, 255, 0.45));
+		}
+
+		.hotspot.is-active .info-line {
+			opacity: 1;
+		}
+
+		.info-box {
+			position: absolute;
+			width: min(640px, calc(100vw - 32px));
+			min-width: 560px;
+			opacity: 0;
+			visibility: hidden;
+			pointer-events: none;
+			z-index: 3;
+		}
+
+		.hotspot.is-active .info-box {
+			opacity: 1;
+			visibility: visible;
+			pointer-events: auto;
+		}
+
+		.info-box__panel {
+			padding: 1.5rem;
+			border-radius: 1.5rem;
+			background: rgba(7, 25, 42, 0.94);
+			border: 1px solid rgba(115, 189, 250, 0.42);
+			box-shadow:
+				0 18px 50px rgba(0, 0, 0, 0.35),
+				inset 0 1px 0 rgba(255, 255, 255, 0.06);
+			backdrop-filter: blur(14px);
+			opacity: 0;
+			transform: translateY(14px);
+			transition: opacity 0.3s ease, transform 0.3s ease;
+		}
+
+		.hotspot.is-active .info-box__panel {
+			opacity: 1;
+			transform: translateY(0);
+		}
+
+		.info-box__content {
+			display: flex;
+			gap: 1.5rem;
+			align-items: center;
+		}
+
+		.info-box__media {
+			flex: 0 0 160px;
+			width: 160px;
+			height: 144px;
+			border-radius: .5rem;
+			overflow: hidden;
+			background: rgba(255, 255, 255, 0.06);
+		}
+
+		.info-box__media img {
+			width: 100%;
+			height: auto;
+			object-fit: cover;
+			display: block;
+		}
+
+		.info-box__main {
+			flex: 1;
+			min-width: 0;
+		}
+
+		.info-box__header {
+			display: flex;
+			align-items: flex-start;
+			justify-content: space-between;
+			gap: .5rem;
+			margin-bottom: 1.5rem;
+		}
+
+		.info-box__title-wrap {
+			min-width: 0;
+		}
+
+		.info-box__title {
+			margin: 0;
+			font-size: 20px;
+			line-height: 1.2;
+			font-weight: 700;
+			word-break: keep-all;
+			color: var(--info-box-text-inverse);
+
+			display: flex;
+			align-items: center;
+			gap: .5rem;
+		}
+
+		.info-box__title .icon-url {
+			margin-left: .5rem;
+			width: 2.25rem;
+			height: 2.25rem;
+			display: inline-flex;
+			border-radius: 1rem;
+			border: 1px solid #73bdfa11;
+
+			background: #73bdfa33 url(/resources/images/icons/link-white.svg) no-repeat center;
+		}
+
+		.info-box__title:hover .icon-url {
+			background-color: #73bdfa99;
+		}
+
+		.info-box__sub {
+			margin: .5rem 0 0;
+			font-size: 13px;
+			line-height: 1.4;
+			color: rgba(255, 255, 255, 0.7);
+			word-break: keep-all;
+		}
+
+		.info-box__close {
+			position: absolute;
+			top: 1rem;
+			right: 1rem;
+
+			flex: 0 0 auto;
+			width: 2rem;
+			height: 2rem;
+			border: 0;
+			border-radius: 50%;
+			background: rgba(255, 255, 255, 0.08) url(/resources/images/icons/icon-close-white.svg) no-repeat center;
+			background-size: 20px;
+			line-height: 1;
+			cursor: pointer;
+			transition: background 0.2s ease, transform 0.2s ease;
+		}
+
+		.info-box__body {
+			display: grid;
+			gap: .5rem;
+		}
+
+		.info-box__item {
+			display: grid;
+			grid-template-columns: 128px 1fr;
+			gap: 8px;
+			align-items: start;
+			font-size: 14px;
+			line-height: 1.5;
+		}
+
+		.info-box__label {
+			color: #73bdfa;
+			font-weight: 600;
+		}
+
+		.info-box__value {
+			color: rgba(255, 255, 255, 0.92);
+			word-break: keep-all;
+		}
+
+		@keyframes fadeMoveUp {
+			from {
+				opacity: 0;
+				transform: translateY(14px);
+			}
+
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+
+		@keyframes pinPulse {
+			0% {
+				transform: translate(-50%, -50%) scale(0.8);
+				opacity: 0.8;
+			}
+
+			70% {
+				transform: translate(-50%, -50%) scale(1.3);
+				opacity: 0;
+			}
+
+			100% {
+				transform: translate(-50%, -50%) scale(1.3);
+				opacity: 0;
+			}
+		}
+
+		/* desktop ~ large tablet */
+		@media (max-width: 1280px) {
+			.info-box {
+				width: min(600px, calc(100vw - 32px));
+				min-width: 520px;
+			}
+		}
+
+		/* tablet */
+		@media (max-width: 1024px) {
+			.info-box {
+				width: min(320px, calc(100vw - 24px));
+				min-width: 240px;
+			}
+
+			.info-box__panel {
+				padding: 1.25rem;
+				border-radius: 1.25rem;
+			}
+
+			.info-box__content {
+				flex-direction: column;
+				align-items: flex-start;
+				gap: 16px;
+			}
+
+			.info-box__media {
+				flex: none;
+				width: 100%;
+				height: auto;
+				aspect-ratio: 5 / 4;
+				max-width: 160px;
+			}
+
+			.info-box__main {
+				width: 100%;
+			}
+
+			.info-box__item {
+				grid-template-columns: 120px 1fr;
+				font-size: 13px;
+			}
+		}
+
+		/* mobile */
+		@media (max-width: 767px) {
+			.map-stage {
+				overflow: visible;
+			}
+
+			.pin {
+				width: 44px;
+				height: 44px;
+				background-size: 28px;
+			}
+
+			.info-box {
+				width: min(320px, calc(100vw - 20px));
+				min-width: 0;
+				max-width: calc(100vw - 20px);
+			}
+
+			.info-box__panel {
+				padding: 16px 16px 14px;
+				border-radius: 16px;
+			}
+
+			.info-box__content {
+				gap: 14px;
+			}
+
+			.info-box__title {
+				font-size: 18px;
+			}
+
+			.info-box__sub {
+				font-size: 12px;
+			}
+
+			.info-box__item {
+				grid-template-columns: 1fr;
+				gap: 4px;
+				font-size: 13px;
+			}
+
+			.info-box__label small {
+				display: inline;
+			}
+
+			.info-box__close {
+				width: 32px;
+				height: 32px;
+				font-size: 16px;
+			}
+		}
+	</style>
 </head>
 
 <body>
-<div class="logo">
-	<div class="bi">
-		<span class="visually-hidden-focusable">서부발전</span>
-		<strong class="branch">i-POS</strong>
-		<span class="desc">지능형 발전 운영시스템</span>
-	</div>
-</div>
-<section class="map-section">
+	<section class="map-section">
 		<div class="map-stage" id="mapStage">
 			<img class="map-image" src="/resources/images/group/map.png" alt="지도 이미지" />
 
@@ -41,7 +451,7 @@
 					<div class="info-box" role="dialog" aria-label="태안발전본부 정보">
 						<div class="info-box__panel">
 							<div class="info-box__content">
-								
+
 								<!-- 좌측 이미지 -->
 								<div class="info-box__media">
 									<img src="/resources/images/group/plant-ta.png" alt="태안발전본부 이미지">
@@ -51,9 +461,10 @@
 								<div class="info-box__main">
 									<div class="info-box__header">
 										<div class="info-box__title-wrap">
-                                        	<a href="./index.html">
-											<h3 class="info-box__title">태안발전본부 <small>(9, 10호기)</small> <span class="icon-url" title="태안 iPOS 이동"></span></h3>
-											<p class="info-box__sub">최첨단 자동제어설비 발전소</p>
+											<a href="./index.html">
+												<h3 class="info-box__title">태안발전본부 <small>(9, 10호기)</small> <span
+														class="icon-url" title="태안 iPOS 이동"></span></h3>
+												<p class="info-box__sub">최첨단 자동제어설비 발전소</p>
 											</a>
 										</div>
 										<button type="button" class="info-box__close" aria-label="정보 닫기"></button>
@@ -81,7 +492,7 @@
 					<div class="info-box" role="dialog" aria-label="평택발전본부 정보">
 						<div class="info-box__panel">
 							<div class="info-box__content">
-								
+
 								<!-- 좌측 이미지 -->
 								<div class="info-box__media">
 									<img src="/resources/images/group/plant-pt.png" alt="평택발전본부 이미지">
@@ -91,9 +502,10 @@
 								<div class="info-box__main">
 									<div class="info-box__header">
 										<div class="info-box__title-wrap">
-                                        	<a href="javascript:" onclick="fnGoIndex('5000')">
-											<h3 class="info-box__title">평택발전본부 <small>복합 #2</small> <span class="icon-url" title="평택 iPOS 이동"></span></h3>
-											<p class="info-box__sub">천연가스 발전소</p>
+											<a href="javascript:" onclick="fnGoIndex('5000')">
+												<h3 class="info-box__title">평택발전본부 <small>복합 #2</small> <span
+														class="icon-url" title="평택 iPOS 이동"></span></h3>
+												<p class="info-box__sub">천연가스 발전소</p>
 											</a>
 										</div>
 										<button type="button" class="info-box__close" aria-label="정보 닫기"></button>
@@ -121,7 +533,7 @@
 					<div class="info-box" role="dialog" aria-label="김포발전본부 정보">
 						<div class="info-box__panel">
 							<div class="info-box__content">
-								
+
 								<!-- 좌측 이미지 -->
 								<div class="info-box__media">
 									<img src="/resources/images/group/plant-sample.png" alt="김포발전본부 이미지">
@@ -139,7 +551,8 @@
 									<div class="info-box__body">
 										<div class="info-box__item">
 											<span class="info-box__label">설비용량</span>
-											<span class="info-box__value">510<small>MW</small>(GT 357<small>MW</small> / ST 161<small>MW</small>), <br>열 281<small>Gcal/h</small></span>
+											<span class="info-box__value">510<small>MW</small>(GT 357<small>MW</small> /
+												ST 161<small>MW</small>), <br>열 281<small>Gcal/h</small></span>
 										</div>
 										<!-- <div class="info-box__item">
 											<span class="info-box__label">발전연료</span>
@@ -164,7 +577,7 @@
 					<div class="info-box" role="dialog" aria-label="서인천발전본부 정보">
 						<div class="info-box__panel">
 							<div class="info-box__content">
-								
+
 								<!-- 좌측 이미지 -->
 								<div class="info-box__media">
 									<img src="/resources/images/group/plant-sample.png" alt="서인천발전본부 이미지">
@@ -207,7 +620,7 @@
 					<div class="info-box" role="dialog" aria-label="군산발전본부 정보">
 						<div class="info-box__panel">
 							<div class="info-box__content">
-								
+
 								<!-- 좌측 이미지 -->
 								<div class="info-box__media">
 									<img src="/resources/images/group/plant-sample.png" alt="군산발전본부 이미지">
@@ -282,7 +695,7 @@
 			}
 
 			function choosePlacement(pinX, pinY, stageW, stageH, boxW, boxH, gap) {
-				const safe = window.innerWidth <= 767 ? 10 : 16;
+				const safe = window.innerWidth <= 767 ? 44 : 16;
 
 				const spaces = {
 					top: pinY - gap,
@@ -292,40 +705,25 @@
 				};
 
 				const isMobile = window.innerWidth <= 767;
-				const isTopZone = pinY < stageH * 0.33;
-				const isBottomZone = pinY > stageH * 0.67;
-				const isLeftZone = pinX < stageW * 0.33;
-				const isRightZone = pinX > stageW * 0.67;
-
-				const preferred = [];
-
-				if (isMobile) {
-					if (isBottomZone) preferred.push('top');
-					else if (isTopZone) preferred.push('bottom');
-					else preferred.push('top', 'bottom');
-
-					if (isLeftZone) preferred.push('right');
-					else if (isRightZone) preferred.push('left');
-				} else {
-					if (isBottomZone) preferred.push('top');
-					else if (isTopZone) preferred.push('bottom');
-
-					if (isLeftZone) preferred.push('right');
-					else if (isRightZone) preferred.push('left');
+				if (!isMobile) {
+					// PC는 무조건 오른쪽 고정
+					return 'right';
 				}
 
-				preferred.push('top', 'bottom', 'right', 'left');
+				// 1순위: 무조건 오른쪽
+				if (spaces.right >= boxW + safe) return 'right';
 
-				const unique = [...new Set(preferred)];
+				// 2순위: 왼쪽
+				if (spaces.left >= boxW + safe) return 'left';
 
-				for (const dir of unique) {
-					if (dir === 'top' && spaces.top >= boxH + safe) return dir;
-					if (dir === 'bottom' && spaces.bottom >= boxH + safe) return dir;
-					if (dir === 'left' && spaces.left >= boxW + safe) return dir;
-					if (dir === 'right' && spaces.right >= boxW + safe) return dir;
-				}
+				// 3순위: 아래
+				if (spaces.bottom >= boxH + safe) return 'bottom';
 
-				return isBottomZone ? 'top' : isTopZone ? 'bottom' : 'top';
+				// 4순위: 위
+				if (spaces.top >= boxH + safe) return 'top';
+
+				// fallback
+				return 'right';
 			}
 
 			function getBoxPosition(direction, pinX, pinY, boxW, boxH, stageW, stageH, gap, edgePadding) {
@@ -466,7 +864,7 @@
 				pin.addEventListener('click', function (e) {
 					e.preventDefault();
 					e.stopPropagation();
-					
+
 					if (hotspot.classList.contains('is-unbuilt')) {
 						closeHotspot(hotspot);
 						return;
@@ -528,7 +926,6 @@
 			});
 		})();
 	</script>
-
 </body>
 
 </html>

@@ -17,9 +17,6 @@
 body {
 	font-family: var(--font-family), sans-serif;
 	color: var(--group-text);
-	width: 100%;
-	height: 100%;
-	position: relative;
 }
 
 a {
@@ -28,7 +25,7 @@ a {
 
 /* logo */
 .logo {
-	position: absolute;
+	position: fixed;
 	top: 1rem;
 	left: 1rem;
 	z-index: 100;
@@ -74,7 +71,6 @@ a {
 @media (min-width: 1680px) {
 	.logo {
 		min-width: 200px;
-		height: 100%;
 
 		display: flex;
 		align-items: center;
@@ -154,46 +150,428 @@ html[data-theme='dark'] .logo .bi .select-plant .icon-arrow {
 }
 
 /* map-bg */
-.map-bg {
-	position: relative;
+html,
+body {
+	margin: 0;
+	padding: 0;
+	background: #081521;
+	font-family: "Noto Sans KR", Arial, sans-serif;
+	overflow-x: hidden;
+}
+
+body {
+	min-width: 320px;
+	background: url(/resources/images/group/map-bg.png) no-repeat center 0;
+	background-size: cover;
+}
+
+.map-section {
 	width: 100vw;
 	height: 100vh;
-	overflow: hidden;
+	padding: 0;
 
-	background: url(/resources/images/group/map-bg.jpg) no-repeat 0 0;
-	background-size: auto 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
-.map-bg a {
+.map-stage {
+	position: relative;
+	width: 100%;
+	max-width: 100%;
+	line-height: 0;
+	overflow: visible;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.map-image {
+	display: block;
+	width: 100%;
+	height: auto;
+	max-width: 960px;
+	user-select: none;
+	-webkit-user-drag: none;
+	pointer-events: none;
+}
+
+.map-overlay {
 	position: absolute;
+	top: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	z-index: 10;
+	width: 100%;
+	max-width: 960px;
+	height: 100%;
 }
 
-.map-bg a[data-field="평택"] {
-	top: 20%;
-	left: 40%;
+.hotspot {
+	position: absolute;
+	inset: 0;
+	pointer-events: none;
 }
 
-.map-bg a[data-field="태안"] {
-	top: 20%;
-	left: 40%;
-
+.hotspot:hover,
+.hotspot.is-active {
+	z-index: 50;
 }
 
-.map-bg a[data-field="김포"] {
-	top: 20%;
-	left: 40%;
-
+.pin {
+	position: absolute;
+	left: var(--x);
+	top: var(--y);
+	transform: translate(-50%, -50%);
+	width: 80px;
+	height: 80px;
+	border: 0;
+	padding: 0;
+	background: url(/resources/images/icons/pin-red.svg) no-repeat center;
+	background-size: 48px;
+	cursor: pointer;
+	pointer-events: auto;
+	z-index: 2;
 }
 
-.map-bg a[data-field="서인천"] {
-	top: 20%;
-	left: 40%;
-
+.pin.disabled {
+	background-image: url(/resources/images/icons/pin-gray.svg);
 }
 
-.map-bg a[data-field="군산"] {
-	top: 30%;
-	left: 40%;
+.pin::before,
+.pin::after {
+	content: "";
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
 }
 
+.pin:hover,
+.pin:focus-visible,
+.hotspot.is-active .pin {
+	transform: translate(-50%, -50%) scale(1.08);
+	outline: none;
+}
 
+.pin-label {
+	position: absolute;
+	left: var(--x);
+	top: calc(var(--y) + 24px);
+	transform: translateX(-50%);
+	white-space: nowrap;
+	padding: 6px 10px;
+	font-size: 13px;
+	font-weight: 600;
+	line-height: 1;
+	color: #fff;
+	background: rgba(3, 29, 52, 0.78);
+	border: 1px solid rgba(255, 255, 255, 0.14);
+	border-radius: 999px;
+	backdrop-filter: blur(8px);
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 0.2s ease;
+	pointer-events: none;
+	z-index: 25;
+}
+
+.hotspot.is-unbuilt .pin:hover+.pin-label {
+	opacity: 1;
+	visibility: visible;
+}
+
+.info-line {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 0;
+	height: 2px;
+	background: linear-gradient(90deg, #ffffffF2, #07192AF2);
+	transform-origin: 0 50%;
+	opacity: 0;
+	pointer-events: none;
+	z-index: 1;
+	transition: opacity 0.2s ease;
+	filter: drop-shadow(0 0 4px rgba(18, 179, 255, 0.45));
+}
+
+.hotspot.is-active .info-line {
+	opacity: 1;
+}
+
+.info-box {
+	position: absolute;
+	width: min(640px, calc(100vw - 32px));
+	min-width: 560px;
+	opacity: 0;
+	visibility: hidden;
+	pointer-events: none;
+	z-index: 3;
+}
+
+.hotspot.is-active .info-box {
+	opacity: 1;
+	visibility: visible;
+	pointer-events: auto;
+}
+
+.info-box__panel {
+	padding: 1.5rem;
+	border-radius: 1.5rem;
+	background: rgba(7, 25, 42, 0.94);
+	border: 1px solid rgba(115, 189, 250, 0.42);
+	box-shadow:
+		0 18px 50px rgba(0, 0, 0, 0.35),
+		inset 0 1px 0 rgba(255, 255, 255, 0.06);
+	backdrop-filter: blur(14px);
+	opacity: 0;
+	transform: translateY(14px);
+	transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.hotspot.is-active .info-box__panel {
+	opacity: 1;
+	transform: translateY(0);
+}
+
+.info-box__content {
+	display: flex;
+	gap: 1.5rem;
+	align-items: center;
+}
+
+.info-box__media {
+	flex: 0 0 160px;
+	width: 160px;
+	height: 144px;
+	border-radius: .5rem;
+	overflow: hidden;
+	background: rgba(255, 255, 255, 0.06);
+}
+
+.info-box__media img {
+	width: 100%;
+	height: auto;
+	object-fit: cover;
+	display: block;
+}
+
+.info-box__main {
+	flex: 1;
+	min-width: 0;
+}
+
+.info-box__header {
+	display: flex;
+	align-items: flex-start;
+	justify-content: space-between;
+	gap: .5rem;
+	margin-bottom: 1.5rem;
+}
+
+.info-box__title-wrap {
+	min-width: 0;
+}
+
+.info-box__title {
+	margin: 0;
+	font-size: 20px;
+	line-height: 1.2;
+	font-weight: 700;
+	word-break: keep-all;
+	color: var(--info-box-text-inverse);
+	
+	display: flex;
+	align-items: center;
+	gap: .5rem;
+}
+
+.info-box__title .icon-url {
+	margin-left: .5rem;
+	width: 2.25rem;
+	height: 2.25rem;
+	display: inline-flex;
+	border-radius: 1rem;
+	border: 1px solid #73bdfa11;
+	
+	background: #73bdfa33 url(/resources/images/icons/link-white.svg) no-repeat center;
+}
+.info-box__title:hover .icon-url {
+	background-color: #73bdfa99;
+}
+
+.info-box__sub {
+	margin: .5rem 0 0;
+	font-size: 13px;
+	line-height: 1.4;
+	color: rgba(255, 255, 255, 0.7);
+	word-break: keep-all;
+}
+
+.info-box__close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+
+	flex: 0 0 auto;
+	width: 2rem;
+	height: 2rem;
+	border: 0;
+	border-radius: 50%;
+	background: rgba(255, 255, 255, 0.08) url(/resources/images/icons/icon-close-white.svg) no-repeat center;
+	background-size: 20px;
+	line-height: 1;
+	cursor: pointer;
+	transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.info-box__body {
+	display: grid;
+	gap: .5rem;
+}
+
+.info-box__item {
+	display: grid;
+	grid-template-columns: 128px 1fr;
+	gap: 8px;
+	align-items: start;
+	font-size: 14px;
+	line-height: 1.5;
+}
+
+.info-box__label {
+	color: #73bdfa;
+	font-weight: 600;
+}
+
+.info-box__value {
+	color: rgba(255, 255, 255, 0.92);
+	word-break: keep-all;
+}
+
+@keyframes fadeMoveUp {
+	from {
+		opacity: 0;
+		transform: translateY(14px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes pinPulse {
+	0% {
+		transform: translate(-50%, -50%) scale(0.8);
+		opacity: 0.8;
+	}
+
+	70% {
+		transform: translate(-50%, -50%) scale(1.3);
+		opacity: 0;
+	}
+
+	100% {
+		transform: translate(-50%, -50%) scale(1.3);
+		opacity: 0;
+	}
+}
+
+/* desktop ~ large tablet */
+@media (max-width: 1280px) {
+	.info-box {
+		width: min(600px, calc(100vw - 32px));
+		min-width: 520px;
+	}
+}
+
+/* tablet */
+@media (max-width: 1024px) {
+	.info-box {
+		width: min(320px, calc(100vw - 24px));
+		min-width: 240px;
+	}
+
+	.info-box__panel {
+		padding: 1.25rem;
+		border-radius: 1.25rem;
+	}
+
+	.info-box__content {
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 16px;
+	}
+
+	.info-box__media {
+		flex: none;
+		width: 100%;
+		height: auto;
+		aspect-ratio: 5 / 4;
+		max-width: 160px;
+	}
+
+	.info-box__main {
+		width: 100%;
+	}
+
+	.info-box__item {
+		grid-template-columns: 120px 1fr;
+		font-size: 13px;
+	}
+}
+
+/* mobile */
+@media (max-width: 767px) {
+	.map-stage {
+		overflow: visible;
+	}
+
+	.pin {
+		width: 44px;
+		height: 44px;
+		background-size: 28px;
+	}
+
+	.info-box {
+		width: min(320px, calc(100vw - 20px));
+		min-width: 0;
+		max-width: calc(100vw - 20px);
+	}
+
+	.info-box__panel {
+		padding: 16px 16px 14px;
+		border-radius: 16px;
+	}
+
+	.info-box__content {
+		gap: 14px;
+	}
+
+	.info-box__title {
+		font-size: 18px;
+	}
+
+	.info-box__sub {
+		font-size: 12px;
+	}
+
+	.info-box__item {
+		grid-template-columns: 1fr;
+		gap: 4px;
+		font-size: 13px;
+	}
+
+	.info-box__label small {
+		display: inline;
+	}
+
+	.info-box__close {
+		width: 32px;
+		height: 32px;
+		font-size: 16px;
+	}
+}

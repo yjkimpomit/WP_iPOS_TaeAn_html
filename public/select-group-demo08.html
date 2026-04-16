@@ -1,0 +1,1004 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>반응형 지도 핀 인터랙션</title>
+	<link rel="stylesheet" href="/resources/css/variables.css">
+	<style>
+		/* map-bg */
+		html,
+		body {
+			margin: 0;
+			padding: 0;
+			background: #081521;
+			font-family: "Noto Sans KR", Arial, sans-serif;
+			overflow-x: hidden;
+		}
+
+		body {
+			min-width: 320px;
+			background: url(/resources/images/group/map-bg.png) no-repeat center 0;
+			background-size: cover;
+		}
+
+		.map-section {
+			width: 100vw;
+			height: 100vh;
+			padding: 0;
+
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.map-stage {
+			position: relative;
+			width: 100%;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			overflow: visible;
+		}
+
+		.map-image {
+			display: block;
+			width: 100%;
+			height: auto;
+			max-width: 960px;
+			user-select: none;
+			-webkit-user-drag: none;
+			pointer-events: none;
+		}
+
+		.map-area {
+			position: relative;
+			width: 100%;
+			max-width: 960px;
+			margin: 0 auto;
+		}
+
+		.map-overlay {
+			position: absolute;
+			inset: 0;
+			z-index: 10;
+		}
+
+		.hotspot {
+			position: absolute;
+			inset: 0;
+			pointer-events: none;
+		}
+
+		.hotspot:hover,
+		.hotspot.is-active {
+			z-index: 50;
+		}
+
+		.pin {
+			position: absolute;
+			left: var(--x);
+			top: var(--y);
+			transform: translate(-50%, -50%);
+			width: 80px;
+			height: 80px;
+			border: 0;
+			padding: 0;
+			background: url(/resources/images/icons/pin-red.svg) no-repeat center;
+			background-size: 48px;
+			cursor: pointer;
+			pointer-events: auto;
+			z-index: 2;
+		}
+
+		.pin.disabled {
+			background-image: url(/resources/images/icons/pin-gray.svg);
+		}
+
+		.pin::before,
+		.pin::after {
+			content: "";
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			transform: translate(-50%, -50%);
+		}
+
+		.pin:hover,
+		.pin:focus-visible,
+		.hotspot.is-active .pin {
+			transform: translate(-50%, -50%) scale(1.08);
+			outline: none;
+		}
+
+		.pin-label {
+			position: absolute;
+			left: var(--x);
+			top: calc(var(--y) + 24px);
+			transform: translateX(-50%);
+			white-space: nowrap;
+			padding: 6px 10px;
+			font-size: 13px;
+			font-weight: 600;
+			line-height: 1;
+			color: #fff;
+			background: rgba(3, 29, 52, 0.78);
+			border: 1px solid rgba(255, 255, 255, 0.14);
+			border-radius: 999px;
+			backdrop-filter: blur(8px);
+			opacity: 0;
+			visibility: hidden;
+			transition: opacity 0.2s ease;
+			pointer-events: none;
+			z-index: 25;
+		}
+
+		.hotspot.is-unbuilt .pin:hover+.pin-label {
+			opacity: 1;
+			visibility: visible;
+		}
+		
+		.info-layer .info-box {
+			position: absolute;
+			pointer-events: auto;
+			z-index: 30;
+		}
+
+		.info-box {
+			position: absolute;
+			width: min(640px, calc(100vw - 32px));
+			min-width: 560px;
+			opacity: 0;
+			visibility: hidden;
+			pointer-events: none;
+			z-index: 3;
+		}
+		
+		.info-box.is-open {
+			opacity: 1;
+			visibility: visible;
+			pointer-events: auto;
+		}
+
+		.info-box.is-open .info-box__panel {
+			opacity: 1;
+			transform: translateY(0);
+		}
+
+		.line-layer,
+		.info-layer {
+			position: absolute;
+			inset: 0;
+			width: 100%;
+			height: 100%;
+			overflow: visible;
+		}
+
+		.info-box__panel {
+			padding: 1.5rem;
+			border-radius: 1.5rem;
+			background: rgba(7, 25, 42, 0.94);
+			border: 1px solid rgba(115, 189, 250, 0.42);
+			box-shadow:
+				0 18px 50px rgba(0, 0, 0, 0.35),
+				inset 0 1px 0 rgba(255, 255, 255, 0.06);
+			backdrop-filter: blur(14px);
+			opacity: 0;
+			transform: translateY(14px);
+			transition: opacity 0.3s ease, transform 0.3s ease;
+		}
+
+		.info-box__content {
+			display: flex;
+			gap: 1.5rem;
+			align-items: center;
+		}
+
+		.info-box__media {
+			flex: 0 0 160px;
+			width: 160px;
+			height: 144px;
+			border-radius: .5rem;
+			overflow: hidden;
+			background: rgba(255, 255, 255, 0.06);
+		}
+
+		.info-box__media img {
+			width: 100%;
+			height: auto;
+			object-fit: cover;
+			display: block;
+		}
+
+		.info-box__main {
+			flex: 1;
+			min-width: 0;
+		}
+
+		.info-box__header {
+			display: flex;
+			align-items: flex-start;
+			justify-content: space-between;
+			gap: .5rem;
+			margin-bottom: 1.5rem;
+		}
+
+		.info-box__title-wrap {
+			min-width: 0;
+		}
+
+		.info-box__title {
+			margin: 0;
+			font-size: 20px;
+			line-height: 1.2;
+			font-weight: 700;
+			word-break: keep-all;
+			color: var(--info-box-text-inverse);
+
+			display: flex;
+			align-items: center;
+			gap: .5rem;
+		}
+
+		.info-box__title .icon-url {
+			margin-left: .5rem;
+			width: 2.25rem;
+			height: 2.25rem;
+			display: inline-flex;
+			border-radius: 1rem;
+			border: 1px solid #73bdfa11;
+
+			background: #73bdfa33 url(/resources/images/icons/link-white.svg) no-repeat center;
+		}
+
+		.info-box__title:hover .icon-url {
+			background-color: #73bdfa99;
+		}
+
+		.info-box__sub {
+			margin: .5rem 0 0;
+			font-size: 13px;
+			line-height: 1.4;
+			color: rgba(255, 255, 255, 0.7);
+			word-break: keep-all;
+		}
+
+		.info-box__close {
+			position: absolute;
+			top: 1rem;
+			right: 1rem;
+
+			flex: 0 0 auto;
+			width: 2rem;
+			height: 2rem;
+			border: 0;
+			border-radius: 50%;
+			background: rgba(255, 255, 255, 0.08) url(/resources/images/icons/icon-close-white.svg) no-repeat center;
+			background-size: 20px;
+			line-height: 1;
+			cursor: pointer;
+			transition: background 0.2s ease, transform 0.2s ease;
+		}
+
+		.info-box__body {
+			display: grid;
+			gap: .5rem;
+		}
+
+		.info-box__item {
+			display: grid;
+			grid-template-columns: 128px 1fr;
+			gap: 8px;
+			align-items: start;
+			font-size: 14px;
+			line-height: 1.5;
+		}
+
+		.info-box__label {
+			color: #73bdfa;
+			font-weight: 600;
+		}
+
+		.info-box__value {
+			color: rgba(255, 255, 255, 0.92);
+			word-break: keep-all;
+		}
+
+		@keyframes fadeMoveUp {
+			from {
+				opacity: 0;
+				transform: translateY(14px);
+			}
+
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+
+		@keyframes pinPulse {
+			0% {
+				transform: translate(-50%, -50%) scale(0.8);
+				opacity: 0.8;
+			}
+
+			70% {
+				transform: translate(-50%, -50%) scale(1.3);
+				opacity: 0;
+			}
+
+			100% {
+				transform: translate(-50%, -50%) scale(1.3);
+				opacity: 0;
+			}
+		}
+
+		/* desktop ~ large tablet */
+		@media (max-width: 1280px) {
+			.info-box {
+				width: min(600px, calc(100vw - 32px));
+				min-width: 520px;
+			}
+		}
+
+		/* tablet */
+		@media (max-width: 1024px) {
+			.info-box {
+				width: min(320px, calc(100vw - 24px));
+				min-width: 240px;
+			}
+
+			.info-box__panel {
+				padding: 1.25rem;
+				border-radius: 1.25rem;
+			}
+
+			.info-box__content {
+				flex-direction: column;
+				align-items: flex-start;
+				gap: 16px;
+			}
+
+			.info-box__media {
+				flex: none;
+				width: 100%;
+				height: auto;
+				aspect-ratio: 5 / 4;
+				max-width: 160px;
+			}
+
+			.info-box__main {
+				width: 100%;
+			}
+
+			.info-box__item {
+				grid-template-columns: 120px 1fr;
+				font-size: 13px;
+			}
+		}
+
+		/* mobile */
+		@media (max-width: 767px) {
+			.map-stage {
+				overflow: visible;
+			}
+
+			.pin {
+				width: 44px;
+				height: 44px;
+				background-size: 28px;
+			}
+
+			.info-box {
+				width: min(320px, calc(100vw - 20px));
+				min-width: 0;
+				max-width: calc(100vw - 20px);
+			}
+
+			.info-box__panel {
+				padding: 16px 16px 14px;
+				border-radius: 16px;
+			}
+
+			.info-box__content {
+				gap: 14px;
+			}
+
+			.info-box__title {
+				font-size: 18px;
+			}
+
+			.info-box__sub {
+				font-size: 12px;
+			}
+
+			.info-box__item {
+				grid-template-columns: 1fr;
+				gap: 4px;
+				font-size: 13px;
+			}
+
+			.info-box__label small {
+				display: inline;
+			}
+
+			.info-box__close {
+				width: 32px;
+				height: 32px;
+				font-size: 16px;
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<section class="map-section">
+		<div class="map-stage" id="mapStage">
+			<div class="map-area">
+				<img class="map-image" src="/resources/images/group/map.png" alt="지도 이미지" />
+
+				<div class="map-overlay">
+					<!-- 샘플 좌표: 실제 지도 기준으로 수정 -->
+					<div class="hotspot" style="--x: 24%;--y: 28%;" data-name="태안발전본부">
+						<button type="button" class="pin" aria-label="태안발전본부 정보 열기"></button>
+						<span class="pin-label">태안발전본부</span>
+						
+						<div class="info-box" role="dialog" aria-label="태안발전본부 정보">
+							<div class="info-box__panel">
+								<div class="info-box__content">
+
+									<!-- 좌측 이미지 -->
+									<div class="info-box__media">
+										<img src="/resources/images/group/plant-ta.png" alt="태안발전본부 이미지">
+									</div>
+
+									<!-- 우측 텍스트 -->
+									<div class="info-box__main">
+										<div class="info-box__header">
+											<div class="info-box__title-wrap">
+												<a href="./index.html">
+													<h3 class="info-box__title">태안발전본부 <small>(9, 10호기)</small> <span
+															class="icon-url" title="태안 iPOS 이동"></span></h3>
+													<p class="info-box__sub">최첨단 자동제어설비 발전소</p>
+												</a>
+											</div>
+											<button type="button" class="info-box__close" aria-label="정보 닫기"></button>
+										</div>
+										<div class="info-box__body">
+											<div class="info-box__item">
+												<span class="info-box__label">설비용량</span>
+												<span class="info-box__value">각 1,050<small>MW</small></span>
+											</div>
+											<div class="info-box__item">
+												<span class="info-box__label">추진단계</span>
+												<span class="info-box__value">2026년 오픈예정</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="hotspot" style="--x: 34%;--y: 22%;" data-name="평택발전본부">
+						<button type="button" class="pin" aria-label="평택발전본부 정보 열기"></button>
+						<span class="pin-label">평택발전본부</span>
+						
+						<div class="info-box" role="dialog" aria-label="평택발전본부 정보">
+							<div class="info-box__panel">
+								<div class="info-box__content">
+
+									<!-- 좌측 이미지 -->
+									<div class="info-box__media">
+										<img src="/resources/images/group/plant-pt.png" alt="평택발전본부 이미지">
+									</div>
+
+									<!-- 우측 텍스트 -->
+									<div class="info-box__main">
+										<div class="info-box__header">
+											<div class="info-box__title-wrap">
+												<a href="javascript:" onclick="fnGoIndex('5000')">
+													<h3 class="info-box__title">평택발전본부 <small>복합 #2</small> <span
+															class="icon-url" title="평택 iPOS 이동"></span></h3>
+													<p class="info-box__sub">천연가스 발전소</p>
+												</a>
+											</div>
+											<button type="button" class="info-box__close" aria-label="정보 닫기"></button>
+										</div>
+										<div class="info-box__body">
+											<div class="info-box__item">
+												<span class="info-box__label">설비용량</span>
+												<span class="info-box__value">868.5<small>MW</small></span>
+											</div>
+											<div class="info-box__item">
+												<span class="info-box__label">추진단계</span>
+												<span class="info-box__value">구축완료</span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="hotspot" style="--x: 30%;--y: 10%;" data-name="김포발전본부">
+						<button type="button" class="pin disabled" aria-label="김포발전본부 정보 열기"></button>
+						<span class="pin-label">김포발전본부</span>
+						
+						<div class="info-box" role="dialog" aria-label="김포발전본부 정보">
+							<div class="info-box__panel">
+								<div class="info-box__content">
+
+									<!-- 좌측 이미지 -->
+									<div class="info-box__media">
+										<img src="/resources/images/group/plant-sample.png" alt="김포발전본부 이미지">
+									</div>
+
+									<!-- 우측 텍스트 -->
+									<div class="info-box__main">
+										<div class="info-box__header">
+											<div class="info-box__title-wrap">
+												<h3 class="info-box__title">김포발전본부</h3>
+												<p class="info-box__sub">열병합발전소</p>
+											</div>
+											<button type="button" class="info-box__close" aria-label="정보 닫기"></button>
+										</div>
+										<div class="info-box__body">
+											<div class="info-box__item">
+												<span class="info-box__label">설비용량</span>
+												<span class="info-box__value">510<small>MW</small>(GT 357<small>MW</small> /
+													ST 161<small>MW</small>), <br>열 281<small>Gcal/h</small></span>
+											</div>
+											<!-- <div class="info-box__item">
+												<span class="info-box__label">발전연료</span>
+												<span class="info-box__value">LNG</span>
+											</div> -->
+											<div class="info-box__item">
+												<span class="info-box__label">추진단계</span>
+												<span class="info-box__value">구축대기</span>
+											</div>
+										</div>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+
+					<div class="hotspot is-unbuilt" style="--x: 32%;--y: 16%;" data-name="서인천발전본부">
+						<button type="button" class="pin disabled" aria-label="서인천발전본부 정보 열기"></button>
+						<span class="pin-label">서인천발전본부 - 미구축</span>
+						
+						<div class="info-box" role="dialog" aria-label="서인천발전본부 정보">
+							<div class="info-box__panel">
+								<div class="info-box__content">
+
+									<!-- 좌측 이미지 -->
+									<div class="info-box__media">
+										<img src="/resources/images/group/plant-sample.png" alt="서인천발전본부 이미지">
+									</div>
+
+									<!-- 우측 텍스트 -->
+									<div class="info-box__main">
+										<div class="info-box__header">
+											<div class="info-box__title-wrap">
+												<h3 class="info-box__title">서인천발전본부</h3>
+												<p class="info-box__sub">‘녹색기업’인증 친환경발전소</p>
+											</div>
+											<button type="button" class="info-box__close" aria-label="정보 닫기"></button>
+										</div>
+										<div class="info-box__body">
+											<!-- <div class="info-box__item">
+												<span class="info-box__label">설비용량<small>(신재생 제외)</small></span>
+												<span class="info-box__value">1,861.8 (1,800)<small>MW</small></span>
+											</div>
+											<div class="info-box__item">
+												<span class="info-box__label">발전연료</span>
+												<span class="info-box__value">LNG,연료전지,태양광</span>
+											</div> -->
+											<div class="info-box__item">
+												<span class="info-box__label">추진단계</span>
+												<span class="info-box__value">미구축</span>
+											</div>
+										</div>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+
+					<div class="hotspot is-unbuilt" style="--x: 30%;--y: 44%;" data-name="군산발전본부">
+						<button type="button" class="pin disabled" aria-label="군산발전본부 정보 열기"></button>
+						<span class="pin-label">군산발전본부 - 미구축</span>
+						
+						<div class="info-box" role="dialog" aria-label="군산발전본부 정보">
+							<div class="info-box__panel">
+								<div class="info-box__content">
+
+									<!-- 좌측 이미지 -->
+									<div class="info-box__media">
+										<img src="/resources/images/group/plant-sample.png" alt="군산발전본부 이미지">
+									</div>
+
+									<!-- 우측 텍스트 -->
+									<div class="info-box__main">
+										<div class="info-box__header">
+											<div class="info-box__title-wrap">
+												<h3 class="info-box__title">군산발전본부</h3>
+												<p class="info-box__sub">최신형 발전설비를 갖춘 친환경 복합발전소</p>
+											</div>
+											<button type="button" class="info-box__close" aria-label="정보 닫기"></button>
+										</div>
+										<div class="info-box__body">
+											<!-- <div class="info-box__item">
+												<span class="info-box__label">설비용량<small>(신재생 제외)</small></span>
+												<span class="info-box__value">718.4<small>MW</small></span>
+											</div>
+											<div class="info-box__item">
+												<span class="info-box__label">발전연료</span>
+												<span class="info-box__value">LNG,태양광</span>
+											</div> -->
+											<div class="info-box__item">
+												<span class="info-box__label">추진단계</span>
+												<span class="info-box__value">미구축</span>
+											</div>
+										</div>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<svg class="line-layer" id="lineLayer" aria-hidden="true"></svg>
+			<div class="info-layer" id="infoLayer"></div>
+		</div>
+	</section>
+
+	<script>
+	(function () {
+		const mapStage = document.getElementById('mapStage');
+		const mapOverlay = mapStage.querySelector('.map-overlay');
+		const infoLayer = document.getElementById('infoLayer');
+		const hotspots = Array.from(mapStage.querySelectorAll('.hotspot'));
+		const isTouchDevice = window.matchMedia('(hover: none), (pointer: coarse)').matches;
+		let activeHotspot = null;
+
+		function clamp(value, min, max) {
+			return Math.min(Math.max(value, min), max);
+		}
+
+		function getPinCenter(pinRect, baseRect) {
+			return {
+				x: pinRect.left - baseRect.left + (pinRect.width / 2),
+				y: pinRect.top - baseRect.top + (pinRect.height / 2)
+			};
+		}
+
+		function drawConnector(hotspot, box) {
+			if (!lineLayer || !hotspot || !box) return;
+
+			const pin = hotspot.querySelector('.pin');
+			if (!pin) return;
+
+			const stageRect = mapStage.getBoundingClientRect();
+			const pinRect = pin.getBoundingClientRect();
+			const boxRect = box.getBoundingClientRect();
+
+			const pinX = pinRect.left - stageRect.left + (pinRect.width / 2);
+			const pinY = pinRect.top - stageRect.top + (pinRect.height / 2);
+
+			const boxLeft = boxRect.left - stageRect.left;
+			const boxTop = boxRect.top - stageRect.top;
+			const boxRight = boxLeft + boxRect.width;
+			const boxBottom = boxTop + boxRect.height;
+			const boxCenterX = boxLeft + (boxRect.width / 2);
+			const boxCenterY = boxTop + (boxRect.height / 2);
+
+			let targetX = boxCenterX;
+			let targetY = boxCenterY;
+
+			const dxCenter = pinX - boxCenterX;
+			const dyCenter = pinY - boxCenterY;
+
+			/* 박스의 가장 가까운 변으로 연결 */
+			if (Math.abs(dxCenter) > Math.abs(dyCenter)) {
+				targetX = dxCenter > 0 ? boxRight : boxLeft;
+				targetY = clamp(pinY, boxTop + 16, boxBottom - 16);
+			} else {
+				targetY = dyCenter > 0 ? boxBottom : boxTop;
+				targetX = clamp(pinX, boxLeft + 16, boxRight - 16);
+			}
+
+			lineLayer.setAttribute('viewBox', `0 0 ${stageRect.width} ${stageRect.height}`);
+			lineLayer.innerHTML = `
+				<defs>
+					<linearGradient id="infoLineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+						<stop offset="0%" stop-color="rgba(255,255,255,0.95)" />
+						<stop offset="100%" stop-color="rgba(7,25,42,0.95)" />
+					</linearGradient>
+					<filter id="infoLineGlow" x="-50%" y="-50%" width="200%" height="200%">
+						<feDropShadow dx="0" dy="0" stdDeviation="3" flood-color="rgba(18,179,255,0.45)" />
+					</filter>
+				</defs>
+				<line
+					x1="${pinX}"
+					y1="${pinY}"
+					x2="${targetX}"
+					y2="${targetY}"
+					stroke="url(#infoLineGradient)"
+					stroke-width="2"
+					stroke-linecap="round"
+					filter="url(#infoLineGlow)"
+				/>
+			`;
+		}
+
+		function closeHotspot(hotspot) {
+			if (!hotspot) return;
+
+			const box = Array.from(infoLayer.querySelectorAll('.info-box')).find(function (el) {
+				return el.__originHotspot === hotspot;
+			}) || hotspot.querySelector('.info-box');
+
+			hotspot.classList.remove('is-active');
+
+			if (box) {
+				box.classList.remove('is-open');
+				box.style.opacity = '0';
+				box.style.visibility = 'hidden';
+				box.style.pointerEvents = 'none';
+				box.style.left = '0px';
+				box.style.top = '0px';
+			}
+
+			lineLayer.innerHTML = '';
+
+			if (activeHotspot === hotspot) {
+				activeHotspot = null;
+			}
+		}
+
+		function closeAllExcept(current) {
+			hotspots.forEach((hotspot) => {
+				if (hotspot !== current) {
+					closeHotspot(hotspot);
+				}
+			});
+		}
+
+		function choosePlacement() {
+			const isMobile = window.innerWidth <= 767;
+			return isMobile ? 'bottom' : 'right';
+		}
+
+		function getBoxPosition(direction, pinX, pinY, boxW, boxH, stageW, stageH) {
+			let left = 0;
+			let top = 0;
+
+			const edgePadding = window.innerWidth <= 767 ? 8 : 16;
+
+			switch (direction) {
+				case 'right':
+					left = pinX + 160; // ✔ 핀 기준 160px 이동
+					top = pinY - (boxH / 2);
+					break;
+
+				case 'left':
+					left = edgePadding;
+					top = pinY - (boxH / 2);
+					break;
+
+				case 'top':
+					left = pinX - (boxW / 2);
+					top = pinY - boxH - 20;
+					break;
+
+				case 'bottom':
+				default:
+					left = pinX - (boxW / 2);
+					top = pinY + 20;
+					break;
+			}
+
+			left = clamp(left, edgePadding, stageW - boxW - edgePadding);
+			top = clamp(top, edgePadding, stageH - boxH - edgePadding);
+
+			return { left, top };
+		}
+
+		function positionInfoBox(hotspot) {
+			const pin = hotspot.querySelector('.pin');
+			const box = hotspot.querySelector('.info-box') ||
+				Array.from(infoLayer.querySelectorAll('.info-box')).find(function (el) {
+					return el.__originHotspot === hotspot;
+				});
+			const panel = box ? box.querySelector('.info-box__panel') : null;
+
+			if (!pin || !box || !panel) return;
+
+			hotspot.classList.add('is-active');
+
+			if (!box.__originHotspot) {
+				box.__originHotspot = hotspot;
+			}
+
+			if (box.parentNode !== infoLayer) {
+				infoLayer.appendChild(box);
+			}
+
+			box.style.left = '0px';
+			box.style.top = '0px';
+
+			const stageRect = mapStage.getBoundingClientRect();
+			const pinRect = pin.getBoundingClientRect();
+			const boxRect = box.getBoundingClientRect();
+
+			const pinCenter = getPinCenter(pinRect, stageRect);
+			const direction = choosePlacement();
+
+			const pos = getBoxPosition(
+				direction,
+				pinCenter.x,
+				pinCenter.y,
+				boxRect.width,
+				boxRect.height,
+				stageRect.width,
+				stageRect.height
+			);
+
+			box.style.left = pos.left + 'px';
+			box.style.top = pos.top + 'px';
+			box.style.opacity = '1';
+			box.style.visibility = 'visible';
+			box.style.pointerEvents = 'auto';
+			box.classList.add('is-open');
+
+			requestAnimationFrame(function () {
+				drawConnector(hotspot, box);
+				setTimeout(function () {
+					drawConnector(hotspot, box);
+				}, 80);
+			});
+		}
+
+		function openHotspot(hotspot) {
+			if (!hotspot) return;
+
+			closeAllExcept(hotspot);
+			hotspot.classList.add('is-active');
+			activeHotspot = hotspot;
+			positionInfoBox(hotspot);
+		}
+
+		hotspots.forEach((hotspot) => {
+			const pin = hotspot.querySelector('.pin');
+			const closeBtn = hotspot.querySelector('.info-box__close');
+
+			let leaveTimer = null;
+
+			/* infoLayer에 올라간 box 찾는 헬퍼 */
+			function getBox() {
+				return hotspot.querySelector('.info-box') ||
+					Array.from(infoLayer.querySelectorAll('.info-box')).find(function (el) {
+						return el.__originHotspot === hotspot;
+					});
+			}
+
+			/* =========================
+			클릭
+			========================= */
+			pin.addEventListener('click', function (e) {
+				e.preventDefault();
+				e.stopPropagation();
+
+				if (hotspot.classList.contains('is-unbuilt')) {
+					closeHotspot(hotspot);
+					return;
+				}
+
+				openHotspot(hotspot);
+			});
+
+			/* =========================
+			hover (PC만)
+			========================= */
+			if (!isTouchDevice) {
+				pin.addEventListener('mouseenter', function () {
+					if (hotspot.classList.contains('is-unbuilt')) return;
+					openHotspot(hotspot);
+				});
+			}
+
+			/* =========================
+			hotspot leave
+			→ box로 이동 시 닫힘 방지
+			========================= */
+			hotspot.addEventListener('mouseleave', function (e) {
+				if (isTouchDevice) return;
+
+				const toEl = e.relatedTarget;
+				const box = getBox();
+
+				if (toEl && hotspot.contains(toEl)) return;
+				if (toEl && box && box.contains(toEl)) return;
+
+				leaveTimer = setTimeout(() => {
+					closeHotspot(hotspot);
+				}, 120);
+			});
+
+			/* =========================
+			hotspot enter
+			========================= */
+			hotspot.addEventListener('mouseenter', function () {
+				if (leaveTimer) {
+					clearTimeout(leaveTimer);
+					leaveTimer = null;
+				}
+			});
+
+			/* =========================
+			box hover 유지
+			========================= */
+			const initialBox = hotspot.querySelector('.info-box');
+
+			if (initialBox) {
+				initialBox.addEventListener('mouseenter', function () {
+					if (leaveTimer) {
+						clearTimeout(leaveTimer);
+						leaveTimer = null;
+					}
+				});
+
+				initialBox.addEventListener('mouseleave', function (e) {
+					if (isTouchDevice) return;
+
+					const toEl = e.relatedTarget;
+
+					if (toEl && hotspot.contains(toEl)) return;
+
+					leaveTimer = setTimeout(() => {
+						closeHotspot(hotspot);
+					}, 120);
+				});
+			}
+
+			/* =========================
+			close 버튼
+			========================= */
+			if (closeBtn) {
+				closeBtn.addEventListener('click', function (e) {
+					e.preventDefault();
+					e.stopPropagation();
+					closeHotspot(hotspot);
+				});
+			}
+		});
+
+		window.addEventListener('resize', function () {
+			if (activeHotspot) {
+				positionInfoBox(activeHotspot);
+			}
+		});
+
+		window.addEventListener('orientationchange', function () {
+			if (activeHotspot) {
+				positionInfoBox(activeHotspot);
+			}
+		});
+
+		window.addEventListener('load', function () {
+			if (activeHotspot) {
+				positionInfoBox(activeHotspot);
+			}
+		});
+	})();
+	</script>
+</body>
+
+</html>
