@@ -23,9 +23,15 @@
 			background-size: cover;
 		}
 
+		a {
+			color: var(--text-base);
+			text-decoration: none;
+		}
+
 		.map-section {
-			width: 100vw;
+			width: 100%;
 			height: 100vh;
+			min-height: 640px;
 			padding: 0;
 
 			display: flex;
@@ -81,8 +87,8 @@
 			left: var(--x);
 			top: var(--y);
 			transform: translate(-50%, -50%);
-			width: 80px;
-			height: 80px;
+			width: 48px;
+			height: 48px;
 			border: 0;
 			padding: 0;
 			background: url(/resources/images/icons/pin-red.svg) no-repeat center;
@@ -172,6 +178,18 @@
 			inset: 0;
 			width: 100%;
 			height: 100%;
+		}
+
+		.line-layer {
+			z-index: 1;
+			pointer-events: none;
+			overflow: visible;
+			display: block;
+		}
+
+		.info-layer {
+			z-index: 30;
+			pointer-events: none;
 			overflow: visible;
 		}
 
@@ -288,7 +306,7 @@
 
 		.info-box__item {
 			display: grid;
-			grid-template-columns: 128px 1fr;
+			grid-template-columns: 80px 1fr;
 			gap: 8px;
 			align-items: start;
 			font-size: 14px;
@@ -373,7 +391,6 @@
 			}
 
 			.info-box__item {
-				grid-template-columns: 120px 1fr;
 				font-size: 13px;
 			}
 		}
@@ -414,7 +431,6 @@
 			}
 
 			.info-box__item {
-				grid-template-columns: 1fr;
 				gap: 4px;
 				font-size: 13px;
 			}
@@ -663,6 +679,7 @@
 	(function () {
 		const mapStage = document.getElementById('mapStage');
 		const mapOverlay = mapStage.querySelector('.map-overlay');
+		const lineLayer = document.getElementById('lineLayer');
 		const infoLayer = document.getElementById('infoLayer');
 		const hotspots = Array.from(mapStage.querySelectorAll('.hotspot'));
 		const isTouchDevice = window.matchMedia('(hover: none), (pointer: coarse)').matches;
@@ -681,6 +698,12 @@
 
 		function drawConnector(hotspot, box) {
 			if (!lineLayer || !hotspot || !box) return;
+
+			/* 추가: 실제로 열린 박스가 아니면 라인 그리지 않음 */
+			if (!hotspot.classList.contains('is-active') || !box.classList.contains('is-open')) {
+				lineLayer.innerHTML = '';
+				return;
+			}
 
 			const pin = hotspot.querySelector('.pin');
 			if (!pin) return;
@@ -705,7 +728,6 @@
 			const dxCenter = pinX - boxCenterX;
 			const dyCenter = pinY - boxCenterY;
 
-			/* 박스의 가장 가까운 변으로 연결 */
 			if (Math.abs(dxCenter) > Math.abs(dyCenter)) {
 				targetX = dxCenter > 0 ? boxRight : boxLeft;
 				targetY = clamp(pinY, boxTop + 16, boxBottom - 16);
@@ -716,24 +738,14 @@
 
 			lineLayer.setAttribute('viewBox', `0 0 ${stageRect.width} ${stageRect.height}`);
 			lineLayer.innerHTML = `
-				<defs>
-					<linearGradient id="infoLineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-						<stop offset="0%" stop-color="rgba(255,255,255,0.95)" />
-						<stop offset="100%" stop-color="rgba(7,25,42,0.95)" />
-					</linearGradient>
-					<filter id="infoLineGlow" x="-50%" y="-50%" width="200%" height="200%">
-						<feDropShadow dx="0" dy="0" stdDeviation="3" flood-color="rgba(18,179,255,0.45)" />
-					</filter>
-				</defs>
 				<line
 					x1="${pinX}"
 					y1="${pinY}"
 					x2="${targetX}"
 					y2="${targetY}"
-					stroke="url(#infoLineGradient)"
+					stroke="#ffffff"
 					stroke-width="2"
 					stroke-linecap="round"
-					filter="url(#infoLineGlow)"
 				/>
 			`;
 		}
@@ -756,7 +768,9 @@
 				box.style.top = '0px';
 			}
 
-			lineLayer.innerHTML = '';
+			if (lineLayer) {
+				lineLayer.innerHTML = '';
+			}
 
 			if (activeHotspot === hotspot) {
 				activeHotspot = null;
@@ -801,7 +815,7 @@
 				case 'bottom':
 				default:
 					left = pinX - (boxW / 2);
-					top = pinY + 20;
+					top = pinY + (window.innerWidth <= 767 ? 120 : 20);
 					break;
 			}
 
@@ -879,19 +893,6 @@
 			const pin = hotspot.querySelector('.pin');
 			const closeBtn = hotspot.querySelector('.info-box__close');
 
-			let leaveTimer = null;
-
-			/* infoLayer에 올라간 box 찾는 헬퍼 */
-			function getBox() {
-				return hotspot.querySelector('.info-box') ||
-					Array.from(infoLayer.querySelectorAll('.info-box')).find(function (el) {
-						return el.__originHotspot === hotspot;
-					});
-			}
-
-			/* =========================
-			클릭
-			========================= */
 			pin.addEventListener('click', function (e) {
 				e.preventDefault();
 				e.stopPropagation();
@@ -904,9 +905,6 @@
 				openHotspot(hotspot);
 			});
 
-			/* =========================
-			hover (PC만)
-			========================= */
 			if (!isTouchDevice) {
 				pin.addEventListener('mouseenter', function () {
 					if (hotspot.classList.contains('is-unbuilt')) return;
@@ -914,63 +912,6 @@
 				});
 			}
 
-			/* =========================
-			hotspot leave
-			→ box로 이동 시 닫힘 방지
-			========================= */
-			hotspot.addEventListener('mouseleave', function (e) {
-				if (isTouchDevice) return;
-
-				const toEl = e.relatedTarget;
-				const box = getBox();
-
-				if (toEl && hotspot.contains(toEl)) return;
-				if (toEl && box && box.contains(toEl)) return;
-
-				leaveTimer = setTimeout(() => {
-					closeHotspot(hotspot);
-				}, 120);
-			});
-
-			/* =========================
-			hotspot enter
-			========================= */
-			hotspot.addEventListener('mouseenter', function () {
-				if (leaveTimer) {
-					clearTimeout(leaveTimer);
-					leaveTimer = null;
-				}
-			});
-
-			/* =========================
-			box hover 유지
-			========================= */
-			const initialBox = hotspot.querySelector('.info-box');
-
-			if (initialBox) {
-				initialBox.addEventListener('mouseenter', function () {
-					if (leaveTimer) {
-						clearTimeout(leaveTimer);
-						leaveTimer = null;
-					}
-				});
-
-				initialBox.addEventListener('mouseleave', function (e) {
-					if (isTouchDevice) return;
-
-					const toEl = e.relatedTarget;
-
-					if (toEl && hotspot.contains(toEl)) return;
-
-					leaveTimer = setTimeout(() => {
-						closeHotspot(hotspot);
-					}, 120);
-				});
-			}
-
-			/* =========================
-			close 버튼
-			========================= */
 			if (closeBtn) {
 				closeBtn.addEventListener('click', function (e) {
 					e.preventDefault();
@@ -978,6 +919,82 @@
 					closeHotspot(hotspot);
 				});
 			}
+		});
+
+		function getHotspotBox(hotspot) {
+			return hotspot.querySelector('.info-box') ||
+				Array.from(infoLayer.querySelectorAll('.info-box')).find(function (el) {
+					return el.__originHotspot === hotspot;
+				});
+		}
+
+		function pointInRect(x, y, rect) {
+			return x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom;
+		}
+
+		function isPointerOverActiveArea(hotspot, clientX, clientY) {
+			if (!hotspot) return false;
+
+			const pin = hotspot.querySelector('.pin');
+			const box = getHotspotBox(hotspot);
+
+			let overPin = false;
+			let overBox = false;
+
+			if (pin) {
+				const pinRect = pin.getBoundingClientRect();
+				overPin = pointInRect(clientX, clientY, pinRect);
+			}
+
+			if (box && box.classList.contains('is-open')) {
+				const boxRect = box.getBoundingClientRect();
+
+				/* 핀과 박스 사이 이동 여유 영역 */
+				const pinRect = pin.getBoundingClientRect();
+				const bridgeLeft = Math.min(pinRect.left, boxRect.left);
+				const bridgeRight = Math.max(pinRect.right, boxRect.right);
+				const bridgeTop = Math.min(pinRect.top, boxRect.top) - 12;
+				const bridgeBottom = Math.max(pinRect.bottom, boxRect.bottom) + 12;
+
+				overBox = pointInRect(clientX, clientY, boxRect);
+
+				const overBridge =
+					clientX >= bridgeLeft &&
+					clientX <= bridgeRight &&
+					clientY >= bridgeTop &&
+					clientY <= bridgeBottom;
+
+				return overPin || overBox || overBridge;
+			}
+
+			return overPin;
+		}
+
+		document.addEventListener('mousemove', function (e) {
+			if (isTouchDevice) return;
+
+			/* 활성 박스 없으면 라인 제거 후 종료 */
+			if (!activeHotspot) {
+				lineLayer.innerHTML = '';
+				return;
+			}
+
+			const activeBox = Array.from(infoLayer.querySelectorAll('.info-box')).find(function (el) {
+				return el.__originHotspot === activeHotspot;
+			});
+
+			/* 박스가 실제로 안 열려 있으면 라인 제거 */
+			if (!activeBox || !activeBox.classList.contains('is-open')) {
+				lineLayer.innerHTML = '';
+				return;
+			}
+
+			if (isPointerOverActiveArea(activeHotspot, e.clientX, e.clientY)) {
+				drawConnector(activeHotspot, activeBox);
+				return;
+			}
+
+			closeHotspot(activeHotspot);
 		});
 
 		window.addEventListener('resize', function () {
