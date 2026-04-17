@@ -629,6 +629,25 @@
 	
 	--form-block-bg: var(--surface-neutral-base);
 	--form-block-border: var(--border-neutral-subtle);
+	
+	/* thumb-board */
+	--thumbnail-box-bg: var(--surface-neutral-base);
+	--thumbnail-box-border: var(--border-neutral-muted);
+	--thumbnail-box-shadow: var(--box-shadow-1);
+	--thumbnail-text: var(--text-base);
+	--thumbnail-text-subtle: var(--text-subtle);
+	--thumbnail-text-primary: var(--text-primary);
+	
+	/* table */
+	--nodata-bg: var(--surface-neutral-subtle);
+	--table-text: var(--text-base);
+	
+	--table-bg: var(--surface-neutral-subtle);
+	--table-bg-primary: var(--surface-primary-subtle);
+	
+	--table-th-bg: var(--surface-neutral-muted);
+	--table-th-border: var(--border-neutral-muted);
+	--table-th-border-strong: var(--border-neutral-strong);
 }
 
 @media (min-width: 768px) {

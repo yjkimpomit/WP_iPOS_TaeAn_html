@@ -15,7 +15,7 @@
 	justify-content: center;
 	padding: 64px 40px;
 	font-size: 1rem;
-	background-color: var(--bg-neutral-tertiary);
+	background-color: var(--nodata-bg);
 }
 .table-responsive:has(.table .no-data) {
 	height: auto !important;
@@ -46,7 +46,7 @@
 	vertical-align: middle;
 	white-space: nowrap;
 	text-align: center;
-	padding: .5rem .75rem;
+	/*padding: .5rem .75rem;*/
 	border-right: solid 1px var(--border-neutral-secondary);
 	border-bottom: solid 1px var(--border-neutral-secondary);
 
@@ -65,12 +65,6 @@
 	margin-right: auto;
 }
 
-.table tbody th [class*='material-'][disabled],
-.table tbody td [class*='material-'][disabled] {
-	opacity: .32;
-	color: var(--text-disabled-default);
-}
-
 /* 데이터 없는 경우 */
 .empty {
 	display: flex;
@@ -79,11 +73,11 @@
 	padding: 2rem 80px;
 	min-height: 120px;
 	font-size: 1rem;
-	background-color: var(--bg-neutral-tertiary);
+	background-color: var(--nodata-bg);
 }
 .thumb-board.list:has(.empty) {
 	grid-template-columns: repeat(1, 1fr);
-	background-color: var(--bg-neutral-tertiary);
+	background-color: var(--nodata-bg);
 }
 
 /* .view-table */
@@ -106,36 +100,32 @@
 	position: sticky;
 	top: 0;
 	z-index: 2;
-	background-color: var(--bg-neutral-secondary);
 }
 
 .table thead th {
-	background-color: var(--lighter40);
-	border-bottom: solid 1px var(--border-neutral-secondary);
+	background-color: var(--table-th-bg);
+	border-bottom: solid 1px var(--table-th-border);
 }
 
 .table tbody th {
 	font-weight: 400;
-	background-color: var(--bg-neutral-tertiary);
+	background-color: var(--table-th-bg);
 }
 
 .table.table-sm th,
 .table.table-sm td {
-	/*padding-top: .25rem;
-	padding-bottom: .25rem;*/
 	font-size: .9375rem;
 	line-height: 1.4;
 }
 
 .table.view-table th,
 .table.view-table td {
-	/*padding: .5rem .5rem;*/
 	vertical-align: middle;
 }
 
 .table.view-table tbody tr th,
 .table.view-table tfoot tr th {
-	background-color: var(--bg-neutral-tertiary);
+	background-color: var(--table-th-bg);
 	text-align: right;
 }
 

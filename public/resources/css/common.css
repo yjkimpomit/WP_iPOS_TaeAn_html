@@ -697,11 +697,6 @@ input[id="facilityRefList"]+.title03 {
 	border-radius: calc(var(--radius-sm) * 0.5);
 }
 
-/* 2025.03.19 아이콘 변경 */
-.btn .material-symbols-rounded {
-	display: none;
-}
-
 /* 2단계 팝업 닫기버튼 */
 .modal-header .btn.close {
 	opacity: 1;

@@ -147,7 +147,7 @@
 	}
 }
 
-@media (min-width: 1536px) {
+@media (min-width: 1680px) {
 	.header-icon {
 		display: flex;
 		background-color: var(--bg-danger-accent);

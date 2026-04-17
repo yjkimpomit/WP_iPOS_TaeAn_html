@@ -15,7 +15,7 @@
 	justify-content: center;
 	padding: 64px 40px;
 	font-size: 1rem;
-	background-color: var(--bg-neutral-tertiary);
+	background-color: var(--nodata-bg);
 }
 .table-responsive:has(.table .no-data) {
 	height: auto !important;
@@ -25,10 +25,17 @@
 	border-bottom-color: transparent;
 }
 
-/* table-responsive */
+/* 반응형 테이블 높이 설정 */
+/* 10개 행 높이 - 400px */
 .table-responsive {
 	border: none;
-	border-top: solid 1px var(--border-neutral-default);
+	background-color: var(--table-bg);
+	border-top: solid 2px var(--table-th-border-strong);
+	
+	/* TM 현황에 10개씩 불러오는 테이블 기준
+	min-height: 240px; */
+	overflow-y: auto;
+	margin-bottom: 1rem;
 }
 
 /* table */
@@ -39,6 +46,8 @@
 .table th {
 	font-weight: 500;
 	position: relative;
+	background-color: var(--table-th-bg);
+	border-bottom: solid 1px var(--table-th-border);
 }
 
 .table th,
@@ -46,11 +55,9 @@
 	vertical-align: middle;
 	white-space: nowrap;
 	text-align: center;
-	/*padding: .5rem .75rem;*/
-	border-right: solid 1px var(--border-neutral-secondary);
-	border-bottom: solid 1px var(--border-neutral-secondary);
-
-	color: var(--text-neutral-default);
+	border-right: solid 1px var(--table-th-border);
+	border-bottom: solid 1px var(--table-th-border);
+	color: var(--table-text);
 }
 
 .table thead tr>*:last-child,
@@ -65,12 +72,6 @@
 	margin-right: auto;
 }
 
-.table tbody th [class*='material-'][disabled],
-.table tbody td [class*='material-'][disabled] {
-	opacity: .32;
-	color: var(--text-disabled-default);
-}
-
 /* 데이터 없는 경우 */
 .empty {
 	display: flex;
@@ -79,11 +80,11 @@
 	padding: 2rem 80px;
 	min-height: 120px;
 	font-size: 1rem;
-	background-color: var(--bg-neutral-tertiary);
+	background-color: var(--nodata-bg);
 }
 .thumb-board.list:has(.empty) {
 	grid-template-columns: repeat(1, 1fr);
-	background-color: var(--bg-neutral-tertiary);
+	background-color: var(--nodata-bg);
 }
 
 /* .view-table */
@@ -106,36 +107,25 @@
 	position: sticky;
 	top: 0;
 	z-index: 2;
-	background-color: var(--bg-neutral-secondary);
-}
-
-.table thead th {
-	background-color: var(--lighter40);
-	border-bottom: solid 1px var(--border-neutral-secondary);
 }
 
 .table tbody th {
 	font-weight: 400;
-	background-color: var(--bg-neutral-tertiary);
 }
 
 .table.table-sm th,
 .table.table-sm td {
-	/*padding-top: .25rem;
-	padding-bottom: .25rem;*/
 	font-size: .9375rem;
 	line-height: 1.4;
 }
 
 .table.view-table th,
 .table.view-table td {
-	/*padding: .5rem .5rem;*/
 	vertical-align: middle;
 }
 
 .table.view-table tbody tr th,
 .table.view-table tfoot tr th {
-	background-color: var(--bg-neutral-tertiary);
 	text-align: right;
 }
 
@@ -158,7 +148,6 @@
 /* 폼테이블에만 적용 */
 .table.form-table th,
 .table.form-table td {
-	/*padding: .25rem .5rem;*/
 	vertical-align: middle;
 }
 
@@ -168,7 +157,6 @@
 
 .table.form-table tbody tr th,
 .table.form-table tfoot tr th {
-	background-color: var(--bg-neutral-tertiary);
 	text-align: right;
 }
 
@@ -205,16 +193,6 @@
 	align-items: center;
 }
 
-/* 반응형 테이블 높이 설정 */
-/* 10개 행 높이 - 400px */
-.table-responsive {
-	/* TM 현황에 10개씩 불러오는 테이블 기준
-	min-height: 240px; */
-	overflow-y: auto;
-	margin-bottom: 1rem;
-	background-color: var(--bg-neutral-tertiary);
-}
-
 /* 테이블 소팅 기능 */
 .table .sort {
 	background-repeat: no-repeat;
@@ -245,7 +223,7 @@
 }
 .table tbody tr.total td {
 	font-weight: 700;
-    background-color: var(--bg-brand-tertiary);
+    background-color: var(--table-bg-primary);
 }
 
 /* 테이블 내 텍스트 긴 경우 ... 처리 text-ellipsis */

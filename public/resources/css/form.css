@@ -221,7 +221,6 @@ input[type="date"], input[type="week"], input[type="datetime-local"], input.icon
 }
 
 #cctvInstall .btn.btn-install::before,
-.search-box .btn:has([class*='material-symbols-'])::before,
 .btn.edit-note::before,
 .btn.today::before {
 	content: '';
@@ -236,9 +235,6 @@ input[type="date"], input[type="week"], input[type="datetime-local"], input.icon
 
 .search-box .icon-search {
 	background-size: 24px;
-}
-.search-box .btn.btn-primary:has([class*='material-symbols-'])::before {
-	background-image: url(/resources/images/icons/icon-search-white.svg);
 }
 
 .search-box .btn > [class*='icon-search'] {
