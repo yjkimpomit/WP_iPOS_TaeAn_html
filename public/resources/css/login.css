@@ -109,7 +109,7 @@ strong {
 	width: 100%;
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
+	justify-content: center;
 	flex-wrap: nowrap;
 	
 	position: absolute;
@@ -119,7 +119,7 @@ strong {
 	height: 100vh;
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1200px) {
 	.login-panel {
 		background-color: var(--bg-default-default);
 		padding: 3rem 0;
@@ -169,7 +169,7 @@ strong {
 	}
 }
 
-@media (min-width: 1024px) {
+@media (min-width: 1200px) {
 	.login-box {
 		height: 100%;
 		padding: 0 2rem;
@@ -406,7 +406,7 @@ strong {
 	display: none;
 }
 
-@media(min-width: 1600px) {
+@media(min-width: 1200px) {
 	.slick-slide .text-box {
 		display: block;
 		color: var(--text-neutral-onneutral);

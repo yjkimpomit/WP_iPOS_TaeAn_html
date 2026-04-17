@@ -2533,6 +2533,7 @@ html[data-theme="dark"] .toast-header .toast-close {
 	position: absolute;
 	top: 0;
 	left: 0;
+	width: 100%;
 	background-color: var(--app-bg);
 	padding: 0;
 	display: flex;

@@ -22,231 +22,240 @@
 
 <body>
 <div class="logo">
-	<div class="bi">
-		<span class="visually-hidden-focusable">서부발전</span>
-		<strong class="branch">i-POS</strong>
-		<span class="desc">지능형 발전 운영시스템</span>
-	</div>
+    <div class="bi">
+        <span class="visually-hidden-focusable">서부발전</span>
+        <strong class="branch">i-POS</strong>
+        <span class="desc">지능형 발전 운영시스템</span>
+    </div>
 </div>
+
 <section class="map-section">
-		<div class="map-stage" id="mapStage">
-			<img class="map-image" src="/resources/images/group/map.png" alt="지도 이미지" />
+    <div class="map-stage" id="mapStage">
+        <div class="map-area">
+            <img class="map-image" src="/resources/images/group/map.png" alt="지도 이미지" />
+            
+            <div class="map-overlay">
+                <!-- 샘플 좌표: 실제 지도 기준으로 수정 -->
+                <div class="hotspot" style="--x: 24%;--y: 28%;" data-name="태안발전본부">
+                    <button type="button" class="pin" aria-label="태안발전본부 정보 열기"></button>
+                    <span class="pin-label">태안발전본부</span>
+                    
+                    <div class="info-box" role="dialog" aria-label="태안발전본부 정보">
+                        <div class="info-box__panel">
+                            <div class="info-box__content">
+                                
+                                <!-- 좌측 이미지 -->
+                                <div class="info-box__media">
+                                    <img src="/resources/images/group/plant-ta.png" alt="태안발전본부 이미지">
+                                </div>
+                                
+                                <!-- 우측 텍스트 -->
+                                <div class="info-box__main">
+                                    <div class="info-box__header">
+                                        <div class="info-box__title-wrap">
+                                            <a href="index.html">
+                                                <h3 class="info-box__title">태안발전본부 <small>(9, 10호기)</small> <span
+                                                        class="icon-url" title="태안 iPOS 이동"></span></h3>
+                                                <p class="info-box__sub">최첨단 자동제어설비 발전소</p>
+                                            </a>
+                                        </div>
+                                        <button type="button" class="info-box__close" aria-label="정보 닫기"></button>
+                                    </div>
+                                    <div class="info-box__body">
+                                        <div class="info-box__item">
+                                            <span class="info-box__label">설비용량</span>
+                                            <span class="info-box__value">각 1,050<small>MW</small></span>
+                                        </div>
+                                        <div class="info-box__item">
+                                            <span class="info-box__label">추진단계</span>
+                                            <span class="info-box__value">2026년 오픈예정</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hotspot" style="--x: 34%;--y: 22%;" data-name="평택발전본부">
+                    <button type="button" class="pin" aria-label="평택발전본부 정보 열기"></button>
+                    <span class="pin-label">평택발전본부</span>
+                    
+                    <div class="info-box" role="dialog" aria-label="평택발전본부 정보">
+                        <div class="info-box__panel">
+                            <div class="info-box__content">
+                                
+                                <!-- 좌측 이미지 -->
+                                <div class="info-box__media">
+                                    <img src="/resources/images/group/plant-pt.png" alt="평택발전본부 이미지">
+                                </div>
+                                
+                                <!-- 우측 텍스트 -->
+                                <div class="info-box__main">
+                                    <div class="info-box__header">
+                                        <div class="info-box__title-wrap">
+                                            <a href="javascript:" onclick="fnGoIndex('5000')">
+                                                <h3 class="info-box__title">평택발전본부 <small>복합 #2</small> <span
+                                                        class="icon-url" title="평택 iPOS 이동"></span></h3>
+                                                <p class="info-box__sub">천연가스 발전소</p>
+                                            </a>
+                                        </div>
+                                        <button type="button" class="info-box__close" aria-label="정보 닫기"></button>
+                                    </div>
+                                    <div class="info-box__body">
+                                        <div class="info-box__item">
+                                            <span class="info-box__label">설비용량</span>
+                                            <span class="info-box__value">868.5<small>MW</small></span>
+                                        </div>
+                                        <div class="info-box__item">
+                                            <span class="info-box__label">추진단계</span>
+                                            <span class="info-box__value">구축완료</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hotspot" style="--x: 30%;--y: 10%;" data-name="김포발전본부">
+                    <button type="button" class="pin disabled" aria-label="김포발전본부 정보 열기"></button>
+                    <span class="pin-label">김포발전본부</span>
+                    
+                    <div class="info-box" role="dialog" aria-label="김포발전본부 정보">
+                        <div class="info-box__panel">
+                            <div class="info-box__content">
+                                
+                                <!-- 좌측 이미지 -->
+                                <div class="info-box__media">
+                                    <img src="/resources/images/group/plant-sample.png" alt="김포발전본부 이미지">
+                                </div>
+                                
+                                <!-- 우측 텍스트 -->
+                                <div class="info-box__main">
+                                    <div class="info-box__header">
+                                        <div class="info-box__title-wrap">
+                                            <h3 class="info-box__title">김포발전본부</h3>
+                                            <p class="info-box__sub">열병합발전소</p>
+                                        </div>
+                                        <button type="button" class="info-box__close" aria-label="정보 닫기"></button>
+                                    </div>
+                                    <div class="info-box__body">
+                                        <div class="info-box__item">
+                                            <span class="info-box__label">설비용량</span>
+                                            <span class="info-box__value">510<small>MW</small>(GT 357<small>MW</small> /
+													ST 161<small>MW</small>), <br>열 281<small>Gcal/h</small></span>
+                                        </div>
+                                        <!-- <div class="info-box__item">
+                                            <span class="info-box__label">발전연료</span>
+                                            <span class="info-box__value">LNG</span>
+                                        </div> -->
+                                        <div class="info-box__item">
+                                            <span class="info-box__label">추진단계</span>
+                                            <span class="info-box__value">구축대기</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hotspot is-unbuilt" style="--x: 32%;--y: 16%;" data-name="서인천발전본부">
+                    <button type="button" class="pin disabled" aria-label="서인천발전본부 정보 열기"></button>
+                    <span class="pin-label">서인천발전본부 - 미구축</span>
+                    
+                    <div class="info-box" role="dialog" aria-label="서인천발전본부 정보">
+                        <div class="info-box__panel">
+                            <div class="info-box__content">
+                                
+                                <!-- 좌측 이미지 -->
+                                <div class="info-box__media">
+                                    <img src="/resources/images/group/plant-sample.png" alt="서인천발전본부 이미지">
+                                </div>
+                                
+                                <!-- 우측 텍스트 -->
+                                <div class="info-box__main">
+                                    <div class="info-box__header">
+                                        <div class="info-box__title-wrap">
+                                            <h3 class="info-box__title">서인천발전본부</h3>
+                                            <p class="info-box__sub">‘녹색기업’인증 친환경발전소</p>
+                                        </div>
+                                        <button type="button" class="info-box__close" aria-label="정보 닫기"></button>
+                                    </div>
+                                    <div class="info-box__body">
+                                        <!-- <div class="info-box__item">
+                                            <span class="info-box__label">설비용량<small>(신재생 제외)</small></span>
+                                            <span class="info-box__value">1,861.8 (1,800)<small>MW</small></span>
+                                        </div>
+                                        <div class="info-box__item">
+                                            <span class="info-box__label">발전연료</span>
+                                            <span class="info-box__value">LNG,연료전지,태양광</span>
+                                        </div> -->
+                                        <div class="info-box__item">
+                                            <span class="info-box__label">추진단계</span>
+                                            <span class="info-box__value">미구축</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hotspot is-unbuilt" style="--x: 30%;--y: 44%;" data-name="군산발전본부">
+                    <button type="button" class="pin disabled" aria-label="군산발전본부 정보 열기"></button>
+                    <span class="pin-label">군산발전본부 - 미구축</span>
+                    
+                    <div class="info-box" role="dialog" aria-label="군산발전본부 정보">
+                        <div class="info-box__panel">
+                            <div class="info-box__content">
+                                
+                                <!-- 좌측 이미지 -->
+                                <div class="info-box__media">
+                                    <img src="/resources/images/group/plant-sample.png" alt="군산발전본부 이미지">
+                                </div>
+                                
+                                <!-- 우측 텍스트 -->
+                                <div class="info-box__main">
+                                    <div class="info-box__header">
+                                        <div class="info-box__title-wrap">
+                                            <h3 class="info-box__title">군산발전본부</h3>
+                                            <p class="info-box__sub">최신형 발전설비를 갖춘 친환경 복합발전소</p>
+                                        </div>
+                                        <button type="button" class="info-box__close" aria-label="정보 닫기"></button>
+                                    </div>
+                                    <div class="info-box__body">
+                                        <!-- <div class="info-box__item">
+                                            <span class="info-box__label">설비용량<small>(신재생 제외)</small></span>
+                                            <span class="info-box__value">718.4<small>MW</small></span>
+                                        </div>
+                                        <div class="info-box__item">
+                                            <span class="info-box__label">발전연료</span>
+                                            <span class="info-box__value">LNG,태양광</span>
+                                        </div> -->
+                                        <div class="info-box__item">
+                                            <span class="info-box__label">추진단계</span>
+                                            <span class="info-box__value">미구축</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <svg class="line-layer" id="lineLayer" aria-hidden="true"></svg>
+        <div class="info-layer" id="infoLayer"></div>
+    </div>
+</section>
 
-			<div class="map-overlay">
-				<!-- 샘플 좌표: 실제 지도 기준으로 수정 -->
-				<div class="hotspot" style="--x: 24%;--y: 28%;" data-name="태안발전본부">
-					<button type="button" class="pin" aria-label="태안발전본부 정보 열기"></button>
-					<span class="pin-label">태안발전본부</span>
-					<span class="info-line"></span>
-					<div class="info-box" role="dialog" aria-label="태안발전본부 정보">
-						<div class="info-box__panel">
-							<div class="info-box__content">
-								
-								<!-- 좌측 이미지 -->
-								<div class="info-box__media">
-									<img src="/resources/images/group/plant-ta.png" alt="태안발전본부 이미지">
-								</div>
-
-								<!-- 우측 텍스트 -->
-								<div class="info-box__main">
-									<div class="info-box__header">
-										<div class="info-box__title-wrap">
-                                        	<a href="./index.html">
-											<h3 class="info-box__title">태안발전본부 <small>(9, 10호기)</small> <span class="icon-url" title="태안 iPOS 이동"></span></h3>
-											<p class="info-box__sub">최첨단 자동제어설비 발전소</p>
-											</a>
-										</div>
-										<button type="button" class="info-box__close" aria-label="정보 닫기"></button>
-									</div>
-									<div class="info-box__body">
-										<div class="info-box__item">
-											<span class="info-box__label">설비용량</span>
-											<span class="info-box__value">각 1,050<small>MW</small></span>
-										</div>
-										<div class="info-box__item">
-											<span class="info-box__label">추진단계</span>
-											<span class="info-box__value">2026년 오픈예정</span>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="hotspot" style="--x: 34%;--y: 22%;" data-name="평택발전본부">
-					<button type="button" class="pin" aria-label="평택발전본부 정보 열기"></button>
-					<span class="pin-label">평택발전본부</span>
-					<span class="info-line"></span>
-					<div class="info-box" role="dialog" aria-label="평택발전본부 정보">
-						<div class="info-box__panel">
-							<div class="info-box__content">
-								
-								<!-- 좌측 이미지 -->
-								<div class="info-box__media">
-									<img src="/resources/images/group/plant-pt.png" alt="평택발전본부 이미지">
-								</div>
-
-								<!-- 우측 텍스트 -->
-								<div class="info-box__main">
-									<div class="info-box__header">
-										<div class="info-box__title-wrap">
-                                        	<a href="javascript:" onclick="fnGoIndex('5000')">
-											<h3 class="info-box__title">평택발전본부 <small>복합 #2</small> <span class="icon-url" title="평택 iPOS 이동"></span></h3>
-											<p class="info-box__sub">천연가스 발전소</p>
-											</a>
-										</div>
-										<button type="button" class="info-box__close" aria-label="정보 닫기"></button>
-									</div>
-									<div class="info-box__body">
-										<div class="info-box__item">
-											<span class="info-box__label">설비용량</span>
-											<span class="info-box__value">868.5<small>MW</small></span>
-										</div>
-										<div class="info-box__item">
-											<span class="info-box__label">추진단계</span>
-											<span class="info-box__value">구축완료</span>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="hotspot" style="--x: 30%;--y: 10%;" data-name="김포발전본부">
-					<button type="button" class="pin disabled" aria-label="김포발전본부 정보 열기"></button>
-					<span class="pin-label">김포발전본부</span>
-					<span class="info-line"></span>
-					<div class="info-box" role="dialog" aria-label="김포발전본부 정보">
-						<div class="info-box__panel">
-							<div class="info-box__content">
-								
-								<!-- 좌측 이미지 -->
-								<div class="info-box__media">
-									<img src="/resources/images/group/plant-sample.png" alt="김포발전본부 이미지">
-								</div>
-
-								<!-- 우측 텍스트 -->
-								<div class="info-box__main">
-									<div class="info-box__header">
-										<div class="info-box__title-wrap">
-											<h3 class="info-box__title">김포발전본부</h3>
-											<p class="info-box__sub">열병합발전소</p>
-										</div>
-										<button type="button" class="info-box__close" aria-label="정보 닫기"></button>
-									</div>
-									<div class="info-box__body">
-										<div class="info-box__item">
-											<span class="info-box__label">설비용량</span>
-											<span class="info-box__value">510<small>MW</small>(GT 357<small>MW</small> / ST 161<small>MW</small>), <br>열 281<small>Gcal/h</small></span>
-										</div>
-										<!-- <div class="info-box__item">
-											<span class="info-box__label">발전연료</span>
-											<span class="info-box__value">LNG</span>
-										</div> -->
-										<div class="info-box__item">
-											<span class="info-box__label">추진단계</span>
-											<span class="info-box__value">구축대기</span>
-										</div>
-									</div>
-								</div>
-							</div>
-
-						</div>
-					</div>
-				</div>
-
-				<div class="hotspot is-unbuilt" style="--x: 32%;--y: 16%;" data-name="서인천발전본부">
-					<button type="button" class="pin disabled" aria-label="서인천발전본부 정보 열기"></button>
-					<span class="pin-label">서인천발전본부 - 미구축</span>
-					<span class="info-line"></span>
-					<div class="info-box" role="dialog" aria-label="서인천발전본부 정보">
-						<div class="info-box__panel">
-							<div class="info-box__content">
-								
-								<!-- 좌측 이미지 -->
-								<div class="info-box__media">
-									<img src="/resources/images/group/plant-sample.png" alt="서인천발전본부 이미지">
-								</div>
-
-								<!-- 우측 텍스트 -->
-								<div class="info-box__main">
-									<div class="info-box__header">
-										<div class="info-box__title-wrap">
-											<h3 class="info-box__title">서인천발전본부</h3>
-											<p class="info-box__sub">‘녹색기업’인증 친환경발전소</p>
-										</div>
-										<button type="button" class="info-box__close" aria-label="정보 닫기"></button>
-									</div>
-									<div class="info-box__body">
-										<!-- <div class="info-box__item">
-											<span class="info-box__label">설비용량<small>(신재생 제외)</small></span>
-											<span class="info-box__value">1,861.8 (1,800)<small>MW</small></span>
-										</div>
-										<div class="info-box__item">
-											<span class="info-box__label">발전연료</span>
-											<span class="info-box__value">LNG,연료전지,태양광</span>
-										</div> -->
-										<div class="info-box__item">
-											<span class="info-box__label">추진단계</span>
-											<span class="info-box__value">미구축</span>
-										</div>
-									</div>
-								</div>
-							</div>
-
-						</div>
-					</div>
-				</div>
-
-				<div class="hotspot is-unbuilt" style="--x: 30%;--y: 44%;" data-name="군산발전본부">
-					<button type="button" class="pin disabled" aria-label="군산발전본부 정보 열기"></button>
-					<span class="pin-label">군산발전본부 - 미구축</span>
-					<span class="info-line"></span>
-					<div class="info-box" role="dialog" aria-label="군산발전본부 정보">
-						<div class="info-box__panel">
-							<div class="info-box__content">
-								
-								<!-- 좌측 이미지 -->
-								<div class="info-box__media">
-									<img src="/resources/images/group/plant-sample.png" alt="군산발전본부 이미지">
-								</div>
-
-								<!-- 우측 텍스트 -->
-								<div class="info-box__main">
-									<div class="info-box__header">
-										<div class="info-box__title-wrap">
-											<h3 class="info-box__title">군산발전본부</h3>
-											<p class="info-box__sub">최신형 발전설비를 갖춘 친환경 복합발전소</p>
-										</div>
-										<button type="button" class="info-box__close" aria-label="정보 닫기"></button>
-									</div>
-									<div class="info-box__body">
-										<!-- <div class="info-box__item">
-											<span class="info-box__label">설비용량<small>(신재생 제외)</small></span>
-											<span class="info-box__value">718.4<small>MW</small></span>
-										</div>
-										<div class="info-box__item">
-											<span class="info-box__label">발전연료</span>
-											<span class="info-box__value">LNG,태양광</span>
-										</div> -->
-										<div class="info-box__item">
-											<span class="info-box__label">추진단계</span>
-											<span class="info-box__value">미구축</span>
-										</div>
-									</div>
-								</div>
-							</div>
-
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<script src="/resources/js/select-group.js"></script>
+<script src="/resources/js/select-group.js"></script>
 
 </body>
 
