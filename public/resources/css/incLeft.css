@@ -128,7 +128,8 @@
 		box-shadow: var(--box-shadow-1);
 	}
 	
-	.left-box:not(.expand) .layout-toggle:hover > span::before {
+	.left-box:not(.expand) .layout-toggle:hover > span::before,
+	.left-box:not(.expand) .menu-box.active::before {
 		content: '';
 		position: absolute;
 		top: auto;
@@ -269,10 +270,6 @@
 	background-image: url(/resources/images/icons/keyboard_arrow_down-white.svg);
 }
 
-.left-box.expand .gnb {
-	background-color: var(--bg-brand-darkest);
-}
-
 .left-box.expand .gnb-main>li {
 	border-bottom: 1px solid var(--lighter10);
 }
@@ -378,21 +375,6 @@
 		background-color: var(--bg-default-default);
 		border-radius: 1rem;
 		box-shadow: var(--box-shadow-1);
-	}
-	.left-box:not(.expand) .menu-box.active::before {
-		content: '';
-		position: absolute;
-		top: auto;
-		left: 0;
-		margin-top: 5px;
-		margin-left: -5px;
-
-		display: inline-block;
-		width: 0;
-		height: 0;
-		border-top: 7px solid transparent;
-		border-bottom: 7px solid transparent;
-		border-right: 7px solid var(--bg-default-default);
 	}
 	.left-box:not(.expand) .menu-box > strong {
         margin-bottom: .5rem;
