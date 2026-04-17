@@ -141,6 +141,10 @@
 }
 
 :root {
+	--z-header-header-box: 99;
+	--z-left-nav: 100;
+	--z-left-tooltip: 200;
+
 	--header-height: 80px;
 	--header-height-md: 48px;
 	--unity-height: 48px;

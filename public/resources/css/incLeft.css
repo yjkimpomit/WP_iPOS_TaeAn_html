@@ -14,7 +14,8 @@
 .left-box {
 	position: fixed;
 	top: 0;
-	z-index: 10110;
+	/* z-index: 10110; */
+	z-index: var(--z-left-nav);
 }
 .left-box > * {
 	flex-shrink: 0;
@@ -33,7 +34,7 @@
 	flex-grow: 1;
 	display: flex;
 	flex-direction: column;
-	overflow: visible;
+	overflow-x: visible;
 	overflow-y: auto;
 }
 
@@ -51,6 +52,7 @@
 @media (min-width: 768px) {
 	.left-box {
 		width: var(--gnb-width);
+		height: 100vh;
 		height: 100dvh;
 		display: flex;
 		flex-direction: column;
@@ -241,7 +243,7 @@
 	display: flex;
 	align-items: center;
 	
-	position: inherit;
+	position: relative;
 	top: inherit;
 	left: inherit;
 	text-indent: inherit;
@@ -365,7 +367,8 @@
 		position: absolute;
 		top: 0;
 		left: 3rem;
-		z-index: 99999;
+		/* z-index: 99999; */
+		z-index: var(--z-left-tooltip);
 
 		display: block;
 		width: auto;
@@ -427,55 +430,55 @@
 	background-position-y: -52px;
 }
 
-.gnb .d1[data-class*="unity-model"] {
+.gnb .d1[data-class="unity-model"] {
 	background-image: url("/resources/images/icons/gnb-unity.svg");
 }
 
-.gnb .d1[data-class*="dashboard"] {
+.gnb .d1[data-class="dashboard"] {
 	background-image: url("/resources/images/icons/gnb-space_dashboard.svg");
 }
 
-.gnb .d1[data-class*="daily-safety"] {
+.gnb .d1[data-class="daily-safety"] {
 	background-image: url("/resources/images/icons/gnb-shield_person.svg");
 }
 
-.gnb .d1[data-class*="facility"] {
+.gnb .d1[data-class="facility"] {
 	background-image: url("/resources/images/icons/gnb-manage_search.svg");
 }
 
-.gnb .d1[data-class*="geni"] {
+.gnb .d1[data-class="geni"] {
 	background-image: url("/resources/images/icons/gnb-category.svg");
 }
 
-.gnb .d1[data-class*="multiview"] {
+.gnb .d1[data-class="multiview"] {
 	background-image: url("/resources/images/icons/gnb-multiview.svg");
 }
 
-.gnb .d1[data-class*="panorama"] {
+.gnb .d1[data-class="panorama"] {
 	background-image: url("/resources/images/icons/gnb-vrpano.svg");
 }
 
-.gnb .d1[data-class*="alarm"] {
+.gnb .d1[data-class="alarm"] {
 	background-image: url("/resources/images/icons/gnb-notifications.svg");
 }
 
-.gnb .d1[data-class*="qrcode"] {
+.gnb .d1[data-class="qrcode"] {
 	background-image: url("/resources/images/icons/gnb-qr_code.svg");
 }
 
-.gnb .d1[data-class*="cctv"] {
+.gnb .d1[data-class="cctv"] {
 	background-image: url("/resources/images/icons/gnb-speed_camera.svg");
 }
 
-.gnb .d1[data-class*="outbound"] {
+.gnb .d1[data-class="outbound"] {
 	background-image: url("/resources/images/icons/gnb-outbound.svg");
 }
 
-.gnb .d1[data-class*="drawing"] {
+.gnb .d1[data-class="drawing"] {
 	background-image: url("/resources/images/icons/gnb-folder_data.svg");
 }
 
-.gnb .d1[data-class*="service"] {
+.gnb .d1[data-class="service"] {
 	background-image: url("/resources/images/icons/gnb-campaign.svg");
 }
 
@@ -486,7 +489,7 @@
 .gnb .menu-item {
 	position: relative;
 }
-.gnb .menu-item:has(.d1[data-class*="alarm"]) .counter {
+.gnb .menu-item:has(.d1[data-class="alarm"]) .counter {
 	position: absolute;
 	top: 4px;
 	left: 26px;
@@ -504,19 +507,19 @@
 }
 
 /* 하단 아이콘 */
-.gnb .d1[data-class*="operation-info"] {
+.gnb .d1[data-class="operation-info"] {
 	height: 48px;
 	background-image: url("/resources/images/icons/gnb-swap_driving_apps_wheel.svg");
 }
-.gnb .d1[data-class*="close-tabs"] {
+.gnb .d1[data-class="close-tabs"] {
 	height: 48px;
 	background-image: url("/resources/images/icons/gnb-tab_close_all.svg");
 }
-.gnb .d1[data-class*="minimize-tabs"] {
+.gnb .d1[data-class="minimize-tabs"] {
 	height: 48px;
 	background-image: url("/resources/images/icons/gnb-tab_minimize_all.svg");
 }
-.gnb .d1[data-class*="visitors"] {
+.gnb .d1[data-class="visitors"] {
 	background-image: url("/resources/images/icons/gnb-crowdsource.svg");
 }
 
@@ -593,21 +596,80 @@
 		font-size: 1rem;
 	}
 	
-	.left-box:not(.expand) .menu-box.active:has(.counter-box) {
-		top: inherit !important;
+	.left-box:not(.expand) .menu-box.active.has-counter-box {
+		top: auto;
 		bottom: 0;
 		margin-bottom: .5rem;
 	}
-	.left-box:not(.expand) .menu-box.active:has(.counter-box)::before {
+	.left-box:not(.expand) .menu-box.active.has-counter-box::before {
 		top: 76%;
 	}
 }
 
-.left-box.expand .gnb .d1[data-class*="visitors"],
-.left-box.expand .gnb .d1[data-class*="visitors"]:hover,
-.left-box.expand .gnb .d1[data-class*="visitors"].active {
+.left-box.expand .gnb .d1[data-class="visitors"],
+.left-box.expand .gnb .d1[data-class="visitors"]:hover,
+.left-box.expand .gnb .d1[data-class="visitors"].active {
 	background-image: none;
 	padding: 1rem;
 	height: auto;
 }
+
+/* A11y: 키보드 포커스 표시 */
+.left-box .layout-toggle:focus-visible,
+.left-box .gnb .menu-link:focus-visible,
+.left-box .gnb .open-icon:focus-visible {
+	outline: 2px solid var(--border-brand-primary);
+	outline-offset: 2px;
+	border-radius: .5rem;
+}
+
+/* 2026-04-17 기존 hover 기반 tooltip 동작을 focus에도 동일 적용 */
+@media (min-width: 768px) {
+	.left-box:not(.expand) .layout-toggle:focus-visible > span,
+	.left-box:not(.expand) .layout-toggle:focus > span {
+		position: absolute;
+		left: 3rem;
+		z-index: 1;
+		display: block;
+		width: auto;
+		padding: 6px 12px;
+		font-weight: 500;
+		white-space: nowrap;
+		opacity: 1;
+		background-color: var(--bg-default-default);
+		border-radius: 1rem;
+		box-shadow: var(--box-shadow-1);
+	}
+
+	.left-box:not(.expand) .layout-toggle:focus-visible > span::before,
+	.left-box:not(.expand) .layout-toggle:focus > span::before {
+		content: '';
+		position: absolute;
+		left: 0;
+		margin-top: 5px;
+		margin-left: -5px;
+		display: inline-block;
+		width: 0;
+		height: 0;
+		border-top: 7px solid transparent;
+		border-bottom: 7px solid transparent;
+		border-right: 7px solid var(--bg-default-default);
+	}
+
+	/* 메뉴 박스도 hover뿐 아니라 focus-within 시 표시 */
+	.left-box:not(.expand) li:focus-within > .menu-box {
+		position: absolute;
+		top: 0;
+		left: 3rem;
+		z-index: 99999;
+		display: block;
+		width: auto;
+		padding: .5rem 1.25rem;
+		white-space: nowrap;
+		background-color: var(--bg-default-default);
+		border-radius: 1rem;
+		box-shadow: var(--box-shadow-1);
+	}
+}
+
 
