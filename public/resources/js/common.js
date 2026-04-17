@@ -405,7 +405,7 @@ $(document).ready(function () {
 
         // 서브메뉴 닫힌채 로드
         $('#menuList li .menu-box:has(.d2)').addClass('hide');
-        $('.open-icon').addClass('close').attr('aria-expanded', 'false');
+        $('.open-icon').addClass('is-collapsed').attr('aria-expanded', 'false');
     }
 
     // 전역에서 사용 가능하도록 export
@@ -479,12 +479,12 @@ $(document).ready(function () {
                 if ($menuBox.hasClass('hide')) {
                     // 닫힌 상태 → 열기
                     $menuBox.removeClass('hide');
-                    $icon.removeClass('close').attr('aria-expanded', 'true');
+                    $icon.removeClass('is-collapsed').attr('aria-expanded', 'true');
                 }
                 else {
                     // 열린 상태 → 닫기
                     $menuBox.addClass('hide');
-                    $icon.addClass('close').attr('aria-expanded', 'false');
+                    $icon.addClass('is-collapsed').attr('aria-expanded', 'false');
                 }
             }
         });

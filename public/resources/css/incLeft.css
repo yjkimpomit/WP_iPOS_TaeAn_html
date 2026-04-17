@@ -266,7 +266,7 @@
 	cursor: pointer;
 }
 
-.left-box.expand .open-icon.close {
+.left-box.expand .open-icon.is-collapsed {
 	background-image: url(/resources/images/icons/keyboard_arrow_down-white.svg);
 }
 
