@@ -351,7 +351,34 @@ $(document).ready(function () {
             }, 100);
         }
 
-    });
+	});
+	
+	// collapsed 상태에서 탭 이동 시 하위메뉴 열기
+	$(document).on('focusin', '#menuList .menu-item, #menuList .menu-box', function () {
+		var $leftBox = $('.left-box');
+
+		if (!$leftBox.hasClass('expand')) {
+			var $currentLi = $(this).closest('li');
+			var $menuBox = $currentLi.children('.menu-box');
+
+			resetHoverState();
+			$menuBox.addClass('active');
+		}
+	});
+
+	// collapsed 상태에서 포커스가 메뉴 영역 밖으로 나가면 닫기
+	$(document).on('focusout', '#menuList li', function () {
+		var $leftBox = $('.left-box');
+		var $li = $(this);
+
+		if (!$leftBox.hasClass('expand')) {
+			setTimeout(function () {
+				if (!$li.find(':focus').length) {
+					$li.children('.menu-box').removeClass('active');
+				}
+			}, 0);
+		}
+	});
 
 
     /* =========================
@@ -379,32 +406,36 @@ $(document).ready(function () {
     /* =========================
        depth 메뉴 토글 (expand 상태 전용)
     ========================= */
-    $('#menuList li').each(function () {
+    $(document).on('click', '#menuList .open-icon', function (e) {
+		e.preventDefault();
+		e.stopPropagation();
 
-        var $li = $(this);
-        var $menuItem = $li.find('.menu-item:has(.open-icon)');
-        var $menuBox = $li.find('.menu-box');
-        var $icon = $menuItem.find('.open-icon');
+		var $icon = $(this);
+		var $leftBox = $('.left-box');
+		var $menuItem = $icon.closest('.menu-item');
+		var $menuBox = $menuItem.next('.menu-box');
 
-        $menuItem.on('click', function () {
+		// expand 상태에서만 열고 닫기
+		if (!$leftBox.hasClass('expand')) return;
 
-            if ($leftBox.hasClass('expand')) {
+		// 같은 레벨 다른 메뉴 닫기 원하면 사용
+		$menuItem.parent().siblings().find('> .menu-box').addClass('hide');
+		$menuItem.parent().siblings().find('> .menu-item .open-icon')
+			.addClass('is-collapsed')
+			.attr('aria-expanded', 'false');
 
-                // depth 토글 시 hover 상태 제거
-                resetHoverState();
+		var isOpen = $icon.attr('aria-expanded') === 'true';
 
-                if ($menuBox.hasClass('hide')) {
-                    // 닫힌 상태 → 열기
-                    $menuBox.removeClass('hide');
-                    $icon.removeClass('is-collapsed').attr('aria-expanded', 'true');
-                } else {
-                    // 열린 상태 → 닫기
-                    $menuBox.addClass('hide');
-                    $icon.addClass('is-collapsed').attr('aria-expanded', 'false');
-                }
-            }
-        });
-    });
+		if (isOpen) {
+			$menuBox.addClass('hide');
+			$icon.addClass('is-collapsed').attr('aria-expanded', 'false');
+		} else {
+			$menuBox.removeClass('hide');
+			$icon.removeClass('is-collapsed').attr('aria-expanded', 'true');
+
+			$menuBox.find('.menu-link').first().focus();
+		}
+	});
 
     // 사이드 패널 열고닫기
     $('.js-panel-toggle').click(function () {
@@ -1190,6 +1221,7 @@ document.addEventListener('DOMContentLoaded', initHeader);
 
 /* unity 보기 */
 function fnAndroidShowUnity() {
+	alert('앱용 메뉴');
     if (window.Android) {
         window.Android.showUnityActivity(eqOrgNo, hoki);
     }

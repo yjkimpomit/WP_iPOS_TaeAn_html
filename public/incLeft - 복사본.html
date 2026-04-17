@@ -14,11 +14,11 @@
 	});
 </script>
 
-<button type="button" class="layout-toggle header-icon" onclick="toggleHeader();">
-	<span>실시간정보</span>
+<button class="layout-toggle header-icon" type="button" onclick="toggleHeader();">
+	<span>운전정보 열기</span>
 </button>
 
-<button type="button" id="toggle-button" class="layout-toggle menu-icon" onclick="globalMenu();">
+<button id="toggle-button" class="layout-toggle menu-icon" type="button" onclick="globalMenu();">
 	<span>메뉴열기</span>
 </button>
 
@@ -43,7 +43,7 @@
 		<li>
 			<div class="menu-item">
 				<div class="menu-link d1" data-class="daily-safety"><span class="menu-text">일일안전현황</span></div>
-				<button type="button" class="open-icon" aria-expanded="false" aria-controls="menu-daily-safety" aria-label="일일안전현황 하위메뉴 열기"></button>
+				<button type="button" class="open-icon" aria-expanded="false" aria-controls="menu-daily-safety" aria-label="하위메뉴 열기"></button>
 			</div>
 			<div class="menu-box" id="menu-daily-safety">
 				<strong>일일안전현황</strong>
@@ -82,7 +82,7 @@
 		<li>
 			<div class="menu-item">
 				<div class="menu-link d1" data-class="geni"><span class="menu-text">GENi</span></div>
-				<button type="button" class="open-icon" aria-expanded="false" aria-controls="menu-geni" aria-label="GENi 하위메뉴 열기"></button>
+				<button type="button" class="open-icon" aria-expanded="false" aria-controls="menu-geni" aria-label="하위메뉴 열기"></button>
 			</div>
 			<div class="menu-box" id="menu-geni">
 				<strong>GENi</strong>
@@ -184,7 +184,7 @@
         <li>
             <div class="menu-item">
                 <div class="menu-link d1" data-class="drawing"><span class="menu-text">설비검색</span></div>
-				<button type="button" class="open-icon" aria-expanded="false" aria-controls="menu-drawing" aria-label="설비검색 하위메뉴 열기"></button>
+				<button type="button" class="open-icon" aria-expanded="false" aria-controls="menu-drawing" aria-label="하위메뉴 열기"></button>
             </div>
             <div class="menu-box" id="menu-drawing">
 				<strong>설비검색</strong>
@@ -215,7 +215,7 @@
 					<span class="icon-new">N</span>
 					<!--  새로운 글이 있는 경우에만 표시 end -->
 				</div>
-				<button type="button" class="open-icon" aria-expanded="false" aria-controls="menu-service" aria-label="서비스정보 하위메뉴 열기"></button>
+				<button type="button" class="open-icon" aria-expanded="false" aria-controls="menu-service" aria-label="하위메뉴 열기"></button>
 			</div>
 			<div class="menu-box" id="menu-service">
 				<strong>서비스정보</strong>
@@ -304,9 +304,8 @@
 		<li class="nav-counter">
 			<div class="menu-item">
 				<div class="menu-link d1" data-class="visitors"><span class="visually-hidden">방문자정보</span></div>
-                <button type="button" class="open-icon" aria-expanded="false" aria-controls="menu-visitors" aria-label="방문자정보 하위메뉴 열기"></button>
 			</div>
-			<div class="menu-box has-counter-box" id="menu-visitors">
+			<div class="menu-box has-counter-box">
 				<div class="counter-title">
 					<strong>방문자정보</strong>
 					<button type="button" onclick="fnOpenPopup('./modal14-visitors.html', $(this))" class="btn btn-primary btn-sm btn-log" data-title="방문자정보">조회</button>

@@ -547,6 +547,7 @@
 
 /* Component Tokens */
 :root {
+	--focus-ring: rgba(var(--primary-rgb), 0.7);
 	/* select-group */
 	--group-text: var(--text-base);
 	--logo-text: var(--text-base);
@@ -621,13 +622,13 @@
 	--grid-gap: 16px;
 	--grid-auto-min: 160px;
 	
-	--grid-item-bg: var(--surface-base);
-	--grid-item-border: var(--border-subtle);
+	--grid-item-bg: var(--surface-neutral-base);
+	--grid-item-border: var(--border-neutral-subtle);
 	--grid-item-padding: 16px;
 	--grid-item-radius: 8px;
 	
-	--form-block-bg: var(--surface-base);
-	--form-block-border: var(--border-subtle);
+	--form-block-bg: var(--surface-neutral-base);
+	--form-block-border: var(--border-neutral-subtle);
 }
 
 @media (min-width: 768px) {

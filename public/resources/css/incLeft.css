@@ -161,6 +161,9 @@
 }
 
 /* ---------------------------------------- */
+.left-box .menu-link[type='button'] {
+	background-color: transparent;
+}
 .left-box .gnb .depth-1 {
 	display: flex;
 	flex-direction: column;
@@ -613,62 +616,20 @@
 	height: auto;
 }
 
-/* A11y: 키보드 포커스 표시 */
-.left-box .layout-toggle:focus-visible,
-.left-box .gnb .menu-link:focus-visible,
-.left-box .gnb .open-icon:focus-visible {
-	outline: 2px solid var(--border-brand-primary);
-	outline-offset: 2px;
+/* 키보드 포커스 표시 */
+:focus {
+	outline: none;
+}
+:focus-visible {
+	outline: 2px solid var(--focus-ring);
+	outline-offset: 4px;
 	border-radius: .5rem;
 }
-
-/* 2026-04-17 기존 hover 기반 tooltip 동작을 focus에도 동일 적용 */
-@media (min-width: 768px) {
-	.left-box:not(.expand) .layout-toggle:focus-visible > span,
-	.left-box:not(.expand) .layout-toggle:focus > span {
-		position: absolute;
-		left: 3rem;
-		z-index: 1;
-		display: block;
-		width: auto;
-		padding: 6px 12px;
-		font-weight: 500;
-		white-space: nowrap;
-		opacity: 1;
-		background-color: var(--bg-default-default);
-		border-radius: 1rem;
-		box-shadow: var(--box-shadow-1);
-	}
-
-	.left-box:not(.expand) .layout-toggle:focus-visible > span::before,
-	.left-box:not(.expand) .layout-toggle:focus > span::before {
-		content: '';
-		position: absolute;
-		left: 0;
-		margin-top: 5px;
-		margin-left: -5px;
-		display: inline-block;
-		width: 0;
-		height: 0;
-		border-top: 7px solid transparent;
-		border-bottom: 7px solid transparent;
-		border-right: 7px solid var(--bg-default-default);
-	}
-
-	/* 메뉴 박스도 hover뿐 아니라 focus-within 시 표시 */
-	.left-box:not(.expand) li:focus-within > .menu-box {
-		position: absolute;
-		top: 0;
-		left: 3rem;
-		z-index: 99999;
-		display: block;
-		width: auto;
-		padding: .5rem 1.25rem;
-		white-space: nowrap;
-		background-color: var(--bg-default-default);
-		border-radius: 1rem;
-		box-shadow: var(--box-shadow-1);
-	}
+.button:focus-visible {
+	outline-color: var(--focus-ring);
+}
+.input:focus-visible {
+	outline-color: var(--focus-ring);
 }
 
 
