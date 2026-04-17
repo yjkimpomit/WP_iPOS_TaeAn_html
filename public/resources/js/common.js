@@ -24,10 +24,11 @@ var WINBOX_GROUP = {
     [화면크기 767px 까지] - mobile
     >> winBox {top: 48, left: 0
 
-    [화면크기 768px ~ 1537px 까지] - tablet
+    [화면크기 768px ~ 1680px 까지] - tablet
+    >> 변경 2026-04-15 : 일일안전현황 개체수 늘어남에 따라 1536 > 1680 으로 변경
     >> winBox {top: 48, left: 48
 
-    [화면크기 1536px 이상] - pc
+    [화면크기 1680px 이상] - pc
     >> body에 .header-open 있으면, pc: {top: 80, left: 48
     >> body에 .header-open 없으면, pc: {top: 0, left: 48
     */
@@ -47,11 +48,9 @@ function fnGetDeviceWidth() {
 
     if (width <= 767) {
         return WINBOX_GROUP.mobile;
-    }
-    else if (width >= 768 && width <= 1537) {
+    } else if (width >= 768 && width <= 1679) {
         return WINBOX_GROUP.tablet;
-    }
-    else {
+    } else {
         return WINBOX_GROUP.pc;
     }
 }
@@ -60,11 +59,9 @@ function fnGetDeviceWidth() {
 function getDeviceType() {
     if (checkDevice === "mobile") {
         return WINBOX_GROUP.mobile;
-    }
-    else if (checkDevice === "tablet") {
+    } else if (checkDevice === "tablet") {
         return WINBOX_GROUP.tablet;
-    }
-    else {
+    } else {
         return fnGetDeviceWidth();
     }
 }
@@ -119,47 +116,10 @@ function fnOpenPopup(url, target) {
         },
         onmaximize: function () {
             if (this.min) return;
-
             fnSetWinboxTop(this, winboxIsOpen);
         },
         onclose: function (force) {
             //console.table("### onClose ### " + title);
-        }
-    }));
-
-    targetWinbox.maximize();
-
-    /* 브라우저를 조절할때 처리 */
-    window.addEventListener("resize", () => {
-        if (!targetWinbox || !targetWinbox.g) return;
-        if (!targetWinbox.min) {
-            targetWinbox.restore();
-            targetWinbox.maximize();
-        }
-    });
-}
-
-/**
- * 전체화면으로 팝업창 열기
- * @param url
- * @param target
- */
-function fnOpenPopupFullscreen(url, target) {
-    var title = target.data("title");
-    var base = getWinboxGroupOptions();
-
-    // Update global top/height
-    winboxTop = base.top;
-    winboxHeight = base.height;
-
-    targetWinbox = new WinBox(title, Object.assign({}, base, {
-        groupId: "winMain-group", class: ["no-full"], url: url, onCreate: function (options) {
-            options.autoResize = true;
-        },
-        onmaximize: function () {
-            if (this.min) return;
-
-            fnSetWinboxTop(this, winboxIsOpen);
         }
     }));
 
@@ -187,50 +147,11 @@ function fnOpenPopupStandard(url, title) {
     // 열려져 있는 모든 창 최소화
     fnAllMinParentWinbox();
 
-    /* iframe으로 팝업이므로 상위의 checkDevice 정보를 가지고 옴 */
-    checkDevice = window.parent.checkDevice;
+    // 상위의 팝업창 스크립트 호출
+    var target = $('<input type="hidden" id="_openLogSheetPopup" data-title="' + title + '"/>');
+    window.parent.fnOpenPopup(url, target);
 
-    // 상위에 팝업창 생성
-    var base = getWinboxGroupOptions();
-
-    // Update global top/height
-    winboxTop = base.top;
-    winboxHeight = base.height;
-    var topWindow = window.top;
-
-    console.log("########### parent val : " + window.parent.winboxIsOpen);
-
-    targetWinbox = new topWindow.WinBox(title, Object.assign({}, base, {
-        groupId: "winMain-group"
-        , root: topWindow.document.body
-        , class: ["no-full"]
-        , url: url, onCreate: function (options) {
-            options.autoResize = true;
-        },
-        onmaximize: function () {
-            if (this.min) return;
-
-            fnSetWinboxTop(this, window.parent.winboxIsOpen);
-        },
-        onclose: function (force) {
-            // Set 3d model flag
-            var iframe = $("#_MULTI_UNITY_VIEW iframe")[0];
-            if (iframe && iframe.contentWindow) {
-                iframe.contentWindow.fnCloseUnity();
-            }
-        }
-    }));
-
-    targetWinbox.maximize();
-
-    /* 브라우저를 조절할때 처리 */
-    window.addEventListener("resize", () => {
-        if (!targetWinbox || !targetWinbox.g) return;
-        if (!targetWinbox.min) {
-            targetWinbox.restore();
-            targetWinbox.maximize();
-        }
-    });
+    target.remove();
 }
 
 /**
@@ -257,8 +178,7 @@ function fnOpenPopupFacilityMenu(url, target) {
                 fnSetWinboxTop(this, winboxIsOpen);
             }
         }));
-    }
-    else if (checkDevice === "tablet") {
+    } else if (checkDevice === "tablet") {
         targetWinbox = new WinBox(title, Object.assign({}, base, {
             groupId: "winMain-group", class: ["no-full", "facility"], width: "560", height: "100%", url: url, onCreate: function (options) {
                 options.autoResize = true;
@@ -269,8 +189,7 @@ function fnOpenPopupFacilityMenu(url, target) {
                 fnSetWinboxTop(this, winboxIsOpen);
             }
         }));
-    }
-    else {
+    } else {
         targetWinbox = new WinBox(title, Object.assign({}, base, {
             groupId: "winMain-group", class: ["no-full", "facility"], width: "560", height: "100%", url: url, onCreate: function (options) {
                 options.autoResize = true;
@@ -337,8 +256,7 @@ function fnSetCommonBootstrapTab(target) {
         if (window.bootstrap && typeof window.bootstrap.Tab === 'function') {
             var bsTab = new bootstrap.Tab(el);
             bsTab.show();
-        }
-        else if (window.jQuery) {
+        } else if (window.jQuery) {
             // Bootstrap이 없더라도 최소한 ARIA/클래스 정리
             var $this = $(el);
             $('.nav-link').removeClass('active').attr('aria-selected', false);
@@ -392,8 +310,7 @@ $(document).ready(function () {
 
             // expand 시 hover 효과 제거
             $('#menuList .menu-box').removeClass('active');
-        }
-        else {
+        } else {
             $toggleBtn.find('span').text('메뉴 열기');
         }
 
@@ -480,8 +397,7 @@ $(document).ready(function () {
                     // 닫힌 상태 → 열기
                     $menuBox.removeClass('hide');
                     $icon.removeClass('is-collapsed').attr('aria-expanded', 'true');
-                }
-                else {
+                } else {
                     // 열린 상태 → 닫기
                     $menuBox.addClass('hide');
                     $icon.addClass('is-collapsed').attr('aria-expanded', 'false');
@@ -490,21 +406,21 @@ $(document).ready(function () {
         });
     });
 
-	// 사이드 패널 열고닫기
-	$('.js-panel-toggle').click(function () {
+    // 사이드 패널 열고닫기
+    $('.js-panel-toggle').click(function () {
 
-		var $btn = $(this);
-		var $panel = $btn.closest('.panel-box').find('.side-panel');
+        var $btn = $(this);
+        var $panel = $btn.closest('.panel-box').find('.side-panel');
 
-		$panel.toggleClass('is-open');
+        $panel.toggleClass('is-open');
 
-		if ($panel.hasClass('is-open')) {
-			$btn.find('span').text('좌측패널 닫기');
-		} else {
-			$btn.find('span').text('좌측패널 열기');
-		}
+        if ($panel.hasClass('is-open')) {
+            $btn.find('span').text('좌측패널 닫기');
+        } else {
+            $btn.find('span').text('좌측패널 열기');
+        }
 
-	});
+    });
 
 });
 
@@ -520,8 +436,7 @@ function operationInfo() {
         $('.operation-status').removeClass('visible');
         // .btn-status에서 img의 src와 alt 속성 초기화
         $('#operationStatus img').attr('src', '/resources/images/icons/icon-power.svg').attr('alt', '기타정보 열기');
-    }
-    else {
+    } else {
         $('.operation-status').addClass('visible');
         $('#operationStatus img').attr('src', '/resources/images/icons/icon-close-gray.svg').attr('alt', '기타정보 닫기');
     }
@@ -593,12 +508,10 @@ function fnWoDetailSearch() {
     if (startVal !== "" && endVal === "") {
         alert("조회 종료일을 선택해주세요");
         return false;
-    }
-    else if (startVal === "" && endVal !== "") {
+    } else if (startVal === "" && endVal !== "") {
         alert("조회 시작일을 선택해주세요");
         return false;
-    }
-    else if (startVal > endVal) {
+    } else if (startVal > endVal) {
         alert("조회 종료일을 시작일 이전으로 설정할 수 없습니다.\n조회 종료일을 다시 선택해주세요.");
         return false;
     }
@@ -644,16 +557,14 @@ function fnfacilityDetailPageMove(f) {
         }
 
         detailCurrentPage = detailCurrentPage - 1;
-    }
-    else if (f === 'N') {
+    } else if (f === 'N') {
         if (detailCurrentPage == totalPage) {
             alert("마지막 페이지입니다.");
             return false;
         }
 
         detailCurrentPage = detailCurrentPage + 1;
-    }
-    else if (f === 'M') {
+    } else if (f === 'M') {
         if (detailCurrentPage > totalPage) {
             alert("마지막 페이지는 " + totalPage + "입니다. 이 페이지를 초과할 수 없습니다.");
             $("#detailCurrentPage").val(totalPage);
@@ -676,16 +587,13 @@ function fnfacilityDetailPageMove(f) {
                 $("#loadingBar").css("display", "none");
             }
         });
-    }
-    else {
+    } else {
         flgNo = $("#chkItemVal").val();
         if (flg === "M1") {
             dataToSend = {locNo: flgNo}
-        }
-        else if (flg === "M2") {
+        } else if (flg === "M2") {
             dataToSend = {eqCategory: flgNo}
-        }
-        else if (flg === "M3") {
+        } else if (flg === "M3") {
             dataToSend = {eqType: flgNo}
         }
 
@@ -839,20 +747,15 @@ function searchItemPopup(target) {
 
     if (title == "요청자 검색") {
         $("#chkTitleTree").val("1");
-    }
-    else if (title == "감독자 검색") {
+    } else if (title == "감독자 검색") {
         $("#chkTitleTree").val("2");
-    }
-    else if (title == "점검자 검색") {
+    } else if (title == "점검자 검색") {
         $("#chkTitleTree").val("3");
-    }
-    else if (title == "발행자 검색") {
+    } else if (title == "발행자 검색") {
         $("#chkTitleTree").val("4");
-    }
-    else if (title == "회수자 검색") {
+    } else if (title == "회수자 검색") {
         $("#chkTitleTree").val("5");
-    }
-    else if (title == "설계자 검색") {
+    } else if (title == "설계자 검색") {
         $("#chkTitleTree").val("6");
     }
 
@@ -882,8 +785,7 @@ function userDetailList(id) {
     var checkbox = document.getElementById('id_code1');
     if (checkbox.checked) {
         chkVal = "N"
-    }
-    else {
+    } else {
         chkVal = "Y"
     }
     var deptNo = id;
@@ -1015,9 +917,9 @@ function fnAllMinParentWinbox() {
 }
 
 /* 멀티뷰 : 3D 이동 */
-function fnFacilityTo3D(modelType, equipNo) {
+function fnFacilityTo3D(modelType, modelId) {
     fnAllMinParentWinbox();
-    window.parent.parent.modelLoadToUnity(modelType, equipNo);
+    window.parent.parent.modelLoadToUnity(modelType, modelId);
 }
 
 /* 멀티뷰 : 파노라마 이동 */
@@ -1045,8 +947,7 @@ $(document).ready(function () {
         if (isTouchDevice) {
             //console.log("터치 디바이스입니다.");
             $('body').addClass('touch-device');
-        }
-        else {
+        } else {
             $('body').removeClass('touch-device');
         }
     }
@@ -1140,8 +1041,7 @@ function fnOpDataBoxToggle(targetId) {
 
     if ($(targetId).hasClass('active')) {
         $(targetId).removeClass('active');
-    }
-    else {
+    } else {
         $(targetId).addClass('active');
     }
 }
@@ -1240,65 +1140,24 @@ function fnSetWinboxTop(target, isOpen) {
 
     if (isOpen) {
         height = height - top;
+
         $(selector).css("top", top + "px");
-		$(selector).css("height", "calc(100% - 80px)");
+        $(selector).css("height", height + "px");
 
         if (winboxInstance && winboxInstance.move) {
-            //winboxInstance.resize();
             winboxInstance.move(left, top);
         }
-    }
-    else {
-        height = height + top;
-        top = 0;
-
+    } else {
         console.table("#### false height : " + height);
+        top = 0;
 
         $(selector).css("top", "0px");
         $(selector).css("height", "100%");
 
-        console.log("################## Winbox closed, resetting position to top:0, height:100%");
-
         if (winboxInstance && winboxInstance.move) {
-            winboxInstance.resize();
             winboxInstance.move(left, top);
+            winboxInstance.maximize();
         }
-    }
-}
-
-function fnSetWinboxMove(target) {
-    console.table("#### fnSetWindowboxMove ### ");
-
-    var winboxInstance = null;
-    var selector = target;
-
-    // target이 WinBox 객체인 경우 (문자열이 아닌 경우)
-    if (typeof target !== 'string') {
-        winboxInstance = target;
-        selector = "#" + winboxInstance.id;
-    }
-
-    var base = getWinboxGroupOptions();
-    var top = base.top;
-    var left = base.left;
-    var height = window.innerHeight;
-
-    console.table($(window).height());
-    console.table($(window).innerHeight());
-    console.table($(window).outerHeight());
-
-    if (winboxIsOpen) {
-        height = height - top;
-        console.table("#### true height : " + height);
-
-        $(selector).css("height", height + "px");
-    }
-    else {
-        height = height + top;
-
-        console.table("#### false height : " + height);
-
-        $(selector).css("height", height);
     }
 }
 
@@ -1337,13 +1196,15 @@ function fnAndroidShowUnity() {
 }
 
 /* 로그시트 QRCode scan */
-function requestQRScan() {
+function fnLogsheetOepn() {
     // Android Bridge 호출
     if (window.Android && window.Android.scanQRCode) {
         window.Android.scanQRCode();
-    }
-    else {
-        alert("실행할 수 없습니다.");
+    } else {
+        var target = $('<input type="hidden" id="_openLogSheetPopup" data-title="로그시트"/>');
+        fnOpenPopup('/logsheet/index.do', target);
+
+        target.remove();
     }
 }
 
@@ -1353,45 +1214,41 @@ function onScanFinished(data) {
 
     // page open
     var target = $('<input type="hidden" id="_openLogSheetPopup" data-title="로그시트"/>');
-    fnOpenPopup("/qrcode/index.do?data=" + encodeURIComponent(encodeURIComponent(data)), target);
+    fnOpenPopup("/logsheet/result.do?data=" + encodeURIComponent(encodeURIComponent(data)), target);
 
     target.remove();
 }
 
 /* 외부라이브러리 오버라이드용 스타일 헤더에 추가로드시 사용 */
-function loadCss(url){
-	if(!document.querySelector(`link[href="${url}"]`)){
-		const link = document.createElement("link");
-		link.rel = "stylesheet";
-		link.href = url;
-		document.head.appendChild(link);
-	}
+function loadCss(url) {
+    if (!document.querySelector(`link[href="${url}"]`)) {
+        const link = document.createElement("link");
+        link.rel = "stylesheet";
+        link.href = url;
+        document.head.appendChild(link);
+    }
 }
-// loadCss("/lib/jstree/jstree.css");
-// loadCss("/css/library/jstree.override.css");
-
 
 /* 테이블 내에 해당클래스(auto-size) 적용시 value 값에 따라 자동 너비 조정 */
 document.querySelectorAll(".form-control.auto-size").forEach(input => {
-	resizeInput(input);
+    resizeInput(input);
 
-	input.addEventListener("input", () => {
-		resizeInput(input);
-	});
+    input.addEventListener("input", () => {
+        resizeInput(input);
+    });
 });
 
 function resizeInput(input) {
-	input.size = Math.max(input.value.length + 1, 1);
+    input.size = Math.max(input.value.length + 1, 1);
 }
 
 /* view test model */
 function fnViewTestModel() {
     var testModelTarget = $("._TEST_MODEL_JS");
 
-    if(testModelTarget.hasClass("d-none")) {
+    if (testModelTarget.hasClass("d-none")) {
         testModelTarget.removeClass("d-none");
-    }
-    else {
+    } else {
         testModelTarget.addClass("d-none");
     }
 }
