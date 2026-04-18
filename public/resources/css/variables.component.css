@@ -112,14 +112,14 @@
 	--dashboard-output-item-bg: var(--surface-base);
 
 	/* dashboard-chart */
-	--dashboard-chart-bg: var(--surface-subtle);
 	--dashboard-chart-border: var(--border-subtle);
+	--dashboard-chart-bg: var(--surface-subtle);
 	
 	/* dashboard-card */
+	--dashboard-border: var(--border-subtle);
+	--dashboard-bg: var(--surface-subtle);
 	--dashboard-text: var(--text-base);
 	--dashboard-value-text: var(--text-muted);
-	--dashboard-card-bg: var(--surface-subtle);
-	--dashboard-card-border: var(--border-subtle);
 
 	/* dashboard--safety-group */
 	--safety-item-bg: var(--surface-base);
@@ -166,8 +166,9 @@
 	
 	--table-th-bg: var(--surface-muted);
 	--table-th-bg-subtle: var(--surface-subtle);
-	--table-th-border: var(--border-muted);
-	--table-th-border-strong: var(--border-strong);
+	
+	--table-top-border: var(--border-strong);
+	--table-border: var(--border-muted);
 
 	/* nav-tab */
 	--nav-underline-bg: var(--surface-subtle);
@@ -256,6 +257,7 @@
 	--form-bg-hover: var(--surface-primary-subtle);
 
 	/* winBox */
+	--winbox-text: var(--text-base);
 	--winbox-bg: var(--surface-base);
 	--winbox-bg-opacity: rgba(var(--white-rgb), 30%);
 	--winbox-border: var(--border-muted);

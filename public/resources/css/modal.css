@@ -569,32 +569,46 @@
 	background-color: var(--bg-default-default);
 }
 
-.dashboard-box .left,
-.dashboard-box .right {
+.dashboard {
 	display: flex;
 	flex-direction: column;
 	gap: 1rem;
 }
 
-.dashboard-box .table-responsive {
+.dashboard .table-responsive {
+	--table-top-border: var(--border-primary);
 	margin-bottom: 0;
-	border-top-width: 2px;
+}
+.dashboard--right .table-responsive {
+	--table-top-border: var(--border-info);
 }
 
-.dashboard-box .table.table-sm th,
-.dashboard-box .table.table-sm td {
+.dashboard .table.table-sm th,
+.dashboard .table.table-sm td {
 	height: 36px;
 }
-.dashboard-box th[data-field="환경"],
-.dashboard-box th[data-field="성능"]{
+.dashboard th[data-field="환경"],
+.dashboard th[data-field="성능"]{
+	--table-th-bg: var(--surface-primary-muted);
 	text-align: left;
 	padding: .25rem 1rem;
+}
+.dashboard th {
+	--table-th-bg: var(--surface-primary-subtle);
+}
+
+.dashboard--right th[data-field="환경"],
+.dashboard--right th[data-field="성능"] {
+	--table-th-bg: var(--surface-info-muted);
+}
+.dashboard--right th {
+	--table-th-bg: var(--surface-info-subtle);
 }
 
 .dashboard-box h2 {
 	margin-bottom: 0;
 }
-.dashboard-box .data-group {
+.data-group {
 	display: flex;
 	flex-direction: column;
 	
@@ -650,8 +664,6 @@
 	}
 }
 
-/* chart-box-10 */
-
 .output--item:nth-child(1),
 .output--item:nth-child(2) {
 	--dashboard-output-item-bg: var(--surface-primary);
@@ -660,10 +672,10 @@
 .output--item:nth-child(2) {
 	--dashboard-output-item-bg: var(--surface-primary-strong);
 }
-.right .output--item:nth-child(1) {
+.dashboard--right .output--item:nth-child(1) {
 	--dashboard-output-item-bg: var(--surface-info);
 }
-.right .output--item:nth-child(2) {
+.dashboard--right .output--item:nth-child(2) {
 	--dashboard-output-item-bg: var(--surface-info-strong);
 }
 
@@ -703,13 +715,13 @@
 	--bs-card-spacer-y: .75rem;
 	--bs-card-spacer-x: 1rem;
 	--bs-card-title-spacer-y: 0.5rem;
-	--bs-card-border-color: var(--dashboard-card-border);
+	--bs-card-border-color: var(--dashboard-border);
 	--bs-card-border-radius: var(--radius-lg);
 	--bs-card-box-shadow: none;
 	--bs-card-cap-padding-y: .75rem;
 	--bs-card-cap-padding-x: 1rem;
 	--bs-card-cap-bg: transparent;
-	--bs-card-bg: var(--dashboard-card-bg);
+	--bs-card-bg: var(--dashboard-bg);
 	--bs-card-cap-color: var(--dashboard-text);
 	--bs-card-color: var(--dashboard-value-text);
 	
@@ -803,7 +815,8 @@
 	}
 }
 
-.dashboard-box .dashboard-safety h2 {
+/* dashboard-safety */
+.dashboard-safety h2 {
 	font-size: 1rem;
 	margin-bottom: .5rem;
 }
@@ -862,10 +875,10 @@
 	--safety-item-border: var(--border-primary-muted);
 	--safety-item-value-text: var(--text-primary-emphasis);
 }
-.right .dashboard-safety {
+.dashboard--right .dashboard-safety {
 	--safety-item-value-text: var(--text-info-strong);
 }
-.right .dashboard-safety .safety-item--highlight {
+.dashboard--right .dashboard-safety .safety-item--highlight {
 	--safety-item-bg: var(--surface-info-muted);
 	--safety-item-border: var(--border-info-muted);
 	--safety-item-value-text: var(--text-info-emphasis);
@@ -881,38 +894,33 @@
 }
 
 /* 대시보드 차트 */
-.dg-chart--box {
+.dashboard--chart-box {
+	--radius-sm: var(--radius-lg);
+	height: 100%;
 	background-color: var(--dashboard-chart-bg);
 	border: 1px solid var(--dashboard-chart-border);
-	border-radius: 24px;
-	overflow: hidden;
 }
-.right .dg-chart--box {
+.dashboard--right .dashboard--chart-box {
 	--dashboard-chart-bg: var(--surface-info-subtle);
 	--dashboard-chart-border: var(--border-info-subtle);
 }
 
-.dg-chart--item {
+.dashboard--chart-item {
 	overflow: hidden;
 }
-.dg-chart--item > [class*='chart-'] {
+.dashboard--chart {
 	width: 100%;
 	height: 320px;
 }
-.dashboard-box .toastui-chart-wrapper {
+.dashboard .toastui-chart-wrapper {
 	transform: translate(12px, 12px);
  }
-
-.dg-chart--item > .label-box {
-	transform: translateY(-16px);
-}
 
 @media (min-width: 768px) {
 	.dashboard-box {
 		padding: 1rem 1.5rem;
 	}
-	
-	.dashboard-box .data-group {
+	.data-group {
 		align-items: stretch;
 	}
 }
@@ -920,24 +928,19 @@
 	.dashboard-box {
 		padding: 1.5rem 2rem;
 	}
-	.dashboard-box .left,
-	.dashboard-box .right {
+	.dashboard {
 		gap: 1rem;
 	}
-	.dashboard-box .data-group {
+	.data-group {
 		flex-direction: row;
 		flex-wrap: wrap;
 		gap: 2rem;
 	}
-	.data-group .dg-chart {
+	.dg-chart {
 		flex: 1 0 480px;
 		max-width: 480px;
 	}
-	.dg-chart--item > [class*='chart-'] {
-		width: 100%;
-		height: 320px;
-	}
-	.data-group .dg-data {
+	.dg-data {
 		gap: 1rem;
 	}
 }
@@ -948,26 +951,18 @@
 		flex-wrap: wrap;
 		gap: 2rem;
 	}
-	.dashboard-box > .left,
-	.dashboard-box > .right {
+	.dashboard {
 		flex: 1 0 calc((100% - 2rem) * .5);
 		max-width: calc((100% - 2rem) * .5);
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 	}
-	.dashboard-box .data-group {
+	.data-group {
 		gap: 1.5rem;
 		margin-bottom: 1rem;
 	}
-	.data-group .dg-chart {
-		flex: 1 0 100%;
-		max-width: 100%;
-	}
-	.dg-chart .label-box {
-		padding: 1rem 0;
-	}
-	.dashboard-box > .dashboard-safety {
+	.dg-chart {
 		flex: 1 0 100%;
 		max-width: 100%;
 	}
@@ -975,27 +970,10 @@
 
 /* 1800px 이상 */
 @media (min-width: 1800px) {
-	.data-group .dg-chart {
+	.dg-chart {
 		flex: 1 0 360px;
 		max-width: 360px;
 	}
-}
-
-/* 대시보드내 출력/효율 테이블내 컬러아이콘 */
-.dg-data [class*='category0'] {
-	width: 12px;
-	height: 12px;
-	display: inline-block;
-	margin-right: var(--space-1);
-}
-.dg-data .category01 {
-	background-color: var(--chart-series-3-fill);
-}
-.dg-data .category02 {
-	background-color: var(--chart-series-2-fill);
-}
-.dg-data .category03 {
-	background-color: var(--chart-series-4-fill);
 }
 
 .chart-box > .chart-item {
@@ -1003,19 +981,6 @@
 	display: flex;
 	align-items: center;
 	justify-content: center;
-}
-
-/* */
-.chart-box.no-chart {
-	margin-bottom: 0 !important;
-	min-height: inherit !important;
-}
-.chart-box.no-chart > .chart-item {
-	min-height: inherit;
-}
-
-.chart-box.no-chart > .chart-item > .alert {
-	margin-bottom: 0;
 }
 
 /* 트렌드 팝업 */

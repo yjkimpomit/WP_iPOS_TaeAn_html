@@ -104,7 +104,7 @@
 
 .table thead th {
 	background-color: var(--table-th-bg);
-	border-bottom: solid 1px var(--table-th-border);
+	border-bottom: solid 1px var(--table-border);
 }
 
 .table tbody th {

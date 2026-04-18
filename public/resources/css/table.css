@@ -30,7 +30,7 @@
 .table-responsive {
 	border: none;
 	background-color: var(--table-bg);
-	border-top: solid 2px var(--table-th-border-strong);
+	border-top: 1px solid var(--table-top-border);
 	
 	/* TM 현황에 10개씩 불러오는 테이블 기준
 	min-height: 240px; */
@@ -41,13 +41,13 @@
 /* table */
 .table {
 	margin-bottom: 0;
+	--bs-table-border-color: var(--table-border);
 }
 
 .table th {
 	font-weight: 500;
 	position: relative;
 	background-color: var(--table-th-bg);
-	border-bottom: solid 1px var(--table-th-border);
 }
 
 .table th,
@@ -55,9 +55,8 @@
 	vertical-align: middle;
 	white-space: nowrap;
 	text-align: center;
-	border-right: solid 1px var(--table-th-border);
-	border-bottom: solid 1px var(--table-th-border);
 	color: var(--table-text);
+	border-right: 1px solid var(--table-border);
 }
 
 .table thead tr>*:last-child,
