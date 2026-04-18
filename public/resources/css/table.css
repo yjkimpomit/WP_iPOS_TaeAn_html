@@ -40,14 +40,18 @@
 
 /* table */
 .table {
-	margin-bottom: 0;
 	--bs-table-border-color: var(--table-border);
+	margin-bottom: 0;
 }
 
 .table th {
+	--bs-table-bg: var(--table-th-bg);
 	font-weight: 500;
 	position: relative;
-	background-color: var(--table-th-bg);
+}
+
+.table tr:not(:only-child):last-child {
+	--table-th-bg: var(--surface-subtle);
 }
 
 .table th,

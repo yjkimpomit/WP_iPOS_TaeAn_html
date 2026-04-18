@@ -983,19 +983,6 @@ input[id="facilityRefList"]+.title03 {
 	overflow-y: auto;
 }
 
-/* nav-pills */
-/* .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
-	background-color: var(--nav-pills-item-bg);
-}
-.nav-pills .nav-item {
-	border: solid 1px var(--nav-pills-item-border);
-	margin-left: -1px;
-} */
-
-/* .nav-pills .nav-item.active,
-.nav-pills .nav-item:last-child {
-	border-right: none;
-} */
 .nav-pills {
 	--bs-nav-pills-link-active-bg: var(--nav-pills-bg-active);
 	background-color: var(--nav-pills-bg);

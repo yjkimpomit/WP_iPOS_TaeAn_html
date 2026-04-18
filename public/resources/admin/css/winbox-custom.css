@@ -12,14 +12,13 @@
 	cursor: move;
 }
 .wb-header {
-	/*background-color: var(--white-400);*/
-	background-image: linear-gradient(to right, rgba(255, 255, 255, 1) 36%, rgba(225, 229, 235, 0.64) 100%);
+	background-image: linear-gradient(to right, var(--winbox-bg) 36%, var(--winbox-bg-opacity) 100%);
 	backdrop-filter: blur(4px);
-	border-bottom: 1px solid var(--border-neutral-tertiary);
-	color: var(--text-neutral-default);
+	border-bottom: 1px solid var(--winbox-border);
+	color: var(--info-box-text);
 	
-	padding-left: 1rem;
-	padding-right: 1rem;
+	padding-left: 1.5rem;
+	padding-right: 1.5rem;
 }
 .winbox.max .wb-header,
 .winbox.min .wb-header {
@@ -29,13 +28,13 @@
 
 .winbox.max {
 	border: none;
-	border-top: 1px solid var(--border-neutral-secondary);
+	border-top: 1px solid var(--winbox-border);
 }
 
 .winbox {
 	background: transparent !important;
 	border-radius: 0;
-	border: 1px solid var(--border-neutral-secondary);
+	border: 1px solid var(--winbox-border);
 }
 
 .winbox:not(.min) .wb-header {
@@ -85,7 +84,7 @@
 	font-size: 14px;
 	font-weight: 500;
 	line-height: 1.2;
-	color: var(--text-default-default);
+	color: var(--winbox-text);
 }
 
 /* tab controller */

@@ -2424,8 +2424,8 @@ html[data-theme="dark"] .toast-header .toast-close {
 
 /* dataparc */
 .grid.dataparc {
-	--grid-item-bg: var(--box-bg-neutral-subtle);
-	--grid-item-border: var(--box-border-neutral-subtle);
+	--grid-item-bg: var(--surface-subtle);
+	--grid-item-border: var(--border-subtle);
 	--grid-item-padding: .5rem;
 }
 .dataparc-category {

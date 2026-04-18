@@ -6,14 +6,15 @@
 
 .form-control,
 .form-select {
-	border-color: var(--border-neutral-secondary);
+	--bs-body-bg: var(--form-bg);
+	--bs-border-color: var(--form-border);
 }
 
 .form-control:disabled,
 .form-select:disabled,
 .form-control[readonly],
 .form-select[readonly] {
-	background-color: var(--bg-neutral-secondary);
+	--bs-secondary-bg: var(--form-disabled);
 }
 
 .form-control.has-dateRangePicker[readonly] {
@@ -33,8 +34,8 @@
 .search-box {
 	padding: .5rem .5rem .75rem;
 	margin-bottom: 1rem;
-	background-color: var(--bg-neutral-tertiary);
-	border: solid 1px var(--border-neutral-tertiary);
+	background-color: var(--search-box-bg);
+	border: solid 1px var(--search-box-border);
 	border-radius: var(--radius-sm);
 }
 @media (min-width: 576px) {
@@ -44,7 +45,7 @@
 }
 @media (min-width: 1232px) {
 	.search-box {
-		padding: .5rem 1.5rem .75rem;
+		padding: .5rem 1.5rem 1rem;
 	}
 }
 

@@ -9,12 +9,13 @@
  */
 
 @import url(/resources/css/bootstrap/dist/css/bootstrap.min.css);
+@import url(/resources/css/variables.css);
+@import url(/resources/css/variables.component.css);
 @import url(/resources/css/reset.css);
 
 /*#################### 폰트 ####################*/
 @import url(/resources/fonts/NotoSansKR/NotoSansKR.css);
 @import url(/resources/fonts/Roboto/Roboto.css);
-@import url(/resources/css/variables.css);
 @import url(/resources/css/animation.css);
 
 /*#################### bootstrap overriding ####################*/
@@ -289,6 +290,10 @@ strong {
 
 .form-check-label {
 	margin-left: .5rem;
+}
+
+.form-check-input {
+	margin-top: 0;
 }
 
 .err-box:has(span) {

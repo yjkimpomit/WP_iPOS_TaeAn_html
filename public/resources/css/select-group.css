@@ -7,20 +7,21 @@
  */
 
 @import url(/resources/css/bootstrap/dist/css/bootstrap.min.css);
+@import url(/resources/css/variables.css);
+@import url(/resources/css/variables.component.css);
 @import url(/resources/css/reset.css);
 
 /*#################### 폰트 ####################*/
 @import url(/resources/fonts/NotoSansKR/NotoSansKR.css);
 @import url(/resources/fonts/Roboto/Roboto.css);
-@import url(/resources/css/variables.css);
 
 body {
 	font-family: var(--font-family), sans-serif;
-	color: var(--group-text);
+	color: var(--select-group-text);
 }
 
 a {
-	color: var(--group-text);
+	color: var(--select-group-text);
 }
 
 /* logo */
@@ -39,7 +40,7 @@ a {
 	display: flex;
 	align-items: center;
 
-	background-image: url('/resources/images/logo.svg');
+	background-image: url(/resources/images/logo.svg);
 	background-repeat: no-repeat;
 	background-position: left 8px;
 	background-size: auto 32px;
@@ -126,8 +127,8 @@ html[data-theme='dark'] .logo .bi .select-plant .icon-arrow {
 	width: auto;
 	flex-direction: column;
 
-	background-color: var(--bg-default-default);
-	border: 1px solid var(--border-neutral-secondary);
+	background-color: var(--form-bg);
+	border: 1px solid var(--form-border);
 	border-radius: .25rem;
 	padding: .25rem;
 }
@@ -145,7 +146,8 @@ html[data-theme='dark'] .logo .bi .select-plant .icon-arrow {
 }
 
 .plant-group span:hover {
-	background-color: var(--bg-brand-tertiaryhover);
+	color: var(--form-text-hover);
+	background-color: var(--form-bg-hover);
 	border-radius: .25rem;
 }
 
