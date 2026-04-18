@@ -12,10 +12,10 @@
 	cursor: move;
 }
 .wb-header {
-	background-image: linear-gradient(to right, var(--bg-default-default) 36%, var(--lighter30) 100%);
+	background-image: linear-gradient(to right, var(--winbox-bg) 36%, var(--winbox-bg-opacity) 100%);
 	backdrop-filter: blur(4px);
-	border-bottom: 1px solid var(--border-neutral-tertiary);
-	color: var(--text-neutral-default);
+	border-bottom: 1px solid var(--winbox-border);
+	color: var(--info-box-text);
 	
 	padding-left: 1.5rem;
 	padding-right: 1.5rem;
@@ -28,13 +28,13 @@
 
 .winbox.max {
 	border: none;
-	border-top: 1px solid var(--border-neutral-secondary);
+	border-top: 1px solid var(--winbox-border);
 }
 
 .winbox {
 	background: transparent !important;
 	border-radius: 0;
-	border: 1px solid var(--border-neutral-secondary);
+	border: 1px solid var(--winbox-border);
 }
 
 .winbox:not(.min) .wb-header {
@@ -84,7 +84,7 @@
 	font-size: 14px;
 	font-weight: 500;
 	line-height: 1.2;
-	color: var(--text-default-default);
+	color: var(--winbox-text);
 }
 
 /* tab controller */

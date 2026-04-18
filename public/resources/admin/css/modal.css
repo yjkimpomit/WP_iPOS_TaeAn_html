@@ -638,7 +638,7 @@
 	border-radius: calc(var(--bs-border-radius) * 4);
 	border: 1px solid transparent;
 	background-color: var(--box-bg-primary);
-	color: var(--box-title-inverse);
+	color: var(--dashboard-text-inverse);
 	padding: 0 1.5rem;
 }
 .output .output-item:nth-child(2) {
@@ -660,7 +660,7 @@
 .right .output .output-item:nth-child(2) {
 	background-color: var(--box-bg-info);
 	border-color: var(--box-border-info);
-	color: var(--box-title-inverse);
+	color: var(--dashboard-text-inverse);
 }
 .right .output .output-item:nth-child(2) {
 	background-color: var(--box-bg-info-strong);
@@ -853,7 +853,7 @@
 	border: 1px solid var(--box-border-primary-subtle);
 }
 .dashboard-safety .ds-group strong {
-	color: var(--box-title-neutral);
+	color: var(--box-title);
 	font-size: 15px;
 	font-weight: 600;
 }

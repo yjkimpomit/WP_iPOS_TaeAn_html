@@ -30,8 +30,13 @@
 	--logo-divider: var(--border-muted);
 	
 	/* header */
+	--header-bg: var(--surface-base);
+	--header-border: var(--border-subtle);
+
 	--info-box-text: var(--text-base);
 	--info-box-text-inverse: var(--text-inverse);
+	--info-box-border: rgba(var(--black-rgb), 70%);
+	--info-box-border-inverse: rgba(var(--black-rgb), 5%);
 	--info-box-col1-bg: var(--surface-subtle);
 	--info-box-col2-bg: var(--surface-primary-stronger);
 	--info-box-col3-bg: var(--surface-info-strong);
@@ -41,7 +46,7 @@
 	--title-icon-primary: var(--surface-primary-emphasis);
 	--title-icon-secondary: var(--surface-primary-stronger);
 
-	--title-divider-color: var(--border-subtle);
+	--divider-color: var(--border-muted);
 	
 	/* nav-group */
 	--app-bg: var(--surface-subtle);
@@ -88,8 +93,8 @@
 	--box-border-info-stronger: var(--border-info-stronger);
 	--box-border-info-subtle: var(--border-info-subtle);
 	
-	/* box-title */
-	--box-title-neutral: var(--text-base);
+	/* dashboard--box-title */
+	--box-title: var(--text-base);
 	--box-title-primary: var(--text-primary);
 	--box-title-primary-strong: var(--text-primary-strong);
 	--box-title-primary-stronger: var(--text-primary-stronger);
@@ -99,7 +104,28 @@
 	--box-title-info: var(--text-info);
 	--box-title-info-strong: var(--text-info-strong);
 	--box-title-info-stronger: var(--text-info-stronger);
-	--box-title-inverse: var(--text-inverse);
+	--dashboard-text-inverse: var(--text-inverse);
+
+	/* daxhboard-output */
+	--dashboard-output-bg: var(--surface-muted);
+	--dashboard-output-item-border: var(--border-muted);
+	--dashboard-output-item-bg: var(--surface-base);
+
+	/* dashboard-chart */
+	--dashboard-chart-bg: var(--surface-subtle);
+	--dashboard-chart-border: var(--border-subtle);
+	
+	/* dashboard-card */
+	--dashboard-text: var(--text-base);
+	--dashboard-value-text: var(--text-muted);
+	--dashboard-card-bg: var(--surface-subtle);
+	--dashboard-card-border: var(--border-subtle);
+
+	/* dashboard--safety-group */
+	--safety-item-bg: var(--surface-base);
+	--safety-item-border: var(--border-subtle);
+	--safety-item-title-text: var(--text-base);
+	--safety-item-value-text:  var(--text-primary-strong);
 
 	/* unity-guide */
 	--guide-box-bg: var(--surface-base);
@@ -222,7 +248,17 @@
 	--daterangepicker-in-range-bg-hover: var(--surface-subtle);
 	--daterangepicker-in-range-bg-active: var(--surface-primary-stronger);
 
+	/* Form Elements */
+	--form-text: var(--text-stronger);
+	--form-bg: var(--surface-base);
+	--form-border: var(--border-muted);
+	--form-text-hover: var(--text-primary-emphasis);
+	--form-bg-hover: var(--surface-primary-subtle);
 
+	/* winBox */
+	--winbox-bg: var(--surface-base);
+	--winbox-bg-opacity: rgba(var(--white-rgb), 30%);
+	--winbox-border: var(--border-muted);
 }
 
 @media (min-width: 768px) {
