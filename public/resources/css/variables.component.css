@@ -222,6 +222,9 @@
 	--winbox-bg: var(--surface-base);
 	--winbox-bg-opacity: rgba(var(--white-rgb), 30%);
 	--winbox-border: var(--border-muted);
+
+	/* doc-box */
+	--doc-box-bg: rgba(var(--white-rgb), 70%);
 }
 
 @media (min-width: 768px) {
