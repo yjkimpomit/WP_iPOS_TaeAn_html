@@ -233,8 +233,8 @@ strong {
 	display: inline-block;
 	width: 1px;
 	height: 14px;
-	margin-top: 1px;
-	background-color: var(--border-neutral-default);
+	margin-top: 0;
+	background-color: var(--divider-color);
 }
 
 .logo .desc {
@@ -296,35 +296,18 @@ strong {
 	margin-top: 0;
 }
 
-.err-box:has(span) {
+.login-box form .err-box:has(span) {
 	margin: 1rem 0;
-	color: var(--text-danger-default);
-	background-color: var(--bg-danger-tertiary);
-	
+	color: var(--text-danger);
+	background-color: var(--surface-danger-subtle);	
 	border-radius: var(--radius-sm);
-	border: solid 1px var(--bg-danger-tertiaryhover);
-	
-	padding: .75rem 2rem;
-	
+	border: solid 1px var(--border-danger-muted);	
+	padding: .75rem 1.5rem;	
 	flex-direction: column;
+	align-items: flex-start;
 }
 
 .btn {
-	--bs-btn-color: var(--text-default-onneutral);
-	--bs-btn-bg: var(--bg-brand-defaulthover);
-	--bs-btn-border-color: var(--border-brand-default);
-	
-	--bs-btn-hover-color: var(--text-default-onneutral);
-	--bs-btn-hover-bg: var(--bg-brand-dark);
-	--bs-btn-hover-border-color: var(--border-brand-dark);
-	
-	--bs-btn-active-color: var(--text-default-onneutral);
-	--bs-btn-active-bg: var(--bg-brand-dark);
-	--bs-btn-active-border-color: var(--border-brand-dark);
-	
-	--bs-btn-disabled-color: var(--text-default-onneutral);
-	--bs-btn-disabled-bg: var(--bg-brand-defaulthover);
-	--bs-btn-disabled-border-color: var(--border-brand-default);
 	width: 100%;
 	margin-bottom: 4rem;
 }
@@ -375,12 +358,10 @@ strong {
 }
 
 .slide01 {
-	background-color: var(--bg-neutral-secondary);
 	background-image: url(/resources/images/login-visual-01.jpg);
 }
 
 .slide02 {
-	background-color: var(--bg-neutral-default);
 	background-image: url(/resources/images/login-visual-02.jpg);
 }
 
@@ -414,7 +395,7 @@ strong {
 @media(min-width: 1200px) {
 	.slick-slide .text-box {
 		display: block;
-		color: var(--text-neutral-onneutral);
+		color: var(--text-inverse);
 		
 		position: absolute;
 		width: auto;
@@ -422,10 +403,10 @@ strong {
 	}
 	
 	.slick-slide .text-box h2 {
-		--bs-heading-color: var(--text-neutral-onneutral);
+		--bs-heading-color: var(--text-inverse);
 		font-size: 2.5rem;
 		font-weight: 700;
-		text-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
+		text-shadow: var(--box-shadow-1);
 	}
 	
 	.slick-slide .text-box h2 span {
@@ -445,12 +426,12 @@ strong {
 		width: 1px;
 		height: 32px;
 		margin-top: 2px;
-		background-color: var(--bg-neutral-secondary);
+		background-color: var(--divider-color);
 	}
 	
 	.slick-slide .text-box p {
 		font-size: 1.5rem;
-		text-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+		text-shadow: var(--box-shadow-1);
 	}
 	
 	.slide01 .text-box,
@@ -494,11 +475,11 @@ strong {
 	height: 12px;
 	border-radius: 24px;
 	
-	background: var(--bg-default-default);
+	background: var(--surface-base);
 }
 
 .slide-btn.active {
-	background-color: var(--icon-brand-secondary);
+	background-color: var(--surface-primary);
 }
 
 /* play-pause */
@@ -525,7 +506,7 @@ strong {
 	height: 0;
 	border-top: 6px solid transparent;
 	border-bottom: 6px solid transparent;
-	border-left: 8px solid var(--border-default-white);
+	border-left: 8px solid var(--surface-base);
 	transform: translate(-50%, -50%);
 }
 
@@ -536,7 +517,7 @@ strong {
 	top: 50%;
 	width: 3px;
 	height: 12px;
-	background-color: var(--bg-default-default);
+	background-color: var(--surface-base);
 	transform: translateY(-50%);
 }
 

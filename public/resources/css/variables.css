@@ -461,7 +461,7 @@
 	--text-subtle: var(--slate-800);
 	--text-muted: var(--slate-700);
 	--text-strong: var(--slate-600);
-	--text-strong: var(--slate-500);
+	--text-stronger: var(--slate-500);
 	--text-inverse: var(--white-900);
 	
 	--surface-primary: var(--blue-600);

@@ -132,7 +132,7 @@
 
 .table.view-table tbody tr th,
 .table.view-table tfoot tr th {
-	font-weight: 700;
+	font-weight: 500;
 	text-align: right;
 	background-color: var(--table-th-bg-subtle);
 }
