@@ -326,19 +326,7 @@
 	max-height: 608px;
 }
 
-/* 설비상세 테이블에만 적용 */
-.modal.facility .view-table tr:first-child th {
-	background-color: var(--bg-neutral-secondary);
-	font-weight: 700;
-}
-.modal.facility .view-table tr:first-child td {
-	background-color: var(--bg-neutral-tertiary);
-	font-weight: 700;
-}
-
-.modal.facility .view-table tbody td {
-	text-align: left;
-}
+/* 설비목록 테이블에만 적용 */
 .table-responsive:has(.table[aria-label="설비목록"]) {
 	height: 460px;
 }
@@ -566,13 +554,15 @@
 /* TD 조회값에 따른 스타일 지정 */
 .table td:has(.yn) {
 	font-weight: 700;
-	background-color: var(--bg-default-defaulthover);
+	background-color: var(--table-bg);
 }
 .table td:has(.yn.yes) {
-	color: var(--bg-brand-default);
+	color: var(--text-primary);
+	background-color: var(--table-bg-primary);
 }
 .table td:has(.yn.no) {
-	color: var(--bg-neutral-default);
+	color: var(--text-danger);
+	background-color: var(--table-bg-danger);
 }
 
 /* dailySafety */
@@ -592,18 +582,13 @@
 }
 
 /* 대표설비 */
-.modal.facility .view-table[aria-label="설비상세"] .main-equipment th {
-    color: var(--text-neutral-secondary);
-    background-color: var(--bg-neutral-secondary);
-}
-.modal.facility .view-table[aria-label="설비상세"] .main-equipment td {
-    color: var(--text-neutral-tertiary);
-    background-color: var(--bg-neutral-tertiary);
+.view-table[aria-label="설비상세"] .main-equipment>* {
+    background-color: var(--table-bg-primary);
 }
 
 /* 단계별 테이블 스타일 */
 .table tbody tr:hover > * {
-	background-color: var(--bg-brand-tertiary);
+	background-color: var(--table-bg-primary);
 }
 
 .table.form-table tbody tr:hover > *,
@@ -612,7 +597,9 @@
 }
 
 .table tbody tr.active > * {
-	background-color: var(--bg-brand-tertiaryhover);
+	font-weight: 700;
+	color: var(--table-text-active);
+	background-color: var(--table-bg-active);
 }
 
 /* TM 이력 */
@@ -621,16 +608,16 @@
 }
 
 @media (min-width: 1400px) {
-	.modal.tm .tab-content:has(.multiple-tm) {
+	.tab-content:has(.multiple-tm) {
 		height: calc(100% - 42px);
 	}
 
-	.modal.tm .tab-pane:has(.multiple-tm) {
+	.tab-pane:has(.multiple-tm) {
 		padding: 0;
 		height: 100%;
 	}
 
-	.modal.tm .panel-box.multiple-tm {
+	.panel-box.multiple-tm {
 		height: 100%;
 	}
 }
@@ -651,11 +638,11 @@
 	min-height: 280px;
 }
 .table[aria-label="logsheet-result"] td .is-over {
-	color: var(--icon-danger-ondangertertiary);
+	color: var(--text-danger);
 	font-weight: 700;
 }
 .table[aria-label="logsheet-result"] td .is-under {
-	color: var(--icon-brand-onneutraltertiary);
+	color: var(--text-primary);
 	font-weight: 700;
 }
 

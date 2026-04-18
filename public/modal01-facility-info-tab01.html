@@ -17,7 +17,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr>
+			<tr class="active">
 				<td data-field="설비번호">52921-00300</td>
 				<td data-field="설비명">Gas Turbine</td>
 				<td data-field="기능위치번호">52921-00300</td>
@@ -28,12 +28,12 @@
 			<tr>
 				<td data-field="설비번호">52921-00340</td>
 				<td data-field="설비명">Bearing 
-					<button class="btn btn-sm move-to-3D" title="3D모델 이동">
-						<span class="material-symbols-rounded">view_in_ar</span>
+					<button class="btn btn-sm" title="3D모델 이동">
+						<span class="icon icon-3d"></span>
 						<span>이동</span>
 					</button>
-					<button class="btn btn-sm move-to-pano" title="파노라마 이동">
-						<span class="material-symbols-rounded">vrpano</span>
+					<button class="btn btn-sm" title="파노라마 이동">
+						<span class="icon icon-pano"></span>
 						<span>이동</span>
 					</button>
 				</td>
@@ -93,10 +93,8 @@
 				<h4 class="title04 my-0">설비상세 정보</h4>
 			</div>
 			<div class="btn-box">
-				<button type="button" class="btn btn-xs btn-primary move-to-pano disabled" id="moveToPanorama" onclick="showPano(this);">
-					<span class="material-symbols-rounded">
-						vrpano
-					</span>
+				<button type="button" class="btn btn-sm btn-primary disabled" id="moveToPanorama" onclick="showPano(this);">
+					<span class="icon-pano"></span>
 					<span>파노라마</span>
 				</button>
 			</div>

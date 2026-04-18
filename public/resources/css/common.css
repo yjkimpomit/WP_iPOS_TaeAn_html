@@ -756,9 +756,9 @@ input[id="facilityRefList"]+.title03 {
 .table .btn.btn-sm:has([class*='icon-']) {
 	gap: .25rem;
 }
-.table .btn.btn-sm > [class*='icon-'] {
+/* .table .btn.btn-sm > [class*='icon-'] {
 	width: 1rem;
-}
+} */
 
 .icon-close {
 	background-image: url(/resources/images/icons/icon-close.svg);

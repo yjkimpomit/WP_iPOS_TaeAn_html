@@ -456,15 +456,25 @@
 	--surface-primary-stronger: var(--blue-700);
 	--surface-primary-heavy: var(--blue-800);
 	--surface-primary-subtle: var(--blue-100);
+	--surface-primary-muted: var(--blue-200);
 	--surface-secondary: var(--slate-600);
+	--surface-secondary-subtle: var(--slate-100);
+	--surface-secondary-muted: var(--slate-200);
 	--surface-danger: var(--red-600);
+	--surface-danger-subtle: var(--red-100);
+	--surface-danger-muted: var(--red-200);
 	--surface-warning: var(--yellow-600);
+	--surface-warning-subtle: var(--yellow-100);
+	--surface-warning-muted: var(--yellow-200);
 	--surface-success: var(--green-600);
+	--surface-success-subtle: var(--green-100);
+	--surface-success-muted: var(--green-200);
 	--surface-info: var(--cyan-500);
 	--surface-info-strong: var(--cyan-600);
 	--surface-info-stronger: var(--cyan-700);
 	--surface-info-heavy: var(--cyan-800);
 	--surface-info-subtle: var(--cyan-100);
+	--surface-info-muted: var(--cyan-200);
 	
 	--border-primary: var(--blue-600);
 	--border-primary-strong: var(--blue-700);
@@ -492,21 +502,27 @@
 	--text-primary: var(--blue-500);
 	--text-primary-strong: var(--blue-600);
 	--text-primary-stronger: var(--blue-700);
+	--text-primary-emphasis: var(--blue-900);
 	--text-secondary: var(--slate-500);
 	--text-secondary-strong: var(--slate-600);
 	--text-secondary-stronger: var(--slate-700);
+	--text-secondary-emphasis: var(--slate-900);
 	--text-danger: var(--red-500);
 	--text-danger-strong: var(--red-600);
 	--text-danger-stronger: var(--red-700);
+	--text-danger-emphasis: var(--red-900);
 	--text-warning: var(--yellow-500);
 	--text-warning-strong: var(--yellow-600);
 	--text-warning-stronger: var(--yellow-700);
+	--text-warning-emphasis: var(--yellow-900);
 	--text-success: var(--green-500);
 	--text-success-strong: var(--green-600);
 	--text-success-stronger: var(--green-700);
+	--text-success-emphasis: var(--green-900);
 	--text-info: var(--cyan-500);
 	--text-info-strong: var(--cyan-600);
 	--text-info-stronger: var(--cyan-700);
+	--text-info-emphasis: var(--cyan-900);
 }
 
 /* Bootstrap Override */
@@ -641,9 +657,15 @@
 	/* table */
 	--nodata-bg: var(--surface-neutral-subtle);
 	--table-text: var(--text-base);
+	--table-text-active: var(--text-primary-emphasis);
 	
 	--table-bg: var(--surface-neutral-subtle);
+	--table-bg-active: var(--surface-primary-muted);
 	--table-bg-primary: var(--surface-primary-subtle);
+	--table-bg-success: var(--surface-success-subtle);
+	--table-bg-danger: var(--surface-danger-subtle);
+	--table-bg-warning: var(--surface-warning-subtle);
+	--table-bg-info: var(--surface-info-subtle);
 	
 	--table-th-bg: var(--surface-neutral-muted);
 	--table-th-border: var(--border-neutral-muted);
