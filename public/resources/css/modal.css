@@ -566,7 +566,7 @@
 	height: 100%;
     overflow-y: auto;
 	padding: .5rem 1rem;
-	background-color: var(--dashboard-bg);
+	background-color: var(--surface-base);
 }
 
 .dashboard {
@@ -644,11 +644,12 @@
 	justify-content: center;
 	background-color: var(--dashboard-output-item-bg);
 	border: 1px solid var(--dashboard-output-item-border);
-	color: var(--dashboard-text);
+	color: var(--text-base);
 	border-radius: var(--radius-lg);
 }
 .output--item:nth-child(1),
 .output--item:nth-child(2) {
+	--text-base: var(--text-inverse);
 	flex: 1 0 100%;
 	border: 1px solid transparent;
 	padding: 0 1.5rem;
@@ -667,7 +668,7 @@
 .output--item:nth-child(1),
 .output--item:nth-child(2) {
 	--dashboard-output-item-bg: var(--surface-primary);
-	--dashboard-text: var(--dashboard-text-inverse);
+	--dashboard-text: var(--text-inverse);
 }
 .output--item:nth-child(2) {
 	--dashboard-output-item-bg: var(--surface-primary-strong);
@@ -715,15 +716,15 @@
 	--bs-card-spacer-y: .75rem;
 	--bs-card-spacer-x: 1rem;
 	--bs-card-title-spacer-y: 0.5rem;
-	--bs-card-border-color: var(--dashboard-border);
+	--bs-card-bg: var(--card-bg);
+	--bs-card-border-color: var(--card-border);
 	--bs-card-border-radius: var(--radius-lg);
 	--bs-card-box-shadow: none;
 	--bs-card-cap-padding-y: .75rem;
 	--bs-card-cap-padding-x: 1rem;
 	--bs-card-cap-bg: transparent;
-	--bs-card-bg: var(--dashboard-bg);
-	--bs-card-cap-color: var(--dashboard-text);
-	--bs-card-color: var(--dashboard-value-text);
+	--bs-card-cap-color: var(--text-base);
+	--bs-card-color: var(--text-muted);
 	
 	flex: 1;
 }
@@ -1083,7 +1084,7 @@
 	box-shadow: var(--box-shadow-3);
 	overflow: hidden;
 	
-	display: block;
+	display: none;
 }
 
 .noticePopup.open {
@@ -1386,22 +1387,8 @@
 }
 
 .container-safety .cell.active {
-	font-weight: 700;
-	color: var(--text-primary);
-	position: relative;
-}
-.container-safety .cell.active::before {
-	content: '';
-	position: absolute;
-	z-index: 0;
-	top: 0;
-	left: 50%;
-	transform: translateX(-50%);
-	width: 100%;
-	height: 100%;
-	border-radius: .5rem;
 	background-color: var(--surface-base);
-	border: 2px solid var(--border-muted);
+	border: 1px dashed var(--border-primary);
 }
 
 .container-safety .cell .date {
@@ -1428,6 +1415,9 @@
 }
 
 /* today */
+.container-safety .cell.today .date {
+	text-decoration: underline;
+}
 .container-safety .cell.today {
 	background-color: var(--surface-base);
 	border: 1px solid var(--border-muted);

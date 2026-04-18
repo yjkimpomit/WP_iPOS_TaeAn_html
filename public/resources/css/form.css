@@ -18,7 +18,7 @@
 }
 
 .form-control.has-dateRangePicker[readonly] {
-	background-color: var(--bg-default-default) !important;
+	background-color: var(--surface-base) !important;
 }
 
 /* ui-timepicker
@@ -51,7 +51,7 @@
 
 /* search-icon */
 .search-icon.btn[disabled] {
-	border-color: var(--border-neutral-secondary);
+	border-color: var(--border-secondary-muted);
 }
 .search-icon {
 	background-image: url("/resources/images/icons/icon-search-gray.svg");
@@ -302,8 +302,8 @@ input[type="date"], input[type="week"], input[type="datetime-local"], input.icon
 	width: 24px;
 	height: 24px;
 	border-radius: 4px;
-	background-color: var(--bg-default-default);
-	border: 1px solid var(--border-neutral-secondary);
+	background-color: var(--surface-base);
+	border: 1px solid var(--border-secondary-muted);
 }
 
 .icon-groups::after,
@@ -336,8 +336,8 @@ input[type="date"], input[type="week"], input[type="datetime-local"], input.icon
 }
 
 .form-check-input:checked {
-	background-color: var(--icon-brand-secondary);
-	border-color: var(--icon-brand-secondary);
+	background-color: var(--surface-primary);
+	border-color: var(--border-primary);
 }
 
 /* 타이틀박스내 인풋 */
@@ -401,9 +401,9 @@ input[type="date"], input[type="week"], input[type="datetime-local"], input.icon
 }
 
 .table td button.chip-on {
-    border: 1px solid var(--border-neutral-default);
-    background: var(--bg-default-default);
-    color: var(--text-default-default);
+    border: 1px solid var(--border-strong);
+    background: var(--surface-base);
+    color: var(--text-base);
     cursor: pointer;
     font-size: .875rem;
     border-radius: 1rem;
@@ -414,11 +414,11 @@ input[type="date"], input[type="week"], input[type="datetime-local"], input.icon
 
 .table th.bg-warning,
 .table td.bg-warning {
-    border-color: var(--bg-warning-default) !important;
+    border-color: rgba(var(--black-rgb), 16%);
 }
 .table th.bg-warning-subtle,
 .table td.bg-warning-subtle {
-    border-color: var(--bg-warning-secondaryhover) !important;
+    border-color: rgba(var(--black-rgb), 16%);
 }
 
 /* box style */
@@ -427,8 +427,8 @@ input[type="date"], input[type="week"], input[type="datetime-local"], input.icon
 	justify-content: center;
 	align-items: center;
 	
-	background-color: var(--bg-neutral-tertiary);
-	border: 1px dashed var(--border-neutral-tertiary);
+	background-color: var(--bg-subtle);
+	border: 1px dashed var(--border-subtle);
 	border-radius: .5rem;
 	min-height: 128px;
 	padding: 1.5rem;

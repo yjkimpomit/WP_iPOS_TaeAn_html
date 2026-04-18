@@ -70,18 +70,16 @@
 	/* dashboard-chart */
 	--dashboard-chart-border: var(--border-subtle);
 	--dashboard-chart-bg: var(--surface-subtle);
-	
-	/* dashboard-card */
-	--dashboard-border: var(--border-subtle);
-	--dashboard-bg: var(--surface-subtle);
-	--dashboard-text: var(--text-base);
-	--dashboard-value-text: var(--text-muted);
 
 	/* dashboard--safety-group */
-	--safety-item-bg: var(--surface-base);
+	--safety-item-bg: var(--surface-subtle);
 	--safety-item-border: var(--border-subtle);
 	--safety-item-title-text: var(--text-base);
 	--safety-item-value-text:  var(--text-primary-strong);
+
+	/* card */
+	--card-bg: var(--surface-subtle);
+	--card-border: var(--border-subtle);
 
 	/* unity-guide */
 	--guide-box-bg: var(--surface-base);
@@ -222,6 +220,9 @@
 	--winbox-bg: var(--surface-base);
 	--winbox-bg-opacity: rgba(var(--white-rgb), 30%);
 	--winbox-border: var(--border-muted);
+
+	/* doc-box */
+	--doc-box-bg: rgba(var(--white-rgb), 70%);
 }
 
 @media (min-width: 768px) {
