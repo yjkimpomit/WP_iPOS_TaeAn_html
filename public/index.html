@@ -53,7 +53,6 @@
 	<link rel="stylesheet" href="/resources/css/common.css">
 	<script src="/resources/js/common.js" defer></script>
 	<script src="/resources/js/device-info.js" defer></script>
-	
 	<!-- <script src="/resources/js/switch-theme.js" defer></script> -->
 
 	<!-- 변수 선언 -->
@@ -85,7 +84,7 @@
 	<script>
 		$(document).ready(function () {
 			const $menu = $('.menu-link[data-class="outbound"]');
-			fnOpenPopup('modal10-multiview.html', $menu);
+			fnOpenPopup('modal02-tm.html', $menu);
 		});
 	</script>
 </head>
@@ -182,9 +181,8 @@
 						설치파일 안내
 					</h3>
 					<button type="button" class="btn close">
-						<span class="material-symbols-rounded">
-						close
-						</span>
+						<span class="icon icon-close"></span>
+						<span>닫기</span>
 					</button>
 				</div>
 				<div class="modal-body">
@@ -193,9 +191,7 @@
 			
 					<div class="text-center">
 						<button type="button" class="btn btn-primary" onclick="downloadCctvView();">
-							<span class="material-symbols-rounded">
-								install_desktop
-							</span>
+							<span class="icon icon-download"></span>
 							<span>설치파일 다운로드</span>
 						</button>
 					</div>
@@ -249,7 +245,8 @@
 				<div class="modal-header">
 					<h5 class="title04" id="searchTreeTitle"></h5>
 					<button type="button" class="btn close">
-						<span class="material-symbols-rounded"> close </span>
+						<span class="icon icon-close"></span>
+						<span>닫기</span>
 					</button>
 				</div>
 				<div class="modal-body" id="searchTreeContent">
@@ -267,7 +264,8 @@
 				<div class="modal-header">
 					<h5 class="title04" id="searchItemTitle"></h5>
 					<button type="button" class="btn close">
-						<span class="material-symbols-rounded"> close </span>
+						<span class="icon icon-close"></span>
+						<span>닫기</span>
 					</button>
 				</div>
 				<div class="modal-body" id="searchItemContent">
@@ -292,7 +290,8 @@
 				<div class="modal-header">
 					<h5 class="title04" id="searchFacilityTitle"></h5>
 					<button type="button" class="btn close">
-						<span class="material-symbols-rounded"> close </span>
+						<span class="icon icon-close"></span>
+						<span>닫기</span>
 					</button>
 				</div>
 				<div class="modal-body" id="searchFacilityContent">
@@ -323,7 +322,8 @@
 				<div class="modal-header">
 					<h5 class="title04" id="searchResultTitle">점검종류 검색</h5>
 					<button type="button" class="btn close">
-						<span class="material-symbols-rounded"> close </span>
+						<span class="icon icon-close"></span>
+						<span>닫기</span>
 					</button>
 				</div>
 				<div class="modal-body" id="searchResultContent">

@@ -532,15 +532,15 @@
 	--focus-ring: rgba(var(--primary-rgb), 0.7);
 	
 	/* Box */
-	--box-bg-neutral-base: var(--surface-neutral-base);
-	--box-bg-neutral-subtle: var(--surface-neutral-subtle);
-	--box-bg-neutral-muted: var(--surface-neutral-muted);
-	--box-bg-neutral-strong: var(--surface-neutral-strong);
+	--box-bg-neutral-base: var(--surface-base);
+	--box-bg-neutral-subtle: var(--surface-subtle);
+	--box-bg-neutral-muted: var(--surface-muted);
+	--box-bg-neutral-strong: var(--surface-strong);
 	
-	--box-border-neutral-base: var(--border-neutral-base);
-	--box-border-neutral-subtle: var(--border-neutral-subtle);
-	--box-border-neutral-muted: var(--border-neutral-muted);
-	--box-border-neutral-strong: var(--border-neutral-strong);
+	--box-border-neutral-base: var(--border-base);
+	--box-border-neutral-subtle: var(--border-subtle);
+	--box-border-neutral-muted: var(--border-muted);
+	--box-border-neutral-strong: var(--border-strong);
 	
 	/* box-bg-primary */
 	--box-bg-primary: var(--surface-primary);
@@ -582,26 +582,26 @@
 	--grid-gap: 16px;
 	--grid-auto-min: 160px;
 	
-	--grid-item-bg: var(--surface-neutral-base);
-	--grid-item-border: var(--border-neutral-subtle);
+	--grid-item-bg: var(--surface-base);
+	--grid-item-border: var(--border-subtle);
 	--grid-item-padding: 16px;
 	--grid-item-radius: 8px;
 	
-	--form-block-bg: var(--surface-neutral-base);
-	--form-block-border: var(--border-neutral-subtle);
+	--form-block-bg: var(--surface-base);
+	--form-block-border: var(--border-subtle);
 	
 	/* thumb-board */
-	--thumbnail-box-bg: var(--surface-neutral-base);
-	--thumbnail-box-border: var(--border-neutral-muted);
+	--thumbnail-box-bg: var(--surface-base);
+	--thumbnail-box-border: var(--border-muted);
 	--thumbnail-box-shadow: var(--box-shadow-1);
 	--thumbnail-text: var(--text-base);
 	--thumbnail-text-subtle: var(--text-subtle);
 	--thumbnail-text-primary: var(--text-primary);
 	
 	/* table */
-	--nodata-bg: var(--surface-neutral-subtle);
-	--table-th-bg: var(--surface-neutral-muted);
-	--table-th-border: var(--border-neutral-muted);
+	--nodata-bg: var(--surface-subtle);
+	--table-th-bg: var(--surface-muted);
+	--table-th-border: var(--border-muted);
 }
 
 @media (min-width: 768px) {

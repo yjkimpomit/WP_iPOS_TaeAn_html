@@ -109,7 +109,9 @@
 	z-index: 2;
 }
 
-.table tbody th {
+.table tbody th,
+.table tfoot th {
+	--table-th-bg: var(--surface-subtle);
 	font-weight: 400;
 }
 
@@ -119,6 +121,7 @@
 	line-height: 1.4;
 }
 
+/* view-table */
 .table.view-table th,
 .table.view-table td {
 	vertical-align: middle;

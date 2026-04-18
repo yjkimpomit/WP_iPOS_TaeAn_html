@@ -21,9 +21,8 @@
 		</div>
 		<div class="col-md-auto col-lg-auto mb-3">
 			<button type="button" class="btn btn-primary">
-				<span class="material-symbols-rounded">
-					search
-				</span> 검색
+				<span class="icon icon-search"></span>
+				<span>검색</span>
 			</button>
 		</div>
 	</div>
@@ -55,9 +54,8 @@
 		<tbody>
 			<tr onclick="showDetail($(this));">
 				<th scope="row" data-field="첨부">
-					<span class="material-symbols-rounded">
-						attachment
-					</span>
+					<span class="icon icon-attach"></span>
+					<span>첨부</span>
 				</th>
 				<th scope="col" data-field="요청유형">TM</th>
 				<th scope="col" data-field="승인일자">2024-07-20</th>
@@ -77,9 +75,8 @@
 			</tr>
 			<tr onclick="showDetail($(this));">
 				<th scope="row" data-field="첨부">
-					<span class="material-symbols-rounded">
-						attachment
-					</span>
+					<span class="icon icon-attach"></span>
+					<span>첨부</span>
 				</th>
 				<th scope="col" data-field="요청유형">TM</th>
 				<th scope="col" data-field="승인일자">2024-11-20</th>
@@ -99,9 +96,8 @@
 			</tr>
 			<tr onclick="showDetail($(this));">
 				<th scope="row" data-field="첨부">
-					<span class="material-symbols-rounded">
-						attachment
-					</span>
+					<span class="icon icon-attach"></span>
+					<span>첨부</span>
 				</th>
 				<th scope="col" data-field="요청유형">TM</th>
 				<th scope="col" data-field="승인일자">2024-12-01</th>
@@ -127,6 +123,7 @@
 <div class="title-box">
 	<h4 class="title03">조회결과<small>* 그래프의 포인트에 마우스를 올리면 Raw Data가 나타납니다.</small></h4>
 </div>
+<script src="/resources/js/duplicateByElement.js"></script>
 <script>
 	$(document).ready(function () {
 		const targetRow = document.querySelector('.table[aria-label="작업요청확정"] tbody tr');

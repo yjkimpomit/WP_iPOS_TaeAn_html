@@ -440,40 +440,62 @@
 /* 2026-04-09 : 순차적으로 시맨틱과 컴포넌트로 분리할 목적으로 추가된 스타일 */
 /* Semantic Tokens */
 :root {
-	/* base > subtle > muted > strong > stronger > heavy */
-	--surface-neutral-base: var(--white-900);
-	--surface-neutral-subtle: var(--slate-50);
-	--surface-neutral-muted: var(--slate-100);
-	--surface-neutral-strong: var(--slate-200);
-	--surface-neutral-stronger: var(--slate-300);
+	--bg-base: var(--white-900);
+
+	/* base > subtle > muted > strong > stronger > emphasis */
+	--surface-base: var(--white-900);
+	--surface-subtle: var(--slate-50);
+	--surface-muted: var(--slate-100);
+	--surface-strong: var(--slate-200);
+	--surface-stronger: var(--slate-300);
+	--surface-emphasis: var(--slate-600);
 	
-	--border-neutral-base: var(--slate-50);
-	--border-neutral-subtle: var(--slate-100);
-	--border-neutral-muted: var(--slate-200);
-	--border-neutral-strong: var(--slate-300);
+	--border-base: var(--slate-50);
+	--border-subtle: var(--slate-100);
+	--border-muted: var(--slate-200);
+	--border-strong: var(--slate-300);
 	
-	--surface-primary: var(--blue-500);
-	--surface-primary-strong: var(--blue-600);
-	--surface-primary-stronger: var(--blue-700);
-	--surface-primary-emphasis: var(--blue-800);
+	--text-base: var(--slate-900);
+	--text-subtle: var(--slate-800);
+	--text-muted: var(--slate-700);
+	--text-strong: var(--slate-600);
+	--text-strong: var(--slate-500);
+	--text-inverse: var(--white-900);
+	
+	--surface-primary: var(--blue-600);
+	--surface-primary-strong: var(--blue-700);
+	--surface-primary-stronger: var(--blue-800);
+	--surface-primary-emphasis: var(--blue-900);
 	--surface-primary-subtle: var(--blue-100);
 	--surface-primary-muted: var(--blue-200);
 	--surface-secondary: var(--slate-600);
+	--surface-secondary-strong: var(--slate-700);
+	--surface-secondary-stronger: var(--slate-800);
+	--surface-secondary-emphasis: var(--slate-900);
 	--surface-secondary-subtle: var(--slate-100);
 	--surface-secondary-muted: var(--slate-200);
 	--surface-danger: var(--red-600);
+	--surface-danger-strong: var(--red-700);
+	--surface-danger-stronger: var(--red-800);
+	--surface-danger-emphasis: var(--red-900);
 	--surface-danger-subtle: var(--red-100);
 	--surface-danger-muted: var(--red-200);
 	--surface-warning: var(--yellow-600);
+	--surface-warning-strong: var(--yellow-700);
+	--surface-warning-stronger: var(--yellow-800);
+	--surface-warning-emphasis: var(--yellow-900);
 	--surface-warning-subtle: var(--yellow-100);
 	--surface-warning-muted: var(--yellow-200);
 	--surface-success: var(--green-600);
+	--surface-success-strong: var(--green-700);
+	--surface-success-stronger: var(--green-800);
+	--surface-success-emphasis: var(--green-900);
 	--surface-success-subtle: var(--green-100);
 	--surface-success-muted: var(--green-200);
-	--surface-info: var(--cyan-500);
-	--surface-info-strong: var(--cyan-600);
-	--surface-info-stronger: var(--cyan-700);
-	--surface-info-emphasis: var(--cyan-800);
+	--surface-info: var(--cyan-600);
+	--surface-info-strong: var(--cyan-700);
+	--surface-info-stronger: var(--cyan-800);
+	--surface-info-emphasis: var(--cyan-900);
 	--surface-info-subtle: var(--cyan-100);
 	--surface-info-muted: var(--cyan-200);
 	
@@ -493,13 +515,6 @@
 	--border-info-stronger: var(--cyan-800);
 	--border-info-subtle: var(--cyan-200);
 	--border-inverse: var(--white-900);
-	
-	--text-base: var(--slate-900);
-	--text-subtle: var(--slate-800);
-	--text-muted: var(--slate-700);
-	--text-strong: var(--slate-600);
-	--text-strong: var(--slate-500);
-	--text-inverse: var(--white-900);
 	
 	--text-primary: var(--blue-500);
 	--text-primary-strong: var(--blue-600);

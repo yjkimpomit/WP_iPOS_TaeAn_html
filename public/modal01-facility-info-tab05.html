@@ -56,6 +56,7 @@
 	</div>
 </div>
 
+<script src="/resources/js/duplicateByElement.js"></script>
 <script>
 	$(document).ready(function () {
 		const targetRow = document.querySelector('.table[aria-label="TM-이력"] tbody tr');
@@ -73,9 +74,8 @@
 					폐수처리 현장 유량계 점검요청
 				</h5>
 				<button type="button" class="btn close">
-					<span class="material-symbols-rounded">
-					close
-					</span>
+					<span class="icon icon-close"></span>
+					<span>닫기</span>
 				</button>
 			</div>
 
@@ -159,9 +159,8 @@
 			<div class="modal-header">
 				<h5 class="title04">TM 발행</h5>
 				<button type="button" class="btn close">
-					<span class="material-symbols-rounded">
-					close
-					</span>
+					<span class="icon icon-close"></span>
+					<span>닫기</span>
 				</button>
 			</div>
 			
@@ -357,9 +356,8 @@
 			<div class="modal-header">
 				<h5 class="title04">설비검색</h5>
 				<button type="button" class="btn close">
-					<span class="material-symbols-rounded">
-					close
-					</span>
+					<span class="icon icon-close"></span>
+					<span>닫기</span>
 				</button>
 			</div>
 			
@@ -404,8 +402,12 @@
 						</div>
 					</div>
 					
+					<script src="/resources/js/duplicateByElement.js"></script>
 					<script>
-						duplicateRow('.table[aria-label="설비목록"]', 20);
+						$(document).ready(function () {
+							const targetRow = document.querySelector('.table[aria-label="설비목록"] tbody tr');
+							duplicateByElement(targetRow, 7);
+						});
 					</script>
 					
 				</div>
