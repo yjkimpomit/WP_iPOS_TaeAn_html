@@ -186,8 +186,8 @@ body:not(.admin-sub) [class*='container-'] {
 	left: 50%;
 	transform: translate(-50%, 24px);
 	border-radius: 1rem;
-	background-color: var(--bg-brand-dark);
-	border: 1px solid var(--border-brand-darkhover);
+	background-color: var(--surface-primary-strong);
+	border: 1px solid var(--surface-primary-stronger);
 	background-image: url(/resources/admin/images/icons/arrow_drop_down-white.svg);
 	background-repeat: no-repeat;
 	background-position: center;
@@ -379,8 +379,8 @@ body:not(.admin-sub) [class*='container-'] {
 	align-items: center;
 	flex-wrap: wrap;
 	gap: 1rem;
-	background-color: var(--bg-neutral-tertiary);
-	border: 1px dashed var(--border-neutral-tertiary);
+	background-color: var(--surface-subtle);
+	border: 1px dashed var(--border-subtle);
 	border-radius: .5rem;
 	min-height: 128px;
 	padding: 1rem;
@@ -469,7 +469,7 @@ body:not(.admin-sub) [class*='container-'] {
 	scroll-margin-top: 48px;
 }
 .logsheet-container tr:has(:target) > * {
-	background-color: var(--bg-brand-tertiaryhover);
+	background-color: var(--surface-primary-muted);
 	transition: background-color .6s;
 }
 

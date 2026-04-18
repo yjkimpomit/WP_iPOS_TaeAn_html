@@ -24,6 +24,9 @@
 
 	--focus-ring: rgba(var(--primary-rgb), 0.7);
 
+	/* gnb */
+	--gnb-bg: var(--surface-primary-emphasis);
+
 	/* select-group */
 	--select-group-text: var(--text-base);
 	--logo-text: var(--text-base);
@@ -223,6 +226,10 @@
 
 	/* doc-box */
 	--doc-box-bg: rgba(var(--white-rgb), 70%);
+
+	/* login-box */
+	--login-box--bg: rgba(var(--white-rgb), 70%);
+	--login-box--border: var(--surface-base);
 }
 
 @media (min-width: 768px) {
@@ -246,6 +253,23 @@
 
 /* Bootstrap Override */
 :root {
+	--bs-danger-rgb: var(--danger-rgb);
+	--bs-danger-bg-subtle: var(--surface-danger-muted);
+	--bs-warning-rgb: var(--warning-rgb);
+	--bs-warning-bg-subtle: var(--surface-warning-muted);
+	--bs-success-rgb: var(--success-rgb);
+	--bs-success-bg-subtle: var(--surface-success-muted);
+	--bs-info-rgb: var(--info-rgb);
+	--bs-info-bg-subtle: var(--surface-info-muted);
+
+	--bs-primary-bg-subtle: var(--surface-primary-muted);
+	--bs-primary-border-subtle: var(--border-primary-muted);
+	--bs-danger-bg-subtle: var(--surface-danger-muted);
+	--bs-danger-border-subtle: var(--border-danger-muted);
+	--bs-success-bg-subtle: var(--surface-success-muted);
+	--bs-success-border-subtle: var(--border-success-muted);
+	--bs-warning-bg-subtle: var(--surface-warning-muted);
+	--bs-warning-border-subtle: var(--border-warning-muted);
 
 	/* btn */
 	--bs-border-radius: var(--radius-sm);

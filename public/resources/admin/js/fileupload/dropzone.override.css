@@ -16,8 +16,8 @@
 	flex-wrap: wrap;
 	gap: 1rem;
 	
-	background-color: var(--bg-neutral-tertiary);
-	border: 1px dashed var(--border-neutral-tertiary);
+	background-color: var(--surface-subtle);
+	border: 1px dashed var(--border-subtle);
 	border-radius: .5rem;
 	min-height: 128px;
 	padding: 1rem;

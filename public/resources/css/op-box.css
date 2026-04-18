@@ -18,8 +18,8 @@
 	height: 400px;
 	
 	border-radius: .25rem;
-	background: var(--bg-neutral-tertiary);
-	border: solid 1px var(--bg-neutral-secondaryhover);
+	background: var(--surface-subtle);
+	border: solid 1px var(--border-muted);
     
     backdrop-filter: blur(4px);
     box-shadow: none;
@@ -66,7 +66,7 @@
 /*  */
 .op-box-header h3 {
     font-size: 17px;
-    color: var(--text-neutral-default);
+    color: var(--text-subtle);
     font-weight: 700;
 	margin-bottom: 0;
 }
@@ -125,14 +125,14 @@
 }
 
 .op-box .table {
-	--bs-body-bg: var(--bg-neutral-secondary);
+	--bs-body-bg: var(--surface-subtle);
 }
 
 .op-box .table thead th {
-	background-color: var(--text-neutral-secondary);
+	background-color: var(--surface-secondary-strong);
 	font-weight: 700;
-	color: var(--text-default-onneutral);
-	border-color: var(--border-neutral-inversehover);
+	color: var(--text-inverse);
+	border-color: rgba(var(--black-rgb), 40%);
 }
 
 .op-box .table tbody [data-field="그룹"],
@@ -153,7 +153,7 @@
 		font-size: .875rem;
 		line-height: 1.2;
 		padding: .375rem .5rem;
-		border-bottom: solid 1px var(--border-neutral-secondary);
+		border-bottom: solid 1px var(--border-muted);
 	}
 }
 
@@ -164,10 +164,10 @@
 }
 
 .op-box .table tr > *[data-bs-toggle="collapse"] {
-	background-color: var(--bg-neutral-default);
-	color: var(--text-default-onneutral);
+	background-color: var(--surface-emphasis);
+	color: var(--text-inverse);
 	font-weight: 700;
-	border-top: solid 1px var(--bg-neutral-defaulthover);
+	border-top: solid 1px var(--border-secondary);
 	
 	cursor: pointer;
 }

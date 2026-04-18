@@ -332,109 +332,23 @@
 
 	--border-utilities-measurement: var(--pink-400);
 	--border-utilities-swatch: var(--black-200);
-
-	/* icon */
-	--icon-default-default: var(--gray-900);
-	--icon-default-secondary: var(--gray-500);
-	--icon-default-tertiary: var(--gray-400);
-	--icon-default-white: var(--white);
-
-	--icon-neutral-default: var(--gray-800);
-	--icon-neutral-secondary: var(--gray-700);
-	--icon-neutral-tertiary: var(--gray-600);
-	--icon-neutral-onneutral: var(--slate-100);
-	--icon-neutral-onneutralsecondary: var(--slate-900);
-	--icon-neutral-onneutraltertiary: var(--slate-800);
-
-	--icon-brand-default: var(--blue-800);
-	--icon-brand-secondary: var(--blue-600);
-	--icon-brand-tertiary: var(--blue-50);
-	--icon-brand-onneutral: var(--blue-100);
-	--icon-brand-onneutralsecondary: var(--blue-900);
-	--icon-brand-onneutraltertiary: var(--blue-800);
-
-	--icon-positive-default: var(--green-800);
-	--icon-positive-secondary: var(--green-600);
-	--icon-positive-tertiary: var(--green-500);
-	--icon-positive-onneutral: var(--green-100);
-	--icon-positive-onneutralsecondary: var(--green-800);
-	--icon-positive-onneutraltertiary: var(--green-900);
-	
-	--icon-warning-default: var(--yellow-800);
-	--icon-warning-secondary: var(--yellow-600);
-	--icon-warning-tertiary: var(--yellow-500);
-	--icon-warning-onwarning: var(--yellow-100);
-	--icon-warning-onwarningsecondary: var(--yellow-800);
-	--icon-warning-onwarningtertiary: var(--yellow-900);
-
-	--icon-danger-default: var(--red-800);
-	--icon-danger-secondary: var(--red-600);
-	--icon-danger-tertiary: var(--red-500);
-	--icon-danger-ondanger: var(--red-100);
-	--icon-danger-ondangersecondary: var(--red-800);
-	--icon-danger-ondangertertiary: var(--red-900);
-
-	--icon-disabled-default: var(--gray-400);
-	--icon-disabled-ondisabled: var(--gray-400);
-
-	--icon-utilities-textonoverlay: var(--pink-600);
-	--icon-utilities-textonmeasurement: var(--pink-800);
-}
-
-/* Bootstrap Override */
-:root {
-	/* nav-link */
-	--bs-nav-link-padding-y: var(--nav-link-padding-y);
-
-	/* btn */
-	--bs-border-radius: var(--radius-sm);
-	--bs-border-radius-xs: calc(var(--radius-sm) * 0.5);
-	
-	/* border */
-	--bs-border-color: var(--border-neutral-default);
-	
-	/* BS override style */
-	--bs-heading-color: var(--text-neutral-onneutralsecondary);
-	--bs-body-bg: var(--bg-default-default);
-	--bs-body-color: var(--text-default-default);
-	
-	--bs-box-shadow-lg: var(--box-shadow-3);
-	
-	--bs-nav-link-font-size: 1rem;
-	
-	--bs-nav-link-color: var(--text-neutral-default);
-	--bs-nav-link-hover-color: var(--text-brand-default);
-	--bs-nav-underline-link-active-color: var(--text-brand-default);
-	--bs-nav-pills-link-active-bg: var(--bg-brand-default);
-	--bs-primary-rgb: var(--primary-rgb);
-	
-	--bs-link-color: var(--bg-neutral-inversehover);
-	--bs-link-hover-color: var(--text-brand-secondary);
-	--bs-secondary-color: var(--slate-500);
-	--bs-emphasis-color: var(--text-brand-default);
-
-    --bs-toast-color: var(--text-neutral-default);
-    --bs-toast-bg: var(--bg-default-default);
-	--bs-toast-header-bg: var(--bg-danger-tertiary);
-	--bs-toast-header-color: var(--text-neutral-default);
-	--bs-btn-bg: var(--bg-default-default);
 }
 
 body {
-	background-color: var(--bg-default-default);
+	background-color: var(--surface-base);
 	font-family: var(--font-family), sans-serif;
-	color: var(--text-neutral-default);
+	color: var(--text-base);
 	
 	line-height: 1.5;
 }
 
 a {
-	color: var(--text-neutral-default);
+	color: var(--text-base);
 	text-decoration: none;
 }
 
 a:hover {
-	color: var(--text-brand-tertiary);
+	color: var(--text-primary);
 }
 
 a:active {
@@ -448,37 +362,25 @@ a[onclick] {
 .hangul_fallback {
 	font-family: var(--font-family), sans-serif;
 }
-/* 
-.text-primary {
-	color: var(--text-brand-tertiary) !important;
-}
 
-.text-danger {
-	color: var(--text-danger-tertiary) !important;
-}
-
-.text-success {
-	color: var(--text-positive-tertiary) !important;
-}
-
-.text-warning {
-	color: var(--text-warning-tertiary) !important;
-} */
-
-
-/* scroll */
+/* basic */
 ::-webkit-scrollbar {
-	width: 6px;
-	height: 6px;
+	width: var(--scrollbar-size-lg);
+	height: var(--scrollbar-size-lg);
 }
 
+::-webkit-scrollbar,
 ::-webkit-scrollbar-track {
-	background-color: var(--bg-default-secondary);
+	background-color: var(--scrollbar-bg);
 }
 
-::-webkit-scrollbar-thumb {	
-	border-radius: 3px;
-	background-color: var(--border-neutral-secondary);
+::-webkit-scrollbar-thumb {
+	border-radius: 0;
+	background-color: var(--scrollbar-thumb);
+}
+::-webkit-scrollbar-thumb:hover,
+::-webkit-scrollbar-thumb:active{
+	background-color: var(--scrollbar-thumb-hover);
 }
 
 ::-webkit-scrollbar-button {
@@ -486,7 +388,7 @@ a[onclick] {
 	height: 0;
 }
 
-/* another scroll style */
+/* hidden scrollbar */
 .scroll-hide::-webkit-scrollbar {
 	width: 0;
 	background-color: transparent;
@@ -494,13 +396,11 @@ a[onclick] {
 
 .scroll-hide:hover::-webkit-scrollbar,
 .scroll-hide:hover::-webkit-scrollbar-track {
-	width: 6px;
-	background-color: var(--slate-100);
+	background-color: var(--scrollbar-bg);
 }
 
 .scroll-hide:hover::-webkit-scrollbar-thumb {
-	border-radius: 3px;
-	background-color: var(--slate-300);
+	background-color: var(--scrollbar-thumb);
 }
 
 /* date, time picker icon */

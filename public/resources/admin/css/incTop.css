@@ -13,7 +13,7 @@
 	align-items: center;
 	min-height: 32px;
 	gap: .25rem;
-	background-color: var(--bg-brand-dark);
+	background-color: var(--surface-primary-strong);
 	padding: 0 1rem;
 }
 .admin-header * {
@@ -26,7 +26,7 @@
 }
 .admin-header .branch-name,
 .admin-header .title {
-	color: var(--text-default-onneutral);
+	color: var(--text-inverse);
 	font-size: 12px;
 	font-weight: 700;
 }
@@ -46,5 +46,5 @@
 	left: 0;
 	top: 50%;
 	transform: translateY(-50%);
-	background-color: var(--bg-default-default);
+	background-color: var(--surface-base);
 }

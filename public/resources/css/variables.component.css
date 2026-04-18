@@ -24,6 +24,9 @@
 
 	--focus-ring: rgba(var(--primary-rgb), 0.7);
 
+	/* gnb */
+	--gnb-bg: var(--surface-primary-emphasis);
+
 	/* select-group */
 	--select-group-text: var(--text-base);
 	--logo-text: var(--text-base);
@@ -223,6 +226,10 @@
 
 	/* doc-box */
 	--doc-box-bg: rgba(var(--white-rgb), 70%);
+
+	/* login-box */
+	--login-box--bg: rgba(var(--white-rgb), 70%);
+	--login-box--border: var(--surface-base);
 }
 
 @media (min-width: 768px) {

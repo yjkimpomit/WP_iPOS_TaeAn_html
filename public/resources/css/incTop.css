@@ -489,7 +489,7 @@ html[data-theme='dark'] .logo .bi .select-plant .icon-arrow {
 	
 	font-size: 18px;
 	text-align: center;
-	color: var(--text-default-onneutral);
+	color: var(--text-inverse);
 	font-weight: 500;
 }
 

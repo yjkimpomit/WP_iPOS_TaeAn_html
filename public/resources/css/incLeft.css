@@ -21,7 +21,7 @@
 }
 .left-box .gnb {
 	display: none;
-	background-color: var(--bg-brand-darkest);
+	background-color: var(--gnb-bg);
 }
 
 .left-box.expand {
@@ -89,12 +89,12 @@
 .left-box.expand .layout-toggle>span {
 	position: relative;
     display: block;
-	color: var(--text-default-onneutral);
+	color: var(--text-inverse);
 }
 
 /* menu-icon */
 .menu-icon {
-	background-color: var(--bg-danger-default);
+	background-color: var(--surface-danger);
 	background-image: url(/resources/images/icons/gnb-menu_open.svg);
 }
 
@@ -124,7 +124,7 @@
 		white-space: nowrap;
 		
 		opacity: 1;
-		background-color: var(--bg-default-default);
+		background-color: var(--surface-base);
 		border-radius: 1rem;
 		box-shadow: var(--box-shadow-1);
 	}
@@ -143,14 +143,14 @@
 		height: 0;
 		border-top: 7px solid transparent;
 		border-bottom: 7px solid transparent;
-		border-right: 7px solid var(--bg-default-default);
+		border-right: 7px solid var(--surface-base);
 	}
 }
 
 @media (min-width: 1680px) {
 	.header-icon {
 		display: flex;
-		background-color: var(--bg-danger-accent);
+		background-color: var(--surface-danger-accent);
 		background-image: url(/resources/images/icons/gnb-page_header_on.svg);
 	}
 	
@@ -184,10 +184,10 @@
 }
 
 .left-box:not(.expand) .menu-link {
-	color: var(--text-neutral-default);
+	color: var(--text-base);
 }
 .left-box:not(.expand) .menu-link:hover {
-    color: var(--text-brand-secondary);
+    color: var(--text-primary);
 }
 
 .left-box .menu-item {
@@ -236,7 +236,7 @@
 .left-box.expand li,
 .left-box.expand .menu-link,
 .left-box.expand .menu-link:hover {
-    color: var(--text-default-onneutral);
+    color: var(--text-inverse);
 }
 
 .left-box.expand .menu-item > .d1 {
@@ -275,7 +275,7 @@
 }
 
 .left-box.expand .gnb-main>li {
-	border-bottom: 1px solid var(--lighter10);
+	border-bottom: 1px solid rgba(var(--white-rgb), 10%);
 }
 
 .left-box.expand .d1[data-class] {
@@ -283,7 +283,7 @@
 	display: flex;
 }
 .left-box.expand li:has(.depth-2) > .menu-link>.menu-text {
-    background-color: var(--bg-brand-darkest);
+    background-color: var(--gnb-bg);
 }
 
 .left-box.expand li:has(.depth-2) .d1[data-class] > .menu-text {
@@ -317,7 +317,7 @@
 .left-box.expand .depth-1 > li:hover,
 .left-box .depth-1 > li:has(.menu-box.active),
 .left-box.expand .depth-1 > li:has([aria-expanded="true"]) {
-	background-color: var(--darker30);
+	background-color: rgba(var(--black-rgb), 30%);
 }
 
 /* depth-2 */
@@ -354,7 +354,7 @@
 }
 .left-box .menu-box .menu-link.d2 > span sub {
 	font-weight: 400;
-	color: var(--text-danger-tertiary);
+	color: var(--text-danger-inverse);
 }
 
 @media (min-width: 768px) {
@@ -377,7 +377,7 @@
 		padding: .5rem 1.25rem;
 		white-space: nowrap;
 
-		background-color: var(--bg-default-default);
+		background-color: var(--surface-base);
 		border-radius: 1rem;
 		box-shadow: var(--box-shadow-1);
 	}
@@ -412,7 +412,7 @@
 		margin-bottom: .5rem;
 	}
 	.left-box:not(.expand) .menu-box.active .menu-link.d2 > span sub {
-		color: var(--text-danger-secondary);
+		color: var(--text-danger);
 	}
 }
 
@@ -498,9 +498,9 @@
 	width: 20px;
 	height: 20px;
 	border-radius: 16px;
-	border: 2px solid var(--border-default-white);
-	background-color: var(--bg-danger-default);
-	color: var(--text-default-onneutral);
+	border: 2px solid var(--border-inverse);
+	background-color: var(--surface-danger);
+	color: var(--text-inverse);
 	font-size: 13px;
 	font-weight: 700;
 	display: flex;
@@ -526,17 +526,17 @@
 }
 
 .left-box .gnb > *:not(.gnb-main) > li {
-    background-color: var(--bg-neutral-inverse);
-	border-bottom: 1px solid var(--darker30);
+    background-color: var(--surface-secondary-strong);
+	border-bottom: 1px solid rgba(var(--black-rgb), 30%);
 }
 
 .left-box .gnb > *:not(.gnb-main) > li:hover {
-    background-color: var(--bg-neutral-inversehover);
+    background-color: var(--surface-secondary-stronger);
 }
 
 /* 방문자수 */
 .left-box .gnb > .gnb-counter > li {
-	background-color: var(--bg-neutral-inversehover);
+	background-color: var(--surface-secondary-stronger);
 }
 .left-box .gnb > .gnb-counter > li .menu-box {
 	padding: 1rem;
@@ -580,9 +580,9 @@
 .btn-log.btn-sm {
 	border-radius: .25rem;
 	font-size: .75rem;
-	color: var(--text-default-onneutral);
-	background-color: var(--bg-brand-defaulthover);
-	border: 1px solid var(--bg-brand-dark);
+	color: var(--text-inverse);
+	background-color: var(--surface-primary);
+	border: 1px solid var(--border-primary-strong);
 
 	padding: .125rem 1.25rem .125rem .5rem;
 	background-image: url(/resources/images/icons/arrow_right-white.svg);

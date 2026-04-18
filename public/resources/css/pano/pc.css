@@ -1824,7 +1824,7 @@ td .set-row {
 
 .total-count span {
 	font-weight: 700;
-	color: var(--text-brand-default);
+	color: #0060A9;
 }
 
 /* pagination */

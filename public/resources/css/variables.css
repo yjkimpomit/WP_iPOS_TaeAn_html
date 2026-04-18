@@ -83,17 +83,6 @@
 	--pink-700: #650B4C;
 	--pink-800: #450C35;
 	--pink-900: #260D1F;
-	
-	--yellow-50: #FFF8EB;
-	--yellow-100: #FFEECC;
-	--yellow-200: #FFE0A3;
-	--yellow-300: #FFD06F;
-	--yellow-400: #FFBF3B;
-	--yellow-500: #FDAA00;
-	--yellow-600: #B56900;
-	--yellow-700: #7A4100;
-	--yellow-800: #5D2F00;
-	--yellow-900: #3D2100;
 
 	--yellow-50:  #FFF8D6;
 	--yellow-100: #FFF3B8;
@@ -138,17 +127,6 @@
 	--slate-700: #40464F;
 	--slate-800: #31343A;
 	--slate-900: #1D2023;
-	
-	--gray-50: #FAFAFA;
-	--gray-100: #E5E5E5;
-	--gray-200: #E0E0E0;
-	--gray-300: #CCCCCC;
-	--gray-400: #B8B8B8;
-	--gray-500: #767676;
-	--gray-600: #4D4D4D;
-	--gray-700: #3D3D3D;
-	--gray-800: #333333;
-	--gray-900: #242424;
 }
 
 :root {
@@ -214,7 +192,7 @@
 	--danger-rgb: 223, 19, 76;
 	--success-rgb: 54, 164, 29;
 	--warning-rgb: 255, 179, 0;
-	
+	/* 
 	--bg-default-default: var(--white);
 	--bg-default-defaulthover: var(--gray-50);
 	--bg-default-secondary: var(--gray-100);
@@ -239,14 +217,14 @@
 	--bg-brand-tertiaryhover: var(--blue-100);
 	--bg-brand-dark: var(--blue-700);
 	--bg-brand-darkhover: var(--blue-800);
-	--bg-brand-darkest: var(--blue-900);
+	--bg-brand-darkest: var(--blue-900); */
 	
-	--bg-positive-default: var(--green-500);
+	/* --bg-positive-default: var(--green-500);
 	--bg-positive-defaulthover: var(--green-600);
 	--bg-positive-secondary: var(--green-200);
 	--bg-positive-secondaryhover: var(--green-300);
 	--bg-positive-tertiary: var(--green-50);
-	--bg-positive-tertiaryhover: var(--green-100);
+	--bg-positive-tertiaryhover: var(--green-100); 
 	
 	--bg-warning-default: var(--yellow-400);
 	--bg-warning-defaulthover: var(--yellow-500);
@@ -265,9 +243,9 @@
 	
 	--bg-disabled-default: var(--slate-50);
 	
-	--bg-danger-highlight: #ff6c47;
+	--bg-danger-highlight: #ff6c47;*/
 	
-	/* text */
+	/* text 
 	--text-default-default: var(--gray-900);
 	--text-default-secondary: var(--gray-500);
 	--text-default-tertiary: var(--gray-400);
@@ -309,10 +287,10 @@
 	--text-danger-tertiary: var(--red-300);
 	--text-danger-ondanger: var(--red-100);
 	--text-danger-ondangersecondary: var(--red-800);
-	--text-danger-ondangertertiary: var(--red-700);
+	--text-danger-ondangertertiary: var(--red-700); */
 	
 	/* border */
-	--border-default-default: var(--gray-200);
+	/* --border-default-default: var(--gray-200);
 	--border-default-secondary: var(--gray-400);
 	--border-default-tertiary: var(--gray-600);
 	--border-default-white: var(--white);
@@ -332,7 +310,7 @@
 	
 	--border-positive-default: var(--green-800);
 	--border-positive-secondary: var(--green-600);
-	--border-positive-tertiary: var(--green-500);
+	--border-positive-tertiary: var(--green-500); 
 	
 	--border-warning-default: var(--yellow-800);
 	--border-warning-secondary: var(--yellow-700);
@@ -343,55 +321,7 @@
 	--border-danger-tertiary: var(--red-600);
 	
 	--border-disabled-default: var(--slate-100);
-	--border-disabled-ondisabled: var(--slate-200);
-	
-	/* icon */
-	--icon-default-default: var(--gray-900);
-	--icon-default-secondary: var(--gray-500);
-	--icon-default-tertiary: var(--gray-400);
-	--icon-default-onneutral: var(--gray-100);
-	--icon-default-onneutralsecondary: var(--gray-300);
-	--icon-default-onneutraltertiary: var(--gray-500);
-	--icon-default-white: var(--white);
-	
-	--icon-neutral-default: var(--slate-800);
-	--icon-neutral-secondary: var(--slate-700);
-	--icon-neutral-tertiary: var(--slate-600);
-	--icon-neutral-onneutral: var(--slate-100);
-	--icon-neutral-onneutralsecondary: var(--slate-300);
-	--icon-neutral-onneutraltertiary: var(--slate-500);
-	--icon-neutral-black: var(--slate-900);
-	
-	--icon-brand-default: var(--blue-800);
-	--icon-brand-secondary: var(--blue-600);
-	--icon-brand-tertiary: var(--blue-50);
-	--icon-brand-onneutral: var(--blue-100);
-	--icon-brand-onneutralsecondary: var(--blue-300);
-	--icon-brand-onneutraltertiary: var(--blue-500);
-	
-	--icon-positive-default: var(--green-800);
-	--icon-positive-secondary: var(--green-600);
-	--icon-positive-tertiary: var(--green-500);
-	--icon-positive-onneutral: var(--green-100);
-	--icon-positive-onneutralsecondary: var(--green-300);
-	--icon-positive-onneutraltertiary: var(--green-500);
-	
-	--icon-warning-default: var(--yellow-800);
-	--icon-warning-secondary: var(--yellow-600);
-	--icon-warning-tertiary: var(--yellow-500);
-	--icon-warning-onwarning: var(--yellow-100);
-	--icon-warning-onwarningsecondary: var(--yellow-300);
-	--icon-warning-onwarningtertiary: var(--yellow-500);
-	
-	--icon-danger-default: var(--red-800);
-	--icon-danger-secondary: var(--red-600);
-	--icon-danger-tertiary: var(--red-500);
-	--icon-danger-ondanger: var(--red-100);
-	--icon-danger-ondangersecondary: var(--red-300);
-	--icon-danger-ondangertertiary: var(--red-500);
-	
-	--icon-disabled-default: var(--gray-400);
-	--icon-disabled-ondisabled: var(--gray-400);
+	--border-disabled-ondisabled: var(--slate-200);*/
 
 	/* chart : --chart-[scope]-[series]-[role]*/
 	/* 1: neutral */
@@ -434,7 +364,7 @@
 	--chart-series-ext-09: var(--yellow-600);
 	--chart-series-ext-10: var(--cyan-500);
 
-	/* darkness & lightness */
+	/* darkness & lightness
 	--darker10: var(--black-100);
 	--darker20: var(--black-200);
 	--darker30: var(--black-300);
@@ -451,7 +381,7 @@
 	--lighter50: var(--white-500);
 	--lighter60: var(--white-600);
 	--lighter70: var(--white-700);
-	--lighter80: var(--white-800);
+	--lighter80: var(--white-800); */
 }
 
 /* 2026-04-09 : 순차적으로 시맨틱과 컴포넌트로 분리할 목적으로 추가된 스타일 */
@@ -515,6 +445,7 @@
 	--border-subtle: var(--slate-100);
 	--border-muted: var(--slate-200);
 	--border-strong: var(--slate-300);
+	--border-inverse: var(--white-900);
 	
 	--border-primary-accent: var(--blue-500);
 	--border-primary: var(--blue-600);
@@ -569,6 +500,7 @@
 	--text-danger-strong: var(--red-700);
 	--text-danger-stronger: var(--red-800);
 	--text-danger-emphasis: var(--red-900);
+	--text-danger-inverse: var(--red-200);
 	--text-warning: var(--yellow-600);
 	--text-warning-strong: var(--yellow-700);
 	--text-warning-stronger: var(--yellow-800);
