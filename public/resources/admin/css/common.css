@@ -10,9 +10,9 @@
 */
 
 @import url(/resources/admin/css/bootstrap/dist/css/bootstrap.min.css);
+@import url(/resources/admin/css/reset.css);
 @import url(/resources/admin/css/variables.css);
 @import url(/resources/admin/css/variables.component.css);
-@import url(/resources/admin/css/reset.css);
 
 /*#################### 폰트 ####################*/
 @import url(/resources/admin/fonts/NotoSansKR/NotoSansKR.css);

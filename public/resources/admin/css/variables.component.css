@@ -297,7 +297,7 @@
 	--bs-link-color: var(--text-subtle);
 	--bs-link-hover-color: var(--text-primary-strong);
 	--bs-secondary-color: var(--text-stronger);
-	--bs-emphasis-color: var(--text-primary-strong);
+	--bs-emphasis-color: var(--text-base);
 
     --bs-toast-color: var(--text-subtle);
     --bs-toast-bg: var(--surface-base);

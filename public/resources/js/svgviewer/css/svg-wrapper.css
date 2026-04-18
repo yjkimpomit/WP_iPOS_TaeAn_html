@@ -320,9 +320,17 @@ iPOS 에서는 modal.css 에서 사용하고 있음
 .btn-outline-primary .icon-replay {
 	background-image: url(../images/icon-replay-primary.svg);
 }
+.btn-outline-primary:hover .icon-replay {
+	background-image: url(../images/icon-replay-white.svg);
+}
 .btn-outline-primary .icon-search {
 	background-image: url(../images/icon-search-primary.svg);
 }
 .btn-outline-primary .icon-swap_driving_apps_wheel {
 	background-image: url(../images/icon-swap_driving_apps_wheel-primary.svg);
+}
+
+.btn-outline-primary {
+	--bs-btn-disabled-bg: transparent;
+	--bs-btn-disabled-border-color: var(--border-primary);
 }
