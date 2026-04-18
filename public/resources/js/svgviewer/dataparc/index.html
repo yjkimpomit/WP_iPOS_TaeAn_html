@@ -28,8 +28,13 @@
 					<option value="id">ID</option>
 				</select>
 				<input type="text" id="tbSearchTarget" placeholder="텍스트 또는 ID 검색" value="" class="form-control">
-				<button type="button" class="btn btn-primary icon-search" title="찾기" onclick="safeFilterTable()"><span class="visually-hidden">찾기</span></button>
-				<button type="button" class="btn btn-secondary icon-replay" title="복원" onclick="handleResetTable()"><span class="visually-hidden">복원</span></button>
+				<button type="button" class="btn btn-primary" title="찾기" onclick="safeFilterTable()">
+					<span class="icon icon-search"></span>
+					<span class="visually-hidden">찾기</span></button>
+				<button type="button" class="btn btn-outline-primary" title="복원" onclick="handleResetTable()">
+					<span class="icon icon-replay"></span>
+					<span class="visually-hidden">복원</span>
+				</button>
 			</div>
 			<div class="datalist-body">
 				<div class="table-responsive scroll-hide">

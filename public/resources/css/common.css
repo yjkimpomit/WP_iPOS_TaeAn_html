@@ -9,12 +9,13 @@
 */
 
 @import url(/resources/css/bootstrap/dist/css/bootstrap.min.css);
+@import url(/resources/css/variables.css);
+@import url(/resources/css/variables.component.css);
 @import url(/resources/css/reset.css);
 
 /*#################### 폰트 ####################*/
 @import url(/resources/fonts/NotoSansKR/NotoSansKR.css);
 @import url(/resources/fonts/Roboto/Roboto.css);
-@import url(/resources/css/variables.css);
 @import url(/resources/css/animation.css);
 @import url(/resources/css/extra-grid.css);
 
@@ -37,22 +38,22 @@ body.main::-webkit-scrollbar {
 }
 /* basic */
 ::-webkit-scrollbar {
-	width: 8px;
-	height: 8px;
+	width: var(--scrollbar-size-lg);
+	height: var(--scrollbar-size-lg);
 }
 
 ::-webkit-scrollbar,
 ::-webkit-scrollbar-track {
-	background-color: var(--black-100);
+	background-color: var(--scrollbar-bg);
 }
 
 ::-webkit-scrollbar-thumb {
 	border-radius: 0;
-	background-color: var(--black-200);
+	background-color: var(--scrollbar-thumb);
 }
 ::-webkit-scrollbar-thumb:hover,
 ::-webkit-scrollbar-thumb:active{
-	background-color: var(--blue-700);
+	background-color: var(--scrollbar-thumb-hover);
 }
 
 ::-webkit-scrollbar-button {
@@ -63,18 +64,28 @@ body.main::-webkit-scrollbar {
 /* winbox scrollbar */
 .dashboard-box ::-webkit-scrollbar,
 [class*='container-'] ::-webkit-scrollbar {
-	width: 4px;
-	height: 4px;
+	width: var(--scrollbar-size-md);
+	height: var(--scrollbar-size-md);
 }
 
 /* nav scrollbar */
-.left-box nav::-webkit-scrollbar,
-.left-box nav::-webkit-scrollbar-track {
-	background-color: var(--blue-900);
+.left-box ::-webkit-scrollbar {
+	width: 0;
+	height: 0;
 }
-
-.left-box nav::-webkit-scrollbar-thumb {
-	background-color: var(--text-neutral-secondary);
+.left-box:hover ::-webkit-scrollbar {
+	width: var(--scrollbar-size-lg);
+}
+.left-box ::-webkit-scrollbar,
+.left-box ::-webkit-scrollbar-track {
+	background-color: var(--scrollbar-nav-bg);
+}
+.left-box ::-webkit-scrollbar-thumb {
+	background-color: var(--scrollbar-nav-thumb);
+}
+.left-box ::-webkit-scrollbar-thumb:hover,
+.left-box ::-webkit-scrollbar-thumb:active {
+	background-color: var(--scrollbar-nav-thumb-hover);
 }
 
 /* hidden scrollbar */
@@ -85,11 +96,11 @@ body.main::-webkit-scrollbar {
 
 .scroll-hide:hover::-webkit-scrollbar,
 .scroll-hide:hover::-webkit-scrollbar-track {
-	background-color: var(--bg-neutral-secondary);
+	background-color: var(--scrollbar-bg);
 }
 
 .scroll-hide:hover::-webkit-scrollbar-thumb {
-	background-color: var(--slate-300);
+	background-color: var(--scrollbar-thumb);
 }
 
 /* date, time picker icon */
@@ -853,6 +864,11 @@ input[id="facilityRefList"]+.title03 {
 	background-repeat: no-repeat;
 	background-position: center;
 }
+.icon-tm {
+	background-image: url(/resources/images/icons/icon-confirmation_number-white.svg);
+	background-repeat: no-repeat;
+	background-position: center;
+}
 .icon-delete {
 	background-image: url(/resources/images/icons/delete_forever-white.svg);
 	background-repeat: no-repeat;
@@ -935,7 +951,7 @@ input[id="facilityRefList"]+.title03 {
 .nav,
 .nav[role="tablist"] {
 	--bs-nav-link-padding-x: .625rem;
-	--bs-nav-link-padding-y: .25rem;
+	--bs-nav-link-padding-y: var(--nav-link-padding-y);
 }
 .nav-underline {
 	padding: .5rem .5rem 0;

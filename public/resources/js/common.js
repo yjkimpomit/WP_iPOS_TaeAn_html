@@ -55,6 +55,9 @@ function fnGetDeviceWidth() {
     }
 }
 
+/* temp */
+var checkDevice = '';
+
 /* 디바이스 체크 */
 function getDeviceType() {
     if (checkDevice === "mobile") {

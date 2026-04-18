@@ -75,10 +75,8 @@ iPOS 에서는 modal.css 에서 사용하고 있음
 	gap: .5rem;
 }
 
-.viewer-header .svg-title .btn[class*='icon-'] {
-	width: auto;
-	background-position: left center;
-	padding-left: 2rem;
+.viewer-header .svg-title .btn {
+	--bs-btn-padding-x: .75rem;
 }
 
 .viewer-header .svg-links {
@@ -216,29 +214,29 @@ iPOS 에서는 modal.css 에서 사용하고 있음
 	width: 6rem;
 }
 
-/* 아이콘 단독사용 */
-.icon[class*='icon-'] {
+
+/* 아이콘 버튼과 함께 사용 */
+.btn {
+	--bs-btn-padding-x: .25rem;
+	height: 32px;
+	flex-shrink: 0;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: .5rem;
+}
+
+.btn > .icon[class*='icon-'] {
 	width: 24px;
 	height: 24px;
-	display: inline-block;
+	display: inline-flex;
 	background-repeat: no-repeat;
 	background-position: center;
 	background-size: auto;
 }
 
-/* 아이콘 버튼과 함께 사용 */
-.btn[class*='icon-'] {
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: auto 24px;
-	
-	width: 36px;
-	height: 36px;
-	flex-shrink: 0;
-	
-	display: flex;
-	align-items: center;
-	justify-content: center;
+.btn > .icon + span {
+    flex: 1;
 }
 
 /* icons */
@@ -264,7 +262,7 @@ iPOS 에서는 modal.css 에서 사용하고 있음
 	background-image: url(../images/icon-conversion_path-gray.svg);
 }
 .icon-description {
-	background-image: url(../images/icon-description-gray.svg);
+	background-image: url(../images/icon-description-white.svg);
 }
 .icon-developer_guide {
 	background-image: url(../images/icon-developer_guide-gray.svg);
@@ -276,11 +274,55 @@ iPOS 에서는 modal.css 에서 사용하고 있음
 	background-image: url(../images/icon-lab_profile-gray.svg);
 }
 .icon-replay {
-	background-image: url(../images/icon-replay-gray.svg);
+	background-image: url(../images/icon-replay-white.svg);
 }
 .icon-search {
 	background-image: url(../images/icon-search-white.svg);
 }
 .icon-swap_driving_apps_wheel {
 	background-image: url(../images/icon-swap_driving_apps_wheel-gray.svg);
+}
+
+
+.btn-outline-primary .icon-acute {
+	background-image: url(../images/icon-acute-primary.svg);
+}
+.btn-outline-primary .icon-arrow_split {
+	background-image: url(../images/icon-arrow_split-primary.svg);
+}
+.btn-outline-primary .icon-article {
+	background-image: url(../images/icon-article-primary.svg);
+}
+.btn-outline-primary .icon-construction {
+	background-image: url(../images/icon-construction-primary.svg);
+}
+.btn-outline-primary .icon-controller_gen {
+	background-image: url(../images/icon-controller_gen-primary.svg);
+}
+.btn-outline-primary .icon-content_paste_go {
+	background-image: url(../images/icon-content_paste_go-primary.svg);
+}
+.btn-outline-primary .icon-conversion_path {
+	background-image: url(../images/icon-conversion_path-primary.svg);
+}
+.btn-outline-primary .icon-description {
+	background-image: url(../images/icon-description-primary.svg);
+}
+.btn-outline-primary .icon-developer_guide {
+	background-image: url(../images/icon-developer_guide-primary.svg);
+}
+.btn-outline-primary .icon-lab_profile {
+	background-image: url(../images/icon-lab_profile-primary.svg);
+}
+.btn-outline-primary .icon-lab_profile {
+	background-image: url(../images/icon-lab_profile-primary.svg);
+}
+.btn-outline-primary .icon-replay {
+	background-image: url(../images/icon-replay-primary.svg);
+}
+.btn-outline-primary .icon-search {
+	background-image: url(../images/icon-search-primary.svg);
+}
+.btn-outline-primary .icon-swap_driving_apps_wheel {
+	background-image: url(../images/icon-swap_driving_apps_wheel-primary.svg);
 }

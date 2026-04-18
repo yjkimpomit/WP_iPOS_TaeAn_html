@@ -126,7 +126,9 @@
 
 .table.view-table tbody tr th,
 .table.view-table tfoot tr th {
+	font-weight: 700;
 	text-align: right;
+	background-color: var(--table-th-bg-subtle);
 }
 
 .table.view-table tbody tr td {

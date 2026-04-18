@@ -18,21 +18,26 @@
 		<div class="viewer">
 			<div class="viewer-header">
 				<div class="svg-title">
-					<a href="1" class="btn icon-description">
+					<a href="1" class="btn btn-primary">
+						<span class="icon icon-description"></span>
 						<span>DXAX-1F-LO-PP-01</span>
 					</a>
 				</div>
 				<div class="svg-links">
-					<a href="#" class="btn btn-secondary icon-arrow_split disabled" aria-disabled="true" title="운전 절차서">
+					<a href="#" class="btn btn-outline-primary disabled" aria-disabled="true" title="운전 절차서">
+						<span class="icon icon-arrow_split"></span>
 						<span class="visually-hidden">운전 절차서</span>
 					</a>
-					<a href="#" class="btn btn-secondary icon-construction disabled" aria-disabled="true" title="정비 절차서">
+					<a href="#" class="btn btn-outline-primary disabled" aria-disabled="true" title="정비 절차서">
+						<span class="icon icon-construction"></span>
 						<span class="visually-hidden">정비 절차서</span>
 					</a>
-					<a href="#" class="btn btn-secondary icon-developer_guide disabled" aria-disabled="true" title="작업 지시서">
+					<a href="#" class="btn btn-outline-primary disabled" aria-disabled="true" title="작업 지시서">
+						<span class="icon icon-developer_guide"></span>
 						<span class="visually-hidden">작업 지시서</span>
 					</a>
-					<a href="#" class="btn btn-secondary icon-lab_profile disabled" aria-disabled="true" title="작업 결과 보고서">
+					<a href="#" class="btn btn-outline-primary disabled" aria-disabled="true" title="작업 결과 보고서">
+						<span class="icon icon-lab_profile"></span>
 						<span class="visually-hidden">작업 결과 보고서</span>
 					</a>
 				</div>
@@ -49,8 +54,14 @@
 					<option value="id">ID</option>
 				</select>
 				<input type="text" id="tbSearchTarget" placeholder="텍스트 또는 ID 검색" value="" class="form-control">
-				<button type="button" class="btn btn-primary icon-search" title="찾기" onclick="safeFilterTable()"><span class="visually-hidden">찾기</span></button>
-				<button type="button" class="btn btn-secondary icon-replay" title="복원" onclick="handleResetTable()"><span class="visually-hidden">복원</span></button>
+				<button type="button" class="btn btn-primary" title="찾기" onclick="safeFilterTable()">
+					<span class="icon icon-search"></span>
+					<span class="visually-hidden">찾기</span>
+				</button>
+				<button type="button" class="btn btn-outline-primary" title="복원" onclick="handleResetTable()">
+					<span class="icon icon-replay"></span>
+					<span class="visually-hidden">복원</span>
+				</button>
 			</div>
 			<div class="datalist-body">
 				<div class="table-responsive scroll-hide">

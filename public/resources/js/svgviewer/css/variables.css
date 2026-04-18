@@ -7,25 +7,6 @@
  */
 
 :root {
-
-	--header-height: 88px;
-	--header-height-md: 48px;
-	--unity-height: 48px;
-	
-	--gnb-top: var(--header-height);
-	--gnb-width: 56px;
-    --gnb-width-active: 240px;
-
-    --gnb-font-weight-normal: 400;
-    --gnb-font-weight-bold: 500;
-    --gnb-font-size-depth1: 14px;
-    --gnb-font-size-depth2: 13px;
-    --gnb-font-size-depth3: 12px;
-
-	--wp-modal-width: 1864px;
-	--wp-side-panel-width: 360px;
-	--wp-mordal-split-padding: 2.5rem;
-
 	/* color primitives */
 	--black-50: #11111105;
 	--black-100: #1111110D;
@@ -37,9 +18,9 @@
 	--black-700: #111111D6;
 	--black-800: #111111EB;
 	--black-900: #111111FF;
-
-    --white-50: #ffffff0D;
-    --white-100: #ffffff1A;
+	
+	--white-50: #ffffff0D;
+	--white-100: #ffffff1A;
 	--white-200: #ffffff33;
 	--white-300: #ffffff4D;
 	--white-400: #ffffff66;
@@ -48,8 +29,6 @@
 	--white-700: #ffffffD6;
 	--white-800: #ffffffEB;
 	--white-900: #ffffffFF;
-
-    --white: var(--white-900);
 	
 	--blue-50: #F5FBFF;
 	--blue-100: #DBF0FF;
@@ -58,12 +37,9 @@
 	--blue-400: #45A5F5;
 	--blue-500: #0078D4;
 	--blue-600: #0060A9;
-	--blue-700: #023B66;
-	--blue-800: #032F52;
+	--blue-700: #043C66;
+	--blue-800: #092C47;
 	--blue-900: #0A2133;
-
-	--blue-special-1: #1D77D1;
-	--blue-special-2: #0052A3;
 	
 	--red-50: #FFF7F9;
 	--red-100: #FFEBF0;
@@ -76,27 +52,27 @@
 	--red-800: #5B001A;
 	--red-900: #3E0011;
 	
-	--green-50: #F1FBF4;
-	--green-100: #C0F0CB;
-	--green-200: #ABEDBA;
-	--green-300: #50E26F;
-	--green-400: #0AB830;
-	--green-500: #038A20;
-	--green-600: #026E1A;
-	--green-700: #045816;
-	--green-800: #064213;
-	--green-900: #062D0E;
+	--green-50: #F7FAF9;
+	--green-100: #E2F6E7;
+	--green-200: #BBE6C5;
+	--green-300: #91E0A2;
+	--green-400: #34A34C;
+	--green-500: #26873B;
+	--green-600: #207733;
+	--green-700: #185626;
+	--green-800: #21582D;
+	--green-900: #254B2D;
 	
-	--orange-50: #FFF3F0;
-	--orange-100: #FFE2DB;
-	--orange-200: #FFC6B8;
-	--orange-300: #FF9D85;
-	--orange-400: #F24216;
-	--orange-500: #B82500;
-	--orange-600: #8F1D00;
-	--orange-700: #701600;
-	--orange-800: #521000;
-	--orange-900: #2E150F;
+	--orange-50:  #FFF6F0;
+	--orange-100: #FFE8D9;
+	--orange-200: #FFD1B3;
+	--orange-300: #FFAA66;
+	--orange-400: #FF7A00;
+	--orange-500: #CC6100;
+	--orange-600: #A34D00;
+	--orange-700: #7A3900;
+	--orange-800: #522600;
+	--orange-900: #331800;
 	
 	--pink-50: #FFF0FB;
 	--pink-100: #F5D3EB;
@@ -131,11 +107,11 @@
 	--purple-800: #550066;
 	--purple-900: #33003D;
 	
-	--cyan-50: #EFFBFE;
-	--cyan-100: #C4EBF5;
-	--cyan-200: #A1E6F7;
+	--cyan-50:  #EFFBFE;
+	--cyan-100: #CAEEF6;
+	--cyan-200: #9FDFEF;
 	--cyan-300: #66D8F5;
-	--cyan-400: #19C5F0;
+	--cyan-400: #28BCE2;
 	--cyan-500: #0080A0;
 	--cyan-600: #016179;
 	--cyan-700: #015165;
@@ -143,7 +119,7 @@
 	--cyan-900: #01313D;
 	
 	--slate-50: #F7F8FA;
-	--slate-100: #E1E5EB;
+	--slate-100: #EBEFF5;
 	--slate-200: #CAD1DC;
 	--slate-300: #B6BFCC;
 	--slate-400: #99A4B2;
@@ -163,8 +139,63 @@
 	--gray-700: #3D3D3D;
 	--gray-800: #333333;
 	--gray-900: #242424;
+}
 
-	/* color */
+:root {
+
+	--header-height: 88px;
+	--header-height-md: 48px;
+	--unity-height: 48px;
+	
+	--gnb-top: var(--header-height);
+	--gnb-width: 56px;
+    --gnb-width-active: 240px;
+
+    --gnb-font-weight-normal: 400;
+    --gnb-font-weight-bold: 500;
+    --gnb-font-size-depth1: 14px;
+    --gnb-font-size-depth2: 13px;
+    --gnb-font-size-depth3: 12px;
+
+	--wp-modal-width: 1864px;
+	--wp-side-panel-width: 360px;
+	--wp-mordal-split-padding: 2.5rem;
+	
+	--font-family: "Noto Sans KR";
+	--font-family-en: "Roboto", "Noto Sans KR", sans-serif;
+	
+	--transition-custom: all 0.4s ease-in-out;
+	--transition-custom2: all 0.8s ease-in-out;
+	
+	/* 테두리 */
+	--radius-sm: 4px;
+	--radius-md: 8px;
+	--radius-lg: 16px;
+	--radius-full: 9999px;
+	
+	--font-weight-light: 300;
+	--font-weight-regular: 400;
+	--font-weight-bold: 700;
+	
+	/* nav */
+	--nav-link-padding-y: 4px;
+	
+	/* space */
+	--space-1: 4px;
+	--space-2: 8px;
+	--space-3: 12px;
+	
+	--grid-gap: .25rem;
+	
+	/* box-shadow */
+	--box-shadow-1: 0 0px 8px 0 rgba(0, 0, 0, 0.24);
+	--box-shadow-2: 0 0px 4px 0 rgba(0, 0, 0, 0.24);
+	--box-shadow-3: 0 1rem 3rem rgba(0, 0, 0, 0.175);
+	--winbox-shadow: 0 0px 4px 0 rgba(0, 0, 0, 0.64);
+	
+	--white: var(--white-900);
+	--primary-rgb: 0, 120, 212;
+
 	--bg-default-default: var(--white);
 	--bg-default-defaulthover: var(--gray-50);
 	--bg-default-secondary: var(--gray-100);
@@ -348,44 +379,45 @@
 
 	--icon-utilities-textonoverlay: var(--pink-600);
 	--icon-utilities-textonmeasurement: var(--pink-800);
+}
 
-	--font-family: "Noto Sans KR";
-	--font-family-en: "Roboto", "Noto Sans KR", sans-serif;
-
-	--transition-custom: all 0.4s ease-in-out;
-	--transition-custom2: all 0.8s ease-in-out;
+/* Bootstrap Override */
+:root {
+	/* nav-link */
+	--bs-nav-link-padding-y: var(--nav-link-padding-y);
 
 	/* btn */
-	--bs-border-radius: .25rem;
-	--bs-border-radius-xs: .125rem;
-	--wp-border-radius-full: 1000px;
-
-	/* nav-link */
-	--bs-nav-link-padding-y: .25rem;
-	--bs-nav-tabs-link-active-bg: var(--blue-500);
+	--bs-border-radius: var(--radius-sm);
+	--bs-border-radius-xs: calc(var(--radius-sm) * 0.5);
 	
 	/* border */
-	--bs-border-color: var(--slate-300);
-
-    /* box-shadow */
-    --box-shadow-1: 0 0px 8px 0 rgba(0, 0, 0, 0.24);
-    --box-shadow-2: 0 0px 4px 0 rgba(0, 0, 0, 0.24);
-	--winbox-shadow: 0 0px 4px 0 rgba(0, 0, 0, 0.64);
-
+	--bs-border-color: var(--border-neutral-default);
+	
 	/* BS override style */
-	--bs-link-color: var(--slate-800);
-	--bs-link-hover-color: var(--blue-600);
-	--bs-secondary-color: var(--slate-500);	
-	--bs-emphasis-color: var(--blue-800);
-
-	--bs-nav-underline-link-active-color: var(--text-brand-default);
-	/* --bs-nav-link-color: var(--text-neutral-default);
+	--bs-heading-color: var(--text-neutral-onneutralsecondary);
+	--bs-body-bg: var(--bg-default-default);
+	--bs-body-color: var(--text-default-default);
+	
+	--bs-box-shadow-lg: var(--box-shadow-3);
+	
+	--bs-nav-link-font-size: 1rem;
+	
+	--bs-nav-link-color: var(--text-neutral-default);
 	--bs-nav-link-hover-color: var(--text-brand-default);
-	--bs-nav-underline-link-active-color: var(--text-brand-default); */
-
+	--bs-nav-underline-link-active-color: var(--text-brand-default);
 	--bs-nav-pills-link-active-bg: var(--bg-brand-default);
+	--bs-primary-rgb: var(--primary-rgb);
+	
+	--bs-link-color: var(--bg-neutral-inversehover);
+	--bs-link-hover-color: var(--text-brand-secondary);
+	--bs-secondary-color: var(--slate-500);
+	--bs-emphasis-color: var(--text-brand-default);
 
-    --bs-primary-rgb: 0, 120, 212;
+    --bs-toast-color: var(--text-neutral-default);
+    --bs-toast-bg: var(--bg-default-default);
+	--bs-toast-header-bg: var(--bg-danger-tertiary);
+	--bs-toast-header-color: var(--text-neutral-default);
+	--bs-btn-bg: var(--bg-default-default);
 }
 
 body {
@@ -475,33 +507,4 @@ a[onclick] {
 ::-webkit-calendar-picker-indicator {
 	background: transparent;
 	cursor: pointer;
-}
-
-/* BS override */
-.btn-primary {
-    --bs-btn-bg: var(--blue-500);
-    --bs-btn-border-color: var(--blue-500);
-    --bs-btn-hover-bg: var(--blue-600);
-    --bs-btn-hover-border-color: var(--blue-600);
-    --bs-btn-active-bg: var(--blue-700);
-    --bs-btn-active-border-color: var(--blue-700);
-    --bs-btn-disabled-bg: var(--blue-500);
-    --bs-btn-disabled-border-color: var(--blue-500);
-}
-
-.btn-secondary {
-    --bs-btn-color: #fff;
-    --bs-btn-bg: var(--bg-neutral-secondary);
-    --bs-btn-border-color: var(--border-neutral-secondary);
-    --bs-btn-hover-color: #fff;
-    --bs-btn-hover-bg: var(--bg-neutral-tertiary);
-    --bs-btn-hover-border-color: var(--border-neutral-tertiary);
-    --bs-btn-focus-shadow-rgb: 130, 138, 145;
-    --bs-btn-active-color: #fff;
-    --bs-btn-active-bg: var(--bg-neutral-tertiary);
-    --bs-btn-active-border-color: var(--border-neutral-tertiary);
-    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-    --bs-btn-disabled-color: #fff;
-    --bs-btn-disabled-bg: var(--bg-neutral-secondary);
-    --bs-btn-disabled-border-color: var(--border-neutral-secondary);
 }
