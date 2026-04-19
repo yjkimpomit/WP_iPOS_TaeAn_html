@@ -117,7 +117,7 @@ body {
 	
 	background-color: var(--page-bg);
 	font-family: var(--font-family), sans-serif;
-	color: var(--text-base);
+	color: var(--text-muted);
 	line-height: 1.5;
 }
 
@@ -556,6 +556,8 @@ input[id="facilityRefList"]+.title03 {
 
 /* icon */
 .btn:has(> [class*='icon-']) {
+	--bs-btn-padding-x: 0;
+	--bs-btn-padding-y: 0;
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
@@ -571,9 +573,6 @@ input[id="facilityRefList"]+.title03 {
 .table .btn.btn-sm:has([class*='icon-']) {
 	gap: .25rem;
 }
-/* .table .btn.btn-sm > [class*='icon-'] {
-	width: 1rem;
-} */
 
 .icon-close {
 	background-image: url(/resources/admin/images/icons/icon-close.svg);
@@ -872,14 +871,26 @@ input[id="facilityRefList"]+.title03 {
 /*#################### 모델링 사용가이드 ####################*/
 /* 터치기반 구분 */
 .unity-guide {
+	--popup-header-bg: var(--surface-primary-emphasis);
+	--popup-header-text: var(--text-inverse);
+	--popup-footer-bg: var(--surface-muted);
 	display: block;
 
 	position: absolute;
 	z-index: 10;
 
-	border: solid 1px var(--guide-box-border);
-	background-color: var(--guide-box-bg);
-	box-shadow: var(--box-shadow-1);
+	background-color: var(--popup-bg);
+	border: 2px solid var(--popup-border);
+	border-radius: var(--popup-radius);
+	box-shadow: var(--popup-shadow);
+}
+.unity-guide>* {
+	padding: var(--popup-padding-y) var(--popup-padding-x);
+}
+.unity-guide .btn-close {
+	--bs-btn-close-bg: url(/resources/admin/images/icons/icon-close-white.svg);
+	background-size: 24px;
+	opacity: 1;
 }
 
 /* 터치 아닌 경우 */
@@ -913,9 +924,7 @@ body.touch-device .finger-control {
 }
 
 .unity-guide-header {
-	padding-left: 8px;
-	padding-right: 8px;
-	background-color: var(--surface-primary-strong);
+	background-color: var(--popup-header-bg);
 
 	display: flex;
 	align-items: center;
@@ -931,27 +940,15 @@ body.touch-device .finger-control {
 .unity-guide-header .title {
 	font-size: 16px;
 	font-weight: 500;
-	color: var(--text-inverse);
+	color: var(--popup-header-text);
 
-	background: url(/resources/admin/images/icons/icon-view_in_ar-white.svg) no-repeat left center;
+	background: url(/resources/admin/images/icons/icon-view_in_ar-white.svg) no-repeat left .5rem center;
 	background-size: 24px;
 	padding-left: 40px;
 }
 
-.unity-guide-header .btn.close-guide {
-	background: url(/resources/admin/images/icons/icon-close-white.svg) no-repeat center;
-	background-size: 24px;
-	width: 24px;
-	height: 24px;
-}
-
-.unity-guide-body {
-	padding: 16px;
-}
-
 .unity-guide-footer {
-	padding: 8px 16px;
-	background-color: var(--surface-muted);
+	background-color: var(--popup-footer-bg);
 }
 
 .unity-guide-footer .icon-help {

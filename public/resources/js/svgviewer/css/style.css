@@ -10,6 +10,30 @@
 컨테이너가 필요한 경우에만 사용*/
 @import url('svg-wrapper.css');
 
+/* basic */
+::-webkit-scrollbar {
+	width: var(--scrollbar-size-md);
+	height: var(--scrollbar-size-md);
+}
+
+::-webkit-scrollbar,
+::-webkit-scrollbar-track {
+	background-color: var(--scrollbar-bg);
+}
+
+::-webkit-scrollbar-thumb {
+	border-radius: 0;
+	background-color: var(--scrollbar-thumb);
+}
+::-webkit-scrollbar-thumb:hover,
+::-webkit-scrollbar-thumb:active{
+	background-color: var(--scrollbar-thumb-hover);
+}
+
+::-webkit-scrollbar-button {
+	width: 0;
+	height: 0;
+}
 
 /* 
  * 포미트 : SVG Viewer
@@ -31,6 +55,7 @@ Red: #E50041;
 	background-color: var(--history-bg);
 	backdrop-filter: blur(4px);
 	border-radius: .25rem;
+	box-shadow: var(--popup-shadow);
 	top: 0;
 	right: 0;
 	width: 320px;

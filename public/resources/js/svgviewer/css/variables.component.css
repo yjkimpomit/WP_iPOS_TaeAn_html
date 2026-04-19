@@ -33,8 +33,8 @@
 	--logo-divider: var(--border-muted);
 
 	/* icon */
-	--icon-dot-primary: var(--surface-primary-emphasis);
-	--icon-dot-primary-subtle: var(--surface-primary-stronger);
+	--icon-dot-primary: var(--surface-primary-strong);
+	--icon-dot-primary-subtle: var(--surface-primary);
 
 	--icon-bg: var(--surface-neutral);
 	--icon-success-bg: var(--surface-success);
@@ -91,10 +91,6 @@
 	/* card */
 	--card-bg: var(--surface-subtle);
 	--card-border: var(--border-subtle);
-
-	/* unity-guide */
-	--guide-box-bg: var(--surface-base);
-	--guide-box-border: var(--border-primary);
 	
 	/* layout */
 	--grid-gap: 16px;
@@ -107,6 +103,21 @@
 	
 	--form-block-bg: var(--surface-base);
 	--form-block-border: var(--border-subtle);
+
+	/* panel-box */
+	--panel-bg: var(--surface-base);
+	--panel-left-bg: var(--surface-subtle);
+	--panel-right-bg: var(--surface-base);
+
+	/* calendar */
+	--calendar-cell-bg: transparent;
+	--calendar-cell-border: transparent;
+	--calendar-cell-text: var(--text-subtle);
+	--calendar-cell-bg-active: var(--surface-base);
+	--calendar-cell-border-active: var(--border-primary);
+	--calendar-cell-bg-today: var(--surface-base);
+	--calendar-cell-border-today: var(--border-muted);
+	--calendar-cell-text-weekends: var(--text-danger);
 	
 	/* thumb-board */
 	--thumbnail-box-bg: var(--surface-base);
@@ -225,12 +236,16 @@
 	--winbox-bg-opacity: rgba(var(--white-rgb), 30%);
 	--winbox-border: var(--border-muted);
 
-	/* doc-box */
-	--doc-box-bg: rgba(var(--white-rgb), 70%);
-
 	/* login-box */
 	--login-box--bg: rgba(var(--white-rgb), 70%);
 	--login-box--border: var(--surface-base);
+
+	/* multiview */
+	--multiview-bg: var(--surface-muted);
+	--multiview-border: var(--border-muted);
+	--multiview-cell-bg: var(--surface-base);
+	--multiview-cell-border: var(--border-strong);
+	--multiview-controller-bg: var(--surface-strong);
 
 	/* p&id -- dataparc viewer */
 	--history-bg: rgba(var(--white-rgb), 70%);
@@ -245,11 +260,47 @@
 	--history-body-text: var(--text-base);
 
 	--list-text: var(--text-base);
+	--list-link-bg: var(--surface-subtle);
 	--list-link: var(--text-base);
 	--list-link-hover: var(--text-primary);
+	--list-link-inverse: var(--text-inverse);
 	
 	--svg-bg: var(--surface-base);
 	--svg-border: var(--border-muted);
+
+	/* popup */
+	--popup-bg: var(--surface-base);
+	--popup-shadow: var(--box-shadow-1);
+	--popup-padding-x: 1rem;
+	--popup-padding-y: .75rem;
+	--popup-radius: var(--radius-sm);
+	--popup-border: var(--border-primary-emphasis);
+	--popup-text: var(--text-subtle);
+
+	--popup-title-bg: var(--surface-primary-muted);
+
+	--popup-header-bg: var(--surface-muted);
+	--popup-header-border: var(--border-muted);
+	--popup-header-text: var(--text-base);
+
+	--popup-footer-bg: var(--surface-primary-emphasis);
+	--popup-body-border: var();
+	--popup-footer-text: var(--text-base);
+	--popup-footer-text-inverse: var(--text-inverse);
+
+	/* alarm */
+	--alarm-list-bg: var(--surface-subtle);
+	--alarm-item-bg: var(--surface-base);
+	--alarm-highlight-bg: var(--surface-danger-accent);
+	--alarm-highlight-bg-hover: var(--surface-danger);
+	--alarm-highlight-border: var();
+	--alarm-highlight-text: var(--text-inverse);
+
+	--alarm-timegroup-bg: var(--surface-primary-subtle);
+	--alarm-timegroup-title-text: var(--text-primary);
+	--alarm-timegroup-list-border: var(--border-muted);
+	--alarm-timegroup-item-bg: var(--surface-base);
+	--alarm-timegroup-item-border: var(--border-muted);
 }
 
 @media (min-width: 768px) {
@@ -319,10 +370,6 @@
 	--bs-secondary-color: var(--text-stronger);
 	--bs-emphasis-color: var(--text-base);
 
-    --bs-toast-color: var(--text-subtle);
-    --bs-toast-bg: var(--surface-base);
-	--bs-toast-header-bg: var(--surface-danger-subtle);
-	--bs-toast-header-color: var(--text-subtle);
 	--bs-btn-bg: var(--surface-base);
 }
 
@@ -516,3 +563,4 @@
 	font-size: .875rem;
 	border-radius: calc(var(--radius-sm) * 0.5);
 }
+

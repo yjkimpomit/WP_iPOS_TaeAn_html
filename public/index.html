@@ -84,7 +84,7 @@
 	<script>
 		$(document).ready(function () {
 			const $menu = $('.menu-link[data-class="outbound"]');
-			fnOpenPopup('modal10-multiview.html', $menu);
+			//fnOpenPopup('modal11-earlywarning.html', $menu);
 		});
 	</script>
 </head>
@@ -108,10 +108,10 @@
 	<!-- <span style="position: absolute; top: 0; left: 0; z-index: 301;" onclick="openControlGuide()">가이드박스</span> -->
 
 	<!-- 3D모델 사용가이드 -->
-	<div class="unity-guide" style="display: none;">
+	<div class="unity-guide" style="display: block;">
 		<div class="unity-guide-header">
 			<strong class="title">3D모델 사용가이드</strong>
-			<button type="button" class="btn close-guide" title="가이드박스 닫기" onclick="closeControlGuide();"></button>
+			<button type="button" class="btn-close" title="가이드박스 닫기" onclick="closeControlGuide();"></button>
 		</div>
 		<div class="unity-guide-body">
 			<!-- 터치기반인 경우 -->
@@ -358,7 +358,7 @@
 	</div>
 
 	<!-- 공지팝업 : 활성화시 open 클래스 적용 -->
-	<div class="noticePopup popup-layer">
+	<div class="noticePopup popup-layer open">
 		<div class="noticePopup-contents">
 			<div>
 				<div class="noticePopup-title">
@@ -396,17 +396,15 @@
 
 	<!-- toast-popup : 활성화시 toast show 적용 -->
 	<div id="_EARLY_WARNING_ALARM_POPUP" class="toast-container">
-		<div class="toast">
+		<div class="toast bg-info-subtle show">
 			<div class="toast-header">
 				<!-- <strong class="badge bg-danger">9호기</strong> -->
-       			<span class="icon-alarm">조기 경보</span>
-				<button type="button" class="toast-close" data-bs-dismiss="toast" aria-label="Close"></button>
+       			<strong class="me-auto">조기 경보</strong>
+				<small class="time">발생시각: 2025-12-08 00:00:00</small>
+				<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
 			</div>
 			<div class="toast-body">
 				순환펌프 유량이 기준치의 60% 이하로 떨어졌습니다. 냉각계통 점검이 필요합니다.
-			</div>
-			<div class="toast-footer">
-				<span class="time">발생시각: 2025-12-08 00:00:00</span>
 			</div>
 		</div>
 	</div>

@@ -114,7 +114,7 @@
 
 .table tbody th,
 .table tfoot th {
-	--table-th-bg: var(--surface-subtle);
+	--table-th-bg: var(--table-bg);
 	font-weight: 400;
 }
 
