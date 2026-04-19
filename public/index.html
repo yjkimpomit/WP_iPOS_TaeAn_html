@@ -84,7 +84,7 @@
 	<script>
 		$(document).ready(function () {
 			const $menu = $('.menu-link[data-class="outbound"]');
-			fnOpenPopup('modal06-multiview.html', $menu);
+			fnOpenPopup('modal10-multiview.html', $menu);
 		});
 	</script>
 </head>
@@ -357,8 +357,8 @@
 		</div>
 	</div>
 
-	<!-- 공지팝업 -->
-	<div class="noticePopup popup-layer open">
+	<!-- 공지팝업 : 활성화시 open 클래스 적용 -->
+	<div class="noticePopup popup-layer">
 		<div class="noticePopup-contents">
 			<div>
 				<div class="noticePopup-title">
@@ -394,9 +394,9 @@
 		</div>
 	</div>
 
-	<!-- toast-popup -->
+	<!-- toast-popup : 활성화시 toast show 적용 -->
 	<div id="_EARLY_WARNING_ALARM_POPUP" class="toast-container">
-		<div class="toast show">
+		<div class="toast">
 			<div class="toast-header">
 				<!-- <strong class="badge bg-danger">9호기</strong> -->
        			<span class="icon-alarm">조기 경보</span>
