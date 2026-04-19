@@ -31,6 +31,16 @@
 	--select-group-text: var(--text-base);
 	--logo-text: var(--text-base);
 	--logo-divider: var(--border-muted);
+
+	/* icon */
+	--icon-dot-primary: var(--surface-primary-emphasis);
+	--icon-dot-primary-subtle: var(--surface-primary-stronger);
+
+	--icon-bg: var(--surface-neutral);
+	--icon-success-bg: var(--surface-success);
+	--icon-danger-bg: var(--surface-danger);
+	--icon-warning-bg: var(--surface-warning);
+	--icon-info-bg: var(--surface-info);
 	
 	/* header */
 	--header-bg: var(--surface-base);
@@ -46,8 +56,6 @@
 
 	--title-text: var(--text-base);
 	--title-border: var(--border-secondary-strong);
-	--title-icon-primary: var(--surface-primary-emphasis);
-	--title-icon-secondary: var(--surface-primary-stronger);
 
 	--divider-color: var(--border-muted);
 	
@@ -137,13 +145,6 @@
 	--nav-pills-border-active: var(--border-primary);
 	--nav-pills-bg-hover: var(--surface-primary);
 
-	/* icon */
-	--icon-bg: var(--surface-neutral);
-	--icon-success-bg: var(--surface-success);
-	--icon-danger-bg: var(--surface-danger);
-	--icon-warning-bg: var(--surface-warning);
-	--icon-info-bg: var(--surface-info);
-
 	/* button */
 	--btn-primary-text: var(--text-inverse);
 	--btn-primary-inverse: var(--text-primary);
@@ -230,6 +231,25 @@
 	/* login-box */
 	--login-box--bg: rgba(var(--white-rgb), 70%);
 	--login-box--border: var(--surface-base);
+
+	/* p&id -- dataparc viewer */
+	--history-bg: rgba(var(--white-rgb), 70%);
+	--history-border: var(--border-base);
+
+	--history-header-bg: var(--surface-primary-stronger);
+	--history-header-border: var(--border-primary);
+	--history-header-text: var(--text-inverse);
+
+	--history-body-bg: var(--surface-base);
+	--history-body-border: var(--border-muted);
+	--history-body-text: var(--text-base);
+
+	--list-text: var(--text-base);
+	--list-link: var(--text-base);
+	--list-link-hover: var(--text-primary);
+	
+	--svg-bg: var(--surface-base);
+	--svg-border: var(--border-muted);
 }
 
 @media (min-width: 768px) {

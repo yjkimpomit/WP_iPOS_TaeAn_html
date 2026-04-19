@@ -91,14 +91,13 @@ iPOS 에서는 modal.css 에서 사용하고 있음
 	height: 100%;
 	box-shadow: 0 0 4px 0 rgba(214, 218, 229, 80%);
 }*/
-
 #svgarea {
 	width: 100%;
 	height: 100vh;
 	position: relative;
-	background-color: var(--surface-base);
+	background-color: var(--svg-bg);
 	
-	border: 1px solid var(--border-strong);
+	border: 1px solid var(--svg-border);
 	border-radius: .25rem;
 	overflow: hidden;
 }
@@ -134,9 +133,9 @@ iPOS 에서는 modal.css 에서 사용하고 있음
 
 /* form elements */
 .form-select {
-	color: var(--text-base);
+	color: var(--form-text);
 	
-	border: 1px solid var(--border-muted);
+	border: 1px solid var(--form-border);
 	border-radius: .25rem;
 	overflow: hidden;
 	
@@ -151,8 +150,8 @@ iPOS 에서는 modal.css 에서 사용하고 있음
 }
 
 .form-control {
-	color: var(--text-base);
-	border: 1px solid var(--border-muted);
+	color: var(--form-text);
+	border: 1px solid var(--form-border);
 	border-radius: .25rem;
 	overflow: hidden;
 }
@@ -163,7 +162,7 @@ iPOS 에서는 modal.css 에서 사용하고 있음
 
 /* table-responsive */
 .table-responsive {
-	border-top: 1px solid var(--border-strong);
+	border-top: 1px solid var(--table-top-border);
 	margin-bottom: 0;
 }
 
@@ -187,17 +186,16 @@ iPOS 에서는 modal.css 에서 사용하고 있음
 	position: sticky;
 	top: 0;
 	z-index: 2;
-	background-color: var(--surface-subtle);
+	background-color: var(--table-th-bg-subtle);
 }
 
 .table thead th {
-	background-color: var(--surface-subtle);
+	background-color: var(--table-th-bg-subtle);
 }
 
 .table th,
 .table td {
-	height: 32px;
-	border-color: var(--surface-muted);
+	border-color: var(--table-th-bg);
 }
 
 /* 순번칼럼 너비 */
@@ -283,6 +281,11 @@ iPOS 에서는 modal.css 에서 사용하고 있음
 	background-image: url(../images/icon-swap_driving_apps_wheel-gray.svg);
 }
 
+/* outline 일때 아이콘 반전 */
+.btn-outline-primary {
+	--bs-btn-disabled-bg: transparent;
+	--bs-btn-disabled-border-color: var(--border-primary);
+}
 
 .btn-outline-primary .icon-acute {
 	background-image: url(../images/icon-acute-primary.svg);
@@ -328,9 +331,4 @@ iPOS 에서는 modal.css 에서 사용하고 있음
 }
 .btn-outline-primary .icon-swap_driving_apps_wheel {
 	background-image: url(../images/icon-swap_driving_apps_wheel-primary.svg);
-}
-
-.btn-outline-primary {
-	--bs-btn-disabled-bg: transparent;
-	--bs-btn-disabled-border-color: var(--border-primary);
 }
